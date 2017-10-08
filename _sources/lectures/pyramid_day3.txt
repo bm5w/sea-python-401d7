@@ -1,0 +1,1290 @@
+=================================
+Models, Postgres, and SQL Alchemy
+=================================
+
+The central component of MVC, the *model*, captures the behavior of the
+application in terms of its problem domain, independent of the user interface.
+**The model directly manages the data, logic, and rules of the application**.
+
+A model can be any "thing", e.g. an individual blog post on a blog, a photo or
+an album on a photo site, a user that visits and enrolls in the site,
+a comment on a forum, 
+etc.
+
+A model is most useful when the data that it describes is *persisted*.
+To do that, we'll be interacting with a SQL database and saving information to
+that database with ``SQLAlchemy``.
+In order to have this all easily wired together for us, we're going to start a 
+new scaffold that includes all of that SQL functionality.
+We'll also find that with this new scaffold, the MVC of our app is far more 
+*explicity* separated into entire directories instead of individual files. 
+Let's dip in.
+
+More About The "Alchemy" Scaffold
+=================================
+
+We've been working with the "Alchemy" scaffold all along.
+So, we've been set up with the commands to interact with a database from the start.
+We've also been set up with most of the packages that we'll need for that interaction.
+
+Let's inspect ``setup.py``.
+
+.. code-block:: python
+
+    # setup.py
+    ...
+    requires = [
+        ...
+        'pyramid_tm',
+        'SQLAlchemy',
+        'transaction',
+        'zope.sqlalchemy',
+        ...
+    ]
+    ...
+    setup(
+        ... # same stuff until the end
+        entry_points={
+            'paste.app_factory': [
+                'main = expense_tracker:main',
+            ],
+            'console_scripts': [
+                'initialize_expense_tracker_db = expense_tracker.scripts.initializedb:main',
+            ],
+        },
+    )
+
+This scaffold comes with dependencies for `SQLAlchemy <http://docs.sqlalchemy.org/en/latest/>`_,
+the `transaction <http://zodb.readthedocs.io/en/latest/transactions.html>`_
+package, ``zope.sqlalchemy``, and the `Pyramid transaction manager <http://docs.pylonsproject.org/projects/pyramid_tm/en/latest/>`_.
+
+* ``SQLAlchemy`` - as mentioned, allows us to interact directly with the DB without writing raw SQL
+* ``transaction`` - a package that takes results of an HTTP response and executes other parts of your app that are aware of what the response is supposed to affect
+* ``zope.sqlalchemy`` - integrates SQLAlchemy with the Pyramid transaction manager
+* ``pyramid_tm`` - allows Pyramid to interact with active database transactions created by the the ``transaction`` package
+
+Let's add `psycopg2 <https://pypi.python.org/pypi/psycopg2>`_ to the list of required packages for install.
+This will allow us to work with our PostgreSQL database and our models.
+
+.. code-block:: python
+
+    # setup.py
+    ...
+    requires = [
+        ...
+        'pyramid_tm',
+        'SQLAlchemy',
+        'transaction',
+        'zope.sqlalchemy',
+        'psycopg2' # <---- add this line
+        ...
+    ]
+
+The ``entry_points`` argument has two key-value pairs.
+The first is used for deployment when serving your Pyramid app.
+The second declares scripts that are accessible from the console.
+In our current case, we have a script that initializes our database.
+This will be needed whenever we create or update one of our data models.
+
+``initialize_expense_tracker_db`` is an unreasonably long name for a console
+command that will be invoked fairly often. 
+Shorten this to ``initializedb`` such that our ``setup`` function ends with...
+
+.. code-block:: python
+
+    # setup.py
+    # ...
+    'console_scripts': [
+        'initializedb = expense_tracker.scripts.initializedb:main',
+    ],
+    # ...
+
+Because we changed the command, we need to re-install the app so that the new command name gets stored in our ``ENV/bin`` directory.
+
+.. code-block:: bash
+
+    (ENV) bash-3.2$ pip install -e .
+
+And now our package has added our ``initializedb`` command into our current environment.
+The other packages we spoke about before had already been installed, we just didn't need to use them yet.
+
+Although we have our new console script for creating a new database, we won't initialize a database until we've created the data model that we want.
+
+Now that we are concerned with databases, we should take greater notice of what's in our ``development.ini`` and ``production.ini`` files.
+
+In the ``[app:main]`` section, there's a keyword: ``sqlalchemy.url``.
+This keyword points SQLAlchemy to the database that we want to use.
+Currently, it's pointed at a sqlite database that will be created in our project
+root when we call ``initializedb``.
+
+.. code-block:: bash
+
+    [app:main]
+    ...
+    sqlalchemy.url = sqlite:///%(here)s/expense_tracker.sqlite
+    ...
+
+Once we get our models set up, we'll change the value associated with this keyword to point to a Postgres database.
+
+The MVC/MVT Directory Tree
+--------------------------
+
+Thus far we've only been working with routes, views, and tests.
+We've done a little work with templates in the ``static`` directory.
+Now, we turn our attention to the files and directories dealing with models, ``models``, ``scripts``, and our app root's ``__init__.py``.
+
+Let's first investigate ``__init__.py``:
+
+.. code-block:: python
+
+    from pyramid.config import Configurator
+
+
+    def main(global_config, **settings):
+        """ This function returns a Pyramid WSGI application.
+        """
+        config = Configurator(settings=settings)
+        config.include('pyramid_jinja2')
+        # config.include('.models')
+        config.include('.routes')
+        config.scan()
+        return config.make_wsgi_app()
+
+Thus far, we've commented out the ``config.include('.models')`` line so that we don't include the models in our application.
+Let's uncomment that line, and move on to the ``models`` directory.
+
+Pyramid Models
+==============
+
+*Models* capture the behavior of the application in terms of its problem domain,
+independent of the user interface. 
+**The model directly manages the data, logic, and rules of the application**.
+
+- from the Wikipedia article on `Model-View-Controller <https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller>`_.
+
+The ``models`` Directory
+------------------------
+
+The files in the models directory are few:
+
+.. code-block:: bash
+
+    (ENV) bash-3.2$ tree models
+    models
+    ├── __init__.py
+    ├── meta.py
+    └── mymodel.py
+
+* ``meta.py``: determines the naming conventions that will go into your database via SQLAlchemy. The important thing here is the ``Base`` object, which when inherited creates your models.
+* ``mymodel.py``: the file containing the model for your data. You can have many files like these, or you can have multiple models in the same file. Generic models will inherit from the ``Base`` class.
+* ``__init__.py``: where the needs of the data models are called and fed into the Configurator (where ``config.include('.models')`` calls the ``includeme`` function). This includes the setup of the SQLAlchemy interaction with our database, the creation of sessions, managing transactions between the database and Pyramid, and of course importing our data models.
+
+The Models
+----------
+
+In an MVC application we define the *problem domain* by creating one or more **Models**. 
+These capture relevant details about the information we want to preserve and 
+how we want to interact with it.
+
+In Python-based MVC applications, **Models** are implemented as Python classes.
+In the Pyramid framework specifically, model classes inherit from the ``Base`` class set up in ``models/meta.py``. 
+
+The individual bits of data we want to know about are **attributes** of our classes. 
+When the database is initialized, *every attribute* that is assigned an instance of the 
+``Column`` class will become a column in the database.
+The actions we want to take using that data are **methods** of our classes. 
+Together, we refer to these as the **API** of our system.
+
+The model provided by this scaffold is fairly straight-forward.
+
+.. code-block:: python
+
+    class MyModel(Base):
+        __tablename__ = 'models'
+        id = Column(Integer, primary_key=True)
+        name = Column(Text)
+        value = Column(Integer)
+
+
+    Index('my_index', MyModel.name, unique=True, mysql_length=255)
+
+It will belong to the ``models`` table in our database.
+Every entry into that table will have attributes of ``id``, ``name``, and ``value``. 
+The table will be indexed based on the name of the object using this model for data.
+
+Data Persistence
+~~~~~~~~~~~~~~~~
+
+It's great to have a set of Python classes representing your system.
+But what happens when you want to *save* information?
+What happens to an instance of a Python class when you quit the interpreter?
+What about when your script stops running?
+A website's code runs when an HTTP request comes in from a client.
+It stops running when an HTTP response goes back out to the client.
+So what happens to the data in your system in-between these moments?
+**The data must be persisted**.
+
+There are a number of alternatives for persistence:
+
+* Python Literals
+* Pickle/Shelf
+* Interchange Files (CSV, XML, ini)
+* Object Stores (ZODB, Durus)
+* NoSQL Databases (MongoDB, CouchDB)
+* **SQL Databases (sqlite, MySQL, PostgreSQL, Oracle, SQLServer, etc.)**
+
+Any of these might be useful depending on the application.
+On the web the two most used are SQL (**Structured Query Language**) and NoSQL (**Not Only SQL**).
+For viewing/interacting with individual objects, a NoSQL storage solution might be the best way to go.
+In systems with objects with relationships, SQL-based Relational Databases are the better choice.
+We'll work with the latter.
+
+The DB API
+~~~~~~~~~~
+
+Python provides a specification for interacting directly with databases: `dbapi2 <https://www.python.org/dev/peps/pep-0249/>`_. 
+There are multiple packages that implement this specification for various databases.
+Here's three:
+
+* `sqlite3 <https://docs.python.org/2/library/sqlite3.html>`_
+* `python-mysql <http://mysql-python.sourceforge.net/MySQLdb.html>`_
+* `psycopg2 <https://pypi.python.org/pypi/psycopg2>`_
+
+With these you can write SQL to save your Python objects into your database, but that's a pain.
+SQL, while not impossible, is yet another language to learn.
+Additionally, unless you have a damn good reason why,
+**you should never ever ever ever use raw SQL to manipulate your DB through your site!**
+
+Let me reiterate this, because this is a seriously important point.
+**YOU SHOULD NEVER. EVER EVER. EVER EVER. EVER EVER EVER EVER USE RAW SQL TO MANIPULATE YOUR DB THROUGH YOUR SITE!!!!**.
+
+.. figure:: http://www.ededition.com/blogpics/300-1.jpg
+    :width: 300px
+    :alt: Source: http://www.ededition.com/blogpics/300-1.jpg
+    :align: center
+
+An *Object Relational Mapper (ORM)* provides a nice alternative.
+
+An *ORM* provides a layer of *abstraction* between you and SQL.
+You instantiate Python objects and set attributes onto them.
+The ORM converts the data from these objects into SQL statements (and back).
+
+SQLAlchemy
+----------
+
+In our project we use the `SQLAlchemy <http://docs.sqlalchemy.org/en/rel_0_9/>`_ ORM.
+As we discussed before, you can find SQLAlchemy among the packages in the ``requires`` list in this site's ``setup.py``.
+When we ``pip`` installed our app, we installed SQLAlchemy along with the rest of the app and its dependencies.
+
+Now that we know about ORMs, let's go back to our model...
+
+.. code-block:: python
+
+    class MyModel(Base):
+        __tablename__ = 'models'
+        id = Column(Integer, primary_key=True)
+        name = Column(Text)
+        value = Column(Integer)
+
+Any class we create that inherits from this ``Base`` becomes a *model*.
+This model will be connected through the ORM to our 'models' table in the database (specified by the ``__tablename__`` attribute).
+Once an instance of this class is saved, it and its attributes will become a row in the ``models`` table.
+The class attributes that are instances of `Column <http://docs.sqlalchemy.org/en/rel_0_9/core/metadata.html#sqlalchemy.schema.Column>`_ become *columns* in the table.
+More on this in the `Declarative <http://docs.sqlalchemy.org/en/rel_0_9/orm/extensions/declarative/>`_ chapter of the SQLAlchemy docs.
+
+Each instance of ``Column`` requires *at least* a specific `data type <http://docs.sqlalchemy.org/en/rel_0_9/core/types.html>`_ (such as Integer or Text).
+Others will be able to be specified by other arguments, such as whether or not it's a primary key.
+In the style above, the name of the class attribute holding each ``Column`` 
+will be the name of the column in the database.
+If you want a different name for the column, you can specify that too.
+
+Creating the Database
+---------------------
+
+We now have a *model* which will *persist* Python objects in a SQL database.
+We must still create our database.
+This takes us back to the ``initializedb`` console script from ``setup.py``.
+
+.. code-block:: python
+
+    # setup.py
+    ...
+    setup(
+        ... # remember me?
+        'console_scripts': [
+            'initializedb = expense_tracker.scripts.initializedb:main',
+        ],
+    )
+
+That ``initializedb`` command is tied to the ``main`` function in 
+``expense_tracker/scripts/initializedb.py`` and will run that function when it is invoked.
+That function looks like this:
+
+.. code-block:: python
+
+    # expense_tracker/scripts/initializedb.py
+    #...
+    import transaction
+    #...
+    from ..models import MyModel
+    #...
+    def main(argv=sys.argv):
+        if len(argv) < 2:
+            usage(argv)
+        config_uri = argv[1]
+        options = parse_vars(argv[2:])
+        setup_logging(config_uri)
+        settings = get_appsettings(config_uri, options=options)
+
+        engine = get_engine(settings)
+        Base.metadata.create_all(engine)
+
+        session_factory = get_session_factory(engine)
+
+        with transaction.manager:
+            dbsession = get_tm_session(session_factory, transaction.manager)
+
+            model = MyModel(name='one', value=1)
+            dbsession.add(model)
+
+When ``main`` is called, our Pyramid app will create a new ``MyModel`` instance 
+and insert it into the database.
+To do this, it'll need a configuration file (held in the ``config_uri`` variable above)
+such as our ``development.ini`` and any options we may pass in.
+``development.ini`` will tell Pyramid what to do when trying to initialize a database.
+
+.. code-block:: ini
+
+    # in development.ini
+    [app:main]
+    # ...
+    sqlalchemy.url = sqlite:///%(here)s/expense_tracker.sqlite
+
+As mentioned before, this keyword tells Pyramid where to look for a database.
+Since we're currently using `SQLite <https://docs.python.org/2/library/sqlite3.html>`_, it'll create the database file with SQLite if one does not exist.
+This will not happen with ``PostgreSQL``; you need to have a database ready to be filled with tables.
+The string assigned to ``sqlalchemy.url`` will replace ``here`` with the path to your project root.
+
+.. code-block:: ini
+
+    # still in development.ini
+    [logger_sqlalchemy]
+    level = INFO
+    handlers =
+    qualname = sqlalchemy.engine
+
+These lines provide guidelines for how verbose Pyramid will be when it creates your database.
+``level = INFO`` means that it'll simply tell you what queries are being used.
+This is great for development so that you know exactly what's going into and out of your database.
+When in production, you want to set ``level = WARN``.
+
+Let's return to ``expense_tracker/scripts/initializedb.py``.
+
+.. code-block:: python
+
+    engine = get_engine(settings)
+    Base.metadata.create_all(engine)
+
+``engine`` is the connection to the database itself.
+It gets used by ``Base.metadata.create_all`` to create all of the necessary
+tables in the database.
+The information for those tables are stored in ``Base.metadata``.
+
+The ``Base.metadata.create_all`` method will overlook tables that already exist.
+Thus you're able to add new models to your Pyramid app without having to 
+overwrite existing tables or nuke your DB.
+
+.. code-block:: python
+
+    session_factory = get_session_factory(engine)
+
+    with transaction.manager:
+        dbsession = get_tm_session(session_factory, transaction.manager)
+
+        model = MyModel(name='one', value=1)
+        dbsession.add(model)
+
+This last bit of code isn't actually *necessary*.
+The process in these lines is as follows:
+
+1. (line 39) Create an object with the ability to build new sessions pointing at the database described in ``engine``.
+2. (line 41) Start up a manager to oversee and direct interactions with the database.
+3. (line 42) Start a **database session**, using the ``session_factory`` and the transaction manager.
+4. (line 44) Create an instance of the ``MyModel`` object, complete with its fields filled in with relevant data.
+5. (line 45) Add that instance to the database session.
+6. (after 45) Exit the transaction manager and let it save all changes to the database.
+
+It's a way of checking that your database works the way that it's supposed to.
+
+If this stays uncommented and ``initializedb`` is run more than once, 
+Pyramid will yell at you for trying to create a row that already exists.
+Remember, for this model the "name" attribute is supposed to be unique.
+
+We want to invoke ``initializedb`` so that this function runs and the data is created.
+Let's first direct our app to the right database, then run the command.
+
+Start up Postgres and run the following command in the terminal in order to create a database for you to use.
+
+.. code-block:: bash
+
+    (ENV) bash-3.2$ createdb expense_tracker
+
+Now, in ``development.ini``, replace the value of ``sqlalchemy.url`` with the URL to your Postgres database.
+It'll be something like ``postgres://<Your Username Here>@localhost:5432/expense_tracker``.
+
+Now, let's invoke ``initializedb``.
+We do this by writing the command ``initializedb`` followed by the path to a configuration file like ``development.ini`` or ``production.ini``.
+It's easiest if we invoke this command in the same directory where those files live, so navigate to your project root and run the command.
+
+.. code-block:: bash
+
+    (ENV) bash-3.2$ initializedb development.ini
+
+When this command runs, you'll see a ton of output.
+
+.. code-block:: bash
+
+    2016-07-12 09:53:33,686 INFO  [sqlalchemy.engine.base.Engine:1192][MainThread] SELECT CAST('test plain returns' AS VARCHAR(60)) AS anon_1
+    ...
+    2016-07-12 09:53:33,705 INFO  [sqlalchemy.engine.base.Engine:1100][MainThread] ()
+    2016-07-12 09:53:33,708 INFO  [sqlalchemy.engine.base.Engine:1097][MainThread]
+    CREATE TABLE models (
+        id INTEGER NOT NULL,
+        name TEXT,
+        value INTEGER,
+        CONSTRAINT pk_models PRIMARY KEY (id)
+    )
+    ...
+    2016-07-12 09:53:33,719 INFO  [sqlalchemy.engine.base.Engine:686][MainThread] COMMIT
+
+So what happened here?
+
+- We created a table called ``models`` in our postgres database, with columns ``id``, ``name``, and ``value``.
+- We committed that creation to the database, effectively saving it.
+- We created an index on the ``models`` table using its ``name`` column and committed that.
+- We then created a new row, inserting a new ``MyModel`` instance into the table and committing that.
+
+With our new database populated with some models, we can move on with enhancing our app.
+
+Interacting with SQLAlchemy Models and the ORM
+----------------------------------------------
+
+We can investigate and manipulate our models from the interpreter pretty easily.
+Let's fire up ``pshell`` and explore for a moment to see what we have at our disposal.
+
+.. code-block:: bash
+
+    Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04) 
+    Type "copyright", "credits" or "license" for more information.
+
+    IPython 5.3.0 -- An enhanced Interactive Python.
+    ?         -> Introduction and overview of IPython's features.
+    %quickref -> Quick reference.
+    help      -> Python's own help system.
+    object?   -> Details about 'object', use 'object??' for extra details.
+
+    Environment:
+      app          The WSGI application.
+      registry     Active Pyramid registry.
+      request      Active request object.
+      root         Root of the default resource tree.
+      root_factory Default root factory used to create `root`.
+
+The ``environment`` created by ``pshell`` provides us with a few useful tools seen above:
+
+- ``app`` is our new ``expense_tracker`` application.
+- ``registry`` provides us with access to settings and other useful information.
+- ``request`` is an artificial HTTP request we can use if we need to pretend we are listening to clients
+
+Let's use this environment to build a database session and interact with our data.
+
+.. code-block:: ipython
+
+    In [1]: from expense_tracker.models import get_engine, MyModel
+    In [2]: engine = get_engine(registry.settings) # default prefixes are 'sqlalchemy.'
+    In [3]: from sqlalchemy.orm import sessionmaker
+    In [4]: Session = sessionmaker(bind=engine)
+    In [5]: session = Session()
+    In [6]: session.query(MyModel).all()
+    #...
+    2016-07-12 10:19:02,254 INFO  [sqlalchemy.engine.base.Engine:1097][MainThread] SELECT models.id AS models_id, models.name AS models_name, models.value AS models_value
+    FROM models
+    2016-07-12 10:19:02,254 INFO  [sqlalchemy.engine.base.Engine:1100][MainThread] ()
+    Out[6]: [<expense_tracker.models.mymodel.MyModel at 0x1054fe470>]
+
+We've stolen a lot of this from ``scripts/initializedb.py`` and ``models/__init__.py``.
+
+**Any persisting interaction with the database requires a ``session``.**
+This object *represents* the active, current connection to the database.
+
+Note the output that comes before ``Out[6]``.
+It's a result of the setting for our logging from the database.
+If you want less output, set ``level = WARN`` under the ``[logger_sqlalchemy]`` heading in ``development.ini``.
+
+All database queries are phrased as methods of the session object.
+
+.. code-block:: ipython
+
+    In [7]: query = session.query(MyModel)
+    In [8]: type(query)
+    Out[8]: sqlalchemy.orm.query.Query
+
+The ``query`` method of the session object returns a ``Query`` object.
+Arguments to the ``query`` method can be a *model* class, several model classes, or even *columns* from a model class.
+Query objects are themselves iterable, with the result depending on the args you passed.
+
+.. code-block:: ipython
+
+    In [9]: query1 = session.query(MyModel)
+    In [10]: for row in query1:
+       ....:     print(row)
+       ....:     print(type(row))
+       ....:
+    2016-07-12 10:22:32,165 INFO  [sqlalchemy.engine.base.Engine:1097][MainThread] SELECT models.id AS models_id, models.name AS models_name, models.value AS models_value
+    FROM models
+    2016-07-12 10:22:32,166 INFO  [sqlalchemy.engine.base.Engine:1100][MainThread] ()
+
+    # above this mark are the two lines representing SQL commands that retreive our data
+
+    <expense_tracker.models.mymodel.MyModel object at 0x1054fe470>
+    <class 'expense_tracker.models.mymodel.MyModel'>
+
+    # these two lines are the result of the for loop
+
+.. code-block:: ipython
+
+    In [11]: query2 = session.query(MyModel.name, MyModel.id, MyModel.value)
+    In [12]: for name, id, val in query2:
+       ....:     print(name)
+       ....:     print(type(name))
+       ....:     print(id)
+       ....:     print(type(id))
+       ....:     print(val)
+       ....:     print(type(val))
+       ....:
+    2016-07-12 10:24:33,866 INFO  [sqlalchemy.engine.base.Engine:1097][MainThread] SELECT models.name AS models_name, models.id AS models_id, models.value AS models_value
+    FROM models
+    2016-07-12 10:24:33,868 INFO  [sqlalchemy.engine.base.Engine:1100][MainThread] ()
+    one
+    <class 'str'>
+    1
+    <class 'int'>
+    1
+    <class 'int'>
+
+We can see the SQL query on its own by looking at its string representation.
+
+.. code-block:: ipython
+
+    In [13]: str(query1)
+    Out[13]: 'SELECT models.id AS models_id, models.name AS models_name, models.value AS models_value \nFROM models'
+
+    In [14]: str(query2)
+    Out[14]: 'SELECT models.name AS models_name, models.id AS models_id, models.value AS models_value \nFROM models'
+
+You can use this to check that the query that the ORM constructs is what you expect.
+It can be very helpful for testing and debugging.
+
+The methods of the ``Query`` object fall roughly into two categories:
+
+1. Methods that return a new ``Query`` object
+2. Methods that return *scalar* values or *model instances*
+
+Let's start by looking quickly at a few methods from the second category.
+
+Methods Returning Values & Instances
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An example of this is ``get``, which returns only one model instance.
+It takes a primary key as an argument:
+
+.. code-block:: ipython
+
+    In [15]: session.query(MyModel).get(1)
+    Out[15]: <expense_tracker.models.mymodel.MyModel at 0x105546080>
+
+    In [16]: session.query(MyModel).get(10)
+    In [17]:
+
+If no item with that primary key is present, then the method returns ``None`` instead of raising an exception.
+
+Another example is one we've already seen.
+``query.all()`` returns a list of all rows matching the given query.
+
+.. code-block:: ipython
+
+    In [17]: query1.all()
+    Out[17]: [<expense_tracker.models.mymodel.MyModel at 0x105546080>]
+
+    In [18]: type(query1.all())
+    Out[18]: list
+
+``query.count()`` returns the number of rows that would have been returned by the query:
+
+.. code-block:: ipython
+
+    In [19]: query1.count()
+    Out[19]: 1
+
+Creating New Model Instances
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We can create new instances of our *model* just like normal Python objects:
+
+.. code-block:: ipython
+
+    In [20]: new_model = MyModel(name="fred", value=3)
+    In [21]: new_model
+    Out[21]: <expense_tracker.models.mymodel.MyModel at 0x1053f8710>
+
+In this state, the instance is *ephemeral*.
+Our database ``session`` knows nothing about it:
+
+.. code-block:: ipython
+
+    In [22]: session.new
+    Out[22]: IdentitySet([])
+
+For the database to know about our new object we must add it to the session
+
+.. code-block:: ipython
+
+    In [23]: session.add(new_model)
+    In [24]: session.new
+    Out[24]: IdentitySet([<expense_tracker.models.mymodel.MyModel object at 0x1053f8710>])
+
+``session.new`` returns a list-like object containing any new instances added to the session.
+They still don't exist in the database, but the session is aware of them.
+
+We can bulk-add new objects with ``session.add_all()``:
+
+.. code-block:: ipython
+
+    In [25]: new_data = []
+    In [26]: for name, val in [('bob', 34), ('tom', 13)]:
+       ....:     new_data.append(MyModel(name=name, value=val))
+       ....:
+
+    In [27]: session.add_all(new_data)
+    In [28]: session.new
+    Out[28]: Out[37]: IdentitySet([<expense_tracker.models.mymodel.MyModel object at 0x1055e3048>, <expense_tracker.models.mymodel.MyModel object at 0x1053f8710>, <expense_tracker.models.mymodel.MyModel object at 0x1055cb390>])
+
+Up until now, the changes you've made are not permanent.
+They're recognized by your session, but they haven't been saved into the database.
+Just like we saw when we initialized the database, our current session must be **committed**.
+
+.. code-block:: ipython
+
+    In [29]: other_session = Session()
+    In [30]: other_session.query(MyModel).count()
+    Out[30]: 1
+
+Notice how this new DB session is completely unaware of the "changes" we've made.
+
+.. code-block:: ipython
+
+    In [31]: session.commit()
+    In [32]: other_session.query(MyModel).count()
+    Out[32]: 4
+
+Now they're seen, as ``other_session``'s query looks directly at the database when it queries.
+
+When you are using a ``scoped_session`` in Pyramid (we'll be doing this in our views), this action is automatically handled for you.
+The session that is bound to a particular HTTP request is committed when a response is sent back.
+
+You can edit objects that are already part of a session, or that are fetched by a query.
+Simply change the values of a persisted attribute, the session will know it's been updated:
+
+.. code-block:: ipython
+
+    In [33]: new_model
+    Out[33]: <expense_tracker.models.mymodel.MyModel at 0x1053f8710>
+    In [34]: new_model.name
+    Out[34]: 'fred'
+    In [35]: new_model.name = 'larry'
+    In [36]: session.dirty
+    Out[36]: IdentitySet([<expense_tracker.models.mymodel.MyModel object at 0x1053f8710>])
+
+Commit the session to persist the changes:
+
+.. code-block:: ipython
+
+    In [37]: session.commit()
+    In [38]: [model.name for model in other_session.query(MyModel)]
+    Out[38]: ['one', 'larry', 'bob', 'tom']
+
+Methods Returning Query Objects
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Returning to query methods, a good example of the second type is the ``filter`` method.
+This method allows you to reduce the number of results based on given criteria:
+
+.. code-block:: ipython
+
+    In [39]: [(o.name, o.value) for o in session.query(MyModel).filter(MyModel.value < 20)]
+    Out[39]: [('one', 1), ('larry', 3), ('tom', 13)]
+
+Another typical method in this category is ``order_by``:
+
+.. code-block:: ipython
+
+    In [40]: [o.value for o in session.query(MyModel).order_by(MyModel.value)]
+    Out[40]: [1, 3, 13, 34]
+
+    In [41]: [o.name for o in session.query(MyModel).order_by(MyModel.name)]
+    Out[41]: ['bob', 'larry', 'one', 'tom']
+
+Since methods in this category return Query objects, they can be safely ``chained``
+to build more complex queries:
+
+.. code-block:: ipython
+
+    In [42]: query1 = Session.query(MyModel).filter(MyModel.value < 20)
+    In [43]: query1 = query1.order_by(MyModel.name)
+    In [44]: [(o.name, o.value) for o in query1]
+    Out[44]: [('larry', 3), ('one', 1), ('tom', 13)]
+
+Note that you can do this inline (``Session.query(MyModel).filter(MyModel.value < 20).order_by(MyModel.name)``).
+Also note that when using chained queries like this, no query is actually
+sent to the database until you require a result.
+
+Cleaning Up our Model Sandbox
+=============================
+
+We've used the toy ``MyModel`` long enough.
+We're writing an app for listing out our expenses, and our code should reflect that in both file names and content.
+
+First, rename ``models/mymodel.py`` to ``models/expenses.py``.
+We'll have to change various import statements around our application to reflect this change, but lets stick with this file for now.
+
+Inside of ``models/expenses.py``, remove all of the ``MyModel`` code and construct an ``Expense`` model.
+Recall, up to this point we've been presenting our data as dictionaries holding key-value pairs for attributes.
+
+.. code-block:: python
+
+    EXPENSES = [
+        {
+            "category": "Utilities",
+            "creation_date": "Aug 19, 2016",
+            "id": 10,
+            "description": "Wifi and cable for August 2016."
+            "amount": 100.00
+        },
+    ...
+    ]
+
+Let's put these same attributes on a model object in ``models/expenses.py``.
+
+.. code-block:: python
+
+    from sqlalchemy import (
+        Column,
+        Date,
+        Float,
+        Integer,
+        Unicode,
+    )
+
+    from .meta import Base
+
+
+    class Expense(Base):
+        """Expense model class."""
+
+        __tablename__ = 'expenses'
+        id = Column(Integer, primary_key=True)
+        category = Column(Unicode)
+        description = Column(Unicode)
+        creation_date = Column(Date)
+        amount = Column(Float, precision=2)
+
+Now that we have a new model, we need to go into ``models/__init__.py`` and have it import that model instead of ``MyModel``, which no longer exists.
+
+.. code-block:: python
+
+    # in models/__init__.py
+
+    from .mymodel import MyModel  #<-- remove this line
+    from expense_tracker.models.expenses import Expense  #<-- replace with this line
+
+Then, in ``scripts/initializedb.py`` do the same thing.
+Directly underneath that import line, import the ``EXPENSES`` variable from ``data/expense_data.py``, as well as the ``datetime`` object so we can give our expenses some actual date information.
+
+.. code-block:: python
+
+    # in scripts/initializedb.py
+
+    from expense_tracker.models.expenses import Expense
+    from expense_tracker.data.expense_data import EXPENSES
+    from datetime import datetime
+
+Within the couple of lines where Pyramid gets the database engine and creates all the necessary tables, insert a line that drops the existing tables.
+This is to avoid database conflicts.
+
+.. code-block:: python
+
+    engine = get_engine(settings)
+    Base.metadata.drop_all(engine) # <--- you are adding this line
+    Base.metadata.create_all(engine)
+
+Finally, change the ``with transaction.manager`` block so that it creates a bunch of ``Expense`` instances instead of one ``MyModel`` instance.
+
+.. code-block:: python
+
+    with transaction.manager:
+        dbsession = get_tm_session(session_factory, transaction.manager)
+
+        many_models = []
+        for item in EXPENSES:
+            new_expense = Expense(
+                category=item["category"],
+                description=item["description"],
+                creation_date=datetime.now(),
+                amount=item["amount"], 
+            )
+            many_models.append(new_expense)
+        dbsession.add_all(many_models)
+
+Now, navigate to the project root and run ``initializedb`` to make sure that everything's wired up correctly and new data is added to the database.
+
+
+Connecting "M" to "VC"
+======================
+
+We should be able to see them on our site.
+The way to make that happen is through our Views.
+
+Let's modify our existing views so that they can access the database and display that data.
+
+One of the many things that our scaffold does for us is attach a database session to the ``request`` object.
+As such, we can use that session to interact with the database without needed to create a new session ourselves like we did in the interpreter.
+We also don't need to commit our changes, as changes to objects in the database are automatically committed when the view returns its response.
+
+Let's first change the ``list_view`` so that we query the database for all of our expenses and list them on the page.
+Also, comment out the contents of the ``detail_view`` for now.
+
+.. code-block:: python
+
+    # expense_tracker/views/default.py
+    from pyramid.view import view_config
+    from expense_tracker.models.expenses import Expense
+
+
+    @view_config(route_name='home', renderer='../templates/list.jinja2')
+    def list_view(request):
+        """View for the home route."""
+        expenses = request.dbsession.query(Expense).all()
+        return {"expenses": expenses}
+
+    @view_config(route_name='detail', renderer='../templates/detail.jinja2')
+    def detail_view(request):
+        """View for listing expenses."""
+        pass
+        # expense = EXPENSES[0]
+        # return {
+        #     "category": expense['category'],
+        #     "creation_date": expense["creation_date"],
+        #     "id": expense["id"],
+        #     "description": expense["description"]
+        # }
+
+Run ``pserve`` to look at the site and see our data, now hosted in the database instead of simply in a file.
+
+Now let's activate that ``detail_view``, pulling an individual expense out of the database instead of just the same one.
+To do this, we need to get the expense's ID from the URL.
+
+Whenever some variables in the route URL are set, they appear in an object called the ``matchdict` attached to the ``request`` object.
+If you recall, our ``detail`` route takes the form of ``/expense/{id:\d+}``.
+Thus, in the ``request.matchdict`` the value of ``id`` is present as a key, and the value itself is a string.
+
+In our ``detail_view`` we'll harvest this data, use it to ``get`` the proper ``Expense`` instance, and return that instance's data to the page.
+
+.. code-block:: python
+
+    @view_config(route_name='detail', renderer='../templates/detail.jinja2')
+    def detail_view(request):
+        """View for listing expenses."""
+        the_id = int(request.matchdict['id'])
+        expense = request.dbsession.query(Expense).get(the_id)
+        return {
+            "category": expense.category,
+            "creation_date": expense.creation_date,
+            "id": expense.id,
+            "description": expense.description
+        }
+
+Now if you check your site on ``localhost``, you can navigate to the detail pages for different expenses.
+
+Before we get to testing models, we have to think about one more thing: what happens if the ID being requested doesn't exist in our database?
+
+If you recall from earlier, when you try to retrieve an object from the database by ID and there is no object with that ID, the session returns ``None``.
+As our code is right now, we won't catch that until our application throws an ``AttributeError`` in the ``return`` statement.
+
+We can include a conditional that checks to make sure that we actually have some data.
+
+.. code-block:: python
+
+    @view_config(route_name='detail', renderer='../templates/detail.jinja2')
+    def detail_view(request):
+        """View for listing expenses."""
+        the_id = int(request.matchdict['id'])
+        expense = request.dbsession.query(Expense).get(the_id)
+        if expense:
+            return {
+                "category": expense.category,
+                "creation_date": expense.creation_date,
+                "id": expense.id,
+                "description": expense.description
+            }
+
+This still isn't really handling the situation though.
+We should be able to return a 404 status code if the data isn't found.
+Fortunately, Pyramid provides us with a whole host of HTTP exceptions for most status codes that we'll use.
+
+.. code-block:: python
+
+    # at the top...
+    from pyramid.httpexceptions import HTTPNotFound
+
+    # in the detail_view
+    @view_config(route_name='detail', renderer='../templates/detail.jinja2')
+    def detail_view(request):
+        """View for listing expenses."""
+        the_id = int(request.matchdict['id'])
+        expense = request.dbsession.query(Expense).get(the_id)
+        if expense:
+            return {
+                "category": expense.category,
+                "creation_date": expense.creation_date,
+                "id": expense.id,
+                "description": expense.description
+            }
+        else:
+            raise HTTPNotFound
+
+When the ``raise HTTPNotFound`` line is hit, something very special happens.
+
+Remember that ``notfound.py`` file we've so conveniently ignored thus far in our ``views`` directory?
+Within that is a special view whose only purpose is to handle situations where the requested URL isn't found, called the ``notfound_view``.
+
+It's wired into our app with a special ``view_config`` decorator: ``notfound_view_config``.
+It doesn't connect to any route, because by default it's supposed to be hit when any route isn't available.
+It does, however, connect to a template.
+This is the template that will show whenever a resource is inaccessible.
+The view itself will then return a status 404 and no data (note the empty dict).
+
+Let's make ourselves a very simple ``404.jinja2`` template.
+Later on we can modify that template to match the aesthetic of our site.
+
+.. code-block:: bash
+
+    (ENV) bash-3.2$ echo "<h1>The thing you were looking for cannot be found</h1>" > expense_tracker/templates/404.jinja2 
+
+Testing Models and MVC Interaction
+==================================
+
+We've added data models to our site in a pretty significant way.
+Not only do we have an entire separate directory housing those models, 
+but we have two views that pipe the model data over to the front-end.
+
+We need to write some tests for the models and the views that serve them to ensure the integrity of our code as we continue to build out.
+
+Fixtures for Unit Tests
+-----------------------
+
+First, we create some fixtures that let us interact with the database.
+``configuration`` will be a fixture that sets up configuration and interaction with the database.
+
+.. code-block:: python
+
+    import pytest
+    from pyramid import testing
+    import transaction
+    from expense_tracker.models import (
+        Expense,
+        get_tm_session,
+    )
+    from expense_tracker.models.meta import Base
+
+    @pytest.fixture(scope="session")
+    def configuration(request):
+        """Set up a Configurator instance.
+
+        This Configurator instance sets up a pointer to the location of the
+            database.
+        It also includes the models from your app's model package.
+        Finally it tears everything down, including the in-memory SQLite database.
+
+        This configuration will persist for the entire duration of your PyTest run.
+        """
+        config = testing.setUp(settings={
+            'sqlalchemy.url': 'postgres:///test_expenses'
+        })
+        config.include("expense_tracker.models")
+
+        def teardown():
+            testing.tearDown()
+
+        request.addfinalizer(teardown)
+        return config
+
+Here, we set up a test database, which is and must be different from your development database.
+We have to include in our configuration our ``models`` so that when we unit-test our views, the tests won't error out.
+This fixture has ``session`` scope so that it only needs to get set up once per testing session.
+
+**ALERT:** the ``request`` parameter coming into the function **IS NOT AN HTTP REQUEST OBJECT**.
+In an unfortunate circumstance of naming conflicts, ``pytest`` provides a
+function-level ``request`` fixture for setting up and tearing down tests (amongst other things).
+
+Next, we'll create a fixture that will be the database session for every test that needs one.
+It'll create a new session, allow the ``request`` to talk to the database, then tear that session down at the end of the test.
+Because it needs to get built anew for every test, its scope will be the default function-level scope.
+
+.. code-block:: python
+
+    @pytest.fixture
+    def db_session(configuration, request):
+        """Create a session for interacting with the test database.
+
+        This uses the dbsession_factory on the configurator instance to create a
+        new database session. It binds that session to the available engine
+        and returns a new session for every call of the dummy_request object.
+        """
+        SessionFactory = configuration.registry["dbsession_factory"]
+        session = SessionFactory()
+        engine = session.bind
+        Base.metadata.create_all(engine)
+
+        def teardown():
+            session.transaction.rollback()
+            Base.metadata.drop_all(engine)
+
+        request.addfinalizer(teardown)
+        return session
+
+Finally, we create a fixture whose job will be to provide us with fake ``request`` objects that we can use for our tests.
+These will be slightly more special, having the ``db_session`` fixture attached.
+
+.. code-block:: python
+
+    @pytest.fixture
+    def dummy_request(db_session):
+        """Instantiate a fake HTTP Request, complete with a database session.
+        This is a function-level fixture, so every new request will have a
+        new database session.
+        """
+        return testing.DummyRequest(dbsession=db_session)
+
+Testing the Models
+------------------
+
+Comment out every test function.
+Now add the above your stack of tests:
+
+.. code-block:: python
+
+    def test_model_gets_added(db_session):
+        assert len(db_session.query(Expense).all()) == 0
+        model = Expense(
+            category="Fake Category",
+            description="Some description text",
+            creation_date=datetime.datetime.now(),
+            amount=12345.67
+        )
+        db_session.add(model)
+        assert len(db_session.query(Expense).all()) == 1
+
+We're testing the creation of a new model.
+
+Since we're using a testing database, it shouldn't have *any* model instances saved within.
+After we create a model instance and save the change, we should be able to
+query the database and find our new model instance present.
+
+If my model instances had other attributes that depended on the time of creation,
+or really any other functionality, I'd want to test that those work as well.
+
+Refactoring the Unit Tests
+--------------------------
+
+It's refactor time.
+
+Our first test will remain more-or-less the same.
+The difference will be that instead of creating a new request using ``testing.DummyRequest``, we'll just use the ``dummy_request`` fixture we just created.
+
+.. code-block:: python
+
+    def test_list_view_returns_dict(dummy_request):
+        """Home view returns a dictionary of values."""
+        from expense_tracker.views.default import list_view
+        response = list_view(dummy_request)
+        assert isinstance(response, dict)
+
+We want to run this test, but before we do we should actually create our test database ``test_expenses``.
+
+.. code-block:: bash
+
+    (ENV) bash-3.2$ createdb test_expenses
+
+If we run our test, it passes. Yay!
+
+If we uncomment our next test, we see that we were trying to check that the number of items coming out of the ``list_view`` matches the amount of data we're trying to serve.
+All of our data should now be coming from the database though, so instead of testing against that ``EXPENSES`` global variable, we should test against the database.
+
+.. code-block:: python
+
+    def test_list_view_returns_count_matching_database(dummy_request):
+        """Home view response matches database count."""
+        from expense_tracker.views.default import list_view
+        response = list_view(dummy_request)
+        query = dummy_request.dbsession.query(Expense)
+        assert len(response['expenses']) == query.count()
+
+We've got a silent problem here.
+Recall our ``db_session`` fixture.
+For every new test we destroy the database and create a new one.
+That means that when we get to our second test, our database has nothing in it no matter what came before.
+Thus, our test is really just checking that ``0 == 0``.
+
+We need data in our database, so let's add it.
+Coming up with a bunch of fake objects to test is very tedious.
+Thankfully, there exists the `Faker <https://pypi.python.org/pypi/Faker>`_ library.
+
+.. code-block:: bash
+
+    (ENV) bash-3.2$ pip install Faker
+
+The ``Faker`` library allows you to create random fake data of a variety of different types.
+You create what is effectively a factory for new, fake data.
+
+.. code-block:: python
+
+    >>> from faker import Faker
+    >>> fake = Faker()
+    >>> fake.name()
+    'Jennifer Johnson'
+    >>> fake.name()
+    'Dennis Clark'
+
+Use ``dir()`` on your factory to see all of what the ``Faker`` library has to offer in terms of random data.
+We're going to use it to generate fake expenses.
+Since it's a part of our set of testing tools, add the ``faker`` package to the ``tests_require`` list in your ``setup.py``
+
+.. code-block:: python
+
+    # along with other imports in tests.py...
+
+    from faker import Faker
+    import random
+    import datetime
+
+    FAKE_FACTORY = Faker()
+    CATEGORIES = ["rent", "utilities", "groceries", "food", "diapers", "car loan", "netflix", "booze", "therapist"]
+    EXPENSE_LIST = [Expense(
+        category=random.choice(CATEGORIES),
+        description=FAKE_FACTORY.text(100),
+        creation_date=datetime.datetime.now(),
+        amount=random.random() * random.randint(0, 1000)
+    ) for i in range(20)]
+
+    # below the "dummy_request" fixture
+
+    @pytest.fixture
+    def add_models(dummy_request):
+        """Add a bunch of model instances to the database.
+
+        Every test that includes this fixture will add new random expenses.
+        """
+        dummy_request.dbsession.add_all(EXPENSE_LIST)
+
+Now we can add that fixture to a test so that there's actually something in the database.
+Granted, we should probably still check that when the database is empty the view returns no data.
+So, let's keep the first test for an empty database and make a second test for when there's actual data.
+
+.. code-block:: python
+
+    def test_list_view_returns_empty_when_database_empty(dummy_request):
+        """List view returns nothing when there is no data."""
+        from expense_tracker.views.default import list_view
+        response = list_view(dummy_request)
+        assert len(response['expenses']) == 0
+
+
+    def test_list_view_returns_count_matching_database(dummy_request, add_models):
+        """Home view response matches database count."""
+        from expense_tracker.views.default import list_view
+        response = list_view(dummy_request)
+        query = dummy_request.dbsession.query(Expense)
+        assert len(response['expenses']) == query.count()
+
+Tests of the ``detail_view`` will be left as an exercise for the reader.
+We've got some application basics to test.
+
+Testing the Routes and Front-End
+--------------------------------
+
+Yesterday, in order to test our routes and Front End we set up a test application with ``webtest``.
+We'll do the same exact thing today, but with a small twist.
+We'll need to add our database information into our test app, because now our real app accesses a database.
+
+.. code-block:: python
+
+    @pytest.fixture(scope="session")
+    def testapp(request):
+        from webtest import TestApp
+        from expense_tracker import main
+
+        app = main({}, **{"sqlalchemy.url": "postgres:///test_expenses"})
+        testapp = TestApp(app)
+
+        SessionFactory = app.registry["dbsession_factory"]
+        engine = SessionFactory().bind
+        Base.metadata.create_all(bind=engine)
+
+        def tearDown():
+            Base.metadata.drop_all(bind=engine)
+
+        request.addfinalizer(tearDown)
+
+        return testapp
+
+Here, our ``testapp`` fixture connects to our in-memory testing database.
+It then fills that database with the requisite tables for every Model inheriting from ``Base``.
+
+This is great, but it might help to have some fixtures in place for when we want to test routes with and without data.
+
+.. code-block:: python
+
+    @pytest.fixture
+    def fill_the_db(testapp):
+        SessionFactory = testapp.app.registry["dbsession_factory"]
+        with transaction.manager:
+            dbsession = get_tm_session(SessionFactory, transaction.manager)
+            dbsession.add_all(EXPENSE_LIST)
+
+        return dbsession
+
+We set up a session factory using the settings and the factory object attached to the app's registry.
+After that, it's just like what we have in ``initializedb.py``.
+We create a context using ``with transaction.manager:``, then use that transaction context to add new data to the database.
+
+We can then uncomment our functional tests and go about our day.
+We should make sure to modify our ``.coveragerc`` file to reflect that we want our ``models`` directory covered, as well as our ``notfound.py``.
+
+Recap
+=====
+
+Today handled a ton.
+First, we talked about data models.
+We saw how Pyramid converts model attributes to data for the database, and used the interpreter to persist that data across separate sessions.
+Most notably, we saw that while changes may be made with models being created and/or deleted, nothing persists without commitment.
+
+We connected our "Models" to the "View" and "Controller" pieces of our Pyramid app.
+Finally, we saw how to test models, with significant changes in how we built up a test suite.
+We have to now not only use an instance of our app.
+We must also call up a database session so that we can test models along with our view and fully functional Pyramid app.
+
+Tonight you will modify your Learning Journals, adding some persistence to your deployed Learning Journal by creating a data model for your learning journal entries.
+You'll wire it all together with appropriate templates and views.
+You'll also write a battery of tests, showing that your app can persist data in addition to the unit tests and functional tests you're already writing.
+
+Coming up tomorrow: creating/updating model instances from the front end, and MORE TESTING!!!

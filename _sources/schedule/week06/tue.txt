@@ -1,0 +1,64 @@
+.. slideconf::
+    :autoslides: False
+
+*******
+Tuesday
+*******
+
+.. slide:: Course Presentations
+    :level: 1
+
+    This document contains no slides.
+
+Objectives
+==========
+
+* Be able to traverse a Binary Search Tree in code.
+* Learn about the glorious nature of iterators and generators in Python.
+* Understanding function-based views in Django, and how they hook up to Django's URL configuration.
+* Read about using `Django's Authentication Systems <https://docs.djangoproject.com/es/1.10/topics/auth/default/>`_
+* Learn how to connect a GitHub project to TravisCI to enable testing and coverage reporting on push.
+
+
+Readings
+========
+
+.. include:: /readings/django_readings.rst
+    :start-line: 36
+    :end-line: 56
+
+Other readings to be aware of
+
+* `Iterators & Generators <http://anandology.com/python-practice-book/iterators.html>`_
+* `Writing Simple Views for Your First Python Django Application <http://pythoncentral.io/writing-simple-views-for-your-first-python-django-application/>`_
+* `Django Girls Tutorial <https://www.gitbook.com/book/djangogirls/djangogirls-tutorial/details>`_
+* `Travis CI Tutorial: Getting Started <https://www.raywenderlich.com/109418/travis-ci-tutorial>`_
+
+Review
+======
+
+* Implementing the Binary Search Tree
+* Django Models (the ``ImagerProfile``)
+
+Concepts
+========
+
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/django_views
+    /lectures/intro_to_python_9_generators
+    /lectures/travis
+
+* Traversing a Binary Search Tree
+
+Demo
+====
+
+Assignments
+===========
+
+* :doc:`/assignments/bst_2_traversal`
+* :doc:`/assignments/django_2_registration`
+* :doc:`/assignments/blog_post_draft` (Due Friday of Week 7)
+* :doc:`/assignments/daily_lj_entry`

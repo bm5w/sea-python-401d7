@@ -1,0 +1,720 @@
+========================================
+User Interactions and More About Testing
+========================================
+
+Up until now we've been able to make a front-end, build out the back-end, and even add a model to persist our data for the long term.
+The last major piece involves being able to edit that data from the front-end.
+We need to create some views that handle user interaction.
+
+Working with Forms in Pyramid
+=============================
+
+The whole point of creating a model is so that we can persist data across sessions.
+However, without an interface how can we add new data?
+Forms allow for user input, and we can use the ``request`` method in a view to handle that input and create new data.
+
+Let's create a template called ``new-expense.jinja2``.
+In that template, we'll write the following HTML/Jinja2 code:
+
+.. code-block:: html+jinja
+
+	{% extends "layout.jinja2" %}
+
+	{% block body %}
+	<form method="POST">
+		<table>
+			<tr>
+				<td><label for="category">Category:</label></td>
+				<td><input type="text" name="category" required /></td>
+			</tr>
+			<tr>
+				<td><label for="amount">Amount ($USD):</label></td>
+				<td><input type="number" name="amount" step="0.01" required /></td>
+			</tr>
+			<tr>
+				<td><label for="description">Description:</label></td>
+				<td>
+					<textarea name="description" placeholder="Briefly describe your expense">
+					</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Submit New Expense" /></td>
+			</tr>
+		</table>
+	</form>
+	{% endblock %}
+
+Here we've got 3 fields, with convenient names that we can use to pull data into the back-end when the form is submitted.
+
+We don't have to specify an ``action`` attribute because we can control where the page goes after a submission via the back-end.
+We want to add data to our app and not just get data from our app.
+Thus, the method on our form needs to be a ``POST`` method.
+
+We use ``required`` for our form fields here to do some front-end data validation, but we'll definitely add to that on the back-end.
+
+Let's also create the route that we intend to use.
+
+.. code-block:: python
+
+    # in routes.py
+
+    def includeme(config):
+        config.add_static_view('static', 'static', cache_max_age=3600)
+        config.add_route('home', '/')
+        config.add_route('detail', '/expense/{id:\d+}')
+        config.add_route('create', '/new-expense')
+
+And lets connect it to an appropriate view.
+
+.. code-block:: python
+
+    # in views/default.py
+
+    @view_config(route_name="create", renderer="../templates/new-expense.jinja2")
+    def create_view(request):
+        return {}
+
+Run ``pserve`` and look at the new page that was made.
+
+Here we have a simple form.
+We can fill out the input field and submit it, and the data that we sent goes...absolutely nowhere.
+With ``pshell`` we can check our database and see that nothing new has been added.
+
+.. code-block:: ipython
+
+    In [1]: from expense_tracker.models import get_engine, MyModel
+    In [2]: engine = get_engine(registry.settings) # default prefixes are 'sqlalchemy.'
+    In [3]: from sqlalchemy.orm import sessionmaker
+    In [4]: Session = sessionmaker(bind=engine)
+    In [5]: session = Session()
+    In [6]: session.query(MyModel).count()
+    Out[6]: 4
+
+We need to configure our view such that it can do more than just display the form.
+We need it to take the data submitted in the form and **do something with it.**
+
+Harvesting Form Data
+--------------------
+
+Let's get a hold on the data first.
+For this we need to look at the ``request`` object.
+
+We can inspect the ``request`` object in our interpreter and see it has tons of attributes and methods.
+
+.. code-block:: ipython
+
+    In [7]: request.
+    Display all 120 possibilities? (y or n)
+    request.GET                          request.is_body_seekable
+    request.POST                         request.is_response
+    ...                                  ...
+
+If you submit a form, the form's data will be a part of the ``method`` it was submitted with.
+Whether it's a ``GET`` or a ``POST`` method, that data will exist within a ``MultiDict`` object.
+For our purposes it acts the same as a Python dictionary.
+With the ``GET`` or ``POST`` multidict, the **name** of the form field will be a **key** in the multidict.
+
+The ``request`` object also has an attribute called ``.method`` that holds the type of HTTP method used to call up the page.
+**No matter what, when we first load the page it'll be with a ``GET`` request.**
+The **only time** a ``POST`` request is sent is when a form is submitted.
+
+Knowing this, we can begin to reconfigure our ``create_view`` function.
+When we submit our form with a ``POST`` request, we want to pull the data from the ``request`` object, and use it to create a new ``Expense`` object.
+We can then add that new ``Expense`` object to the ``request.dbsession``.
+
+.. code-block:: python
+
+    # at the top of views/default.py...
+
+    import datetime
+
+    # underneath all the rest of the views...
+
+    @view_config(route_name='create', renderer="../templates/new-expense.jinja2")
+    def create_view(request):
+	    """Creating a new instance of the Expense object."""
+        if request.method == "POST":
+        	form_data = request.POST
+        	new_expense = Expense(
+			    category=form_data['category'],
+			    description=form_data['description'],
+			    creation_date=datetime.datetime.now(),
+			    amount=float(form_data['amount'])
+			)
+			request.dbsession.add(new_expense)
+			return {}
+
+        return {}
+
+Now when we submit new data via our form, as long as it hits all of the correct fields specified by the ``required`` attribute in our HTML, a new ``Expense`` gets created and added to the database.
+
+How do you think the ``edit_view`` works?
+Likely in much the same way, except that the form should start out with all the data that's currently present on the object being requested.
+There are checks in place to make sure that the item being accessed actually exists, like with the ``detail_view``.
+Then there's another check to see if the request is a ``GET`` or ``POST`` request to determine what to do with the data, like with the ``create_view`` above.
+Its true form will lie somewhere in between those two.
+Try to work it out for yourself!
+
+Cleaning Up Edge Cases: Missing Data
+------------------------------------
+
+Currently, our ``create_view`` takes whatever data is coming in from the ``POST`` request and uses it to create a new model instance.
+This is great, but doesn't handle any situations where data is missing from the submission form.
+
+For the moment, the front-end we wrote up in Jinja should protect us from such situations, but front-ends change all the time.
+In other cases, a front-end may not even be necessary to send data to our app.
+
+Submitting a POST request with empty data happens all the time, so we should proof our shiny, new view against that situation by checking if data exists in the incoming POST request.
+
+.. code-block:: python
+
+	@view_config(route_name='create', renderer="../templates/new-expense.jinja2")
+	def create_view(request):
+	    """Creating a new instance of the Expense object."""
+	    if request.method == "POST" and request.POST:
+	        form_data = request.POST
+	        new_expense = Expense(
+	            category=form_data['category'],
+	            description=form_data['description'],
+	            creation_date=datetime.datetime.now(),
+	            amount=float(form_data['amount'])
+	        )
+	        request.dbsession.add(new_expense)
+	        return {}
+
+	    return {}
+
+Now our conditional statement checks not only that the incoming request is a ``POST`` request, but that there's actual data coming along with that request.
+We could get more granular and check that every field we want is a part of the ``POST`` multidict, but we won't here.
+Feel free to do that on your own.
+
+We could, however do something a little different.
+What if only part of the data had been submitted?
+Should the user have to fill in everything all over again?
+What if we could use what they've already sent to prefill the data that was good?
+
+.. code-block:: python
+
+	@view_config(route_name='create', renderer="../templates/new-expense.jinja2")
+	def create_view(request):
+	    """Creating a new instance of the Expense object."""
+	    if request.method == "POST" and request.POST:
+	    	form_names = ["category", "description", "amount"]
+
+	    	if sum([key in request.POST for key in form_names]) == len(form_names):
+
+                if '' not in list(request.POST.values()):
+    		        form_data = request.POST
+    		        new_expense = Expense(
+    		            category=form_data['category'],
+    		            description=form_data['description'],
+    		            creation_date=datetime.datetime.now(),
+    		            amount=float(form_data['amount'])
+    		        )
+    		        request.dbsession.add(new_expense)
+    		        return {}
+
+        data = request.POST
+	    return data
+
+We've added two checks here:
+
+1. Are all of the fields we want present in the POST request?
+2. If all of the fields are present, do they all have some non-null data?
+
+If either of the above two checks fail, whatever data was passed in the POST request gets sent back to the front-end.
+
+Let's modify our form to take advantage of the data that can get returned.
+If we're doing a simple GET request, the POST dictionary should be empty, so our form will work as-is.
+If a POST request with incomplete data gets sent, we harvest what was completed and re-insert it into the form.
+
+.. code-block:: html+jinja
+
+    {% extends "layout.jinja2" %}
+
+    {% block body %}
+    <form method="POST">
+        <table>
+            <tr>
+                <td><label for="category">Category:</label></td>
+                <td><input type="text" name="category" value="{{ category }}" required /></td>
+            </tr>
+            <tr>
+                <td><label for="amount">Amount ($USD):</label></td>
+                <td><input type="number" name="amount" step="0.01" value="{{ amount }}" required /></td>
+            </tr>
+            <tr>
+                <td><label for="description">Description:</label></td>
+                <td>
+                    <textarea name="description" placeholder="Briefly describe your expense">
+                        {{ description }}
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit New Expense" /></td>
+            </tr>
+        </table>
+    </form>
+    {% endblock %}
+
+If one of those keys isn't present, the template will just render nothing in its place.
+
+Redirecting the User
+--------------------
+
+When the user submits this form, where does the page go?
+Currently, it takes them back to the same page, which is great if they want to input multiple expenses.
+But, what if they just want to go back to the home page and see a listing of all their expenses?
+Or, what if they want to be redirected to the page displaying the data of their object instance?
+Enter: HTTP redirects.
+
+Pyramid's ``httpexceptions`` module contains a ton of ``HTTPException`` objects.
+These handle all types of situations that you may encounter when handling an incoming request.
+We've already used one before: the ``HTTPNotFound`` for indicating a resource wasn't able to be located.
+Here are just a few more of note:
+
+* ``HTTPBadRequest``: for raising a 400 error when the incoming request was bad for any reason (bad syntax, missing data, etc.)
+* ``HTTPForbidden``: raised when the user isn't permitted to view the page they're attempting to view
+* ``HTTPNoContent``: request was successful and there was nothing to return back to the user
+* ``HTTPCreated``: request was successful and the object you intended to create was in fact created
+* ``HTTPFound``: redirect the user to a different location (we'll be using this one)
+
+To redirect the user, we have to ``return HTTPFound`` and provide it with the location of where we want to send the user next as an argument.
+It contains a `status code 302 <http://www.restapitutorial.com/httpstatuscodes.html>`_, and will simply send the user to the next spot.
+
+If we wanted to send the user to the home page, we would ``return HTTPFound(location=request.route_url('home'))``.
+What about the specific detail page for the expense that was just created?
+
+Remember, until this particular view finishes its session and directs the user elsewhere, no changes to the database are committed.
+So it's not as simple as ``return HTTPFound(request.route_url('detail', id=new_expense.id))``.
+It's close though.
+Figure it out!
+
+Testing, Testing, and More Testing
+==================================
+
+From the side of functional code, we've added one new thing that needs testing: the ``create_view``.
+On the front-end side, we created the ``new-expense.jinja2`` template.
+We need to test both of these thoroughly to be sure that our application works exactly how it should.
+
+Plan The Work...
+----------------
+
+Before we write these tests, let's consider what tests we should write.
+How should our app work?
+Based on the code above, the ``create_view`` itself as a function should do the following:
+
+* Take a ``GET request`` object as an argument and return any empty dict-like object.
+* Take a ``POST request`` object as an argument and...
+	- if there is no data attached, return an empty dict-like object.
+	- if the data attached is incomplete return a dict-like object with what data WAS complete.
+	- if the key-value data attached is not the data we're looking for, return a dict-like object with whatever data was included.
+	- if the appropriate key-value data is attached but any of the values are empty, return a dict-like object with whatever data was included.
+	- if the appropriate key-value data is attached and every field is filled...
+		- create a new expense object.
+		- return a status code 302
+		- return a response-like object attempting to redirect somewhere else (home page, detail page, whatever you set)
+
+**That's at least 8 unit tests for the ``create_view`` callable.**
+
+What about the functional tests?
+How should this new code interact with the fully wired-together application?
+What should happen when the ``create`` route is accessed?
+
+* With a ``GET`` request, an empty form should be rendered in the HTML with all of the appropriate form fields and a button for submitting. Each form field element should have a ``name`` that's used for the back-end when processing submitted data.
+* With a ``POST`` request...
+	- if there is no data attached, the above form should be rendered in the HTML.
+	- if the data attached is incomplete, whatever data WAS complete should be rendered in the form as the ``value`` of its appropriate field.
+	- if the data attached is not the data we need, whatever data WAS valid should be rendered in the form as above.
+	- if the data attached has the right field names but empty values, re-render the form.
+	- if the data attached is all appropriate and every field is filled...
+		- a new expense object is created.
+		- a status code 302 is in the response.
+		- if the redirection is followed, you land on whatever page is expected to be at the end of that redirect
+		- the home page that lists all your expenses should include the new expense.
+		- the detail page for the new expense should exist and be accessible.
+		- the detail page for the new expense should include the actual expected detail of the new object.
+
+This is a solid start, and means **another 10 functional tests** to add to the test stack.
+Again, we want to test all of the ins-and-outs of our code.
+
+We can use the above listings as our guide for testing.
+When you plan out code for your own projects and are writing your code in a test-driven way (as you should if you are able), you should do the same before writing a single line of code.
+It'll make the testing process that much easier, as we can simply check off the items that we expected to cover as we complete the indiviudal tests!
+
+...and Work the Plan
+--------------------
+
+We'll only cover a few of the newer tests here, as you should already know how to test for status codes and the results of ``GET`` requests.
+First, the unit tests.
+
+Unit Test: An Empty POST Request Returns an Empty Dict
+******************************************************
+
+The ``DummyRequest`` that we've been using from ``pyramid.testing`` is a ``GET`` request by default.
+How do we change it to be a ``POST`` request?
+
+Recall in the ``create_view`` when we check the ``method`` and the ``POST`` multidict attached to the ``request`` object?
+The ``DummyRequest`` instance is essentially the exact same type of object.
+So, just like we can check the ``request.method`` to see if it's a ``POST`` request, we can **set** the ``dummy_request.method`` to be the POST request we need.
+
+.. code-block:: python
+
+	def test_create_view_post_empty_is_empty_dict(dummy_request):
+	    """POST requests without data should return an empty dictionary."""
+	    from expense_tracker.views.default import create_view
+	    dummy_request.method = "POST"
+	    pass
+
+The ``dummy_request.POST`` multidict is empty to start with.
+We can simply supply the modified ``dummy_request`` as-is to our view and check the response.
+
+.. code-block:: python
+
+	def test_create_view_post_empty_is_empty_dict(dummy_request):
+	    """POST requests without data should return an empty dictionary."""
+	    from expense_tracker.views.default import create_view
+	    dummy_request.method = "POST"
+	    response = create_view(dummy_request)
+	    assert response == {}
+
+Unit Test: Incomplete Data Returns What Data Was Sent
+*****************************************************
+
+We need to be able to send some data along with our ``POST`` request, just like when a form is submitted.
+What happens is that the form fields populate the ``request.POST`` dict with key-value pairs.
+The **keys** are the ``name`` attributes of the individual form fields.
+The **values** are whatever data has been entered into the form field, or is assigned to the ``value`` attribute of an unchanged field.
+
+If the data doesn't contain each and every one of the fields we expect, we just send it back to the user to try again.
+
+.. code-block:: python
+
+	def test_create_view_post_incomplete_data_returns_data(dummy_request):
+		"""POST data that is incomplete just gets returned to the user."""
+		from expense_tracker.views.default import create_view
+		dummy_request.method = "POST"
+		data_dict = {"category": random.choice(CATEGORIES)}
+		dummy_request.POST = data_dict
+		response = create_view(dummy_request)
+		assert response == data_dict
+
+Unit Test: Correctly-Submitted Data Returns Status Code 302
+***********************************************************
+
+This should be just like every other status code check we've ever written.
+We should start off the same way.
+
+.. code-block:: python
+
+	def test_create_view_post_good_data_is_302(dummy_request):
+		"""POST request with correct data should redirect with status code 302."""
+		from expense_tracker.views.default import create_view
+		dummy_request.method = "POST"
+		data_dict = {
+			"category": random.choice(CATEGORIES),
+			"description": FAKE_FACTORY.text(100),
+			"amount": random.random() * random.randint(0, 1000)
+		}
+		dummy_request.POST = data_dict
+		response = create_view(dummy_request)
+		assert response.status_code == 302
+
+When we run our tests, we get a nice big fail.
+Why does this test fail?
+Let's check the output:
+
+.. code-block:: bash
+
+__________________________ test_create_view_post_good_data_is_302 ___________________________
+
+	dummy_request = <pyramid.testing.DummyRequest object at 0x104ff3358>
+
+	    def test_create_view_post_good_data_is_302(dummy_request):
+	        """POST request with correct data should redirect with status code 302."""
+	        from expense_tracker.views.default import create_view
+	        dummy_request.method = "POST"
+	        data_dict = {
+	            "category": random.choice(CATEGORIES),
+	            "description": FAKE_FACTORY.text(100),
+	            "amount": random.random() * random.randint(0, 1000)
+	        }
+	        dummy_request.POST = data_dict
+	>       response = create_view(dummy_request)
+
+	expense_tracker/tests.py:166: 
+	_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+	expense_tracker/views/default.py:48: in create_view
+	    return HTTPFound(request.route_url('home'))
+	../ENV/lib/python3.6/site-packages/pyramid/url.py:260: in route_url
+	    mapper = reg.getUtility(IRoutesMapper)
+	_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+	self = <Registry testing>, provided = <InterfaceClass pyramid.interfaces.IRoutesMapper>
+	name = ''
+
+	    def getUtility(self, provided, name=u''):
+	        utility = self.utilities.lookup((), provided, name)
+	        if utility is None:
+	>           raise ComponentLookupError(provided, name)
+	E           zope.interface.interfaces.ComponentLookupError: (<InterfaceClass pyramid.interfaces.IRoutesMapper>, '')
+
+	../ENV/lib/python3.6/site-packages/zope/interface/registry.py:286: ComponentLookupError
+
+Well that's great.
+But what does it all MEAN?
+
+First let's note that the error took place within the ``create_view`` (the first frame here).
+
+The next frame shows that the error occurred when our test runner tried to call the ``HTTPFound`` object with the ``request.route_url('home')`` as an argument.
+**The very next line** shows that the error was in ``route_url`` itself.
+
+How did ``route_url`` foul up?
+In ``ENV/lib/python3.6/site-packages/pyramid/url.py``, the ``route_url`` method tries to call the ``getUtility`` method using an ``iRoutesMapper`` object.
+
+Things get more obscure here and are poorly explained by simply diving into the source code.
+Effectively what's happening is that Pyramid is expecting to look up the name of the route that we provided to ``request.route_url`` in whatever has been saved to its registry of all configured routes.
+Funny thing about that though, our testing environment has no routes configured to anything.
+The result? That nice ``ComponentLookupError`` gets raised and our test dies.
+
+So how do we fix this?
+Remember how in ``expense_tracker/__init__.py`` we had ``config.include('.routes')``?
+**THAT** is where our routes get added to Pyramid's registry, and THAT's how ``request.route_url`` knows to look up what ``"home"`` means.
+Our configuration is severely lacking in that ``include``.
+So, just like when we included our ``models`` yesterday so that we could test against the database, let's include our ``routes`` so that our HTTP redirect has somewhere to go.
+
+.. code-block:: python
+
+	@pytest.fixture(scope="session")
+	def configuration(request):
+	    """Set up a Configurator instance.
+
+	    This Configurator instance sets up a pointer to the location of the
+	        database.
+	    It also includes the models from your app's model package.
+	    Finally it tears everything down, including the in-memory SQLite database.
+
+	    This configuration will persist for the entire duration of your PyTest run.
+	    """
+	    config = testing.setUp(settings={
+	        'sqlalchemy.url': 'postgres:///test_expenses'
+	    })
+	    config.include("expense_tracker.models")
+	    config.include("expense_tracker.routes") # <---- this is the line that should be added
+
+	    def teardown():
+	        testing.tearDown()
+
+	    request.addfinalizer(teardown)
+	    return config
+
+When we run our tests again, we see green text and lots of glorious dots.
+
+Note: this test was looking to check that the response from the view contained a redirection for the status code.
+However, this is a **UNIT** test.
+That redirection will go nowhere.
+We cannot (and should not) follow the redirection, as that defeats the purpose of unit-testing this one function.
+
+A full redirection pipeline is a demonstration of how the codebase is wired together.
+That just screams "functional test".
+
+Functional Test: If Redirection is Followed, Result is Home Page
+****************************************************************
+
+Similar to how our unit tests for the ``create_view`` have been working, we'll need to send a ``POST`` request to our app.
+For our functional tests, our app is the ``testapp`` fixture.
+
+Before we dig into this test, we need to add a new test fixture.
+Currently, because the ``testapp`` has ``session`` scope, its connection to the test database is open when the tests start, with the tables having been created once and only once.
+What this means is that after we add and remove model instances a bunch of times, the table is still there, but with the ``id`` field having been incremented up time and time again.
+
+When we post data through the "front-end" of the ``testapp``, it's going to try to start with ``id=1``.
+However, because the table itself has remained, as far as the table is concerned, ``id=1`` has already existed.
+You can't use it again because that's a primary key field.
+All primary key fields must be unique.
+
+So, what to do?
+We could create a fixture whose only purpose is to nuke the database and create a new table.
+There are other things we could do, but let's do that.
+
+.. code-block:: python
+
+	@pytest.fixture
+	def empty_db(testapp):
+	    """Tear down the database and add a fresh table."""
+	    SessionFactory = testapp.app.registry["dbsession_factory"]
+	    engine = SessionFactory().bind
+	    Base.metadata.drop_all(bind=engine)
+	    Base.metadata.create_all(bind=engine)
+
+Whenever this function gets called, all existing tables will get dropped then immediately rebuilt anew.
+
+Let's get back to testing redirection.
+Up to this point, we've only used the ``get()`` method to access our routes.
+However, the ``testapp`` can do so much more than that.
+Check out `the docs <http://docs.pylonsproject.org/projects/webtest/en/latest/api.html>`_ here.
+
+Even more information 
+
+Now, it's time for ``post()``.
+
+.. code-block:: python
+
+	def test_new_expense_redirects_to_home(testapp, empty_db):
+		"""When redirection is followed, result is home page."""
+        data_dict = {
+            "category": random.choice(CATEGORIES),
+            "description": FAKE_FACTORY.text(100),
+            "amount": random.random() * random.randint(0, 1000)
+        }
+		response = testapp.post('/new-expense', data_dict)
+		import pdb; pdb.set_trace()
+		assert False
+
+We don't directly set some attribute like with the ``dummy_request``.
+Instead, we provide the data directly to the ``post()`` method call.
+
+So, what actually comes back on the response?
+The breakpoint is there so that we can check.
+
+.. code-block:: bash
+
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>> PDB set_trace (IO-capturing turned off) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	> /Users/Nick/Documents/codefellows/courses/develop-401/expense-tracker/expense_tracker/expense_tracker/tests.py(251)test_new_expense_redirects_to_home()
+	-> assert False
+	(Pdb) print(response)
+	Response: 302 Found
+	Content-Type: text/plain; charset=UTF-8
+	Location: http://localhost/
+	302 Found
+	The resource was found at http://localhost/; you should be redirected automatically.
+
+Wow, that's convenient.
+It appears that there might be a ``location`` attribute that we could use to figure out where the redirection goes.
+
+.. code-block:: bash
+
+	(Pdb) response.location
+	'http://localhost/'
+
+That looks like the full URL of our home page!
+It's not quite what we expect though.
+Our routes, as detailed in ``routes.py`` don't start with the domain name.
+They simply contain ``URI`` paths that get concatenated with whatever the domain might be.
+
+There's a number of ways that we can handle this.
+The way we'll handle it here is to assign the domain name of our test environment to an appropriately-named global variable like ``SITE_ROOT`` or ``DOMAIN``.
+Then we can check that the ``location`` attribute returns a combination of the ``SITE_ROOT`` and the path that we expect the redirect to go to.
+
+.. code-block:: python
+
+	# somewhere in tests.py
+	SITE_ROOT = "http://localhost"
+
+	# back amongst the functional tests
+
+	def test_new_expense_redirects_to_home(testapp, empty_db):
+	    """When redirection is followed, result is home page."""
+	    data_dict = {
+	        "category": random.choice(CATEGORIES),
+	        "description": FAKE_FACTORY.text(100),
+	        "amount": random.random() * random.randint(0, 1000)
+	    }
+	    response = testapp.post('/new-expense', data_dict)
+	    home_path = testapp.app.routes_mapper.get_route('home').path
+	    assert response.location == SITE_ROOT + home_path
+
+What is this incantation right before the ``assert``?
+
+The ``app`` object contains all of the configuration and knowledge of our application.
+It is the actual return value of the ``main`` function that constructs our app when we run ``pserve`` or deploy to Heroku.
+
+In the ``testapp`` fixture, this ``app`` object is provided to ``TestApp`` as an argument.
+In this way, in addition to all of the application configuration that we need, we also have access to all of the functionality afforded by the ``TestApp`` from ``webtest``.
+
+Amongst all of the other information it possesses about our application, ``app`` knows about our route names and the paths attached to those names.
+The ``routes_mapper`` is the object that handles all of the connections of route names to route paths.
+The ``routes_mapper`` has a ``get_route`` method which, as you might imagine, gets the route.
+However what ``get_route`` returns is not a string like we need.
+``get_route`` returns a ``Route`` object.
+
+It's that ``Route`` object that we need to access so that we can get the ``path``.
+And it's that ``path`` that needs to be concatenated with the domain name to make the full URL.
+
+Ta Da!
+
+Functional Test: Similar to Above, But a Different Way
+***************************************************
+
+Above we wrote a test that checks the redirect location of a successful form submission against the path to the page that it should redirect to.
+
+That's one way to do it.
+
+However, an issue is that we're not actaully checking that you land on the appropriate page.
+All that we check is that you *intend* to land on the appropriate page.
+It's a small distinction, but part of the reason that we write tests is to be absolutely 100% explicit about what it is that our application is doing at any point at time.
+
+So let's test that what you get redirected to is, in fact, the home page.
+We start out very much the same.
+
+.. code-block:: python
+
+	def test_new_expense_redirection_lands_on_home(testapp, empty_db):
+	    """When redirection is followed, result is home page."""
+	    data_dict = {
+	        "category": random.choice(CATEGORIES),
+	        "description": FAKE_FACTORY.text(100),
+	        "amount": random.random() * random.randint(0, 1000)
+	    }
+	    response = testapp.post('/new-expense', data_dict)
+	    assert False
+
+The ``response`` above contains a method called ``follow``.
+When this method is called, it'll return a new ``response`` object representing the actual followthrough of the redirect.
+It'll be as if we made a separate ``get`` request to the ``home`` route!
+
+...that actually sounds like a good thing to use for our test.
+We could havest the return value of ``response.follow()``, then check its contents against a fresh ``get`` request to the ``home`` route.
+
+.. code-block:: python
+
+	def test_new_expense_redirection_lands_on_home(testapp, empty_db):
+	    """When redirection is followed, result is home page."""
+	    data_dict = {
+	        "category": random.choice(CATEGORIES),
+	        "description": FAKE_FACTORY.text(100),
+	        "amount": random.random() * random.randint(0, 1000)
+	    }
+	    response = testapp.post('/new-expense', data_dict)
+	    next_response = response.follow()
+	    home_response = testapp.get('/')
+	    assert next_response.text == home_response.text
+
+When our tests are run, green text and black dots validate our decision-making.
+Now we are just a bit more certain about how exactly new view works on its own and in tandem with the rest of our application.
+
+Recap
+=====
+
+Today's work focused on creating new data.
+We created a template that uses a form to take user input, as well as a view that handles form data.
+We investigated the ``request`` object in greater detail, seeing that its ``.method``, ``.POST``, and ``.GET`` attributes can allow us to produce different outputs on the same view and template.
+
+Once we put together the view itself, we got serious about testing.
+Before we wrote one more new test, we got clear on what we wanted to test by writing out a test plan.
+We then set about writing tests that were unique to the ``create_view``, both for unit and functional tests.
+
+For unit tests we saw that we had to add a little more application configuration before we could handle all of the cases that were needed for this view.
+We then saw how we could pass information through a ``POST`` request to our view callable.
+
+After we got solid on unit tests, we dove deep into the functional testing landscape.
+We saw two distinctly different ways to handle redirection in our web application.
+Both of these methods tested different aspects of redirection, and each showed us something different about how our app is all wired together.
+
+Our next hit of Pyramid will add User registration, authentication, and authorization to our web app.
+After that, more about security.
+Following that, we'll learn how to our site without a browser, as well as how to use AJAX to add some asynchronicity to our front-end.

@@ -1,0 +1,671 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django URLs, Views and Templates &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="django-urls-views-and-templates">
+<span id="django-urls-views-and-templates"></span><h1>Django URLs, Views and Templates<a class="headerlink" href="#django-urls-views-and-templates" title="Permalink to this headline">¶</a></h1>
+<p>In this lecture we will investigate the basic outline of a Django request/response cycle.</p>
+<hr class="docutils" />
+<div class="section" id="introduction-to-django-views">
+<span id="introduction-to-django-views"></span><h2>Introduction to Django Views<a class="headerlink" href="#introduction-to-django-views" title="Permalink to this headline">¶</a></h2>
+<p>Views are very similar in Django as to how they are in Pyramid</p>
+<ul class="simple">
+<li>They are callable items</li>
+<li>They take a request as their first argument</li>
+<li>Rather than returning a dictionary for some other renderer to deal with like Pyramid, Django returns a response object which includes the rendered template or text.</li>
+</ul>
+<p>One other difference is that in Pyramid, when you get a request in and a view is called, if there are bits of the URL that got matched by the route that led to that particular view, where do those show up?
+They show up in the aspect of the request called the <code class="docutils literal"><span class="pre">matchdict</span></code>.
+That contains the pieces of the URL that got matched by the route on its way to matching up with the view.</p>
+<p>In Django this happens in a different way.
+Elements from the request path that are matched by a pattern end up getting passed off to you as arguments to your view callable.</p>
+<p>What does it mean to be callable in python? It means it&#8217;s an object that can be called. If it&#8217;s a class, it has a <code class="docutils literal"><span class="pre">__call__()</span></code> method, if it&#8217;s a function it automatically gets the <code class="docutils literal"><span class="pre">__call__()</span></code> method. Anything with those <code class="docutils literal"><span class="pre">()</span></code> parenthesis at the end is a callable in Python.</p>
+<p>Django has moved largely to what is called &#8220;Class Based Views&#8221;.
+You define a class and that class has a bunch of methods, and those methods interact, and at the end they hand back a response object.
+You never actually define the call method because when you create a class based view, you inherit from one of Django&#8217;s built in base versions.
+At the root of the inheritance tree there is an implementation of a <code class="docutils literal"><span class="pre">__call__()</span></code> method that works in pretty much any situation.</p>
+<p>We&#8217;ll talk for a few minutes here though going over function views, which is the old way Django used to work.
+The reason for doing this because we want to deconstruct how a view operates at its most generic level.
+Let&#8217;s think for a moment here how we will wire up a view in Django.</p>
+<p>What&#8217;s the starting point for getting from an incoming request to a piece of code that will answer that request?
+Where did we begin in Pyramid?
+We began with a route.
+A route is the path that a request takes to a view.
+In Django what do we call routes?
+URLs.
+We&#8217;ve seen in our Django project in our site directory our <code class="docutils literal"><span class="pre">urls.py</span></code> file.
+We set up a static URL there to point to our media directory.</p>
+<p>Django creates these things called <code class="docutils literal"><span class="pre">urlpatterns</span></code>.
+These are basically just lists of calls to the <code class="docutils literal"><span class="pre">url</span></code> function.
+<code class="docutils literal"><span class="pre">url()</span></code> comes from <code class="docutils literal"><span class="pre">django.conf.urls</span></code> and it is responsible for wiring together 2 things:</p>
+<ol class="simple">
+<li>The pattern that is being used to match an incoming request.</li>
+<li>The view that will be pointed at.</li>
+</ol>
+<p>We don&#8217;t have to point only to views, we can also point at other url confs.
+Let&#8217;s start by pointing at a view though.
+Let&#8217;s start with a new <code class="docutils literal"><span class="pre">url</span></code>, and add a regular expression.
+We should always use a raw string when doing regex to avoid having to escape escapes.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">url(r'^$',</span> <span class="pre">views.home_view,</span> <span class="pre">name='homepage')</span></code><ul>
+<li>This regex matches only a home directory &#8220;/&#8221;. The &#8220;^&#8221; and &#8220;$&#8221; starting and ending the route string signify that. (See regex documentation for more info.)</li>
+<li>The second argument is a callable item that is the thing that gets executed when the route gets matched. <code class="docutils literal"><span class="pre">lending_library.views.home_view</span></code> will look in our current directory for a package called views, and look inside there for a <code class="docutils literal"><span class="pre">home_view()</span></code> function.</li>
+<li>A third argument to <code class="docutils literal"><span class="pre">url()</span></code> is an optional argument called <code class="docutils literal"><span class="pre">name</span></code> that provides a handle that we can use to call <code class="docutils literal"><span class="pre">reverse</span></code> in Django, and build these urls back. Remember in Pyramid that we had on the request object a function called <a class="reference external" href="http://docs.pylonsproject.org/projects/pyramid/en/latest/api/request.html#pyramid.request.Request.route_url"><code class="docutils literal"><span class="pre">route_url()</span></code></a>.</li>
+<li>It took the name of a route, and optionally some arguments that matched up with the placeholders in that route.</li>
+<li>It handed back a rendered URL that would go to that route.</li>
+<li>Django has the same system, and it&#8217;s called <code class="docutils literal"><span class="pre">reverse</span></code>, and it allows you to build URLs given the name of a view and some arguments that would match up with the placeholders in that URL. Right now we don&#8217;t have any arguments, so we could just say <code class="docutils literal"><span class="pre">reverse.homepage</span></code> and we&#8217;d get back the url for the homepage view.</li>
+</ul>
+</li>
+</ul>
+<p>We&#8217;ve said now that we have a file called <code class="docutils literal"><span class="pre">views</span></code> and that it contains a function called <code class="docutils literal"><span class="pre">home_view()</span></code>.
+Does that exist at the moment?
+No.
+We also should have a linter error showing on our <code class="docutils literal"><span class="pre">views</span></code> part of <code class="docutils literal"><span class="pre">lending_library.views.home_view</span></code>.
+That&#8217;s telling us that we don&#8217;t have <code class="docutils literal"><span class="pre">views</span></code> imported as a symbol in our current namespace.
+Django has two ways of dealing with this.</p>
+<ul class="simple">
+<li>We can either <code class="docutils literal"><span class="pre">import</span> <span class="pre">views</span></code></li>
+<li><code class="docutils literal"><span class="pre">from</span> <span class="pre">lending_library</span> <span class="pre">import</span> <span class="pre">views</span></code> to specifically pull <code class="docutils literal"><span class="pre">views</span></code> from a particular app</li>
+<li>or we can cast <code class="docutils literal"><span class="pre">'lending_library.views.home_view'</span></code> as a string. When we do this, Django will attempt to perform an import statement. As long as <code class="docutils literal"><span class="pre">views</span></code> is actually importable, this will work.<ul>
+<li>This is a nice way to avoid circular import problems. <code class="docutils literal"><span class="pre">urls.py</span></code> can be a dangerous place because you will import many view files here. Those views will import models. Those models may import something else that points to <code class="docutils literal"><span class="pre">urls.py</span></code>. It&#8217;s easy to accidentally build circular import problems. If you pass in the imports as strings, this problem can be avoided.</li>
+</ul>
+</li>
+</ul>
+<p><em>lending_library/lending_library/urls.py</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">url</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^$&#39;</span><span class="p">,</span> <span class="s1">&#39;lending_library.views.home_view&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;homepage&#39;</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>I prefer to import at the top, so I&#8217;ll use that from here on.
+Our <code class="docutils literal"><span class="pre">urls.py</span></code> will look like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">url</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">lending_library.views</span> <span class="kn">import</span> <span class="n">home_view</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">home_view</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;homepage&#39;</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>What does our view return at the moment?</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">home_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Home view callable, for the home page.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello World!&quot;</span>
+</pre></div>
+</div>
+<p>A simple string.
+That&#8217;s not what Django is looking for.
+Remember, Django views must return something that can be used as a response.
+It needs headers and all the other things that make a proper HTTP response.
+So what Django provides us with is the <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/request-response/#httpresponse-objects"><code class="docutils literal"><span class="pre">HttpResponse</span></code></a> object.
+Let&#8217;s add that to our view so that our function can use it:</p>
+<p><em>lending_library/lending_library/views.py</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+
+
+<span class="k">def</span> <span class="nf">home_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Home view callable, for the home page.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now when the request comes in, we&#8217;ll build a response with this &#8220;Hello World!&#8221; string in it.
+We should be able to go and see our app return that in our browser.</p>
+<p>Let&#8217;s start up our testing server and browse to <code class="docutils literal"><span class="pre">http://localhost:8000/</span></code>:</p>
+<p><img alt="alt text" src="../_images/hello_world.png" /></p>
+<p>This is the basic shape that a Django view takes:</p>
+<ul class="simple">
+<li>A request comes in</li>
+<li>You do some stuff with it</li>
+<li>And then you return something that functions as a response.</li>
+</ul>
+<p>You can build the response manually like our current <code class="docutils literal"><span class="pre">home_view()</span></code> function. You can also render out templates.</p>
+<div class="section" id="django-templating-engine">
+<span id="django-templating-engine"></span><h3><a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/templates/">Django Templating Engine</a><a class="headerlink" href="#django-templating-engine" title="Permalink to this headline">¶</a></h3>
+<p>Loading a template is something we want to do.
+We can create a template, or we can load one up from somewhere else.
+Let&#8217;s find where we can do that by inspecting Django in the shell:</p>
+<p><code class="docutils literal"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">shell</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">template</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="nb">dir</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+<span class="p">[</span><span class="s1">&#39;Context&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;ContextPopException&#39;</span><span class="p">,</span>
+<span class="o">...</span>
+ <span class="s1">&#39;engines&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;loader&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>We want to further inspect the <code class="docutils literal"><span class="pre">loader</span></code> object</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">loader</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="nb">dir</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span>
+<span class="p">[</span><span class="s1">&#39;DeprecationInstanceCheck&#39;</span><span class="p">,</span> 
+ <span class="s1">&#39;LoaderOrigin&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Origin&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;RemovedInDjango20Warning&#39;</span><span class="p">,</span>
+<span class="o">...</span>
+ <span class="s1">&#39;engines&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;get_template&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Of the many classes and functions belonging to the <code class="docutils literal"><span class="pre">loader</span></code> object, <code class="docutils literal"><span class="pre">get_template</span></code> is what we&#8217;re looking for.
+Let&#8217;s use that in our <code class="docutils literal"><span class="pre">views.py</span></code>:</p>
+<p><em>lending_library/lending_library/views.py</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">loader</span>
+
+
+<span class="k">def</span> <span class="nf">home_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Home view callable, for the home page.&quot;&quot;&quot;</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;lending_library/home.html&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This gets us to the idea of template loaders and where Django looks for templates.
+By default, Django comes with a system that allows it to look inside any installed app for a directory that&#8217;s called <code class="docutils literal"><span class="pre">templates</span></code>.
+And it will start looking for templates in that directory.
+If we want to have templates within the <code class="docutils literal"><span class="pre">lending_library</span></code> configuration root, we need to add <code class="docutils literal"><span class="pre">lending_library</span></code> to the list of <code class="docutils literal"><span class="pre">INSTALLED_APPS</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;patron_profile&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lending_library&#39;</span> <span class="c1"># &lt;-- add this!</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>So, for example:</p>
+<p><em>lending_library/lending_library/templates/lending_library/home.html</em></p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Home Page&gt;<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span> Hello World!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>We now have an html file that lives in a <code class="docutils literal"><span class="pre">templates</span></code> directory inside one of our apps.
+This is how Django works by default.
+If we run our server, we should find that when the request comes in, our <code class="docutils literal"><span class="pre">home_view</span></code> function receives it and tries to load the template.</p>
+<p>We&#8217;ll modify our <code class="docutils literal"><span class="pre">views.py</span></code> file to handle templates now, and drop a breakpoint in there so we can inspect some things:</p>
+<p><em>lending_library/lending_library/views.py</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">loader</span>
+
+
+<span class="k">def</span> <span class="nf">home_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Home view callable, for the home page.&quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span> <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;lending_library/home.html&#39;</span><span class="p">)</span>
+    <span class="n">response_body</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">response_body</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When we attempt to browse to our homepage again, we&#8217;ll drop into our debugger:</p>
+<div class="highlight-python"><div class="highlight"><pre>-&gt; template = loader.get_template(&#39;lending_library/home.html&#39;)
+(Pdb) n
+&gt; .../lending_library/lending_library/views.py(8)home_view()
+-&gt; response_body = template.render()
+(Pdb) template
+&lt;django.template.backends.django.Template object at 0x11252ed50&gt;
+</pre></div>
+</div>
+<p>So we have a template object. Let&#8217;s inspect it:</p>
+<div class="highlight-python"><div class="highlight"><pre>(Pdb) dir(template)
+[&#39;__class__&#39;, &#39;__delattr__&#39;, &#39;__dict__&#39;, &#39;__dir__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__init_subclass__&#39;, &#39;__le__&#39;, &#39;__lt__&#39;, &#39;__module__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__setattr__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;__weakref__&#39;, &#39;backend&#39;, &#39;origin&#39;, &#39;render&#39;, &#39;template&#39;]
+</pre></div>
+</div>
+<p>You can see that <code class="docutils literal"><span class="pre">render</span></code> is one the the <code class="docutils literal"><span class="pre">template</span></code> methods. What happens next?</p>
+<div class="highlight-python"><div class="highlight"><pre>(Pdb) l
+  3
+  4
+  5     def home_view(request):
+  6         &quot;&quot;&quot;Home view callable, for the home page.&quot;&quot;&quot;
+  7         import pdb; pdb.set_trace()
+  8         template = loader.get_template(&#39;lending_library/home.html&#39;)
+  9  -&gt;     response_body = template.render()
+  10         return HttpResponse(response_body)
+[EOF]
+(Pdb) n
+&gt; .../lending_library/lending_library/views.py(10)home_view()
+-&gt; return HttpResponse(response_body)
+(Pdb) response_body
+u&#39;&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n  &lt;title&gt;Home Page&gt;&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n  &lt;h1&gt; Hello World!&lt;/h1&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n&#39;
+(Pdb)
+</pre></div>
+</div>
+<p>So we get a string that&#8217;s been rendered out into HTML.</p>
+<p>The <code class="docutils literal"><span class="pre">render()</span></code> method is much like rendering in python.</p>
+<p><code class="docutils literal"><span class="pre">response_body</span> <span class="pre">=</span> <span class="pre">template.render({'foo':</span> <span class="pre">'bar'})</span></code></p>
+<div class="highlight-html"><div class="highlight"><pre><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span> Hello {{ foo }}!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="alt text" src="../_images/hello_bar.png" /></p>
+<p>Django&#8217;s templating language looks just like Jinja2, and in fact in later versions of Django (&gt;=1.8), you can specify what templating engine you want to use, and it can be Jinja2.</p>
+<p>When using Django, you are encouraged to try and use Django&#8217;s templating language because it tries to keep as much processing of values away from the templates as possible, and instead has processing done in python.</p>
+<p>So this kind of a pattern here:</p>
+<ol class="simple">
+<li>where we take in a request</li>
+<li>we load up a template</li>
+<li>we render that template and pass some kind of a context to it</li>
+<li>we use the rendered body of that and hand it back as a result of our call</li>
+</ol>
+<p>This is a very common thing in Django.
+At the root level, this is always the pattern.</p>
+<p>We&#8217;ll talk for a moment here about ways this pattern might change.
+Let&#8217;s add another url to our <code class="docutils literal"><span class="pre">urlpatterns</span></code>, and a new <code class="docutils literal"><span class="pre">test_view</span></code>.</p>
+<p><em>lending_library/lending_library/urls.py</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">lending_library.views</span> <span class="kn">import</span> <span class="n">home_view</span><span class="p">,</span> <span class="n">test_view</span>
+<span class="o">...</span>
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">home_view</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;homepage&#39;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^(\d+)/$&#39;</span><span class="p">,</span> <span class="n">test_view</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;testme&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p><em>lending_library/lending_library/views.py</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="k">def</span> <span class="nf">test_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">foo</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test view callable, for the testing URL patterns.&quot;&quot;&quot;</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;lending_library/home.html&#39;</span><span class="p">)</span>
+    <span class="n">response_body</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">({</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="n">foo</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">response_body</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It&#8217;s important to note that when changing around URLs, it&#8217;s a good idea to restart your server because they are often cached.</p>
+<p>So what does our new url match? <code class="docutils literal"><span class="pre">url(r'^(\d+)/$',</span> <span class="pre">...</span></code> One or more numeric digits. If we go to our browser now and navigate to this url: <code class="docutils literal"><span class="pre">http://localhost:8000/1/</span></code>, we will see that <code class="docutils literal"><span class="pre">1</span></code> rendered in our template:</p>
+<p><img alt="alt text" src="../_images/hello_1.png" /></p>
+<p>You can see that any number put in that url end up as keyword arguments. If they don&#8217;t have a name to them, they end up as positional arguments. If we change up our urls to accept two positional arguments:</p>
+<p><code class="docutils literal"><span class="pre">url(r'^(\d+)/(\w+)/$',</span> <span class="pre">test_view,</span> <span class="pre">name='testme'),</span></code></p>
+<p>And change our views so that <code class="docutils literal"><span class="pre">test_view</span></code> accepts <code class="docutils literal"><span class="pre">foo</span></code> and <code class="docutils literal"><span class="pre">bar</span></code>:</p>
+<p><em>lending_library/lending_library/views.py</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="k">def</span> <span class="nf">test_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test view callable, for the testing URL patterns.&quot;&quot;&quot;</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;lending_library/home.html&#39;</span><span class="p">)</span>
+    <span class="n">response_body</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">({</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="n">foo</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;bar&#39;</span><span class="p">:</span> <span class="n">bar</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">response_body</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And accept our new variable <code class="docutils literal"><span class="pre">bar</span></code> into our template:</p>
+<p><em>lending_library/lending_library/templates/lending_library/home.html</em></p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Home Page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello {{ foo }}!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>How are you doing {{ bar }}?<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Now our page renders like this:</p>
+<p><img alt="alt text" src="../_images/hello_123.png" /></p>
+<p>If we decide to change our minds and use keyword arguments instead of positional arguments, we can do that:</p>
+<p><em>lending_library/lending_library/urls.py</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">home_view</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;homepage&#39;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^(?P&lt;num&gt;\d+)/(?P&lt;name&gt;\w+)/$&#39;</span><span class="p">,</span> <span class="n">test_view</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;testme&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p><em>lending_library/lending_library/views.py</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="k">def</span> <span class="nf">test_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;balloons&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test view callable, for the testing URL patterns.&quot;&quot;&quot;</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;lending_library/home.html&#39;</span><span class="p">)</span>
+    <span class="n">response_body</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">({</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="n">num</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">response_body</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>So now we can change around the order in which the arguments come in because they are keywords:</p>
+<p><code class="docutils literal"><span class="pre">def</span> <span class="pre">test_view(request,</span> <span class="pre">name='balloons',</span> <span class="pre">num=0):</span></code></p>
+<p><code class="docutils literal"><span class="pre">response_body</span> <span class="pre">=</span> <span class="pre">template.render({'foo':</span> <span class="pre">name,</span> <span class="pre">'bar':</span> <span class="pre">num})</span></code></p>
+<p><img alt="alt text" src="../_images/hello_pancakes_123.png" /></p>
+<p>This is the relationship between the urls and the patterns you set up for the urls, and the call signatures that you write for views.
+Placeholders will be passed as arguments to your views.
+This is very different from the Pyramid way of doing things.
+Those arguments can be keyword arguments if the placeholders you create for them are marked with the <code class="docutils literal"><span class="pre">(?P&lt;...&gt;)</span></code> syntax.
+This is standard python regex syntax.</p>
+<p><em>Question: So since we&#8217;re passing defaults into your keyword arguments, if we don&#8217;t pass them into the url, will it use the defaults?</em></p>
+<p>Let&#8217;s try that.
+First we&#8217;ll change our url matching pattern to accept 0 or more characters in the <code class="docutils literal"><span class="pre">\w</span></code> part:</p>
+<div class="highlight-python"><div class="highlight"><pre>  <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^(?P&lt;num&gt;\d+)/(?P&lt;name&gt;\w*)/$&#39;</span><span class="p">,</span> <span class="n">test_view</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;testme&#39;</span><span class="p">),</span>
+</pre></div>
+</div>
+<p><img alt="alt text" src="../_images/hello.png" /></p>
+<p>So it didn&#8217;t pick up our default value.
+The fact that we provided them in our view is a bit of a red herring.
+If the url is going to match, some value will be there and will be passed it.
+But this is how you make optional keyword arguments - by providing them with a default value.</p>
+<p>It is possible to make Django url patterns that have fully optional chunks in them that might or might not be present.
+It&#8217;s not very easy to do.
+It takes some complex regex patterns.
+It may not be the best way of doing things as well.
+Sometimes it&#8217;s better to just make more than one url pattern point to the same view.
+We can make a 2nd pattern here that only contains the <code class="docutils literal"><span class="pre">&lt;num&gt;</span></code> matching part, and then our default optional keyword would actually pass it&#8217;s value through.</p>
+<p>You must put a default value there in order for it to be a keyword parameter.
+However, unless you make a special complex matching pattern or a second url that doesn&#8217;t use a keyword and points to the same view, it will not use the default parameter.</p>
+</div>
+<div class="section" id="django-shortcuts">
+<span id="django-shortcuts"></span><h3><a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/http/shortcuts/">Django Shortcuts</a><a class="headerlink" href="#django-shortcuts" title="Permalink to this headline">¶</a></h3>
+<p>This idea of loading a template, rendering a template, and handing back a response is so completely common, that Django has created a few shortcuts that mean exactly the same thing.
+The shortcuts are called <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/http/shortcuts/#render"><code class="docutils literal"><span class="pre">render</span></code></a> and <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/http/shortcuts/#render-to-response"><code class="docutils literal"><span class="pre">render_to_response</span></code></a>.</p>
+<p><code class="docutils literal"><span class="pre">render</span></code> takes a <code class="docutils literal"><span class="pre">request</span></code> and <code class="docutils literal"><span class="pre">template_name</span></code> as required arguments.
+There are a few optional arguments as well.</p>
+<p>Let&#8217;s explore this for a moment. We need to re-write our <code class="docutils literal"><span class="pre">views.py</span></code>:</p>
+<p><em>lending_library/lending_library/views.py</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># from django.http import HttpResponse &lt;-- replace this line</span>
+<span class="c1"># from django.template import loader  &lt;-- and this line</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span> <span class="c1"># &lt;-- with this line</span>
+
+
+<span class="k">def</span> <span class="nf">home_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Home view callable, for the home page.&quot;&quot;&quot;</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">:</span> <span class="s1">&#39;num&#39;</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;lending_library/home.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>So our shortcut <code class="docutils literal"><span class="pre">render</span></code> takes the <code class="docutils literal"><span class="pre">request</span></code> as an argument, the template (&#8216;home.html&#8217;), and our hard-coded context.</p>
+<p>Let&#8217;s go back to our homepage and see what it looks like now:</p>
+<p><code class="docutils literal"><span class="pre">http://localhost:8000/</span></code></p>
+<p><img alt="alt text" src="../_images/render_shortcut.png" /></p>
+<p>We can do the same thing to our <code class="docutils literal"><span class="pre">test_view</span></code>:</p>
+<p><em>lending_library/lending_library/views.py</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="k">def</span> <span class="nf">test_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;baloons&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test view callable, for the testing URL patterns.&quot;&quot;&quot;</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="n">num</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;lending_library/home.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We need to also change our <code class="docutils literal"><span class="pre">home.html</span></code> to work with our <code class="docutils literal"><span class="pre">test_view</span></code>:</p>
+<p><em>lending_library/lending_library/templates/lending_library/home.html</em></p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Home Page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello {{ name }}!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>How are you doing {{ num }}?<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>And our <code class="docutils literal"><span class="pre">home_view</span></code> needs adjusting now too:</p>
+<p><em>lending_library/lending_library/views.py</em></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">home_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Home view callable, for the home page.&quot;&quot;&quot;</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="s1">&#39;num&#39;</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;lending_library/home.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And we&#8217;re back to our &#8220;Hello Pancakes&#8221;</p>
+<p><img alt="alt text" src="../_images/hello_pancakes_123.png" /></p>
+</div>
+<div class="section" id="render-to-response">
+<span id="render-to-response"></span><h3><a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/http/shortcuts/#render-to-response"><code class="docutils literal"><span class="pre">render_to_response</span></code></a><a class="headerlink" href="#render-to-response" title="Permalink to this headline">¶</a></h3>
+<p>Another thing we can do is <code class="docutils literal"><span class="pre">render_to_response</span></code>.
+There is a difference between these two.
+From the docs: &#8220;This function preceded the introduction of <code class="docutils literal"><span class="pre">render()</span></code> and works similarly except that it doesn’t make the request available in the response.
+It’s not recommended and is likely to be deprecated in the future.&#8221;</p>
+<p>There&#8217;s really not a good reason to use <code class="docutils literal"><span class="pre">render_to_response</span></code> unless you have a very special use case.
+You may run into <code class="docutils literal"><span class="pre">render_to_response</span></code> in legacy code.
+We will be using <code class="docutils literal"><span class="pre">render()</span></code> instead of <code class="docutils literal"><span class="pre">render_to_response()</span></code>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django URLs, Views and Templates</a><ul>
+<li><a class="reference internal" href="#introduction-to-django-views">Introduction to Django Views</a><ul>
+<li><a class="reference internal" href="#django-templating-engine">Django Templating Engine</a></li>
+<li><a class="reference internal" href="#django-shortcuts">Django Shortcuts</a></li>
+<li><a class="reference internal" href="#render-to-response"><code class="docutils literal"><span class="pre">render_to_response</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

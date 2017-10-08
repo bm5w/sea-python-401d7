@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django Imager: Data Views &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="django-imager-data-views">
+<h1>Django Imager: Data Views<a class="headerlink" href="#django-imager-data-views" title="Permalink to this headline">¶</a></h1>
+<span class="admonition-django-imager-data-views"></span><p>In this series of assignments you will build a simple image management website using Django.
+In this fourth step you will implement the user-specific views for the application.
+You will create a profile page, where a user can see their own profile information.
+You will add a library page, where a user can see all the albums they&#8217;ve created and the photos they&#8217;ve uploaded.
+And you will set up views for individual photos and albums.</p>
+<div class="section" id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<p>Do your work for this assignment on a branch called <code class="docutils literal"><span class="pre">front-end-2</span></code>.
+Be sure that the branch contains your work from <code class="docutils literal"><span class="pre">models-1</span></code>, <code class="docutils literal"><span class="pre">front-end-1</span></code>, and <code class="docutils literal"><span class="pre">models-2</span></code>.</p>
+<div class="section" id="home-page-revisited">
+<h3>Home Page Revisited<a class="headerlink" href="#home-page-revisited" title="Permalink to this headline">¶</a></h3>
+<p>Before today, we didn&#8217;t have photos that we could put into the home page.
+Now that our models are ready, we can add the randomized image display that belongs on the home page.</p>
+<p>Alter your home page so that it displays a published image at random from all of the images that your users have uploaded.
+If there are no images, display one that you pre-select.</p>
+</div>
+<div class="section" id="profile-page-s">
+<h3>Profile Page(s)<a class="headerlink" href="#profile-page-s" title="Permalink to this headline">¶</a></h3>
+<p>Every profile page should provide quickly readable, clear information to the user about a given profile.</p>
+<p>For the user&#8217;s own profile, show the user some helpful information about their own usage of the application.
+Give them a count of how many images they have uploaded and how many albums they&#8217;ve created.
+Differentiate the count between private and public photos/albums.</p>
+<p>This page should also provide easy navigation links to the library page (or perhaps that should be a globally available navigation link).</p>
+<p>Once this page exists, you should reconfigure your system so that this page is where a user lands when they log in to your site.
+You should also make the displayed name in the top right corner of the site a link that leads back to this page.</p>
+<p>The url for the user&#8217;s own page should be <code class="docutils literal"><span class="pre">/profile/</span></code>.</p>
+<p>For the profile pages of other users, think about what information you might want to hide.
+What might be sensitive information?
+Display information that would be appropriate for public viewing, but reserve some of the best stuff for the user&#8217;s viewing on their own page.</p>
+<p>The url for any other user&#8217;s page should be <code class="docutils literal"><span class="pre">/profile/&lt;username&gt;</span></code>.</p>
+</div>
+<div class="section" id="library-page">
+<h3>Library Page<a class="headerlink" href="#library-page" title="Permalink to this headline">¶</a></h3>
+<p>This page should provide a quick, thumbnail view for all the albums a user has created and all the photos they&#8217;ve uploaded.
+For albums, display a thumbnail of the &#8216;cover&#8217; image selected for the album.
+If no cover image has been selected, display a default image (from site static resources).
+For all items the title should be displayed.
+You should save space by displaying small images (thumbnails) in a grid format.</p>
+<p>To best accomplish this task, you&#8217;ll install another Django add-on application, <a class="reference external" href="http://sorl-thumbnail.readthedocs.org/en/latest/">sorl-thumbnail</a>. (You can also try out <a class="reference external" href="http://easy-thumbnails.readthedocs.org/en/latest/index.html">easy-thumbnail</a>, but I haven&#8217;t used that one myself)
+The add-on will allow you to easily designate dimensions for thumbnails and will handle creating appropriately sized copies of uploaded images for you.
+You <strong>may use the database cache store</strong> when configuring this application.
+Redis or memcached are much faster, but a lot more work to get going locally.</p>
+<p>For an extra challenge <strong>(NOT REQUIRED)</strong> find and install a Javascript add-on that will allow you to click on any image and view a full-sized version in a &#8220;lightbox&#8221; overlay.
+(I&#8217;ve used and enjoyed <code class="docutils literal"><span class="pre">fancybox</span></code>)</p>
+<p>The URL for this page should be <code class="docutils literal"><span class="pre">/images/library/</span></code></p>
+</div>
+<div class="section" id="album-and-photo-views">
+<h3>Album and Photo Views<a class="headerlink" href="#album-and-photo-views" title="Permalink to this headline">¶</a></h3>
+<p>Provide simple views for photos and albums.</p>
+<p>The individual Photo view should display an appropriately sized rendering of the photo, perhaps with a lightbox feature to show the full-sized image.
+It should also display any metadata available about the photo.
+Its url should be <code class="docutils literal"><span class="pre">/images/photos/&lt;photo_id&gt;</span></code>.</p>
+<p>The Photo gallery view should display all of the public photos that have been uploaded to your app.
+Its url should be <code class="docutils literal"><span class="pre">/images/photos/</span></code></p>
+<p>The individual album view should display all the photos in a given album in a grid format (you might re-use the layout you created for the library view above).
+Each photo in the album should be displayed.
+The url should be <code class="docutils literal"><span class="pre">/images/albums/&lt;album_id&gt;</span></code>.</p>
+<p>The Album gallery view should display all of the public albums contained within the app.
+They should appear as their cover images.
+Its url should be <code class="docutils literal"><span class="pre">/images/albums/</span></code></p>
+<p>If you get frisky, you might look into jQuery-based gallery plugins like <code class="docutils literal"><span class="pre">galleria</span></code> to see if you can render the entire album as a gallery.</p>
+</div>
+<div class="section" id="tests">
+<h3>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h3>
+<p>You must write tests for your views.
+If you wish to test the javascript functionality of your lightbox add-on <strong>(NOT REQUIRED)</strong>, you will need to work with a browser testing framework like <a class="reference external" href="https://splinter.readthedocs.io/en/latest/">Splinter</a>.</p>
+</div>
+<div class="section" id="submitting-your-work">
+<h3>Submitting Your Work<a class="headerlink" href="#submitting-your-work" title="Permalink to this headline">¶</a></h3>
+<p>When you are done working and your tests are passing, create a Pull Request from the <code class="docutils literal"><span class="pre">front-end-2</span></code> branch to <code class="docutils literal"><span class="pre">master</span></code>.
+Submit the URL for that pull request.
+When you have done so, you may merge the pull request back to <code class="docutils literal"><span class="pre">master</span></code> in preparation for stage 3 of your work.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django Imager: Data Views</a><ul>
+<li><a class="reference internal" href="#tasks">Tasks</a><ul>
+<li><a class="reference internal" href="#home-page-revisited">Home Page Revisited</a></li>
+<li><a class="reference internal" href="#profile-page-s">Profile Page(s)</a></li>
+<li><a class="reference internal" href="#library-page">Library Page</a></li>
+<li><a class="reference internal" href="#album-and-photo-views">Album and Photo Views</a></li>
+<li><a class="reference internal" href="#tests">Tests</a></li>
+<li><a class="reference internal" href="#submitting-your-work">Submitting Your Work</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

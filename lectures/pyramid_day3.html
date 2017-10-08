@@ -1,0 +1,1344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Models, Postgres, and SQL Alchemy &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="models-postgres-and-sql-alchemy">
+<h1>Models, Postgres, and SQL Alchemy<a class="headerlink" href="#models-postgres-and-sql-alchemy" title="Permalink to this headline">¶</a></h1>
+<p>The central component of MVC, the <em>model</em>, captures the behavior of the
+application in terms of its problem domain, independent of the user interface.
+<strong>The model directly manages the data, logic, and rules of the application</strong>.</p>
+<p>A model can be any &#8220;thing&#8221;, e.g. an individual blog post on a blog, a photo or
+an album on a photo site, a user that visits and enrolls in the site,
+a comment on a forum,
+etc.</p>
+<p>A model is most useful when the data that it describes is <em>persisted</em>.
+To do that, we&#8217;ll be interacting with a SQL database and saving information to
+that database with <code class="docutils literal"><span class="pre">SQLAlchemy</span></code>.
+In order to have this all easily wired together for us, we&#8217;re going to start a
+new scaffold that includes all of that SQL functionality.
+We&#8217;ll also find that with this new scaffold, the MVC of our app is far more
+<em>explicity</em> separated into entire directories instead of individual files.
+Let&#8217;s dip in.</p>
+<div class="section" id="more-about-the-alchemy-scaffold">
+<h2>More About The &#8220;Alchemy&#8221; Scaffold<a class="headerlink" href="#more-about-the-alchemy-scaffold" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;ve been working with the &#8220;Alchemy&#8221; scaffold all along.
+So, we&#8217;ve been set up with the commands to interact with a database from the start.
+We&#8217;ve also been set up with most of the packages that we&#8217;ll need for that interaction.</p>
+<p>Let&#8217;s inspect <code class="docutils literal"><span class="pre">setup.py</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># setup.py</span>
+<span class="o">...</span>
+<span class="n">requires</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">...</span>
+    <span class="s1">&#39;pyramid_tm&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SQLAlchemy&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;transaction&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;zope.sqlalchemy&#39;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+<span class="o">...</span>
+<span class="n">setup</span><span class="p">(</span>
+    <span class="o">...</span> <span class="c1"># same stuff until the end</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;paste.app_factory&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;main = expense_tracker:main&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;initialize_expense_tracker_db = expense_tracker.scripts.initializedb:main&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This scaffold comes with dependencies for <a class="reference external" href="http://docs.sqlalchemy.org/en/latest/">SQLAlchemy</a>,
+the <a class="reference external" href="http://zodb.readthedocs.io/en/latest/transactions.html">transaction</a>
+package, <code class="docutils literal"><span class="pre">zope.sqlalchemy</span></code>, and the <a class="reference external" href="http://docs.pylonsproject.org/projects/pyramid_tm/en/latest/">Pyramid transaction manager</a>.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">SQLAlchemy</span></code> - as mentioned, allows us to interact directly with the DB without writing raw SQL</li>
+<li><code class="docutils literal"><span class="pre">transaction</span></code> - a package that takes results of an HTTP response and executes other parts of your app that are aware of what the response is supposed to affect</li>
+<li><code class="docutils literal"><span class="pre">zope.sqlalchemy</span></code> - integrates SQLAlchemy with the Pyramid transaction manager</li>
+<li><code class="docutils literal"><span class="pre">pyramid_tm</span></code> - allows Pyramid to interact with active database transactions created by the the <code class="docutils literal"><span class="pre">transaction</span></code> package</li>
+</ul>
+<p>Let&#8217;s add <a class="reference external" href="https://pypi.python.org/pypi/psycopg2">psycopg2</a> to the list of required packages for install.
+This will allow us to work with our PostgreSQL database and our models.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># setup.py</span>
+<span class="o">...</span>
+<span class="n">requires</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">...</span>
+    <span class="s1">&#39;pyramid_tm&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SQLAlchemy&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;transaction&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;zope.sqlalchemy&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;psycopg2&#39;</span> <span class="c1"># &lt;---- add this line</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">entry_points</span></code> argument has two key-value pairs.
+The first is used for deployment when serving your Pyramid app.
+The second declares scripts that are accessible from the console.
+In our current case, we have a script that initializes our database.
+This will be needed whenever we create or update one of our data models.</p>
+<p><code class="docutils literal"><span class="pre">initialize_expense_tracker_db</span></code> is an unreasonably long name for a console
+command that will be invoked fairly often.
+Shorten this to <code class="docutils literal"><span class="pre">initializedb</span></code> such that our <code class="docutils literal"><span class="pre">setup</span></code> function ends with...</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># setup.py</span>
+<span class="c1"># ...</span>
+<span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s1">&#39;initializedb = expense_tracker.scripts.initializedb:main&#39;</span><span class="p">,</span>
+<span class="p">],</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>Because we changed the command, we need to re-install the app so that the new command name gets stored in our <code class="docutils literal"><span class="pre">ENV/bin</span></code> directory.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ pip install -e .
+</pre></div>
+</div>
+<p>And now our package has added our <code class="docutils literal"><span class="pre">initializedb</span></code> command into our current environment.
+The other packages we spoke about before had already been installed, we just didn&#8217;t need to use them yet.</p>
+<p>Although we have our new console script for creating a new database, we won&#8217;t initialize a database until we&#8217;ve created the data model that we want.</p>
+<p>Now that we are concerned with databases, we should take greater notice of what&#8217;s in our <code class="docutils literal"><span class="pre">development.ini</span></code> and <code class="docutils literal"><span class="pre">production.ini</span></code> files.</p>
+<p>In the <code class="docutils literal"><span class="pre">[app:main]</span></code> section, there&#8217;s a keyword: <code class="docutils literal"><span class="pre">sqlalchemy.url</span></code>.
+This keyword points SQLAlchemy to the database that we want to use.
+Currently, it&#8217;s pointed at a sqlite database that will be created in our project
+root when we call <code class="docutils literal"><span class="pre">initializedb</span></code>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>app:main<span class="o">]</span>
+...
+sqlalchemy.url <span class="o">=</span> sqlite:///%<span class="o">(</span>here<span class="o">)</span>s/expense_tracker.sqlite
+...
+</pre></div>
+</div>
+<p>Once we get our models set up, we&#8217;ll change the value associated with this keyword to point to a Postgres database.</p>
+<div class="section" id="the-mvc-mvt-directory-tree">
+<h3>The MVC/MVT Directory Tree<a class="headerlink" href="#the-mvc-mvt-directory-tree" title="Permalink to this headline">¶</a></h3>
+<p>Thus far we&#8217;ve only been working with routes, views, and tests.
+We&#8217;ve done a little work with templates in the <code class="docutils literal"><span class="pre">static</span></code> directory.
+Now, we turn our attention to the files and directories dealing with models, <code class="docutils literal"><span class="pre">models</span></code>, <code class="docutils literal"><span class="pre">scripts</span></code>, and our app root&#8217;s <code class="docutils literal"><span class="pre">__init__.py</span></code>.</p>
+<p>Let&#8217;s first investigate <code class="docutils literal"><span class="pre">__init__.py</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyramid.config</span> <span class="kn">import</span> <span class="n">Configurator</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">global_config</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; This function returns a Pyramid WSGI application.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Configurator</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;pyramid_jinja2&#39;</span><span class="p">)</span>
+    <span class="c1"># config.include(&#39;.models&#39;)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;.routes&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">scan</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">make_wsgi_app</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Thus far, we&#8217;ve commented out the <code class="docutils literal"><span class="pre">config.include('.models')</span></code> line so that we don&#8217;t include the models in our application.
+Let&#8217;s uncomment that line, and move on to the <code class="docutils literal"><span class="pre">models</span></code> directory.</p>
+</div>
+</div>
+<div class="section" id="pyramid-models">
+<h2>Pyramid Models<a class="headerlink" href="#pyramid-models" title="Permalink to this headline">¶</a></h2>
+<p><em>Models</em> capture the behavior of the application in terms of its problem domain,
+independent of the user interface.
+<strong>The model directly manages the data, logic, and rules of the application</strong>.</p>
+<ul class="simple">
+<li>from the Wikipedia article on <a class="reference external" href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Model-View-Controller</a>.</li>
+</ul>
+<div class="section" id="the-models-directory">
+<h3>The <code class="docutils literal"><span class="pre">models</span></code> Directory<a class="headerlink" href="#the-models-directory" title="Permalink to this headline">¶</a></h3>
+<p>The files in the models directory are few:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ tree models
+models
+├── __init__.py
+├── meta.py
+└── mymodel.py
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">meta.py</span></code>: determines the naming conventions that will go into your database via SQLAlchemy. The important thing here is the <code class="docutils literal"><span class="pre">Base</span></code> object, which when inherited creates your models.</li>
+<li><code class="docutils literal"><span class="pre">mymodel.py</span></code>: the file containing the model for your data. You can have many files like these, or you can have multiple models in the same file. Generic models will inherit from the <code class="docutils literal"><span class="pre">Base</span></code> class.</li>
+<li><code class="docutils literal"><span class="pre">__init__.py</span></code>: where the needs of the data models are called and fed into the Configurator (where <code class="docutils literal"><span class="pre">config.include('.models')</span></code> calls the <code class="docutils literal"><span class="pre">includeme</span></code> function). This includes the setup of the SQLAlchemy interaction with our database, the creation of sessions, managing transactions between the database and Pyramid, and of course importing our data models.</li>
+</ul>
+</div>
+<div class="section" id="the-models">
+<h3>The Models<a class="headerlink" href="#the-models" title="Permalink to this headline">¶</a></h3>
+<p>In an MVC application we define the <em>problem domain</em> by creating one or more <strong>Models</strong>.
+These capture relevant details about the information we want to preserve and
+how we want to interact with it.</p>
+<p>In Python-based MVC applications, <strong>Models</strong> are implemented as Python classes.
+In the Pyramid framework specifically, model classes inherit from the <code class="docutils literal"><span class="pre">Base</span></code> class set up in <code class="docutils literal"><span class="pre">models/meta.py</span></code>.</p>
+<p>The individual bits of data we want to know about are <strong>attributes</strong> of our classes.
+When the database is initialized, <em>every attribute</em> that is assigned an instance of the
+<code class="docutils literal"><span class="pre">Column</span></code> class will become a column in the database.
+The actions we want to take using that data are <strong>methods</strong> of our classes.
+Together, we refer to these as the <strong>API</strong> of our system.</p>
+<p>The model provided by this scaffold is fairly straight-forward.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;models&#39;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Text</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
+
+
+<span class="n">Index</span><span class="p">(</span><span class="s1">&#39;my_index&#39;</span><span class="p">,</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">mysql_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It will belong to the <code class="docutils literal"><span class="pre">models</span></code> table in our database.
+Every entry into that table will have attributes of <code class="docutils literal"><span class="pre">id</span></code>, <code class="docutils literal"><span class="pre">name</span></code>, and <code class="docutils literal"><span class="pre">value</span></code>.
+The table will be indexed based on the name of the object using this model for data.</p>
+<div class="section" id="data-persistence">
+<h4>Data Persistence<a class="headerlink" href="#data-persistence" title="Permalink to this headline">¶</a></h4>
+<p>It&#8217;s great to have a set of Python classes representing your system.
+But what happens when you want to <em>save</em> information?
+What happens to an instance of a Python class when you quit the interpreter?
+What about when your script stops running?
+A website&#8217;s code runs when an HTTP request comes in from a client.
+It stops running when an HTTP response goes back out to the client.
+So what happens to the data in your system in-between these moments?
+<strong>The data must be persisted</strong>.</p>
+<p>There are a number of alternatives for persistence:</p>
+<ul class="simple">
+<li>Python Literals</li>
+<li>Pickle/Shelf</li>
+<li>Interchange Files (CSV, XML, ini)</li>
+<li>Object Stores (ZODB, Durus)</li>
+<li>NoSQL Databases (MongoDB, CouchDB)</li>
+<li><strong>SQL Databases (sqlite, MySQL, PostgreSQL, Oracle, SQLServer, etc.)</strong></li>
+</ul>
+<p>Any of these might be useful depending on the application.
+On the web the two most used are SQL (<strong>Structured Query Language</strong>) and NoSQL (<strong>Not Only SQL</strong>).
+For viewing/interacting with individual objects, a NoSQL storage solution might be the best way to go.
+In systems with objects with relationships, SQL-based Relational Databases are the better choice.
+We&#8217;ll work with the latter.</p>
+</div>
+<div class="section" id="the-db-api">
+<h4>The DB API<a class="headerlink" href="#the-db-api" title="Permalink to this headline">¶</a></h4>
+<p>Python provides a specification for interacting directly with databases: <a class="reference external" href="https://www.python.org/dev/peps/pep-0249/">dbapi2</a>.
+There are multiple packages that implement this specification for various databases.
+Here&#8217;s three:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.python.org/2/library/sqlite3.html">sqlite3</a></li>
+<li><a class="reference external" href="http://mysql-python.sourceforge.net/MySQLdb.html">python-mysql</a></li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/psycopg2">psycopg2</a></li>
+</ul>
+<p>With these you can write SQL to save your Python objects into your database, but that&#8217;s a pain.
+SQL, while not impossible, is yet another language to learn.
+Additionally, unless you have a damn good reason why,
+<strong>you should never ever ever ever use raw SQL to manipulate your DB through your site!</strong></p>
+<p>Let me reiterate this, because this is a seriously important point.
+<strong>YOU SHOULD NEVER. EVER EVER. EVER EVER. EVER EVER EVER EVER USE RAW SQL TO MANIPULATE YOUR DB THROUGH YOUR SITE!!!!</strong>.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="http://www.ededition.com/blogpics/300-1.jpg"><img alt="Source: http://www.ededition.com/blogpics/300-1.jpg" src="http://www.ededition.com/blogpics/300-1.jpg" style="width: 300px;" /></a>
+</div>
+<p>An <em>Object Relational Mapper (ORM)</em> provides a nice alternative.</p>
+<p>An <em>ORM</em> provides a layer of <em>abstraction</em> between you and SQL.
+You instantiate Python objects and set attributes onto them.
+The ORM converts the data from these objects into SQL statements (and back).</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>SQLAlchemy<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>In our project we use the <a class="reference external" href="http://docs.sqlalchemy.org/en/rel_0_9/">SQLAlchemy</a> ORM.
+As we discussed before, you can find SQLAlchemy among the packages in the <code class="docutils literal"><span class="pre">requires</span></code> list in this site&#8217;s <code class="docutils literal"><span class="pre">setup.py</span></code>.
+When we <code class="docutils literal"><span class="pre">pip</span></code> installed our app, we installed SQLAlchemy along with the rest of the app and its dependencies.</p>
+<p>Now that we know about ORMs, let&#8217;s go back to our model...</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;models&#39;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Text</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Any class we create that inherits from this <code class="docutils literal"><span class="pre">Base</span></code> becomes a <em>model</em>.
+This model will be connected through the ORM to our &#8216;models&#8217; table in the database (specified by the <code class="docutils literal"><span class="pre">__tablename__</span></code> attribute).
+Once an instance of this class is saved, it and its attributes will become a row in the <code class="docutils literal"><span class="pre">models</span></code> table.
+The class attributes that are instances of <a class="reference external" href="http://docs.sqlalchemy.org/en/rel_0_9/core/metadata.html#sqlalchemy.schema.Column">Column</a> become <em>columns</em> in the table.
+More on this in the <a class="reference external" href="http://docs.sqlalchemy.org/en/rel_0_9/orm/extensions/declarative/">Declarative</a> chapter of the SQLAlchemy docs.</p>
+<p>Each instance of <code class="docutils literal"><span class="pre">Column</span></code> requires <em>at least</em> a specific <a class="reference external" href="http://docs.sqlalchemy.org/en/rel_0_9/core/types.html">data type</a> (such as Integer or Text).
+Others will be able to be specified by other arguments, such as whether or not it&#8217;s a primary key.
+In the style above, the name of the class attribute holding each <code class="docutils literal"><span class="pre">Column</span></code>
+will be the name of the column in the database.
+If you want a different name for the column, you can specify that too.</p>
+</div>
+<div class="section" id="creating-the-database">
+<h3>Creating the Database<a class="headerlink" href="#creating-the-database" title="Permalink to this headline">¶</a></h3>
+<p>We now have a <em>model</em> which will <em>persist</em> Python objects in a SQL database.
+We must still create our database.
+This takes us back to the <code class="docutils literal"><span class="pre">initializedb</span></code> console script from <code class="docutils literal"><span class="pre">setup.py</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># setup.py</span>
+<span class="o">...</span>
+<span class="n">setup</span><span class="p">(</span>
+    <span class="o">...</span> <span class="c1"># remember me?</span>
+    <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;initializedb = expense_tracker.scripts.initializedb:main&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>That <code class="docutils literal"><span class="pre">initializedb</span></code> command is tied to the <code class="docutils literal"><span class="pre">main</span></code> function in
+<code class="docutils literal"><span class="pre">expense_tracker/scripts/initializedb.py</span></code> and will run that function when it is invoked.
+That function looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># expense_tracker/scripts/initializedb.py</span>
+<span class="c1">#...</span>
+<span class="kn">import</span> <span class="nn">transaction</span>
+<span class="c1">#...</span>
+<span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">MyModel</span>
+<span class="c1">#...</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">usage</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
+    <span class="n">config_uri</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">parse_vars</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+    <span class="n">setup_logging</span><span class="p">(</span><span class="n">config_uri</span><span class="p">)</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="n">get_appsettings</span><span class="p">(</span><span class="n">config_uri</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">get_engine</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+
+    <span class="n">session_factory</span> <span class="o">=</span> <span class="n">get_session_factory</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">transaction</span><span class="o">.</span><span class="n">manager</span><span class="p">:</span>
+        <span class="n">dbsession</span> <span class="o">=</span> <span class="n">get_tm_session</span><span class="p">(</span><span class="n">session_factory</span><span class="p">,</span> <span class="n">transaction</span><span class="o">.</span><span class="n">manager</span><span class="p">)</span>
+
+        <span class="n">model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">dbsession</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal"><span class="pre">main</span></code> is called, our Pyramid app will create a new <code class="docutils literal"><span class="pre">MyModel</span></code> instance
+and insert it into the database.
+To do this, it&#8217;ll need a configuration file (held in the <code class="docutils literal"><span class="pre">config_uri</span></code> variable above)
+such as our <code class="docutils literal"><span class="pre">development.ini</span></code> and any options we may pass in.
+<code class="docutils literal"><span class="pre">development.ini</span></code> will tell Pyramid what to do when trying to initialize a database.</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="c1"># in development.ini</span>
+<span class="k">[app:main]</span>
+<span class="c1"># ...</span>
+<span class="na">sqlalchemy.url</span> <span class="o">=</span> <span class="s">sqlite:///%(here)s/expense_tracker.sqlite</span>
+</pre></div>
+</div>
+<p>As mentioned before, this keyword tells Pyramid where to look for a database.
+Since we&#8217;re currently using <a class="reference external" href="https://docs.python.org/2/library/sqlite3.html">SQLite</a>, it&#8217;ll create the database file with SQLite if one does not exist.
+This will not happen with <code class="docutils literal"><span class="pre">PostgreSQL</span></code>; you need to have a database ready to be filled with tables.
+The string assigned to <code class="docutils literal"><span class="pre">sqlalchemy.url</span></code> will replace <code class="docutils literal"><span class="pre">here</span></code> with the path to your project root.</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="c1"># still in development.ini</span>
+<span class="k">[logger_sqlalchemy]</span>
+<span class="na">level</span> <span class="o">=</span> <span class="s">INFO</span>
+<span class="na">handlers</span> <span class="o">=</span>
+<span class="na">qualname</span> <span class="o">=</span> <span class="s">sqlalchemy.engine</span>
+</pre></div>
+</div>
+<p>These lines provide guidelines for how verbose Pyramid will be when it creates your database.
+<code class="docutils literal"><span class="pre">level</span> <span class="pre">=</span> <span class="pre">INFO</span></code> means that it&#8217;ll simply tell you what queries are being used.
+This is great for development so that you know exactly what&#8217;s going into and out of your database.
+When in production, you want to set <code class="docutils literal"><span class="pre">level</span> <span class="pre">=</span> <span class="pre">WARN</span></code>.</p>
+<p>Let&#8217;s return to <code class="docutils literal"><span class="pre">expense_tracker/scripts/initializedb.py</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">engine</span> <span class="o">=</span> <span class="n">get_engine</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">engine</span></code> is the connection to the database itself.
+It gets used by <code class="docutils literal"><span class="pre">Base.metadata.create_all</span></code> to create all of the necessary
+tables in the database.
+The information for those tables are stored in <code class="docutils literal"><span class="pre">Base.metadata</span></code>.</p>
+<p>The <code class="docutils literal"><span class="pre">Base.metadata.create_all</span></code> method will overlook tables that already exist.
+Thus you&#8217;re able to add new models to your Pyramid app without having to
+overwrite existing tables or nuke your DB.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">session_factory</span> <span class="o">=</span> <span class="n">get_session_factory</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">transaction</span><span class="o">.</span><span class="n">manager</span><span class="p">:</span>
+    <span class="n">dbsession</span> <span class="o">=</span> <span class="n">get_tm_session</span><span class="p">(</span><span class="n">session_factory</span><span class="p">,</span> <span class="n">transaction</span><span class="o">.</span><span class="n">manager</span><span class="p">)</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">dbsession</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This last bit of code isn&#8217;t actually <em>necessary</em>.
+The process in these lines is as follows:</p>
+<ol class="arabic simple">
+<li>(line 39) Create an object with the ability to build new sessions pointing at the database described in <code class="docutils literal"><span class="pre">engine</span></code>.</li>
+<li>(line 41) Start up a manager to oversee and direct interactions with the database.</li>
+<li>(line 42) Start a <strong>database session</strong>, using the <code class="docutils literal"><span class="pre">session_factory</span></code> and the transaction manager.</li>
+<li>(line 44) Create an instance of the <code class="docutils literal"><span class="pre">MyModel</span></code> object, complete with its fields filled in with relevant data.</li>
+<li>(line 45) Add that instance to the database session.</li>
+<li>(after 45) Exit the transaction manager and let it save all changes to the database.</li>
+</ol>
+<p>It&#8217;s a way of checking that your database works the way that it&#8217;s supposed to.</p>
+<p>If this stays uncommented and <code class="docutils literal"><span class="pre">initializedb</span></code> is run more than once,
+Pyramid will yell at you for trying to create a row that already exists.
+Remember, for this model the &#8220;name&#8221; attribute is supposed to be unique.</p>
+<p>We want to invoke <code class="docutils literal"><span class="pre">initializedb</span></code> so that this function runs and the data is created.
+Let&#8217;s first direct our app to the right database, then run the command.</p>
+<p>Start up Postgres and run the following command in the terminal in order to create a database for you to use.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ createdb expense_tracker
+</pre></div>
+</div>
+<p>Now, in <code class="docutils literal"><span class="pre">development.ini</span></code>, replace the value of <code class="docutils literal"><span class="pre">sqlalchemy.url</span></code> with the URL to your Postgres database.
+It&#8217;ll be something like <code class="docutils literal"><span class="pre">postgres://&lt;Your</span> <span class="pre">Username</span> <span class="pre">Here&gt;&#64;localhost:5432/expense_tracker</span></code>.</p>
+<p>Now, let&#8217;s invoke <code class="docutils literal"><span class="pre">initializedb</span></code>.
+We do this by writing the command <code class="docutils literal"><span class="pre">initializedb</span></code> followed by the path to a configuration file like <code class="docutils literal"><span class="pre">development.ini</span></code> or <code class="docutils literal"><span class="pre">production.ini</span></code>.
+It&#8217;s easiest if we invoke this command in the same directory where those files live, so navigate to your project root and run the command.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ initializedb development.ini
+</pre></div>
+</div>
+<p>When this command runs, you&#8217;ll see a ton of output.</p>
+<div class="highlight-bash"><div class="highlight"><pre>2016-07-12 09:53:33,686 INFO  <span class="o">[</span>sqlalchemy.engine.base.Engine:1192<span class="o">][</span>MainThread<span class="o">]</span> SELECT CAST<span class="o">(</span><span class="s1">&#39;test plain returns&#39;</span> AS VARCHAR<span class="o">(</span>60<span class="o">))</span> AS anon_1
+...
+2016-07-12 09:53:33,705 INFO  <span class="o">[</span>sqlalchemy.engine.base.Engine:1100<span class="o">][</span>MainThread<span class="o">]</span> <span class="o">()</span>
+2016-07-12 09:53:33,708 INFO  <span class="o">[</span>sqlalchemy.engine.base.Engine:1097<span class="o">][</span>MainThread<span class="o">]</span>
+CREATE TABLE models <span class="o">(</span>
+    id INTEGER NOT NULL,
+    name TEXT,
+    value INTEGER,
+    CONSTRAINT pk_models PRIMARY KEY <span class="o">(</span>id<span class="o">)</span>
+<span class="o">)</span>
+...
+2016-07-12 09:53:33,719 INFO  <span class="o">[</span>sqlalchemy.engine.base.Engine:686<span class="o">][</span>MainThread<span class="o">]</span> COMMIT
+</pre></div>
+</div>
+<p>So what happened here?</p>
+<ul class="simple">
+<li>We created a table called <code class="docutils literal"><span class="pre">models</span></code> in our postgres database, with columns <code class="docutils literal"><span class="pre">id</span></code>, <code class="docutils literal"><span class="pre">name</span></code>, and <code class="docutils literal"><span class="pre">value</span></code>.</li>
+<li>We committed that creation to the database, effectively saving it.</li>
+<li>We created an index on the <code class="docutils literal"><span class="pre">models</span></code> table using its <code class="docutils literal"><span class="pre">name</span></code> column and committed that.</li>
+<li>We then created a new row, inserting a new <code class="docutils literal"><span class="pre">MyModel</span></code> instance into the table and committing that.</li>
+</ul>
+<p>With our new database populated with some models, we can move on with enhancing our app.</p>
+</div>
+<div class="section" id="interacting-with-sqlalchemy-models-and-the-orm">
+<h3>Interacting with SQLAlchemy Models and the ORM<a class="headerlink" href="#interacting-with-sqlalchemy-models-and-the-orm" title="Permalink to this headline">¶</a></h3>
+<p>We can investigate and manipulate our models from the interpreter pretty easily.
+Let&#8217;s fire up <code class="docutils literal"><span class="pre">pshell</span></code> and explore for a moment to see what we have at our disposal.</p>
+<div class="highlight-bash"><div class="highlight"><pre>Python 3.6.1 <span class="o">(</span>v3.6.1:69c0db5050, Mar <span class="m">21</span> 2017, 01:21:04<span class="o">)</span>
+Type <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for</span> more information.
+
+IPython 5.3.0 -- An enhanced Interactive Python.
+?         -&gt; Introduction and overview of IPython<span class="s1">&#39;s features.</span>
+<span class="s1">%quickref -&gt; Quick reference.</span>
+<span class="s1">help      -&gt; Python&#39;</span>s own <span class="nb">help</span> system.
+object?   -&gt; Details about <span class="s1">&#39;object&#39;</span>, use <span class="s1">&#39;object??&#39;</span> <span class="k">for</span> extra details.
+
+Environment:
+  app          The WSGI application.
+  registry     Active Pyramid registry.
+  request      Active request object.
+  root         Root of the default resource tree.
+  root_factory Default root factory used to create <span class="sb">`</span>root<span class="sb">`</span>.
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">environment</span></code> created by <code class="docutils literal"><span class="pre">pshell</span></code> provides us with a few useful tools seen above:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">app</span></code> is our new <code class="docutils literal"><span class="pre">expense_tracker</span></code> application.</li>
+<li><code class="docutils literal"><span class="pre">registry</span></code> provides us with access to settings and other useful information.</li>
+<li><code class="docutils literal"><span class="pre">request</span></code> is an artificial HTTP request we can use if we need to pretend we are listening to clients</li>
+</ul>
+<p>Let&#8217;s use this environment to build a database session and interact with our data.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">expense_tracker.models</span> <span class="kn">import</span> <span class="n">get_engine</span><span class="p">,</span> <span class="n">MyModel</span>
+<span class="gp">In [2]: </span><span class="n">engine</span> <span class="o">=</span> <span class="n">get_engine</span><span class="p">(</span><span class="n">registry</span><span class="o">.</span><span class="n">settings</span><span class="p">)</span> <span class="c1"># default prefixes are &#39;sqlalchemy.&#39;</span>
+<span class="gp">In [3]: </span><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+<span class="gp">In [4]: </span><span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="gp">In [5]: </span><span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+<span class="gp">In [6]: </span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="go">#...</span>
+<span class="go">2016-07-12 10:19:02,254 INFO  [sqlalchemy.engine.base.Engine:1097][MainThread] SELECT models.id AS models_id, models.name AS models_name, models.value AS models_value</span>
+<span class="go">FROM models</span>
+<span class="go">2016-07-12 10:19:02,254 INFO  [sqlalchemy.engine.base.Engine:1100][MainThread] ()</span>
+<span class="gh">Out[6]: </span><span class="go">[&lt;expense_tracker.models.mymodel.MyModel at 0x1054fe470&gt;]</span>
+</pre></div>
+</div>
+<p>We&#8217;ve stolen a lot of this from <code class="docutils literal"><span class="pre">scripts/initializedb.py</span></code> and <code class="docutils literal"><span class="pre">models/__init__.py</span></code>.</p>
+<p><strong>Any persisting interaction with the database requires a ``session``.</strong>
+This object <em>represents</em> the active, current connection to the database.</p>
+<p>Note the output that comes before <code class="docutils literal"><span class="pre">Out[6]</span></code>.
+It&#8217;s a result of the setting for our logging from the database.
+If you want less output, set <code class="docutils literal"><span class="pre">level</span> <span class="pre">=</span> <span class="pre">WARN</span></code> under the <code class="docutils literal"><span class="pre">[logger_sqlalchemy]</span></code> heading in <code class="docutils literal"><span class="pre">development.ini</span></code>.</p>
+<p>All database queries are phrased as methods of the session object.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [7]: </span><span class="n">query</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span>
+<span class="gp">In [8]: </span><span class="nb">type</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="gh">Out[8]: </span><span class="go">sqlalchemy.orm.query.Query</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">query</span></code> method of the session object returns a <code class="docutils literal"><span class="pre">Query</span></code> object.
+Arguments to the <code class="docutils literal"><span class="pre">query</span></code> method can be a <em>model</em> class, several model classes, or even <em>columns</em> from a model class.
+Query objects are themselves iterable, with the result depending on the args you passed.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [9]: </span><span class="n">query1</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span>
+<span class="gp">In [10]: </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">query1</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="gp">   ....: </span>    <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+<span class="gp">   ....:</span>
+<span class="go">2016-07-12 10:22:32,165 INFO  [sqlalchemy.engine.base.Engine:1097][MainThread] SELECT models.id AS models_id, models.name AS models_name, models.value AS models_value</span>
+<span class="go">FROM models</span>
+<span class="go">2016-07-12 10:22:32,166 INFO  [sqlalchemy.engine.base.Engine:1100][MainThread] ()</span>
+
+<span class="go"># above this mark are the two lines representing SQL commands that retreive our data</span>
+
+<span class="go">&lt;expense_tracker.models.mymodel.MyModel object at 0x1054fe470&gt;</span>
+<span class="go">&lt;class &#39;expense_tracker.models.mymodel.MyModel&#39;&gt;</span>
+
+<span class="go"># these two lines are the result of the for loop</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [11]: </span><span class="n">query2</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="gp">In [12]: </span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">query2</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">   ....: </span>    <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+<span class="gp">   ....: </span>    <span class="k">print</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<span class="gp">   ....: </span>    <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">id</span><span class="p">))</span>
+<span class="gp">   ....: </span>    <span class="k">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+<span class="gp">   ....: </span>    <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+<span class="gp">   ....:</span>
+<span class="go">2016-07-12 10:24:33,866 INFO  [sqlalchemy.engine.base.Engine:1097][MainThread] SELECT models.name AS models_name, models.id AS models_id, models.value AS models_value</span>
+<span class="go">FROM models</span>
+<span class="go">2016-07-12 10:24:33,868 INFO  [sqlalchemy.engine.base.Engine:1100][MainThread] ()</span>
+<span class="go">one</span>
+<span class="go">&lt;class &#39;str&#39;&gt;</span>
+<span class="go">1</span>
+<span class="go">&lt;class &#39;int&#39;&gt;</span>
+<span class="go">1</span>
+<span class="go">&lt;class &#39;int&#39;&gt;</span>
+</pre></div>
+</div>
+<p>We can see the SQL query on its own by looking at its string representation.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [13]: </span><span class="nb">str</span><span class="p">(</span><span class="n">query1</span><span class="p">)</span>
+<span class="gh">Out[13]: </span><span class="go">&#39;SELECT models.id AS models_id, models.name AS models_name, models.value AS models_value \nFROM models&#39;</span>
+
+<span class="gp">In [14]: </span><span class="nb">str</span><span class="p">(</span><span class="n">query2</span><span class="p">)</span>
+<span class="gh">Out[14]: </span><span class="go">&#39;SELECT models.name AS models_name, models.id AS models_id, models.value AS models_value \nFROM models&#39;</span>
+</pre></div>
+</div>
+<p>You can use this to check that the query that the ORM constructs is what you expect.
+It can be very helpful for testing and debugging.</p>
+<p>The methods of the <code class="docutils literal"><span class="pre">Query</span></code> object fall roughly into two categories:</p>
+<ol class="arabic simple">
+<li>Methods that return a new <code class="docutils literal"><span class="pre">Query</span></code> object</li>
+<li>Methods that return <em>scalar</em> values or <em>model instances</em></li>
+</ol>
+<p>Let&#8217;s start by looking quickly at a few methods from the second category.</p>
+<div class="section" id="methods-returning-values-instances">
+<h4>Methods Returning Values &amp; Instances<a class="headerlink" href="#methods-returning-values-instances" title="Permalink to this headline">¶</a></h4>
+<p>An example of this is <code class="docutils literal"><span class="pre">get</span></code>, which returns only one model instance.
+It takes a primary key as an argument:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [15]: </span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[15]: </span><span class="go">&lt;expense_tracker.models.mymodel.MyModel at 0x105546080&gt;</span>
+
+<span class="gp">In [16]: </span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">In [17]:</span>
+</pre></div>
+</div>
+<p>If no item with that primary key is present, then the method returns <code class="docutils literal"><span class="pre">None</span></code> instead of raising an exception.</p>
+<p>Another example is one we&#8217;ve already seen.
+<code class="docutils literal"><span class="pre">query.all()</span></code> returns a list of all rows matching the given query.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [17]: </span><span class="n">query1</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="gh">Out[17]: </span><span class="go">[&lt;expense_tracker.models.mymodel.MyModel at 0x105546080&gt;]</span>
+
+<span class="gp">In [18]: </span><span class="nb">type</span><span class="p">(</span><span class="n">query1</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+<span class="gh">Out[18]: </span><span class="go">list</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">query.count()</span></code> returns the number of rows that would have been returned by the query:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [19]: </span><span class="n">query1</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="gh">Out[19]: </span><span class="go">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-new-model-instances">
+<h4>Creating New Model Instances<a class="headerlink" href="#creating-new-model-instances" title="Permalink to this headline">¶</a></h4>
+<p>We can create new instances of our <em>model</em> just like normal Python objects:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [20]: </span><span class="n">new_model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;fred&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">In [21]: </span><span class="n">new_model</span>
+<span class="gh">Out[21]: </span><span class="go">&lt;expense_tracker.models.mymodel.MyModel at 0x1053f8710&gt;</span>
+</pre></div>
+</div>
+<p>In this state, the instance is <em>ephemeral</em>.
+Our database <code class="docutils literal"><span class="pre">session</span></code> knows nothing about it:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [22]: </span><span class="n">session</span><span class="o">.</span><span class="n">new</span>
+<span class="gh">Out[22]: </span><span class="go">IdentitySet([])</span>
+</pre></div>
+</div>
+<p>For the database to know about our new object we must add it to the session</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [23]: </span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_model</span><span class="p">)</span>
+<span class="gp">In [24]: </span><span class="n">session</span><span class="o">.</span><span class="n">new</span>
+<span class="gh">Out[24]: </span><span class="go">IdentitySet([&lt;expense_tracker.models.mymodel.MyModel object at 0x1053f8710&gt;])</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">session.new</span></code> returns a list-like object containing any new instances added to the session.
+They still don&#8217;t exist in the database, but the session is aware of them.</p>
+<p>We can bulk-add new objects with <code class="docutils literal"><span class="pre">session.add_all()</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [25]: </span><span class="n">new_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">In [26]: </span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;bob&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;tom&#39;</span><span class="p">,</span> <span class="mi">13</span><span class="p">)]:</span>
+<span class="gp">   ....: </span>    <span class="n">new_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MyModel</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">val</span><span class="p">))</span>
+<span class="gp">   ....:</span>
+
+<span class="gp">In [27]: </span><span class="n">session</span><span class="o">.</span><span class="n">add_all</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
+<span class="gp">In [28]: </span><span class="n">session</span><span class="o">.</span><span class="n">new</span>
+<span class="gh">Out[28]: </span><span class="go">Out[37]: IdentitySet([&lt;expense_tracker.models.mymodel.MyModel object at 0x1055e3048&gt;, &lt;expense_tracker.models.mymodel.MyModel object at 0x1053f8710&gt;, &lt;expense_tracker.models.mymodel.MyModel object at 0x1055cb390&gt;])</span>
+</pre></div>
+</div>
+<p>Up until now, the changes you&#8217;ve made are not permanent.
+They&#8217;re recognized by your session, but they haven&#8217;t been saved into the database.
+Just like we saw when we initialized the database, our current session must be <strong>committed</strong>.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [29]: </span><span class="n">other_session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+<span class="gp">In [30]: </span><span class="n">other_session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="gh">Out[30]: </span><span class="go">1</span>
+</pre></div>
+</div>
+<p>Notice how this new DB session is completely unaware of the &#8220;changes&#8221; we&#8217;ve made.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [31]: </span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="gp">In [32]: </span><span class="n">other_session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="gh">Out[32]: </span><span class="go">4</span>
+</pre></div>
+</div>
+<p>Now they&#8217;re seen, as <code class="docutils literal"><span class="pre">other_session</span></code>&#8216;s query looks directly at the database when it queries.</p>
+<p>When you are using a <code class="docutils literal"><span class="pre">scoped_session</span></code> in Pyramid (we&#8217;ll be doing this in our views), this action is automatically handled for you.
+The session that is bound to a particular HTTP request is committed when a response is sent back.</p>
+<p>You can edit objects that are already part of a session, or that are fetched by a query.
+Simply change the values of a persisted attribute, the session will know it&#8217;s been updated:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [33]: </span><span class="n">new_model</span>
+<span class="gh">Out[33]: </span><span class="go">&lt;expense_tracker.models.mymodel.MyModel at 0x1053f8710&gt;</span>
+<span class="gp">In [34]: </span><span class="n">new_model</span><span class="o">.</span><span class="n">name</span>
+<span class="gh">Out[34]: </span><span class="go">&#39;fred&#39;</span>
+<span class="gp">In [35]: </span><span class="n">new_model</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;larry&#39;</span>
+<span class="gp">In [36]: </span><span class="n">session</span><span class="o">.</span><span class="n">dirty</span>
+<span class="gh">Out[36]: </span><span class="go">IdentitySet([&lt;expense_tracker.models.mymodel.MyModel object at 0x1053f8710&gt;])</span>
+</pre></div>
+</div>
+<p>Commit the session to persist the changes:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [37]: </span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="gp">In [38]: </span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">other_session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)]</span>
+<span class="gh">Out[38]: </span><span class="go">[&#39;one&#39;, &#39;larry&#39;, &#39;bob&#39;, &#39;tom&#39;]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="methods-returning-query-objects">
+<h4>Methods Returning Query Objects<a class="headerlink" href="#methods-returning-query-objects" title="Permalink to this headline">¶</a></h4>
+<p>Returning to query methods, a good example of the second type is the <code class="docutils literal"><span class="pre">filter</span></code> method.
+This method allows you to reduce the number of results based on given criteria:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [39]: </span><span class="p">[(</span><span class="n">o</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">o</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">MyModel</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">)]</span>
+<span class="gh">Out[39]: </span><span class="go">[(&#39;one&#39;, 1), (&#39;larry&#39;, 3), (&#39;tom&#39;, 13)]</span>
+</pre></div>
+</div>
+<p>Another typical method in this category is <code class="docutils literal"><span class="pre">order_by</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [40]: </span><span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">MyModel</span><span class="o">.</span><span class="n">value</span><span class="p">)]</span>
+<span class="gh">Out[40]: </span><span class="go">[1, 3, 13, 34]</span>
+
+<span class="gp">In [41]: </span><span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">MyModel</span><span class="o">.</span><span class="n">name</span><span class="p">)]</span>
+<span class="gh">Out[41]: </span><span class="go">[&#39;bob&#39;, &#39;larry&#39;, &#39;one&#39;, &#39;tom&#39;]</span>
+</pre></div>
+</div>
+<p>Since methods in this category return Query objects, they can be safely <code class="docutils literal"><span class="pre">chained</span></code>
+to build more complex queries:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [42]: </span><span class="n">query1</span> <span class="o">=</span> <span class="n">Session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">MyModel</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">)</span>
+<span class="gp">In [43]: </span><span class="n">query1</span> <span class="o">=</span> <span class="n">query1</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">MyModel</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">In [44]: </span><span class="p">[(</span><span class="n">o</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">o</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">query1</span><span class="p">]</span>
+<span class="gh">Out[44]: </span><span class="go">[(&#39;larry&#39;, 3), (&#39;one&#39;, 1), (&#39;tom&#39;, 13)]</span>
+</pre></div>
+</div>
+<p>Note that you can do this inline (<code class="docutils literal"><span class="pre">Session.query(MyModel).filter(MyModel.value</span> <span class="pre">&lt;</span> <span class="pre">20).order_by(MyModel.name)</span></code>).
+Also note that when using chained queries like this, no query is actually
+sent to the database until you require a result.</p>
+</div>
+</div>
+</div>
+<div class="section" id="cleaning-up-our-model-sandbox">
+<h2>Cleaning Up our Model Sandbox<a class="headerlink" href="#cleaning-up-our-model-sandbox" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;ve used the toy <code class="docutils literal"><span class="pre">MyModel</span></code> long enough.
+We&#8217;re writing an app for listing out our expenses, and our code should reflect that in both file names and content.</p>
+<p>First, rename <code class="docutils literal"><span class="pre">models/mymodel.py</span></code> to <code class="docutils literal"><span class="pre">models/expenses.py</span></code>.
+We&#8217;ll have to change various import statements around our application to reflect this change, but lets stick with this file for now.</p>
+<p>Inside of <code class="docutils literal"><span class="pre">models/expenses.py</span></code>, remove all of the <code class="docutils literal"><span class="pre">MyModel</span></code> code and construct an <code class="docutils literal"><span class="pre">Expense</span></code> model.
+Recall, up to this point we&#8217;ve been presenting our data as dictionaries holding key-value pairs for attributes.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">EXPENSES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;Utilities&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;creation_date&quot;</span><span class="p">:</span> <span class="s2">&quot;Aug 19, 2016&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Wifi and cable for August 2016.&quot;</span>
+        <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">100.00</span>
+    <span class="p">},</span>
+<span class="o">...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Let&#8217;s put these same attributes on a model object in <code class="docutils literal"><span class="pre">models/expenses.py</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Column</span><span class="p">,</span>
+    <span class="n">Date</span><span class="p">,</span>
+    <span class="n">Float</span><span class="p">,</span>
+    <span class="n">Integer</span><span class="p">,</span>
+    <span class="n">Unicode</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">.meta</span> <span class="kn">import</span> <span class="n">Base</span>
+
+
+<span class="k">class</span> <span class="nc">Expense</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Expense model class.&quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;expenses&#39;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Unicode</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Unicode</span><span class="p">)</span>
+    <span class="n">creation_date</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span>
+    <span class="n">amount</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now that we have a new model, we need to go into <code class="docutils literal"><span class="pre">models/__init__.py</span></code> and have it import that model instead of <code class="docutils literal"><span class="pre">MyModel</span></code>, which no longer exists.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in models/__init__.py</span>
+
+<span class="kn">from</span> <span class="nn">.mymodel</span> <span class="kn">import</span> <span class="n">MyModel</span>  <span class="c1">#&lt;-- remove this line</span>
+<span class="kn">from</span> <span class="nn">expense_tracker.models.expenses</span> <span class="kn">import</span> <span class="n">Expense</span>  <span class="c1">#&lt;-- replace with this line</span>
+</pre></div>
+</div>
+<p>Then, in <code class="docutils literal"><span class="pre">scripts/initializedb.py</span></code> do the same thing.
+Directly underneath that import line, import the <code class="docutils literal"><span class="pre">EXPENSES</span></code> variable from <code class="docutils literal"><span class="pre">data/expense_data.py</span></code>, as well as the <code class="docutils literal"><span class="pre">datetime</span></code> object so we can give our expenses some actual date information.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in scripts/initializedb.py</span>
+
+<span class="kn">from</span> <span class="nn">expense_tracker.models.expenses</span> <span class="kn">import</span> <span class="n">Expense</span>
+<span class="kn">from</span> <span class="nn">expense_tracker.data.expense_data</span> <span class="kn">import</span> <span class="n">EXPENSES</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</pre></div>
+</div>
+<p>Within the couple of lines where Pyramid gets the database engine and creates all the necessary tables, insert a line that drops the existing tables.
+This is to avoid database conflicts.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">engine</span> <span class="o">=</span> <span class="n">get_engine</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span> <span class="c1"># &lt;--- you are adding this line</span>
+<span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, change the <code class="docutils literal"><span class="pre">with</span> <span class="pre">transaction.manager</span></code> block so that it creates a bunch of <code class="docutils literal"><span class="pre">Expense</span></code> instances instead of one <code class="docutils literal"><span class="pre">MyModel</span></code> instance.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">with</span> <span class="n">transaction</span><span class="o">.</span><span class="n">manager</span><span class="p">:</span>
+    <span class="n">dbsession</span> <span class="o">=</span> <span class="n">get_tm_session</span><span class="p">(</span><span class="n">session_factory</span><span class="p">,</span> <span class="n">transaction</span><span class="o">.</span><span class="n">manager</span><span class="p">)</span>
+
+    <span class="n">many_models</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">EXPENSES</span><span class="p">:</span>
+        <span class="n">new_expense</span> <span class="o">=</span> <span class="n">Expense</span><span class="p">(</span>
+            <span class="n">category</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">],</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">],</span>
+            <span class="n">creation_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+            <span class="n">amount</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;amount&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">many_models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_expense</span><span class="p">)</span>
+    <span class="n">dbsession</span><span class="o">.</span><span class="n">add_all</span><span class="p">(</span><span class="n">many_models</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, navigate to the project root and run <code class="docutils literal"><span class="pre">initializedb</span></code> to make sure that everything&#8217;s wired up correctly and new data is added to the database.</p>
+</div>
+<div class="section" id="connecting-m-to-vc">
+<h2>Connecting &#8220;M&#8221; to &#8220;VC&#8221;<a class="headerlink" href="#connecting-m-to-vc" title="Permalink to this headline">¶</a></h2>
+<p>We should be able to see them on our site.
+The way to make that happen is through our Views.</p>
+<p>Let&#8217;s modify our existing views so that they can access the database and display that data.</p>
+<p>One of the many things that our scaffold does for us is attach a database session to the <code class="docutils literal"><span class="pre">request</span></code> object.
+As such, we can use that session to interact with the database without needed to create a new session ourselves like we did in the interpreter.
+We also don&#8217;t need to commit our changes, as changes to objects in the database are automatically committed when the view returns its response.</p>
+<p>Let&#8217;s first change the <code class="docutils literal"><span class="pre">list_view</span></code> so that we query the database for all of our expenses and list them on the page.
+Also, comment out the contents of the <code class="docutils literal"><span class="pre">detail_view</span></code> for now.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># expense_tracker/views/default.py</span>
+<span class="kn">from</span> <span class="nn">pyramid.view</span> <span class="kn">import</span> <span class="n">view_config</span>
+<span class="kn">from</span> <span class="nn">expense_tracker.models.expenses</span> <span class="kn">import</span> <span class="n">Expense</span>
+
+
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s1">&#39;../templates/list.jinja2&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">list_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;View for the home route.&quot;&quot;&quot;</span>
+    <span class="n">expenses</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">dbsession</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Expense</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;expenses&quot;</span><span class="p">:</span> <span class="n">expenses</span><span class="p">}</span>
+
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s1">&#39;detail&#39;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s1">&#39;../templates/detail.jinja2&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">detail_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;View for listing expenses.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+    <span class="c1"># expense = EXPENSES[0]</span>
+    <span class="c1"># return {</span>
+    <span class="c1">#     &quot;category&quot;: expense[&#39;category&#39;],</span>
+    <span class="c1">#     &quot;creation_date&quot;: expense[&quot;creation_date&quot;],</span>
+    <span class="c1">#     &quot;id&quot;: expense[&quot;id&quot;],</span>
+    <span class="c1">#     &quot;description&quot;: expense[&quot;description&quot;]</span>
+    <span class="c1"># }</span>
+</pre></div>
+</div>
+<p>Run <code class="docutils literal"><span class="pre">pserve</span></code> to look at the site and see our data, now hosted in the database instead of simply in a file.</p>
+<p>Now let&#8217;s activate that <code class="docutils literal"><span class="pre">detail_view</span></code>, pulling an individual expense out of the database instead of just the same one.
+To do this, we need to get the expense&#8217;s ID from the URL.</p>
+<p>Whenever some variables in the route URL are set, they appear in an object called the <code class="docutils literal"><span class="pre">matchdict`</span> <span class="pre">attached</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">``request</span></code> object.
+If you recall, our <code class="docutils literal"><span class="pre">detail</span></code> route takes the form of <code class="docutils literal"><span class="pre">/expense/{id:\d+}</span></code>.
+Thus, in the <code class="docutils literal"><span class="pre">request.matchdict</span></code> the value of <code class="docutils literal"><span class="pre">id</span></code> is present as a key, and the value itself is a string.</p>
+<p>In our <code class="docutils literal"><span class="pre">detail_view</span></code> we&#8217;ll harvest this data, use it to <code class="docutils literal"><span class="pre">get</span></code> the proper <code class="docutils literal"><span class="pre">Expense</span></code> instance, and return that instance&#8217;s data to the page.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s1">&#39;detail&#39;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s1">&#39;../templates/detail.jinja2&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">detail_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;View for listing expenses.&quot;&quot;&quot;</span>
+    <span class="n">the_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">matchdict</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+    <span class="n">expense</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">dbsession</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Expense</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">the_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">expense</span><span class="o">.</span><span class="n">category</span><span class="p">,</span>
+        <span class="s2">&quot;creation_date&quot;</span><span class="p">:</span> <span class="n">expense</span><span class="o">.</span><span class="n">creation_date</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">expense</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">expense</span><span class="o">.</span><span class="n">description</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Now if you check your site on <code class="docutils literal"><span class="pre">localhost</span></code>, you can navigate to the detail pages for different expenses.</p>
+<p>Before we get to testing models, we have to think about one more thing: what happens if the ID being requested doesn&#8217;t exist in our database?</p>
+<p>If you recall from earlier, when you try to retrieve an object from the database by ID and there is no object with that ID, the session returns <code class="docutils literal"><span class="pre">None</span></code>.
+As our code is right now, we won&#8217;t catch that until our application throws an <code class="docutils literal"><span class="pre">AttributeError</span></code> in the <code class="docutils literal"><span class="pre">return</span></code> statement.</p>
+<p>We can include a conditional that checks to make sure that we actually have some data.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s1">&#39;detail&#39;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s1">&#39;../templates/detail.jinja2&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">detail_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;View for listing expenses.&quot;&quot;&quot;</span>
+    <span class="n">the_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">matchdict</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+    <span class="n">expense</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">dbsession</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Expense</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">the_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">expense</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">expense</span><span class="o">.</span><span class="n">category</span><span class="p">,</span>
+            <span class="s2">&quot;creation_date&quot;</span><span class="p">:</span> <span class="n">expense</span><span class="o">.</span><span class="n">creation_date</span><span class="p">,</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">expense</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">expense</span><span class="o">.</span><span class="n">description</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+<p>This still isn&#8217;t really handling the situation though.
+We should be able to return a 404 status code if the data isn&#8217;t found.
+Fortunately, Pyramid provides us with a whole host of HTTP exceptions for most status codes that we&#8217;ll use.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># at the top...</span>
+<span class="kn">from</span> <span class="nn">pyramid.httpexceptions</span> <span class="kn">import</span> <span class="n">HTTPNotFound</span>
+
+<span class="c1"># in the detail_view</span>
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s1">&#39;detail&#39;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s1">&#39;../templates/detail.jinja2&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">detail_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;View for listing expenses.&quot;&quot;&quot;</span>
+    <span class="n">the_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">matchdict</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+    <span class="n">expense</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">dbsession</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Expense</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">the_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">expense</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">expense</span><span class="o">.</span><span class="n">category</span><span class="p">,</span>
+            <span class="s2">&quot;creation_date&quot;</span><span class="p">:</span> <span class="n">expense</span><span class="o">.</span><span class="n">creation_date</span><span class="p">,</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">expense</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">expense</span><span class="o">.</span><span class="n">description</span>
+        <span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPNotFound</span>
+</pre></div>
+</div>
+<p>When the <code class="docutils literal"><span class="pre">raise</span> <span class="pre">HTTPNotFound</span></code> line is hit, something very special happens.</p>
+<p>Remember that <code class="docutils literal"><span class="pre">notfound.py</span></code> file we&#8217;ve so conveniently ignored thus far in our <code class="docutils literal"><span class="pre">views</span></code> directory?
+Within that is a special view whose only purpose is to handle situations where the requested URL isn&#8217;t found, called the <code class="docutils literal"><span class="pre">notfound_view</span></code>.</p>
+<p>It&#8217;s wired into our app with a special <code class="docutils literal"><span class="pre">view_config</span></code> decorator: <code class="docutils literal"><span class="pre">notfound_view_config</span></code>.
+It doesn&#8217;t connect to any route, because by default it&#8217;s supposed to be hit when any route isn&#8217;t available.
+It does, however, connect to a template.
+This is the template that will show whenever a resource is inaccessible.
+The view itself will then return a status 404 and no data (note the empty dict).</p>
+<p>Let&#8217;s make ourselves a very simple <code class="docutils literal"><span class="pre">404.jinja2</span></code> template.
+Later on we can modify that template to match the aesthetic of our site.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ <span class="nb">echo</span> <span class="s2">&quot;&lt;h1&gt;The thing you were looking for cannot be found&lt;/h1&gt;&quot;</span> &gt; expense_tracker/templates/404.jinja2
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing-models-and-mvc-interaction">
+<h2>Testing Models and MVC Interaction<a class="headerlink" href="#testing-models-and-mvc-interaction" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;ve added data models to our site in a pretty significant way.
+Not only do we have an entire separate directory housing those models,
+but we have two views that pipe the model data over to the front-end.</p>
+<p>We need to write some tests for the models and the views that serve them to ensure the integrity of our code as we continue to build out.</p>
+<div class="section" id="fixtures-for-unit-tests">
+<h3>Fixtures for Unit Tests<a class="headerlink" href="#fixtures-for-unit-tests" title="Permalink to this headline">¶</a></h3>
+<p>First, we create some fixtures that let us interact with the database.
+<code class="docutils literal"><span class="pre">configuration</span></code> will be a fixture that sets up configuration and interaction with the database.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">pyramid</span> <span class="kn">import</span> <span class="n">testing</span>
+<span class="kn">import</span> <span class="nn">transaction</span>
+<span class="kn">from</span> <span class="nn">expense_tracker.models</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Expense</span><span class="p">,</span>
+    <span class="n">get_tm_session</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">expense_tracker.models.meta</span> <span class="kn">import</span> <span class="n">Base</span>
+
+<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">configuration</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Set up a Configurator instance.</span>
+
+<span class="sd">    This Configurator instance sets up a pointer to the location of the</span>
+<span class="sd">        database.</span>
+<span class="sd">    It also includes the models from your app&#39;s model package.</span>
+<span class="sd">    Finally it tears everything down, including the in-memory SQLite database.</span>
+
+<span class="sd">    This configuration will persist for the entire duration of your PyTest run.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">testing</span><span class="o">.</span><span class="n">setUp</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;sqlalchemy.url&#39;</span><span class="p">:</span> <span class="s1">&#39;postgres:///test_expenses&#39;</span>
+    <span class="p">})</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;expense_tracker.models&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">teardown</span><span class="p">():</span>
+        <span class="n">testing</span><span class="o">.</span><span class="n">tearDown</span><span class="p">()</span>
+
+    <span class="n">request</span><span class="o">.</span><span class="n">addfinalizer</span><span class="p">(</span><span class="n">teardown</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">config</span>
+</pre></div>
+</div>
+<p>Here, we set up a test database, which is and must be different from your development database.
+We have to include in our configuration our <code class="docutils literal"><span class="pre">models</span></code> so that when we unit-test our views, the tests won&#8217;t error out.
+This fixture has <code class="docutils literal"><span class="pre">session</span></code> scope so that it only needs to get set up once per testing session.</p>
+<p><strong>ALERT:</strong> the <code class="docutils literal"><span class="pre">request</span></code> parameter coming into the function <strong>IS NOT AN HTTP REQUEST OBJECT</strong>.
+In an unfortunate circumstance of naming conflicts, <code class="docutils literal"><span class="pre">pytest</span></code> provides a
+function-level <code class="docutils literal"><span class="pre">request</span></code> fixture for setting up and tearing down tests (amongst other things).</p>
+<p>Next, we&#8217;ll create a fixture that will be the database session for every test that needs one.
+It&#8217;ll create a new session, allow the <code class="docutils literal"><span class="pre">request</span></code> to talk to the database, then tear that session down at the end of the test.
+Because it needs to get built anew for every test, its scope will be the default function-level scope.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@pytest.fixture</span>
+<span class="k">def</span> <span class="nf">db_session</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a session for interacting with the test database.</span>
+
+<span class="sd">    This uses the dbsession_factory on the configurator instance to create a</span>
+<span class="sd">    new database session. It binds that session to the available engine</span>
+<span class="sd">    and returns a new session for every call of the dummy_request object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">SessionFactory</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">registry</span><span class="p">[</span><span class="s2">&quot;dbsession_factory&quot;</span><span class="p">]</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">SessionFactory</span><span class="p">()</span>
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">bind</span>
+    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">teardown</span><span class="p">():</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">transaction</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+
+    <span class="n">request</span><span class="o">.</span><span class="n">addfinalizer</span><span class="p">(</span><span class="n">teardown</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">session</span>
+</pre></div>
+</div>
+<p>Finally, we create a fixture whose job will be to provide us with fake <code class="docutils literal"><span class="pre">request</span></code> objects that we can use for our tests.
+These will be slightly more special, having the <code class="docutils literal"><span class="pre">db_session</span></code> fixture attached.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@pytest.fixture</span>
+<span class="k">def</span> <span class="nf">dummy_request</span><span class="p">(</span><span class="n">db_session</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Instantiate a fake HTTP Request, complete with a database session.</span>
+<span class="sd">    This is a function-level fixture, so every new request will have a</span>
+<span class="sd">    new database session.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">testing</span><span class="o">.</span><span class="n">DummyRequest</span><span class="p">(</span><span class="n">dbsession</span><span class="o">=</span><span class="n">db_session</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing-the-models">
+<h3>Testing the Models<a class="headerlink" href="#testing-the-models" title="Permalink to this headline">¶</a></h3>
+<p>Comment out every test function.
+Now add the above your stack of tests:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_model_gets_added</span><span class="p">(</span><span class="n">db_session</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">db_session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Expense</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Expense</span><span class="p">(</span>
+        <span class="n">category</span><span class="o">=</span><span class="s2">&quot;Fake Category&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Some description text&quot;</span><span class="p">,</span>
+        <span class="n">creation_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+        <span class="n">amount</span><span class="o">=</span><span class="mf">12345.67</span>
+    <span class="p">)</span>
+    <span class="n">db_session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">db_session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Expense</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">())</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>We&#8217;re testing the creation of a new model.</p>
+<p>Since we&#8217;re using a testing database, it shouldn&#8217;t have <em>any</em> model instances saved within.
+After we create a model instance and save the change, we should be able to
+query the database and find our new model instance present.</p>
+<p>If my model instances had other attributes that depended on the time of creation,
+or really any other functionality, I&#8217;d want to test that those work as well.</p>
+</div>
+<div class="section" id="refactoring-the-unit-tests">
+<h3>Refactoring the Unit Tests<a class="headerlink" href="#refactoring-the-unit-tests" title="Permalink to this headline">¶</a></h3>
+<p>It&#8217;s refactor time.</p>
+<p>Our first test will remain more-or-less the same.
+The difference will be that instead of creating a new request using <code class="docutils literal"><span class="pre">testing.DummyRequest</span></code>, we&#8217;ll just use the <code class="docutils literal"><span class="pre">dummy_request</span></code> fixture we just created.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_list_view_returns_dict</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Home view returns a dictionary of values.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">list_view</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">list_view</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We want to run this test, but before we do we should actually create our test database <code class="docutils literal"><span class="pre">test_expenses</span></code>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ createdb test_expenses
+</pre></div>
+</div>
+<p>If we run our test, it passes. Yay!</p>
+<p>If we uncomment our next test, we see that we were trying to check that the number of items coming out of the <code class="docutils literal"><span class="pre">list_view</span></code> matches the amount of data we&#8217;re trying to serve.
+All of our data should now be coming from the database though, so instead of testing against that <code class="docutils literal"><span class="pre">EXPENSES</span></code> global variable, we should test against the database.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_list_view_returns_count_matching_database</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Home view response matches database count.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">list_view</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">list_view</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">dummy_request</span><span class="o">.</span><span class="n">dbsession</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Expense</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;expenses&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="n">query</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We&#8217;ve got a silent problem here.
+Recall our <code class="docutils literal"><span class="pre">db_session</span></code> fixture.
+For every new test we destroy the database and create a new one.
+That means that when we get to our second test, our database has nothing in it no matter what came before.
+Thus, our test is really just checking that <code class="docutils literal"><span class="pre">0</span> <span class="pre">==</span> <span class="pre">0</span></code>.</p>
+<p>We need data in our database, so let&#8217;s add it.
+Coming up with a bunch of fake objects to test is very tedious.
+Thankfully, there exists the <a class="reference external" href="https://pypi.python.org/pypi/Faker">Faker</a> library.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ pip install Faker
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">Faker</span></code> library allows you to create random fake data of a variety of different types.
+You create what is effectively a factory for new, fake data.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">faker</span> <span class="kn">import</span> <span class="n">Faker</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fake</span> <span class="o">=</span> <span class="n">Faker</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fake</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
+<span class="go">&#39;Jennifer Johnson&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fake</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
+<span class="go">&#39;Dennis Clark&#39;</span>
+</pre></div>
+</div>
+<p>Use <code class="docutils literal"><span class="pre">dir()</span></code> on your factory to see all of what the <code class="docutils literal"><span class="pre">Faker</span></code> library has to offer in terms of random data.
+We&#8217;re going to use it to generate fake expenses.
+Since it&#8217;s a part of our set of testing tools, add the <code class="docutils literal"><span class="pre">faker</span></code> package to the <code class="docutils literal"><span class="pre">tests_require</span></code> list in your <code class="docutils literal"><span class="pre">setup.py</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># along with other imports in tests.py...</span>
+
+<span class="kn">from</span> <span class="nn">faker</span> <span class="kn">import</span> <span class="n">Faker</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">FAKE_FACTORY</span> <span class="o">=</span> <span class="n">Faker</span><span class="p">()</span>
+<span class="n">CATEGORIES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rent&quot;</span><span class="p">,</span> <span class="s2">&quot;utilities&quot;</span><span class="p">,</span> <span class="s2">&quot;groceries&quot;</span><span class="p">,</span> <span class="s2">&quot;food&quot;</span><span class="p">,</span> <span class="s2">&quot;diapers&quot;</span><span class="p">,</span> <span class="s2">&quot;car loan&quot;</span><span class="p">,</span> <span class="s2">&quot;netflix&quot;</span><span class="p">,</span> <span class="s2">&quot;booze&quot;</span><span class="p">,</span> <span class="s2">&quot;therapist&quot;</span><span class="p">]</span>
+<span class="n">EXPENSE_LIST</span> <span class="o">=</span> <span class="p">[</span><span class="n">Expense</span><span class="p">(</span>
+    <span class="n">category</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">CATEGORIES</span><span class="p">),</span>
+    <span class="n">description</span><span class="o">=</span><span class="n">FAKE_FACTORY</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">creation_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+    <span class="n">amount</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
+
+<span class="c1"># below the &quot;dummy_request&quot; fixture</span>
+
+<span class="nd">@pytest.fixture</span>
+<span class="k">def</span> <span class="nf">add_models</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Add a bunch of model instances to the database.</span>
+
+<span class="sd">    Every test that includes this fixture will add new random expenses.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dummy_request</span><span class="o">.</span><span class="n">dbsession</span><span class="o">.</span><span class="n">add_all</span><span class="p">(</span><span class="n">EXPENSE_LIST</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we can add that fixture to a test so that there&#8217;s actually something in the database.
+Granted, we should probably still check that when the database is empty the view returns no data.
+So, let&#8217;s keep the first test for an empty database and make a second test for when there&#8217;s actual data.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_list_view_returns_empty_when_database_empty</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;List view returns nothing when there is no data.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">list_view</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">list_view</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;expenses&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">test_list_view_returns_count_matching_database</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">,</span> <span class="n">add_models</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Home view response matches database count.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">list_view</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">list_view</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">dummy_request</span><span class="o">.</span><span class="n">dbsession</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Expense</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;expenses&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="n">query</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Tests of the <code class="docutils literal"><span class="pre">detail_view</span></code> will be left as an exercise for the reader.
+We&#8217;ve got some application basics to test.</p>
+</div>
+<div class="section" id="testing-the-routes-and-front-end">
+<h3>Testing the Routes and Front-End<a class="headerlink" href="#testing-the-routes-and-front-end" title="Permalink to this headline">¶</a></h3>
+<p>Yesterday, in order to test our routes and Front End we set up a test application with <code class="docutils literal"><span class="pre">webtest</span></code>.
+We&#8217;ll do the same exact thing today, but with a small twist.
+We&#8217;ll need to add our database information into our test app, because now our real app accesses a database.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">testapp</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">webtest</span> <span class="kn">import</span> <span class="n">TestApp</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker</span> <span class="kn">import</span> <span class="n">main</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">main</span><span class="p">({},</span> <span class="o">**</span><span class="p">{</span><span class="s2">&quot;sqlalchemy.url&quot;</span><span class="p">:</span> <span class="s2">&quot;postgres:///test_expenses&quot;</span><span class="p">})</span>
+    <span class="n">testapp</span> <span class="o">=</span> <span class="n">TestApp</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+    <span class="n">SessionFactory</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">registry</span><span class="p">[</span><span class="s2">&quot;dbsession_factory&quot;</span><span class="p">]</span>
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">SessionFactory</span><span class="p">()</span><span class="o">.</span><span class="n">bind</span>
+    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">():</span>
+        <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+    <span class="n">request</span><span class="o">.</span><span class="n">addfinalizer</span><span class="p">(</span><span class="n">tearDown</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">testapp</span>
+</pre></div>
+</div>
+<p>Here, our <code class="docutils literal"><span class="pre">testapp</span></code> fixture connects to our in-memory testing database.
+It then fills that database with the requisite tables for every Model inheriting from <code class="docutils literal"><span class="pre">Base</span></code>.</p>
+<p>This is great, but it might help to have some fixtures in place for when we want to test routes with and without data.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@pytest.fixture</span>
+<span class="k">def</span> <span class="nf">fill_the_db</span><span class="p">(</span><span class="n">testapp</span><span class="p">):</span>
+    <span class="n">SessionFactory</span> <span class="o">=</span> <span class="n">testapp</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">registry</span><span class="p">[</span><span class="s2">&quot;dbsession_factory&quot;</span><span class="p">]</span>
+    <span class="k">with</span> <span class="n">transaction</span><span class="o">.</span><span class="n">manager</span><span class="p">:</span>
+        <span class="n">dbsession</span> <span class="o">=</span> <span class="n">get_tm_session</span><span class="p">(</span><span class="n">SessionFactory</span><span class="p">,</span> <span class="n">transaction</span><span class="o">.</span><span class="n">manager</span><span class="p">)</span>
+        <span class="n">dbsession</span><span class="o">.</span><span class="n">add_all</span><span class="p">(</span><span class="n">EXPENSE_LIST</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">dbsession</span>
+</pre></div>
+</div>
+<p>We set up a session factory using the settings and the factory object attached to the app&#8217;s registry.
+After that, it&#8217;s just like what we have in <code class="docutils literal"><span class="pre">initializedb.py</span></code>.
+We create a context using <code class="docutils literal"><span class="pre">with</span> <span class="pre">transaction.manager:</span></code>, then use that transaction context to add new data to the database.</p>
+<p>We can then uncomment our functional tests and go about our day.
+We should make sure to modify our <code class="docutils literal"><span class="pre">.coveragerc</span></code> file to reflect that we want our <code class="docutils literal"><span class="pre">models</span></code> directory covered, as well as our <code class="docutils literal"><span class="pre">notfound.py</span></code>.</p>
+</div>
+</div>
+<div class="section" id="recap">
+<h2>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>Today handled a ton.
+First, we talked about data models.
+We saw how Pyramid converts model attributes to data for the database, and used the interpreter to persist that data across separate sessions.
+Most notably, we saw that while changes may be made with models being created and/or deleted, nothing persists without commitment.</p>
+<p>We connected our &#8220;Models&#8221; to the &#8220;View&#8221; and &#8220;Controller&#8221; pieces of our Pyramid app.
+Finally, we saw how to test models, with significant changes in how we built up a test suite.
+We have to now not only use an instance of our app.
+We must also call up a database session so that we can test models along with our view and fully functional Pyramid app.</p>
+<p>Tonight you will modify your Learning Journals, adding some persistence to your deployed Learning Journal by creating a data model for your learning journal entries.
+You&#8217;ll wire it all together with appropriate templates and views.
+You&#8217;ll also write a battery of tests, showing that your app can persist data in addition to the unit tests and functional tests you&#8217;re already writing.</p>
+<p>Coming up tomorrow: creating/updating model instances from the front end, and MORE TESTING!!!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Models, Postgres, and SQL Alchemy</a><ul>
+<li><a class="reference internal" href="#more-about-the-alchemy-scaffold">More About The &#8220;Alchemy&#8221; Scaffold</a><ul>
+<li><a class="reference internal" href="#the-mvc-mvt-directory-tree">The MVC/MVT Directory Tree</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pyramid-models">Pyramid Models</a><ul>
+<li><a class="reference internal" href="#the-models-directory">The <code class="docutils literal"><span class="pre">models</span></code> Directory</a></li>
+<li><a class="reference internal" href="#the-models">The Models</a><ul>
+<li><a class="reference internal" href="#data-persistence">Data Persistence</a></li>
+<li><a class="reference internal" href="#the-db-api">The DB API</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">SQLAlchemy</a></li>
+<li><a class="reference internal" href="#creating-the-database">Creating the Database</a></li>
+<li><a class="reference internal" href="#interacting-with-sqlalchemy-models-and-the-orm">Interacting with SQLAlchemy Models and the ORM</a><ul>
+<li><a class="reference internal" href="#methods-returning-values-instances">Methods Returning Values &amp; Instances</a></li>
+<li><a class="reference internal" href="#creating-new-model-instances">Creating New Model Instances</a></li>
+<li><a class="reference internal" href="#methods-returning-query-objects">Methods Returning Query Objects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cleaning-up-our-model-sandbox">Cleaning Up our Model Sandbox</a></li>
+<li><a class="reference internal" href="#connecting-m-to-vc">Connecting &#8220;M&#8221; to &#8220;VC&#8221;</a></li>
+<li><a class="reference internal" href="#testing-models-and-mvc-interaction">Testing Models and MVC Interaction</a><ul>
+<li><a class="reference internal" href="#fixtures-for-unit-tests">Fixtures for Unit Tests</a></li>
+<li><a class="reference internal" href="#testing-the-models">Testing the Models</a></li>
+<li><a class="reference internal" href="#refactoring-the-unit-tests">Refactoring the Unit Tests</a></li>
+<li><a class="reference internal" href="#testing-the-routes-and-front-end">Testing the Routes and Front-End</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recap">Recap</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

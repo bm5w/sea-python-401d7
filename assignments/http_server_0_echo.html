@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Socket Echo Server &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="socket-echo-server">
+<h1>Socket Echo Server<a class="headerlink" href="#socket-echo-server" title="Permalink to this headline">¶</a></h1>
+<p>In this assignment you will build an echo server using Python sockets.</p>
+<div class="section" id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<p>Create a new repository called <code class="docutils literal"><span class="pre">http-server</span></code> in GitHub for this work.
+Make sure it contains an appropriate <code class="docutils literal"><span class="pre">LICENSE</span></code>, <code class="docutils literal"><span class="pre">README.md</span></code>, and <code class="docutils literal"><span class="pre">.gitignore</span></code> file.
+Make a branch <code class="docutils literal"><span class="pre">echo</span></code> from <code class="docutils literal"><span class="pre">master</span></code> to do your work for this assignment.</p>
+<p>Create two new python modules in your repository, <code class="docutils literal"><span class="pre">client.py</span></code> and <code class="docutils literal"><span class="pre">server.py</span></code>.
+In addition, create a <code class="docutils literal"><span class="pre">test_servers.py</span></code> file to contain your tests.</p>
+<p>Add a <code class="docutils literal"><span class="pre">setup.py</span></code> file so you can install your package.
+And a <code class="docutils literal"><span class="pre">tox.ini</span></code> file so you can run your tests in both Python 2.7 and Python 3.6.</p>
+<div class="section" id="the-client">
+<h3>The Client<a class="headerlink" href="#the-client" title="Permalink to this headline">¶</a></h3>
+<p>In your <code class="docutils literal"><span class="pre">client.py</span></code> file, create a function <code class="docutils literal"><span class="pre">client</span></code> which takes one required parameter, <code class="docutils literal"><span class="pre">message</span></code>.
+When called, the <code class="docutils literal"><span class="pre">client</span></code> function should open a socket connection to the server.
+It should send the message passed as an argument to the server through the socket.
+It should accumulate any reply sent by the server into a string.
+Once the full reply is received, it should close the socket and return the message.</p>
+<p>This file should contain an <code class="docutils literal"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> block so it can be run as a script.
+This script should be called from the command line with a single argument which is the message to send.
+The script should print the reply from the server to the terminal where the script was run:</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ python client.py <span class="s2">&quot;this is the message to send&quot;</span>
+this is the reply received.
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-server">
+<h3>The Server<a class="headerlink" href="#the-server" title="Permalink to this headline">¶</a></h3>
+<p>In your <code class="docutils literal"><span class="pre">server.py</span></code> file, create a function <code class="docutils literal"><span class="pre">server</span></code> which takes no arguments.
+When run, this function should start a server running.
+The server should continue running, sending responses for any messages it receives.
+When the user presses <code class="docutils literal"><span class="pre">ctrl-d</span></code> (the keyboard interrupt), the server should cleanly exit (meaning raises no exceptions).
+All open sockets should be closed.</p>
+<p>The server should accept incoming connections.
+It should receive messages sent from those connections and <em>echo them back</em> exactly as received.
+Once an entire message has been received and echoed, the connection to the client should be closed.</p>
+<p>The server <em>must remain running and accepting connections</em>.</p>
+</div>
+<div class="section" id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<p>The tests you write for this work may be considered <em>functional</em> tests, as opposed to <em>unit</em> tests.
+They will test the system, rather than either individual function.
+Your tests should use the <code class="docutils literal"><span class="pre">client</span></code> function from <code class="docutils literal"><span class="pre">client.py</span></code> to send test messages and return the replies sent by the server.
+They should assert that the message sent is identical to the reply received.</p>
+<p>The following conditions should be tested:</p>
+<ul class="simple">
+<li>messages shorter than one <em>buffer</em> in length</li>
+<li>messages longer than several buffers in length</li>
+<li>messages that are an exact multiple of one buffer in length</li>
+<li>messages containing non-ascii characters</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submitting-your-work">
+<h2>Submitting Your Work<a class="headerlink" href="#submitting-your-work" title="Permalink to this headline">¶</a></h2>
+<p>When you are finished implementing your server and client and all your tests are passing both in Python 2 and Python 3, push your changes to the <code class="docutils literal"><span class="pre">echo</span></code> branch to github.
+Open a pull request from the <code class="docutils literal"><span class="pre">echo</span></code> branch to your master.
+Paste the URL of this pull request as your submission.</p>
+<p>As with every primary submission, use the Comments feature for this submission
+to add questions, comments and reflections on the work you have done so far.</p>
+<p>Once you have submitted your assignment, you may merge your <code class="docutils literal"><span class="pre">echo</span></code> branch back to master in preparation for the next step in this assignment series.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Socket Echo Server</a><ul>
+<li><a class="reference internal" href="#tasks">Tasks</a><ul>
+<li><a class="reference internal" href="#the-client">The Client</a></li>
+<li><a class="reference internal" href="#the-server">The Server</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#submitting-your-work">Submitting Your Work</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

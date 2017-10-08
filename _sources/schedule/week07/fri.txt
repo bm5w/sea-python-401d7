@@ -1,0 +1,47 @@
+.. slideconf::
+    :autoslides: False
+
+******
+Friday
+******
+
+Objectives
+==========
+
+* Learn how to automate the deployment of a Django app with Ansible
+* Start learning how to secure web apps in an existing code base
+* Solidify what we've covered over the past week
+
+Readings
+========
+
+* `OWASP Top Ten App Vulnerabilities <https://www.owasp.org/index.php/Top_10_2013-Top_10>`_
+* `Lessons from Using Ansible <https://blog.serverdensity.com/what-ive-learnt-from-using-ansible-exclusively-for-2-years/>`_
+* `Deploying Django with Ansible <http://www.slideshare.net/andrewmirskynet/deploying-django-with-ansible>`_
+* Read this `Ansible Tutorial <https://serversforhackers.com/an-ansible-tutorial>`_ to learn a bit about how Ansible works.
+* What is DevOps? (`AWS <https://aws.amazon.com/devops/what-is-devops/>`_)
+* Learn about the most common attack vectors at `Hacksplaining <https://www.hacksplaining.com/exercises>`_
+
+Review
+======
+
+* Whatever brain cleanup we can do
+
+Concepts
+========
+
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/web_app_security1
+    /lectures/ansible
+
+
+Assignments
+===========
+
+* :doc:`/assignments/kata_autocomplete` (Due Monday)
+* :doc:`/assignments/web_app_security_assignment1`
+* :doc:`/assignments/aws_2_ansible_imager` (Due Friday Week 8)
+* :doc:`/assignments/django_7_complete_frontend` (Due Friday Week 8)
+* :doc:`/assignments/daily_lj_entry`

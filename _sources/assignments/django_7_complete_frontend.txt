@@ -1,0 +1,53 @@
+.. slideconf::
+    :autoslides: False
+
+*********************************
+Django Imager: Complete Front-End
+*********************************
+
+.. slide:: Django Imager: Complete Front-End
+    :level: 1
+
+    This document contains no slides.
+
+In this series of assignments you will build a simple image management website using Django.
+Throughout the week, you've built parts of the front-end for this app.
+In this part, you'll create and submit a *reverse pull request* containing all of your work for the week.
+
+Tasks
+=====
+
+Make sure that all the requirements of the three previous assignments are completed.
+Double-check your work to be sure that your tests are running, and passing in Python 2 and Python 3.
+Polish up your HTML, CSS and JavaScript (if any) to make sure the site looks as attractive and useable as possible.
+
+Add security to your Django Imager if you haven't already.
+This will require some thought.
+Which views should only be viewable by those who are logged in?
+Are your forms CSRF protected?
+Make sure you know the ways that your app can be accessed, and how that access is controlled.
+
+Submitting Your Work
+====================
+
+Once you have completed all the work to set up the front-end for the Imager app,
+please submit a final pull request that contains all the work you've done **up to this point**.
+This should include work from the following branches:
+
+- `models-1`
+- `front-end-1`
+- `models-2`
+- `front-end-2`
+- `front-end-3`
+- `front-end-4`
+
+The way to do that is as follows:
+
+- Find the first commit you made before you started working on the ImagerSite.
+- Locate the hash for that commit.
+- Checkout that hash with ``git checkout <hash>``. This will put you in a "detached head" state.
+- Checkout a new branch from here: ``git checkout -b front-end-review``.
+- Push your new branch up to github.
+- Make a pull request from the master (which contains all the work you've done this week) into this new branch (which contains none of it).
+- Submit the URL for that pull request.
+- **DO NOT MERGE THAT PULL REQUEST.**

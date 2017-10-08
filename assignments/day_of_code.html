@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Day of Code &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="day-of-code">
+<h1>Day of Code<a class="headerlink" href="#day-of-code" title="Permalink to this headline">¶</a></h1>
+<p>A programming language is simply syntactical sugar that describes logical processes.
+The best way to learn how to use that syntactical sugar is to practice implementing your logic and strategy while speaking that language.
+As such, I want you to spend every day writing a boatload of code.
+Here&#8217;s an assignment to help facilitate that.</p>
+<p>If you don&#8217;t already have one, create an account on <a class="reference external" href="https://www.codewars.com">Code Wars</a>.
+Set your language of choice to &#8220;Python&#8221;.</p>
+<div class="section" id="task">
+<h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
+<p>Code Wars is a website that allows you to take on a number of user-supplied code challenges in one of a host of languages.
+The difficulty level for a given code challenge is set by the &#8220;kyu&#8221;.
+8th kyu is the simplest level, testing more of the basic understanding of the language.
+7th kyu is more complex and requires a slightly deeper understanding of language fundamentals.
+6th kyu increases the complexity in thought and application, etc.
+<strong>Every step down in kyu represents a substantially significant increase in difficulty.</strong></p>
+<p>Your goal is to complete, on your own, 20 credits-worth of code challenges <strong>BY MIDNIGHT</strong>.
+Here&#8217;s what this means in terms of what you&#8217;ll be attacking.
+Each...</p>
+<ul class="simple">
+<li>8th kyu: 1 credit</li>
+<li>7th kyu: 2 credits</li>
+<li>6th kyu: 4 credits</li>
+<li>5th kyu: 5 credits</li>
+<li>4th kyu: 6 credits</li>
+<li>3rd kyu: 8 credits</li>
+<li>2nd kyu: 9 credits</li>
+<li>1st kyu: 10 credits</li>
+</ul>
+<p>For reference, my profile is at the 5th kyu, and the person holding Position 1 in the Code Fellows clan is at the 3rd kyu.
+The steps up in difficulty are, again, <em>significant</em>.</p>
+<p><strong>You will need to budget your time well.</strong>
+If you wish to challenge yourself, step up in level.
+Otherwise, stay at the level you&#8217;re comfortable and simply complete the challenges.</p>
+<p>If you don&#8217;t yet have one, create a repository called <code class="docutils literal"><span class="pre">code-katas</span></code> and push its <code class="docutils literal"><span class="pre">master</span></code> branch to GitHub before doing anything further.
+Then, checkout a branch named <code class="docutils literal"><span class="pre">day-of-code</span></code>.</p>
+<p>For every code challenge you complete, create a new Python module using the name of the challenge.
+At the top of the file, above all of your code, write a doc string that includes the &#8220;Best Practices&#8221; #1 solution.
+For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;Kata: Opposite Number - Return the opposite of the input number.</span>
+
+<span class="sd">#1 Best Practices Solution by CrazyMerlyn &amp; others</span>
+
+<span class="sd">def opposite(number):</span>
+<span class="sd">    return -number</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Create an accompanying test file for that module.
+Within, re-write the tests that are given to you by Code Wars using Pytest.
+Add another 4 tests of your own to those, and ensure that they all pass in Python 2 and 3.</p>
+<p>Finally, create a <code class="docutils literal"><span class="pre">README.md</span></code> for this repository, listing out the title and URL of every kata you complete, as well as the module name and test file for each.
+Something like...</p>
+<div class="highlight-markdown"><div class="highlight"><pre># Completed Katas
+
+**Opposite Number (8th kyu)**
+
+- **Module**: `opposite_number.py`
+- **Tests**: `test_opposite_number.py`
+- **URL**: [challenge url](https://www.codewars.com/kata/opposite-number)
+
+**Invert Values (8th kyu)**
+...
+</pre></div>
+</div>
+</div>
+<div class="section" id="submitting-your-work">
+<h2>Submitting Your Work<a class="headerlink" href="#submitting-your-work" title="Permalink to this headline">¶</a></h2>
+<p>When you&#8217;re done, create a pull request from <code class="docutils literal"><span class="pre">day-of-code</span></code> to <code class="docutils literal"><span class="pre">master</span></code>.
+Submit the link to your pull request to Canvas.</p>
+<p>Again, this must be submitted <strong>BY MIDNIGHT</strong>!
+There will be <strong>NO RESUBMITS AFTER MIDNIGHT</strong> and <strong>NO CREDIT GIVEN</strong> for assignments submitted after the deadline.
+Do <strong>NOT</strong> make the mistake of running this up until the very last minute.</p>
+<p>Use the comment box in Canvas to talk about your thought process, as well as any difficulty you had with these katas.</p>
+<p>Good luck!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Day of Code</a><ul>
+<li><a class="reference internal" href="#task">Task</a></li>
+<li><a class="reference internal" href="#submitting-your-work">Submitting Your Work</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

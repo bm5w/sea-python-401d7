@@ -1,0 +1,98 @@
+*********************
+Community Involvement
+*********************
+
+This course can teach you to become a solid Python developer, but it cannot get you toward "greatness" in programming on its own.
+Part of being a great programmer is being involved in your community.
+As a junior developer, you become acquainted with some of the larger players in the local Python community and become aware of some of the wider topics of concern for local and global Python developers.
+As an intermediate developer, regular participation in things like meetups and conferences keep your name in circulation and keep your skills relevant as you learn about subjects outside of your job responsibilities.
+As a senior developer, you get in touch with the less-experienced developers in your field, nurturing the next generation of Python programmers.
+Everyone wins when we get involved in the community, so I figure you should get a reward for doing so yourself.
+
+There are two very good meetups in the Seattle area for Python: `Puget Sound Programs Python (PuPPy) <https://www.meetup.com/PSPPython/>`_ and `Seattle Pyladies <https://www.meetup.com/Seattle-PyLadies/>`_.
+You can get credit for visiting either (or both!).
+More below.
+
+
+Attend Meetups
+==============
+
+**Each meetup you attend is 5 points** (RSVP on the Meetup page and be physically present).
+
+PuPPy has a meetup on the second Wednesday of every month, which includes lightning talks, hour-long talks, as well as social stuff.
+*If you can spare the time*, go to one (or some!).
+The upcoming monthly meetups are:
+
+* Dec 14th at the New Tune Kitchen
+* Jan 11th at TBD
+* Feb 8th at TBD
+
+PyLadies has networking and other events once a month in addition to their hack nights.
+Stay tuned to their calendar (and sign up as members to their Meetup page) to find out when/what they are.
+
+Submitting
+----------
+
+Each time you attend, submit/resubmit the assignment.
+Take a screenshot of the registration page where your name appears.
+Also submit in text the titles of the talks you heard about and (at least) two people you met, where they work, and what they do there.
+Write about what you found interesting (or uninteresting) about the subject matter of the talks, as well as anything else that you may have found interesting about the meetup.
+
+
+Attend Programming/Hack Nights
+==============================
+
+**Each programming/hack night you attend is 5 points** (RSVP on the Meetup page and be physically present).
+
+Programming and Hacknights are great venues for collaborating with more-experienced Python developers, or just getting a second pair of eyes on your code.
+Also another great way to get your name out in the local Python community.
+Who knows, a connection made during a hacknight may get you your next job.
+
+PyLadies has Hacknights every other Monday.
+They take place downtown in the Starbucks at 1125 4th Ave.
+
+PuPPy has Programming Nights every Tuesday night in Bellevue, and every Thursday night at Galvanize in Pioneer Square.
+
+Each time you attend, submit/resubmit the assignment.
+Take a screenshot of the registration page where your name appears.
+Also submit in text the titles of the talks you heard about and (at least) two people you met, where they work, and what they do there.
+Write about what you found interesting (or uninteresting) about the subject matter of the talks, as well as anything else that you may have found interesting about the meetup.
+
+Submitting
+----------
+
+Each time you attend, submit/resubmit the assignment.
+Take a screenshot of the registration page where your name appears.
+Also submit in text what you worked on and (at least) two people you met, where they work, and what they do there.
+Write about what you found interesting (or uninteresting) about the meetup as well as anything else you feel like writing about with respect to the event.
+
+
+Present a Lightning Talk
+========================
+
+Investing time and energy into developing a lightning talk about some subject gives you a slight bit more expertise in that area than others (i.e. me).
+It's great practice in giving a general overview of a topic, as well as a prime opportunity to explore subject matter that we either can't or won't get to in this course.
+The subject matter can typically be about anything that interests you, and typically when given at a monthly meetup is about something you've built.
+
+Going on to present those talks at meetups is a bit of a game changer.
+You put yourself front-and-center in front of the local community.
+It's a statement that tells them that not only are you visible, but that you're willing to put either your research or your development work up to the scrutiny of devs of many levels of expertise.
+It's a great way to get your name out there, as well as just to get public speaking experience.
+
+In order to give a lightning talk, contact one of the PuPPy organizers and tell them that you're interested in giving one.
+
+Because it's not an easy thing to build yourself up to doing, **giving a lightning talk nets you 50 points**.
+The next Meetup that you'd be eligible to give a talk at is on February 8th.
+Jan 11th is right within our fifth week, which is your first project week, so you should only really be focusing on that (and only attending with the consent of your group).
+**I would highly recommend that you present your midterm project to the PuPPy audience just to show them that you can do the work, even while inexperienced.**
+
+Submitting
+----------
+
+Submit the title of your talk and upload the slides you've created.
+Write about your experience, how it felt, and perhaps any feedback you may have gotten during Q&A or other discussions with PuPPy members.
+I will be attending the February 8th meetup myself, so you won't need to provide proof of attendance.
+
+
+
+

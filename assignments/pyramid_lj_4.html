@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Python Learning Journal: Step 4 &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="python-learning-journal-step-4">
+<h1>Python Learning Journal: Step 4<a class="headerlink" href="#python-learning-journal-step-4" title="Permalink to this headline">¶</a></h1>
+<p>We haven&#8217;t been able to truly interact our learning journals as we would expect a normal user would.
+Today, we change that.
+Today, we add user input.</p>
+<div class="section" id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<p>Create a new branch (<code class="docutils literal"><span class="pre">step4</span></code>) for today&#8217;s work.
+Do your work on this branch.</p>
+<p>Using what you learned today, both in class and in your readings, accomplish the following tasks for your learning journal along with your partner:</p>
+<ul>
+<li><p class="first">Use your mockups to create jinja templates for your <code class="docutils literal"><span class="pre">create</span></code> and <code class="docutils literal"><span class="pre">update</span></code> views.</p>
+</li>
+<li><p class="first">Ensure that there&#8217;s a button visible on every page so that a user (i.e. YOU) can make the decision to add a new Learning Journal entry at any time.</p>
+</li>
+<li><dl class="first docutils">
+<dt>The <code class="docutils literal"><span class="pre">create</span></code> view should take the data from the user&#8217;s input and use it to create a new model instance.</dt>
+<dd><ul class="first last simple">
+<li>The view should validate the user&#8217;s input, ensuring that all the data that&#8217;s necessary is present for creating new object instances.</li>
+<li>When a new entry is created, the user should be redirected to the home page.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>The <code class="docutils literal"><span class="pre">update</span></code> view should take data from the user&#8217;s input and use it to edit an existing model instance.</dt>
+<dd><ul class="first last simple">
+<li>Note that changes for updated content have to be handled somewhat differently than newly-created content. Look into the <code class="docutils literal"><span class="pre">session.flush</span></code> method.</li>
+<li>When an entry is successfully edited, the user should be redirected to that entry&#8217;s specific detail page.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Every <code class="docutils literal"><span class="pre">detail</span></code> page should have a button that the user can click to edit that particular learning journal entry.</p>
+</li>
+<li><p class="first">Clean up the styling and structure of your app.</p>
+</li>
+</ul>
+<p>In addition to the above, your code should be <em>thoroughly</em> tested.</p>
+<p><strong>READ THIS SECTION, IT IS IMPORTANT</strong></p>
+<p>Just like in today&#8217;s lecture, make a plan for your tests.
+More explicitly:</p>
+<ul class="simple">
+<li>Create a <code class="docutils literal"><span class="pre">TEST_PLAN.md</span></code> file in your project root that lists out every test you intend to run and what that test is looking for.</li>
+<li><code class="docutils literal"><span class="pre">TEST_PLAN.md</span></code> should encompass not just the tests you intend to write for the <code class="docutils literal"><span class="pre">create</span></code> and <code class="docutils literal"><span class="pre">update</span></code> views, but <strong>every test</strong> you&#8217;ve written thus far. I want to see your thought process.</li>
+<li><code class="docutils literal"><span class="pre">TEST_PLAN.md</span></code> will need to be updated as you update your code next week. Keep it current!</li>
+</ul>
+<p>Write unit tests of the view functions themselves, unit tests for your models, and <em>functional</em> tests that show the configured system works properly.</p>
+<p>You are working with a partner to complete this application.</p>
+<p>When all of the above work is completed, update your deployment to Heroku.
+Make sure to include the URL to your Heroku deployment in your <code class="docutils literal"><span class="pre">README.md</span></code> file.
+Update your <code class="docutils literal"><span class="pre">README.md</span></code> to include the coverage output of your tests for Python 2 <strong>and</strong> Python 3 for this branch.
+You should have coverage reports for steps 1, 2, and 3 in your <code class="docutils literal"><span class="pre">README.md</span></code>.</p>
+</div>
+<div class="section" id="submitting-your-work">
+<h2>Submitting Your work<a class="headerlink" href="#submitting-your-work" title="Permalink to this headline">¶</a></h2>
+<p>When your work is done and your site is deployed, push all of your work to your GitHub repo.
+Merge your <code class="docutils literal"><span class="pre">step4</span></code> branch to master to prepare for your next steps.
+<strong>You will not be submitting this pull request this time. See below.</strong></p>
+<div class="section" id="reverse-pull-request">
+<h3>Reverse Pull Request<a class="headerlink" href="#reverse-pull-request" title="Permalink to this headline">¶</a></h3>
+<p>For your submission, a special pull request.</p>
+<p>On your development machine, check out the last commit you made to the <code class="docutils literal"><span class="pre">learning-journal</span></code> repository prior to starting work on step one of the learning journal project
+(This is probably your initial commit of the repo).
+You can do so by providing the commit hash as the argument to <code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ git checkout 1a39dc40
+</pre></div>
+</div>
+<p>Once you&#8217;ve made that checkout, you will see that you are in &#8220;detached HEAD&#8221; state.
+From here create a new branch called start:</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ git checkout -b start
+</pre></div>
+</div>
+<p>Then, push this branch up to your repository in github:</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ git push -u origin start
+</pre></div>
+</div>
+<p>Finally, make a pull request in github from your master branch to the new start branch.
+This will result in a pull request containing all the code you&#8217;ve written during the tutorial.
+<strong>Do not merge this pull request</strong>.</p>
+<p>To submit this assignment, submit the link to this special &#8220;reverse pull request&#8221;.</p>
+<p>Use the comment feature in canvas to submit the following:</p>
+<ul class="simple">
+<li>At least one well-formed question about the work you did for this assignment</li>
+<li>At least one comment on what went well</li>
+<li>At least one comment on what was particularly difficult or challenging</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Python Learning Journal: Step 4</a><ul>
+<li><a class="reference internal" href="#tasks">Tasks</a></li>
+<li><a class="reference internal" href="#submitting-your-work">Submitting Your work</a><ul>
+<li><a class="reference internal" href="#reverse-pull-request">Reverse Pull Request</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

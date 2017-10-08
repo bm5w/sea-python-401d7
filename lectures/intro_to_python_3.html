@@ -1,0 +1,1349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction To Python: Part 3 &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="up" title="Wednesday" href="../schedule/week01/wed.html" />
+    <link rel="next" title="An Introduction to Python Packaging" href="python_packaging_1.html" />
+    <link rel="prev" title="Wednesday" href="../schedule/week01/wed.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="python_packaging_1.html" title="An Introduction to Python Packaging"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week01/wed.html" title="Wednesday"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week01/wed.html" accesskey="U">Wednesday</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="introduction-to-python-part-3">
+<h1>Introduction To Python: Part 3<a class="headerlink" href="#introduction-to-python-part-3" title="Permalink to this headline">¶</a></h1>
+<span class="admonition-introduction-to-python-part-3"></span><p>During this lecture, we&#8217;ll learn a bit about Python sequences, strings and dictionaries.
+We&#8217;ll also cover looping, both determinate and indeterminate.
+Finally, we&#8217;ll talk about how to interact with data from the file system.</p>
+<div class="section" id="sequences">
+<h2>Sequences<a class="headerlink" href="#sequences" title="Permalink to this headline">¶</a></h2>
+<p>Python is both strongly typed and dynamically typed.
+This combination leads to an approach to programming we call &#8220;Duck Typing&#8221;.
+So long as an object behaves like the kind of thing we want, we can assume it <em>is</em> the kind of thing we want.</p>
+<p>Sequences are a prime example of this type of thinking.</p>
+<p>In Python, a sequence refers to an ordered collection of objects.
+To be counted as a sequence, the object should support at least the following operations:</p>
+<ul class="simple">
+<li>Indexing</li>
+<li>Slicing</li>
+<li>Membership</li>
+<li>Concatenation</li>
+<li>Length</li>
+<li>Iteration</li>
+</ul>
+<span class="admonition-sequences"></span><span class="admonition-what-is-a-sequence"></span><p>There are a number of standard data types in Python that fulfill this contract.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="56%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Python 2</th>
+<th class="head">Python 3</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>byte string (str)</td>
+<td>byte string (bytes)</td>
+</tr>
+<tr class="row-odd"><td>unicode string (unicode)</td>
+<td>unicode string (str)</td>
+</tr>
+<tr class="row-even"><td>list</td>
+<td>list</td>
+</tr>
+<tr class="row-odd"><td>tuple</td>
+<td>tuple</td>
+</tr>
+<tr class="row-even"><td>bytearray</td>
+<td>bytearray</td>
+</tr>
+<tr class="row-odd"><td>buffer</td>
+<td>memoryview</td>
+</tr>
+<tr class="row-even"><td>xrange object</td>
+<td>range object</td>
+</tr>
+</tbody>
+</table>
+<p>Of these types, the ones you will most often use are the string types, lists and tuples.
+The others are largely crafted for special purposes and you will rarely see them.
+However, the operations we will discuss next apply to all of them (with a few caveats).</p>
+<span class="admonition-sequence-types"></span><div class="section" id="indexing">
+<h3>Indexing<a class="headerlink" href="#indexing" title="Permalink to this headline">¶</a></h3>
+<p>We can look up an object from within a sequence using the subscription operator: <code class="docutils literal"><span class="pre">[]</span></code>.
+We use the <code class="docutils literal"><span class="pre">index</span></code> (position) of the object in the sequence to look it up.
+In Python, indexing always starts at <code class="docutils literal"><span class="pre">0</span></code>.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [98]: </span><span class="n">s</span> <span class="o">=</span> <span class="s2">u&quot;this is a string&quot;</span>
+<span class="gp">In [99]: </span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gh">Out[99]: </span><span class="go">u&#39;t&#39;</span>
+<span class="gp">In [100]: </span><span class="n">s</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="gh">Out[100]: </span><span class="go">u&#39;i&#39;</span>
+</pre></div>
+</div>
+<span class="admonition-indexing"></span><p>We can also pass a negative integer as the index.
+This returns the object <code class="docutils literal"><span class="pre">n</span></code> positions from the end of the sequence:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [105]: </span><span class="n">s</span> <span class="o">=</span> <span class="s2">u&quot;this is a string&quot;</span>
+<span class="gp">In [106]: </span><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="gh">Out[106]: </span><span class="go">u&#39;g&#39;</span>
+<span class="gp">In [107]: </span><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">]</span>
+<span class="gh">Out[107]: </span><span class="go">u&#39;s&#39;</span>
+</pre></div>
+</div>
+<span class="admonition-negative-indexes"></span><p>If you ask for an object by an index that is beyond the end of the sequence, this causes an <code class="docutils literal"><span class="pre">IndexError</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [4]: </span><span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">In [5]: </span><span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-5-42efaba84d8b&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+
+<span class="ne">IndexError</span>: list index out of range
+</pre></div>
+</div>
+<span class="admonition-out-of-range"></span></div>
+<div class="section" id="slicing">
+<h3>Slicing<a class="headerlink" href="#slicing" title="Permalink to this headline">¶</a></h3>
+<p>Indexing returns one object from a sequence.
+To get a new sequence containing elements from the original, we use <code class="docutils literal"><span class="pre">slicing</span></code>.
+This also uses the subscription operator, but with a bit of a syntactic twist.
+We use one or more colons (<code class="docutils literal"><span class="pre">:</span></code>) to separate the three available arguments, <em>start</em>, <em>stop</em>, and <em>step</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">seq</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">:</span><span class="n">step</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>In slicing, asking for <code class="docutils literal"><span class="pre">seq[start:stop]</span></code> will return a new sequence (of the same type) containing all the elements of the original where <code class="docutils literal"><span class="pre">start</span> <span class="pre">&lt;=</span> <span class="pre">index</span> <span class="pre">&lt;</span> <span class="pre">stop</span></code>.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [121]: </span><span class="n">s</span> <span class="o">=</span> <span class="s2">u&quot;a bunch of words&quot;</span>
+<span class="gp">In [122]: </span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="gh">Out[122]: </span><span class="go">u&#39;b&#39;</span>
+<span class="gp">In [123]: </span><span class="n">s</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+<span class="gh">Out[123]: </span><span class="go">u&#39;h&#39;</span>
+<span class="gp">In [124]: </span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+<span class="gh">Out[124]: </span><span class="go">u&#39;bunc&#39;</span>
+<span class="gp">In [125]: </span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+<span class="gh">Out[125]: </span><span class="go">u&#39;bunch&#39;</span>
+</pre></div>
+</div>
+<span class="admonition-slicing"></span><p>It can often be helpful in slicing to think of the index values as pointing to the spaces <em>between the items</em> in the sequence:</p>
+<div class="highlight-python"><div class="highlight"><pre>  a       b   u   n   c   h       o   f
+|   |   |   |   |   |   |   |   |   |
+0   1   2   3   4   5   6   7   8   9
+</pre></div>
+</div>
+<span class="admonition-helpful-hint"></span><span class="admonition-slicing"></span><p>So why do we start with zero?
+Why is the <code class="docutils literal"><span class="pre">stop</span></code> index in the slice <strong>not</strong> included?
+Because doing things this way leads to some very nice properties for slices:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">a</span><span class="p">:</span><span class="n">b</span><span class="p">])</span> <span class="o">==</span> <span class="n">b</span><span class="o">-</span><span class="n">a</span>
+
+<span class="n">seq</span><span class="p">[:</span><span class="n">b</span><span class="p">]</span> <span class="o">+</span> <span class="n">seq</span><span class="p">[</span><span class="n">b</span><span class="p">:]</span> <span class="o">==</span> <span class="n">seq</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">[:</span><span class="n">b</span><span class="p">])</span> <span class="o">==</span> <span class="n">b</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="o">-</span><span class="n">b</span><span class="p">:])</span> <span class="o">==</span> <span class="n">b</span>
+</pre></div>
+</div>
+<p>As a result of these properties, it&#8217;s easier to avoid off-by-one errors in Python.</p>
+<span class="admonition-why-start-from-zero"></span><p>The third argument to the slice operation is the <em>step</em>.
+It is used to control which items between <em>start</em> and <em>stop</em> are returned.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [289]: </span><span class="n">string</span> <span class="o">=</span> <span class="s2">u&quot;a fairly long string&quot;</span>
+<span class="gp">In [290]: </span><span class="n">string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span>
+<span class="gh">Out[290]: </span><span class="go">u&#39;a fairly long s&#39;</span>
+<span class="gp">In [291]: </span><span class="n">string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="gh">Out[291]: </span><span class="go">u&#39;afil ogs&#39;</span>
+<span class="gp">In [292]: </span><span class="n">string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="gh">Out[292]: </span><span class="go">u&#39;aallg&#39;</span>
+</pre></div>
+</div>
+<p>Using a negative value for <em>step</em> can lead to a nifty way to reverse a sequence:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [293]: </span><span class="n">string</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="gh">Out[293]: </span><span class="go">u&#39;gnirts gnol ylriaf a&#39;</span>
+</pre></div>
+</div>
+<span class="admonition-the-step-argument"></span><p>As we&#8217;ve mentioned before, indexing a sequence returns a single object.
+Slicing returns a new sequence.
+There&#8217;s one other major difference between the two.
+Slicing past the end of a sequence <strong>does not cause an error</strong>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [129]: </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;a bunch of words&quot;</span>
+<span class="gp">In [130]: </span><span class="n">s</span><span class="p">[</span><span class="mi">17</span><span class="p">]</span>
+<span class="go">----&gt; 1 s[17]</span>
+<span class="go">IndexError: string index out of range</span>
+<span class="gp">In [131]: </span><span class="n">s</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span>
+<span class="gh">Out[131]: </span><span class="go">&#39; words&#39;</span>
+<span class="gp">In [132]: </span><span class="n">s</span><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span>
+<span class="gh">Out[132]: </span><span class="go">&quot;</span>
+</pre></div>
+</div>
+<span class="admonition-slicing-vs-indexing"></span></div>
+<div class="section" id="membership">
+<h3>Membership<a class="headerlink" href="#membership" title="Permalink to this headline">¶</a></h3>
+<p>Sequence types support using the membership operators: <a class="reference external" href="http://docs.python.org/2/reference/expressions.html#in" title="(in Python v2.7)"><code class="xref std std-keyword docutils literal"><span class="pre">in</span></code></a> (<a class="reference external" href="http://docs.python.org/3/reference/expressions.html#in" title="(in Python v3.6)"><code class="xref std std-keyword docutils literal"><span class="pre">py3</span></code></a>) and <a class="reference external" href="http://docs.python.org/2/reference/expressions.html#not-in" title="(in Python v2.7)"><code class="xref std std-keyword docutils literal"><span class="pre">not</span> <span class="pre">in</span></code></a> (<a class="reference external" href="http://docs.python.org/3/reference/expressions.html#not-in" title="(in Python v3.6)"><code class="xref std std-keyword docutils literal"><span class="pre">py3</span></code></a>).
+These allow us to test for the presence (or absence) of an object in a sequence.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [15]: </span><span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="gp">In [16]: </span><span class="mi">5</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="gh">Out[16]: </span><span class="go">True</span>
+<span class="gp">In [17]: </span><span class="mi">42</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="gh">Out[17]: </span><span class="go">False</span>
+<span class="gp">In [18]: </span><span class="mi">42</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="gh">Out[18]: </span><span class="go">True</span>
+</pre></div>
+</div>
+<span class="admonition-membership"></span><p>When used with the string types, the membership operators behave like <code class="docutils literal"><span class="pre">substring</span></code> in other languages.
+Use them to test whether a string contains another, shorter string:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [20]: </span><span class="n">s</span> <span class="o">=</span> <span class="s2">u&quot;This is a long string&quot;</span>
+<span class="gp">In [21]: </span><span class="s2">u&quot;long&quot;</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="gh">Out[21]: </span><span class="go">True</span>
+</pre></div>
+</div>
+<p>This is <em>only</em> true for the string-type sequences.  Can you think of why that might be?</p>
+<span class="admonition-membership-in-strings"></span></div>
+<div class="section" id="concatenation">
+<h3>Concatenation<a class="headerlink" href="#concatenation" title="Permalink to this headline">¶</a></h3>
+<p>When used with sequences as operands, the <code class="docutils literal"><span class="pre">+</span></code> and <code class="docutils literal"><span class="pre">*</span></code> operators will <em>concatenate</em> sequences.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [25]: </span><span class="n">s1</span> <span class="o">=</span> <span class="s2">u&quot;left&quot;</span>
+<span class="gp">In [26]: </span><span class="n">s2</span> <span class="o">=</span> <span class="s2">u&quot;right&quot;</span>
+<span class="gp">In [27]: </span><span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span>
+<span class="gh">Out[27]: </span><span class="go">u&#39;leftright&#39;</span>
+<span class="gp">In [28]: </span><span class="p">(</span><span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="gh">Out[28]: </span><span class="go">u&#39;leftrightleftrightleftright&#39;</span>
+</pre></div>
+</div>
+<span class="admonition-concatenation"></span><p>Since slicing returns <em>a new sequence</em>, this applies to slices as well.
+This fact can allow for some very concise code.</p>
+<p>For example (from CodingBat) lets assume you need to create a new string that contains three repetitions of a given string.
+But if the given string is longer than three characters, you only want to use the first three.</p>
+<p>A not-particularly-Pythonic solution to the problem might look like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">front3</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="o">+</span><span class="nb">str</span><span class="o">+</span><span class="nb">str</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="nb">str</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="nb">str</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>But the truly Pythonic programmer can express the same thing this way:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">front3</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<span class="admonition-multiplying-and-slicing"></span></div>
+<div class="section" id="length">
+<h3>Length<a class="headerlink" href="#length" title="Permalink to this headline">¶</a></h3>
+<p>Sequences have <em>length</em>.
+To get the length of a sequence we use the <a class="reference external" href="http://docs.python.org/2/library/functions.html#len" title="(in Python v2.7)"><code class="xref py py-func docutils literal"><span class="pre">len</span></code></a> builtin (<a class="reference external" href="http://docs.python.org/3/library/functions.html#len" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">py3</span></code></a>).</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [36]: </span><span class="n">s</span> <span class="o">=</span> <span class="s2">u&quot;how long is this, anyway?&quot;</span>
+<span class="gp">In [37]: </span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="gh">Out[37]: </span><span class="go">25</span>
+</pre></div>
+</div>
+<span class="admonition-length"></span><p>Because of zero-based indexing, you must remember that the last index in a sequence is always <code class="docutils literal"><span class="pre">len(s)</span> <span class="pre">-1</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [38]: </span><span class="n">count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="gp">In [39]: </span><span class="n">s</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span>
+<span class="gt">------------------------------------------------------------</span>
+<span class="ne">IndexError</span><span class="g g-Whitespace">                </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-39-5a33b9d3e525&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">s</span><span class="p">[</span><span class="n">count</span><span class="p">]</span>
+<span class="ne">IndexError</span>: string index out of range
+</pre></div>
+</div>
+<p>But honestly, using that is not Pythonic anyway.
+Always use <code class="docutils literal"><span class="pre">seq[-1]</span></code> to find the last item in a sequence.</p>
+<p>If you care (and some do) about why Python uses <code class="docutils literal"><span class="pre">len(x)</span></code> instead of <code class="docutils literal"><span class="pre">x.length()</span></code>, you can <a class="reference external" href="http://effbot.org/pyfaq/why-does-python-use-methods-for-some-functionality-e-g-list-index-but-functions-for-other-e-g-len-list.htm">read this post</a> with an explanation of the rationale from BDFL Guido Van Rossom.</p>
+</div>
+<div class="section" id="miscellaneous">
+<h3>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h3>
+<p>There are a few other <a class="reference external" href="http://docs.python.org/2/library/stdtypes.html#typesseq" title="(in Python v2.7)"><span class="xref std std-ref">common operations</span></a> (<a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#typesseq-common" title="(in Python v3.6)"><span class="xref std std-ref">py3</span></a>) on sequences you&#8217;ll want to know about.</p>
+<p>The <a class="reference external" href="http://docs.python.org/2/library/functions.html#min" title="(in Python v2.7)"><code class="xref py py-func docutils literal"><span class="pre">min</span></code></a> (<a class="reference external" href="http://docs.python.org/3/library/functions.html#min" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">py3</span></code></a>) and <a class="reference external" href="http://docs.python.org/2/library/functions.html#max" title="(in Python v2.7)"><code class="xref py py-func docutils literal"><span class="pre">max</span></code></a> (<a class="reference external" href="http://docs.python.org/3/library/functions.html#max" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">py3</span></code></a>) builtins work as you might expect:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [42]: </span><span class="n">all_letters</span> <span class="o">=</span> <span class="s2">u&quot;thequickbrownfoxjumpedoverthelazydog&quot;</span>
+<span class="gp">In [43]: </span><span class="nb">min</span><span class="p">(</span><span class="n">all_letters</span><span class="p">)</span>
+<span class="gh">Out[43]: </span><span class="go">u&#39;a&#39;</span>
+<span class="gp">In [44]: </span><span class="nb">max</span><span class="p">(</span><span class="n">all_letters</span><span class="p">)</span>
+<span class="gh">Out[44]: </span><span class="go">u&#39;z&#39;</span>
+</pre></div>
+</div>
+<span class="admonition-min-and-max"></span><p>The <code class="docutils literal"><span class="pre">index</span></code> method returns the position of an object in a sequence.
+If the object is not in the sequence, this causes a <code class="docutils literal"><span class="pre">ValueError</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [46]: </span><span class="n">all_letters</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">u&#39;d&#39;</span><span class="p">)</span>
+<span class="gh">Out[46]: </span><span class="go">21</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [47]: </span><span class="n">all_letters</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">u&#39;A&#39;</span><span class="p">)</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-47-2db728a46f78&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">all_letters</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">u&#39;A&#39;</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: substring not found
+</pre></div>
+</div>
+<span class="admonition-index"></span><p>Finally, the <code class="docutils literal"><span class="pre">count</span></code> method will count the total number of occurances of an object within a sequence.
+With strings, the object can be a single letter, or a substring.
+With the <code class="docutils literal"><span class="pre">count</span></code> method, if the object is not in the sequence, then no error is raised.
+The return value is <code class="docutils literal"><span class="pre">0</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [52]: </span><span class="n">all_letters</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">u&#39;o&#39;</span><span class="p">)</span>
+<span class="gh">Out[52]: </span><span class="go">4</span>
+<span class="gp">In [53]: </span><span class="n">all_letters</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">u&#39;the&#39;</span><span class="p">)</span>
+<span class="gh">Out[53]: </span><span class="go">2</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [54]: </span><span class="n">all_letters</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">u&#39;A&#39;</span><span class="p">)</span>
+<span class="gh">Out[54]: </span><span class="go">0</span>
+</pre></div>
+</div>
+<span class="admonition-count"></span></div>
+</div>
+<div class="section" id="iteration">
+<h2>Iteration<a class="headerlink" href="#iteration" title="Permalink to this headline">¶</a></h2>
+<p>Repetition, Repetition, Repetition, Repe...</p>
+<span class="admonition-iteration"></span><div class="section" id="for-loops">
+<h3>For Loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h3>
+<p>We&#8217;ve already seen simple iteration over a sequence using <code class="docutils literal"><span class="pre">for</span> <span class="pre">...</span> <span class="pre">in</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [170]: </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s2">&quot;a string&quot;</span><span class="p">:</span>
+<span class="gp">   .....: </span>        <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">   .....:</span>
+<span class="go">a</span>
+
+<span class="go">s</span>
+<span class="go">t</span>
+<span class="go">r</span>
+<span class="go">i</span>
+<span class="go">n</span>
+<span class="go">g</span>
+</pre></div>
+</div>
+<span class="admonition-for-loops"></span><p>Other languages build and use an <code class="docutils literal"><span class="pre">index</span></code>, which is then used to extract each item from the sequence:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="s2">&quot;) &quot;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Python does not require this.
+But if you need to have the index for some reason, you can use the <a class="reference external" href="http://docs.python.org/2/library/functions.html#enumerate" title="(in Python v2.7)"><code class="xref py py-func docutils literal"><span class="pre">enumerate</span></code></a> builtin (<a class="reference external" href="http://docs.python.org/3/library/functions.html#enumerate" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">py3</span></code></a>):</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [140]: </span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">letter</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="s1">u&#39;Python&#39;</span><span class="p">):</span>
+<span class="gp">   .....: </span>    <span class="k">print</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">letter</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="gp">   .....:</span>
+<span class="go">0 P 1 y 2 t 3 h 4 o 5 n</span>
+</pre></div>
+</div>
+<span class="admonition-no-indexing-required"></span><p>We&#8217;ve seen how the <code class="docutils literal"><span class="pre">range</span></code> function (it&#8217;s a type in Python3) can be useful for looping a known number of times.
+This is especially true when you don&#8217;t care about the value of the item from the sequence:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [171]: </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<span class="gp">   .....: </span>    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+<span class="gp">   .....:</span>
+<span class="go">hello</span>
+<span class="go">hello</span>
+<span class="go">hello</span>
+<span class="go">hello</span>
+<span class="go">hello</span>
+</pre></div>
+</div>
+<span class="admonition-range-and-for-loops"></span><span class="admonition-no-namespace"></span><p>Remember that in Python, loops do not create a local namespace.
+The loop variable you use is <em>still in scope</em> after the loop terminates:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [172]: </span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">In [173]: </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+<span class="gp">   .....: </span>    <span class="k">pass</span>
+<span class="gp">   .....:</span>
+<span class="gp">In [174]: </span><span class="n">x</span>
+<span class="gh">Out[174]: </span><span class="go">2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loop-control">
+<h3>Loop control<a class="headerlink" href="#loop-control" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes you want to interrupt or alter the flow of control through a loop.
+Loops can be controlled in two ways, with <code class="docutils literal"><span class="pre">break</span></code> and <code class="docutils literal"><span class="pre">continue</span></code>.</p>
+<span class="admonition-loop-control"></span><p>The <code class="docutils literal"><span class="pre">break</span></code> statement causes a loop to terminate immediately:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [141]: </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">101</span><span class="p">):</span>
+<span class="gp">   .....: </span>    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="gp">   .....: </span>    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+<span class="gp">   .....: </span>        <span class="k">break</span>
+<span class="gp">   .....:</span>
+<span class="go">0 1 2 3 4 5... 46 47 48 49 50 51</span>
+</pre></div>
+</div>
+<span class="admonition-break"></span><p>And <code class="docutils literal"><span class="pre">continue</span></code> returns you immediately to the head of the loop.
+It allows you to skip statements later in the loop block while continuing the loop itself:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [143]: </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">101</span><span class="p">):</span>
+<span class="gp">   .....: </span>    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+<span class="gp">   .....: </span>        <span class="k">break</span>
+<span class="gp">   .....: </span>    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">:</span>
+<span class="gp">   .....: </span>        <span class="k">continue</span>
+<span class="gp">   .....: </span>    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="gp">   .....:</span>
+<span class="go">   25 26 27 28 29 ... 41 42 43 44 45 46 47 48 49 50</span>
+</pre></div>
+</div>
+<span class="admonition-continue"></span><p>An interesting feature of Python loops is that there is an optional <code class="docutils literal"><span class="pre">else</span></code> clause.
+The statements in this optional block are only executed if the loop exits <em>normally</em>.
+That means only if <code class="docutils literal"><span class="pre">break</span></code> was not used to stop iteration:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [147]: </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="gp">   .....: </span>    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">11</span><span class="p">:</span>
+<span class="gp">   .....: </span>        <span class="k">break</span>
+<span class="gp">   .....: </span><span class="k">else</span><span class="p">:</span>
+<span class="gp">   .....: </span>    <span class="k">print</span><span class="p">(</span><span class="s1">u&#39;finished&#39;</span><span class="p">)</span>
+<span class="go">finished</span>
+<span class="gp">In [148]: </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="gp">   .....: </span>    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+<span class="gp">   .....: </span>        <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">   .....: </span>        <span class="k">break</span>
+<span class="gp">   .....: </span><span class="k">else</span><span class="p">:</span>
+<span class="gp">   .....: </span>    <span class="k">print</span><span class="p">(</span><span class="s1">u&#39;finished&#39;</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>This can be surprisingly useful, even if the name is a bit hard to remember.</p>
+<span class="admonition-else"></span></div>
+<div class="section" id="while-loops">
+<h3>While Loops<a class="headerlink" href="#while-loops" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">while</span></code> keyword is for when you don&#8217;t know how many loops you need.
+It continues to execute the body until condition is not <code class="docutils literal"><span class="pre">True</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">while</span> <span class="n">a_condition</span><span class="p">:</span>
+   <span class="n">some_code</span>
+   <span class="n">in_the_body</span>
+</pre></div>
+</div>
+<span class="admonition-while-loops"></span><p>While loops are more general than <code class="docutils literal"><span class="pre">for</span></code> loops.
+You can always express a <code class="docutils literal"><span class="pre">for</span></code> loop using the <code class="docutils literal"><span class="pre">while</span></code> structure, but the reverse is not always true.
+On the other hand, <code class="docutils literal"><span class="pre">while</span></code> is more error prone.
+You must remember to make progress in the body of the loop in order to allow the condition to become <code class="docutils literal"><span class="pre">False</span></code>.
+Otherwise you can fall victim to <em>infinite loops</em>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<span class="admonition-while-vs-for"></span><p>There are three approaches to terminating a <code class="docutils literal"><span class="pre">while</span></code> loop.
+You can use the <code class="docutils literal"><span class="pre">break</span></code> statement to end iteration:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [150]: </span><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="gp">   .....: </span>    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">   .....: </span>    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+<span class="gp">   .....: </span>        <span class="k">break</span>
+<span class="gp">   .....: </span>    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="gp">   .....:</span>
+<span class="go">1 2 3 4 5 6 7 8 9 10</span>
+</pre></div>
+</div>
+<span class="admonition-terminating-via-break"></span><p>Another approach is to set a <code class="docutils literal"><span class="pre">flag</span> <span class="pre">variable</span></code>.
+The boolean value of this variable starts as <code class="docutils literal"><span class="pre">True</span></code>
+Operations inside the loop update it to <code class="docutils literal"><span class="pre">False</span></code>, terminating the loop:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [156]: </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">In [157]: </span><span class="n">keep_going</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">In [158]: </span><span class="k">while</span> <span class="n">keep_going</span><span class="p">:</span>
+<span class="gp">   .....: </span>    <span class="n">num</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="gp">   .....: </span>    <span class="k">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="gp">   .....: </span>    <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+<span class="gp">   .....: </span>        <span class="n">keep_going</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="gp">   .....:</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<span class="admonition-terminating-via-flag"></span><p>Finally, you can use a straight conditional statement as the test.
+Here, you update the value of the <code class="docutils literal"><span class="pre">test</span> <span class="pre">variable</span></code> such that the condition will evaluate to <code class="docutils literal"><span class="pre">False</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [161]: </span><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+<span class="gp">   .....: </span>    <span class="n">i</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="gp">   .....: </span>    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="gp">   .....:</span>
+<span class="go">0 0 2 3 4 6 8 8 8 9 12</span>
+</pre></div>
+</div>
+<span class="admonition-terminating-via-condition"></span></div>
+<div class="section" id="similarities">
+<h3>Similarities<a class="headerlink" href="#similarities" title="Permalink to this headline">¶</a></h3>
+<p>Both <code class="docutils literal"><span class="pre">for</span></code> and <code class="docutils literal"><span class="pre">while</span></code> loops can use <code class="docutils literal"><span class="pre">break</span></code> and <code class="docutils literal"><span class="pre">continue</span></code> for internal flow control.
+Both <code class="docutils literal"><span class="pre">for</span></code> and <code class="docutils literal"><span class="pre">while</span></code> loops can have an optional <code class="docutils literal"><span class="pre">else</span></code> block.
+In both loops, the statements in the <code class="docutils literal"><span class="pre">else</span></code> block are only executed if the loop terminates normally (no <code class="docutils literal"><span class="pre">break</span></code>).</p>
+<span class="admonition-similarities"></span></div>
+</div>
+<div class="section" id="string-features">
+<h2>String Features<a class="headerlink" href="#string-features" title="Permalink to this headline">¶</a></h2>
+<p class="center large">Fun with Strings</p>
+<span class="admonition-string-features"></span><div class="section" id="unicode-v-bytes">
+<h3>Unicode v. Bytes<a class="headerlink" href="#unicode-v-bytes" title="Permalink to this headline">¶</a></h3>
+<p>Python has two string types: <code class="docutils literal"><span class="pre">byte</span> <span class="pre">strings</span></code> and <code class="docutils literal"><span class="pre">unicode</span> <span class="pre">objects</span></code>.</p>
+<p>Unicode is a classification system intended to allow a representation of <em>all possible characters</em> in all possible languages.
+Each character has a <em>code point</em> that is a byte or bytes which represents that character.
+When printed, these code points are translated into appropriate glyphs by the operating system.</p>
+<p>When working in Python, you should always handle <em>text</em> as <code class="docutils literal"><span class="pre">unicode</span> <span class="pre">objects</span></code>.
+Text can be defined as any string meant to be read by a human via some output device.</p>
+<p>Handling of unicode and bytes in Python3 is <em>significantly different</em> from Python2.
+In order to create compatible code (that will run the same in both systems), you should use one of the following two strategies:</p>
+<p>You can import <code class="docutils literal"><span class="pre">unicode_literals</span></code> from the <code class="docutils literal"><span class="pre">__future__</span></code> library.
+This must be the <em>first line of code</em> in your Python module.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="s1">&#39;this is a unicode string with élan&#39;</span>
+</pre></div>
+</div>
+<p>Another approach is to be explicit about what type of string you are writing, using <code class="docutils literal"><span class="pre">object</span> <span class="pre">literals</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s1">u&#39;this is a unicode string with élan&#39;</span>
+</pre></div>
+</div>
+<p>The former strategy is a bit easier, but is not always safe in older legacy code bases, as it is an all-or-nothing operation.
+It makes <em>every single string</em> in the file a unicode object.
+The latter strategy is safer in this respect, as you get to choose which is which.</p>
+<p>You can <a class="reference external" href="http://python-future.org/compatible_idioms.html#strings-and-bytes">read more about compatible string handling</a> at the Python-Future website.</p>
+<span class="admonition-unicode"></span><p>Byte strings are strings that are composed entirely of numbers.
+This can be a bit confusing because they often appear to be letters.
+The string <code class="docutils literal"><span class="pre">b&quot;a&quot;</span></code> appears to contain the letter <code class="docutils literal"><span class="pre">a</span></code>, but really it contains the number <code class="docutils literal"><span class="pre">97</span></code> (or <code class="docutils literal"><span class="pre">01100001</span></code>).
+Your terminal, your text editor, your OS is responsible for translating those numbers into characters when showing you the content of the string.
+But it&#8217;s still the number underneath.
+Be cautious about your assumptions.</p>
+<p>Again, you have two strategies to work with bytestrings safely in Python 2 and Python 3.
+You can import <code class="docutils literal"><span class="pre">unicode_literals</span></code> and then specifically mark certain strings as bytestrings.
+Or you can mark certain strings as bytestrings.
+In either case, you have to mark bytestrings:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="n">b</span><span class="s1">&#39;polishing my resum</span><span class="se">\xc3\xa9</span><span class="s1"> this week&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">b</span><span class="s1">&#39;polishing my resum</span><span class="se">\xc3\xa9</span><span class="s1"> this week&#39;</span>
+</pre></div>
+</div>
+<span class="admonition-bytes"></span><p>The conversion of bytes to unicode and vice-versa should always take place at the <em>I/O boundary</em>.
+That means on the point where data is passing out of Python to the filesystem or network.
+Or the point where data enters Python from the filesystem or network.</p>
+<p>At the point of crossing <em>outbound</em>, we can use the <code class="docutils literal"><span class="pre">encode</span></code> method of unicode objects to convert them to bytes.
+The argument to this function controls which <code class="docutils literal"><span class="pre">codec</span></code> is used to make the conversion.
+<code class="docutils literal"><span class="pre">UTF8</span></code> is the most common codec in web work.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="n">fancy</span> <span class="o">=</span> <span class="s2">u&quot;Resumé&quot;</span>
+<span class="gp">In [2]: </span><span class="n">fancy</span>
+<span class="gh">Out[2]: </span><span class="go">&#39;Resumé&#39;</span>
+<span class="gp">In [3]: </span><span class="n">fancy</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+<span class="gh">Out[3]: </span><span class="go">b&#39;Resum\xc3\xa9&#39;</span>
+</pre></div>
+</div>
+<p>When data is <em>inbound</em> to Python, we can use the <code class="docutils literal"><span class="pre">decode</span></code> method of a byte string to convert it to Unicode.
+Again, passing a <code class="docutils literal"><span class="pre">codec</span></code> name selects which should be used for the conversion:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [4]: </span><span class="nb">bytes</span> <span class="o">=</span> <span class="n">_</span>
+<span class="gp">In [5]: </span><span class="nb">bytes</span>
+<span class="gh">Out[5]: </span><span class="go">b&#39;Resum\xc3\xa9&#39;</span>
+<span class="gp">In [6]: </span><span class="nb">bytes</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+<span class="gh">Out[6]: </span><span class="go">&#39;Resumé&#39;</span>
+</pre></div>
+</div>
+<p>If no <code class="docutils literal"><span class="pre">codec</span></code> is specified, Python defaults to using the default encoding for the Python instance.
+This is usually <code class="docutils literal"><span class="pre">ascii</span></code> and is almost never the thing you really want.
+Be specific.</p>
+<span class="admonition-bytes-unicode"></span><p>In Python 2, conversion of bytes to unicode and back was one of the largest sources of problems in programs.
+Both the <code class="docutils literal"><span class="pre">encode</span></code> and <code class="docutils literal"><span class="pre">decode</span></code> methods were supported by both byte strings and unicode objects.
+This led to a lot of <em>implicit conversion</em>, which of course uses default encoding.</p>
+<p>It&#8217;s very easy when working entirely in English to have these types of problems an not know about them.
+If the characters in a string fall entirely within the ascii set, then no errors will occur.
+But as soon as characters beyond ascii are used, all sorts of trouble pops up.</p>
+<p>Watch for <code class="docutils literal"><span class="pre">UnicodeDecodeError</span></code> and <code class="docutils literal"><span class="pre">UnicodeEncodeError</span></code> and write tests that use non-ascii characters.</p>
+<span class="admonition-legacy-problems"></span></div>
+<div class="section" id="string-manipulation">
+<h3>String Manipulation<a class="headerlink" href="#string-manipulation" title="Permalink to this headline">¶</a></h3>
+<p>You can break strings apart using the <a class="reference external" href="http://docs.python.org/2/library/stdtypes.html#str.split" title="(in Python v2.7)"><code class="xref py py-meth docutils literal"><span class="pre">split</span></code></a> (<a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#str.split" title="(in Python v3.6)"><code class="xref py py-meth docutils literal"><span class="pre">py3</span></code></a>) method.
+You have to make sure that the string you are splitting and the string you are using to split it are of the same type (bytes or unicode).
+The result is a list of the pieces:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [167]: </span><span class="n">csv</span> <span class="o">=</span> <span class="s2">&quot;comma, separated, values&quot;</span>
+<span class="gp">In [168]: </span><span class="n">csv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+<span class="gh">Out[168]: </span><span class="go">[&#39;comma&#39;, &#39;separated&#39;, &#39;values&#39;]</span>
+</pre></div>
+</div>
+<p>In the other direction, calling the <a class="reference external" href="http://docs.python.org/2/library/stdtypes.html#str.join" title="(in Python v2.7)"><code class="xref py py-meth docutils literal"><span class="pre">join</span></code></a> (<a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#str.join" title="(in Python v3.6)"><code class="xref py py-meth docutils literal"><span class="pre">py3</span></code></a>) method will connect a sequence of <em>pieces</em> using the string on which it is called:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [169]: </span><span class="n">psv</span> <span class="o">=</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">))</span>
+<span class="gp">In [170]: </span><span class="n">psv</span>
+<span class="gh">Out[170]: </span><span class="go">&#39;comma|separated|values&#39;</span>
+</pre></div>
+</div>
+<span class="admonition-manipulation"></span><p>There are methods that allow us to change the case of text:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [171]: </span><span class="n">sample</span> <span class="o">=</span> <span class="s1">u&#39;A long string of words&#39;</span>
+<span class="gp">In [172]: </span><span class="n">sample</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<span class="gh">Out[172]: </span><span class="go">u&#39;A LONG STRING OF WORDS&#39;</span>
+<span class="gp">In [173]: </span><span class="n">sample</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="gh">Out[173]: </span><span class="go">u&#39;a long string of words&#39;</span>
+<span class="gp">In [174]: </span><span class="n">sample</span><span class="o">.</span><span class="n">swapcase</span><span class="p">()</span>
+<span class="gh">Out[174]: </span><span class="go">u&#39;a LONG STRING OF WORDS&#39;</span>
+<span class="gp">In [175]: </span><span class="n">sample</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+<span class="gh">Out[175]: </span><span class="go">u&#39;A Long String Of Words&#39;</span>
+</pre></div>
+</div>
+<span class="admonition-case-switching"></span><p>And there are methods that allow us to test the nature of the characters in the text:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [181]: </span><span class="n">number</span> <span class="o">=</span> <span class="s2">u&quot;12345&quot;</span>
+<span class="gp">In [182]: </span><span class="n">number</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span>
+<span class="gh">Out[182]: </span><span class="go">True</span>
+<span class="gp">In [183]: </span><span class="n">number</span><span class="o">.</span><span class="n">isalnum</span><span class="p">()</span>
+<span class="gh">Out[183]: </span><span class="go">True</span>
+<span class="gp">In [184]: </span><span class="n">number</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span>
+<span class="gh">Out[184]: </span><span class="go">False</span>
+<span class="gp">In [185]: </span><span class="n">fancy</span> <span class="o">=</span> <span class="s2">u&quot;Th!$ $tr!ng h@$ $ymb0l$&quot;</span>
+<span class="gp">In [186]: </span><span class="n">fancy</span><span class="o">.</span><span class="n">isalnum</span><span class="p">()</span>
+<span class="gh">Out[186]: </span><span class="go">False</span>
+</pre></div>
+</div>
+<span class="admonition-testing"></span><p>Every character in a string has a numeric value.
+To see this value, use the <a class="reference external" href="http://docs.python.org/2/library/functions.html#ord" title="(in Python v2.7)"><code class="xref py py-func docutils literal"><span class="pre">ord</span></code></a> (<a class="reference external" href="http://docs.python.org/3/library/functions.html#ord" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">py3</span></code></a>) builtin.
+The <a class="reference external" href="http://docs.python.org/2/library/functions.html#chr" title="(in Python v2.7)"><code class="xref py py-func docutils literal"><span class="pre">chr</span></code></a> (<a class="reference external" href="http://docs.python.org/3/library/functions.html#chr" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">py3</span></code></a>) builtin reverses the process:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [109]: </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="s1">&#39;Cris&#39;</span><span class="p">:</span>
+<span class="gp">   .....: </span>    <span class="k">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="go">67 114 105 115</span>
+<span class="gp">In [110]: </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">67</span><span class="p">,</span><span class="mi">114</span><span class="p">,</span><span class="mi">105</span><span class="p">,</span><span class="mi">115</span><span class="p">):</span>
+<span class="gp">   .....: </span>    <span class="k">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="go">C r i s</span>
+</pre></div>
+</div>
+<span class="admonition-ordinal-values"></span></div>
+<div class="section" id="building-strings">
+<h3>Building Strings<a class="headerlink" href="#building-strings" title="Permalink to this headline">¶</a></h3>
+<p>The concatenation operator <code class="docutils literal"><span class="pre">+</span></code> works for building strings out of fragments.
+But it&#8217;s not an efficient way to work.
+Avoid it.</p>
+<p>Instead, use <em>string formatting</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s1">&#39;Hello {0}!&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It&#8217;s faster, and easier to maintain over time.</p>
+<span class="admonition-building-strings"></span><p>When building a format string, the <em>placeholder</em> is a pair of curly braces.
+They can be empty, but it&#8217;s better to put an integer into one, indicating the <em>index</em> of the argument to <a class="reference external" href="http://docs.python.org/2/library/stdtypes.html#str.format" title="(in Python v2.7)"><code class="xref py py-meth docutils literal"><span class="pre">format</span></code></a> (<a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#str.format" title="(in Python v3.6)"><code class="xref py py-meth docutils literal"><span class="pre">py3</span></code></a>) to use.
+You can also pass keyword arguments to <code class="docutils literal"><span class="pre">format</span></code>, if the placeholders contain names instead of integers:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s2">&quot;My name is {1} {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Ewing&#39;</span><span class="p">,</span> <span class="s1">&#39;Cris&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="s2">&quot;The {name} are {status}!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Seahawks&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s1">&#39;awesome&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<span class="admonition-string-formatting"></span><p>Especially in legacy code you will see another method of formatting, using the <code class="docutils literal"><span class="pre">%</span></code> operator.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s2">&quot;This is a </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;format&#39;</span><span class="p">,</span> <span class="s1">&#39;template&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is still a functioning alternative and there is no pressing need to update.
+But you should prefer the new style in writing new code.
+The only dividing line is that the <code class="docutils literal"><span class="pre">%</span></code> operator supports both bytes and unicode objects, where in Python 3, <code class="docutils literal"><span class="pre">.format</span></code> is only a method on unicode objects.</p>
+<p>There is a <a class="reference external" href="https://pyformat.info/">good website</a> available that will help you learn everything you  want to know about the formatting mini-language you can use to control these format specifiers.</p>
+<span class="admonition-the-old-way"></span></div>
+</div>
+<div class="section" id="dictionaries-and-sets">
+<h2>Dictionaries and Sets<a class="headerlink" href="#dictionaries-and-sets" title="Permalink to this headline">¶</a></h2>
+<p>Dictionaries in Python are a <em>mapping</em> of keys to values.
+In other languages, they are called:</p>
+<ul class="simple">
+<li>associative array</li>
+<li>map</li>
+<li>hash table</li>
+<li>hash</li>
+<li>key-value pair</li>
+</ul>
+<p>The correct name of the type in Python is <a class="reference external" href="http://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a> (<a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">py3</span></code></a>)</p>
+<span class="admonition-dictionary"></span><p>You can build a new <code class="docutils literal"><span class="pre">dict</span></code> in a number of ways.</p>
+<p>You can use the <em>object literal</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s1">&#39;key1&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;key2&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>You can call the <code class="docutils literal"><span class="pre">dict</span></code> type object with a sequence of two-tuples.
+The first in each will become the key, the second the value:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">dict</span><span class="p">([(</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),(</span><span class="s1">&#39;key2&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<span class="go">{&#39;key1&#39;: 3, &#39;key2&#39;: 5}</span>
+</pre></div>
+</div>
+<p>You can also use <em>keyword arguments</em> to the <code class="docutils literal"><span class="pre">dict</span></code> type object.
+In this case, you are limited to keys which are <em>legal python names</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">dict</span><span class="p">(</span><span class="n">key1</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">key2</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">{&#39;key1&#39;: 3, &#39;key2&#39;: 5}</span>
+</pre></div>
+</div>
+<span class="admonition-dict-constructors"></span><div class="section" id="id1">
+<h3>Indexing<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>To look up a value in a <code class="docutils literal"><span class="pre">dict</span></code>, we use the <em>subscription</em> operator, just like with sequences:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Brian&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span>
+<span class="go">42</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;zero&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&#39;zero&#39;</span>
+</pre></div>
+</div>
+<p>If you provide a key that is <em>not</em> in the dictionary, a <code class="docutils literal"><span class="pre">KeyError</span></code> is caused:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;non-existing key&#39;</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">KeyError</span>: <span class="n">&#39;non-existing key&#39;</span>
+</pre></div>
+</div>
+<p>In a certain sense, Python is built on <code class="docutils literal"><span class="pre">dicts</span></code>.
+Namespaces are implemented as dicts.
+For this reason, the performance of lookup is <em>highly optimized</em>.
+Lookup time for any object is constant, regardless of the size of the <code class="docutils literal"><span class="pre">dict</span></code>.</p>
+<span class="admonition-dictionary-indexing"></span><p>When storing a value in a <code class="docutils literal"><span class="pre">dict</span></code>, you use a <code class="docutils literal"><span class="pre">key</span></code>.
+This key can be any <em>immutable object</em> (more on that later).
+In actuality, any object that is <em>hashable</em> can be used.
+What does that mean, though?</p>
+<span class="admonition-dictionary-keys"></span></div>
+<div class="section" id="hashing">
+<h3>Hashing<a class="headerlink" href="#hashing" title="Permalink to this headline">¶</a></h3>
+<p>Hashing is the process of converting arbitrarily large data to a small proxy (usually an integer).
+You can use any number of different algorithms to do this, MD5, SHA, etc.
+The <em>key</em> (if you&#8217;ll forgive the pun) is that the algorithm must <em>always</em> return the same proxy for the same input.
+In a <code class="docutils literal"><span class="pre">dict</span></code>, keys are hashed to an integer proxy, which is used to find a location in an array behind the scenes.
+This is efficient because a good hashing algorithms means only a very few key/value pairs correlate to any proxy.</p>
+<p>What would happen if the proxy changed <em>after</em> a value was stored in the <code class="docutils literal"><span class="pre">dict</span></code>?
+Hashability requires that the object being hashed be immutable.</p>
+<span class="admonition-hashing"></span><p><code class="docutils literal"><span class="pre">Dicts</span></code> are inherently <em>unordered</em> collections.
+When you print them out, or look at them in the interpreter, this is not apparent.
+You will be fooled into thinking that you can rely on the order of the pairs.
+This is <em>not true</em>.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [352]: </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="gp">In [353]: </span><span class="n">d</span>
+<span class="gh">Out[353]: </span><span class="go">{&#39;one&#39;: 1, &#39;three&#39;: 3, &#39;two&#39;: 2}</span>
+<span class="gp">In [354]: </span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="gh">Out[354]: </span><span class="go">[&#39;three&#39;, &#39;two&#39;, &#39;one&#39;]</span>
+</pre></div>
+</div>
+<span class="admonition-unordered"></span></div>
+<div class="section" id="iteration-and-dicts">
+<h3>Iteration and Dicts<a class="headerlink" href="#iteration-and-dicts" title="Permalink to this headline">¶</a></h3>
+<p>You can use a <code class="docutils literal"><span class="pre">dict</span></code> with a for loop.
+By default, the keys are what are iterated over.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [15]: </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Brian&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">}</span>
+
+<span class="gp">In [16]: </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">   ....:</span>
+<span class="go">score</span>
+<span class="go">name</span>
+</pre></div>
+</div>
+<span class="admonition-iteration"></span><p>If you want to iterate over values, or perhaps over the key/value pairs in the <code class="docutils literal"><span class="pre">dict</span></code> there are methods to support that.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [2]: </span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="gh">Out[2]: </span><span class="go">dict_keys([&#39;score&#39;, &#39;name&#39;])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [3]: </span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="gh">Out[3]: </span><span class="go">dict_values([42, &#39;Brian&#39;])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [4]: </span><span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="gh">Out[4]: </span><span class="go">dict_items([(&#39;score&#39;, 42), (&#39;name&#39;, &#39;Brian&#39;)])</span>
+</pre></div>
+</div>
+<span class="admonition-iterator-methods"></span><p>In Python 2, there were nine methods on <code class="docutils literal"><span class="pre">dicts</span></code> that supplied these behaviors.
+The <code class="docutils literal"><span class="pre">keys</span></code>, <code class="docutils literal"><span class="pre">values</span></code> and <code class="docutils literal"><span class="pre">items</span></code> methods returned lists.
+The <code class="docutils literal"><span class="pre">iter...</span></code> methods (<code class="docutils literal"><span class="pre">iterkeys</span></code>, etc.) returned iterators, which were much more efficient for large <code class="docutils literal"><span class="pre">dicts</span></code>.
+The <code class="docutils literal"><span class="pre">view...</span></code> methods (<code class="docutils literal"><span class="pre">viewkeys</span></code>, etc.) return <em>dict views</em> which behaved as iterators, but also updated themselves as the dictionary changed.</p>
+<p>In Python 3, the three remainin methods operate like the last of those.
+To get semantically equivalent code in Python 3, use the following map:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Python 2</th>
+<th class="head">Python 3</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>d.keys()</td>
+<td>list(d.keys())</td>
+</tr>
+<tr class="row-odd"><td>d.values()</td>
+<td>list(d.values())</td>
+</tr>
+<tr class="row-even"><td>d.items()</td>
+<td>list(d.items())</td>
+</tr>
+<tr class="row-odd"><td>d.iterkeys()</td>
+<td>iter(d.keys())</td>
+</tr>
+<tr class="row-even"><td>d.itervalues()</td>
+<td>iter(d.values())</td>
+</tr>
+<tr class="row-odd"><td>d.iteritems()</td>
+<td>iter(d.items())</td>
+</tr>
+<tr class="row-even"><td>d.viewkeys()</td>
+<td>d.keys()</td>
+</tr>
+<tr class="row-odd"><td>d.viewvalues()</td>
+<td>d.values()</td>
+</tr>
+<tr class="row-even"><td>d.viewitems()</td>
+<td>d.items()</td>
+</tr>
+</tbody>
+</table>
+<p>You should also refer to <a class="reference external" href="http://python-future.org/compatible_idioms.html#dict-keys-values-items-as-a-list">Python Futures</a> for additional compatible idioms.</p>
+<span class="admonition-compatibility-note"></span><span class="admonition-a-compatibility-chart"></span><span class="admonition-common-idiom"></span></div>
+<div class="section" id="performance">
+<h3>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h3>
+<p>Dictionaries are optimized for inserting and retrieving values:</p>
+<ul class="simple">
+<li>indexing is fast and constant time: O(1)</li>
+<li>Membership (<code class="docutils literal"><span class="pre">x</span> <span class="pre">in</span> <span class="pre">s</span></code>) constant time: O(1)</li>
+<li>visiting all is proportional to n: O(n)</li>
+<li>inserting is constant time: O(1)</li>
+<li>deleting is constant time: O(1)</li>
+</ul>
+<p>more on what exactly that means soon.</p>
+<span class="admonition-dictionary-performance"></span></div>
+<div class="section" id="id2">
+<h3>Miscellaneous<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>You can find all the methods of the <code class="docutils literal"><span class="pre">dict</span></code> type in <a class="reference external" href="https://docs.python.org/library/stdtypes.html#mapping-types-dict">the Python standard library documentation</a>.
+But here are a number of interesting methods you may find useful:</p>
+<p>Membership (on keys):</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [5]: </span><span class="n">d</span>
+<span class="gh">Out[5]: </span><span class="go">{&#39;that&#39;: 7, &#39;this&#39;: 5}</span>
+
+<span class="gp">In [6]: </span><span class="s1">&#39;that&#39;</span> <span class="ow">in</span> <span class="n">d</span>
+<span class="gh">Out[6]: </span><span class="go">True</span>
+
+<span class="gp">In [7]: </span><span class="s1">&#39;this&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">d</span>
+<span class="gh">Out[7]: </span><span class="go">False</span>
+</pre></div>
+</div>
+<span class="admonition-other-dict-operations"></span><p>The <a class="reference external" href="http://docs.python.org/2/library/stdtypes.html#dict.get" title="(in Python v2.7)"><code class="xref py py-meth docutils literal"><span class="pre">get</span></code></a> method (<a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#dict.get" title="(in Python v3.6)"><code class="xref py py-meth docutils literal"><span class="pre">py3</span></code></a>) allows you to get a value or returns a default if the key you seek is not in the <code class="docutils literal"><span class="pre">dict</span></code>.
+The default value returned is <code class="docutils literal"><span class="pre">None</span></code>, but you can control it.
+It has the advantage of never causing a <code class="docutils literal"><span class="pre">KeyError</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [9]: </span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;this&#39;</span><span class="p">)</span>
+<span class="gh">Out[9]: </span><span class="go">5</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [11]: </span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">u&#39;something&#39;</span><span class="p">,</span> <span class="s1">u&#39;a default&#39;</span><span class="p">)</span>
+<span class="gh">Out[11]: </span><span class="go">u&#39;a default&#39;</span>
+</pre></div>
+</div>
+<span class="admonition-getting-something"></span><p>To remove a key/value pair from a <code class="docutils literal"><span class="pre">dict</span></code>, we use the <a class="reference external" href="http://docs.python.org/2/library/stdtypes.html#dict.pop" title="(in Python v2.7)"><code class="xref py py-meth docutils literal"><span class="pre">pop</span></code></a> method (<a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#dict.pop" title="(in Python v3.6)"><code class="xref py py-meth docutils literal"><span class="pre">py3</span></code></a>).
+It takes a key as the optional argument.
+The value corresponding to the key is return and the key/value pair are removed.
+If no argument is supplied, an arbitrary key/value pair is removed, and the value returned.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [19]: </span><span class="n">d</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;this&#39;</span><span class="p">)</span>
+<span class="gh">Out[19]: </span><span class="go">5</span>
+<span class="gp">In [20]: </span><span class="n">d</span>
+<span class="gh">Out[20]: </span><span class="go">{&#39;that&#39;: 7}</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [23]: </span><span class="n">d</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span>
+<span class="gh">Out[23]: </span><span class="go">(&#39;that&#39;, 7)</span>
+<span class="gp">In [24]: </span><span class="n">d</span>
+<span class="gh">Out[24]: </span><span class="go">{}</span>
+</pre></div>
+</div>
+<span class="admonition-popping"></span><p>One of the most useful methods on the <code class="docutils literal"><span class="pre">dict</span></code> type is <a class="reference external" href="http://docs.python.org/2/library/stdtypes.html#dict.setdefault" title="(in Python v2.7)"><code class="xref py py-meth docutils literal"><span class="pre">setdefault</span></code></a> (<a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#dict.setdefault" title="(in Python v3.6)"><code class="xref py py-meth docutils literal"><span class="pre">py3</span></code></a>).
+You pass it a key and a default value.
+If the key is present in the <code class="docutils literal"><span class="pre">dict</span></code>, the stored value is returned.
+If the key is <em>not</em> present, then the default value is stored and returned.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [26]: </span><span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">In [27]: </span><span class="n">d</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">u&#39;something&#39;</span><span class="p">,</span> <span class="s1">u&#39;a value&#39;</span><span class="p">)</span>
+<span class="gh">Out[27]: </span><span class="go">u&#39;a value&#39;</span>
+<span class="gp">In [28]: </span><span class="n">d</span>
+<span class="gh">Out[28]: </span><span class="go">{u&#39;something&#39;: u&#39;a value&#39;}</span>
+<span class="gp">In [29]: </span><span class="n">d</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">u&#39;something&#39;</span><span class="p">,</span> <span class="s1">u&#39;a different value&#39;</span><span class="p">)</span>
+<span class="gh">Out[29]: </span><span class="go">u&#39;a value&#39;</span>
+<span class="gp">In [30]: </span><span class="n">d</span>
+<span class="gh">Out[30]: </span><span class="go">{u&#39;something&#39;: u&#39;a value&#39;}</span>
+</pre></div>
+</div>
+<span class="admonition-handy-method"></span></div>
+<div class="section" id="sets">
+<h3>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">¶</a></h3>
+<p>A <code class="docutils literal"><span class="pre">set</span></code> is an unordered collection of distinct values.
+You can think of a set as a dict which has only keys and no values.
+You can create a set using the set literal (<code class="docutils literal"><span class="pre">{}</span></code>) or the set type object:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [4]: </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+<span class="gh">Out[4]: </span><span class="go">{1, 2, 3}</span>
+<span class="gp">In [5]: </span><span class="nb">set</span><span class="p">()</span>
+<span class="gh">Out[5]: </span><span class="go">set()</span>
+<span class="gp">In [6]: </span><span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gh">Out[6]: </span><span class="go">{1, 2, 3}</span>
+<span class="gp">In [7]: </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+<span class="gh">Out[7]: </span><span class="go">{1, 2, 3}</span>
+<span class="gp">In [8]: </span><span class="n">s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="gp">In [9]: </span><span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">In [10]: </span><span class="n">s</span>
+<span class="gh">Out[10]: </span><span class="go">{1, 2, 3}</span>
+<span class="gp">In [11]: </span><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">In [12]: </span><span class="n">s</span>
+<span class="gh">Out[12]: </span><span class="go">{1, 2, 3, 4}</span>
+</pre></div>
+</div>
+<span class="admonition-sets"></span><span class="admonition-constructors"></span><p>Sets share a lot of properties with dicts.
+Members of a set must be hashable, like dictionary keys, and for the same reason.
+Sets are also unordered, and so you cannot index them:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;set&#39;</span> <span class="nb">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">indexing</span>
+</pre></div>
+</div>
+<span class="admonition-set-properties"></span><p>Set support similar operations to dicts as well.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="n">s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">In [2]: </span><span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="gh">Out[2]: </span><span class="go">1</span>
+<span class="gp">In [3]: </span><span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-3-e76f41daca5e&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="ne">KeyError</span>: &#39;pop from an empty set&#39;
+
+<span class="gp">In [4]: </span><span class="n">s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">In [5]: </span><span class="n">s</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">In [6]: </span><span class="n">s</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-6-542ac1b736c7&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">s</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="ne">KeyError</span>: 2
+</pre></div>
+</div>
+<span class="admonition-set-methods"></span><p>Beyond all this, sets also operate as traditional mathematical sets.
+You get all the operations you might remember from set theory class:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">s</span><span class="o">.</span><span class="n">isdisjoint</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">symmetric_difference</span><span class="p">(</span> <span class="n">other</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<span class="admonition-sets-are-sets"></span><p>Finally, if you need to have an immutable object that functions like a set, Python provides the <code class="docutils literal"><span class="pre">frozenset</span></code> type.
+It works just like a set, except that once constructed it may not be altered:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fs</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">AttributeError</span>: <span class="n">&#39;frozenset&#39; object has no attribute &#39;add&#39;</span>
+</pre></div>
+</div>
+<span class="admonition-frozen-set"></span></div>
+</div>
+<div class="section" id="file-reading-and-writing">
+<h2>File Reading and Writing<a class="headerlink" href="#file-reading-and-writing" title="Permalink to this headline">¶</a></h2>
+<p>It&#8217;s often useful in programming to be able to open files in order to read data from them, or write data to them.
+Python has, for a long time, had a built-in function <code class="docutils literal"><span class="pre">open</span></code> which handled this operation.
+However, this builtin was created in the days before unicode was widely used, and it does not handle text that contains unicode particularly well.</p>
+<p>For this reason, we have moved away from using the built-in <code class="docutils literal"><span class="pre">open</span></code> and toward using the <code class="docutils literal"><span class="pre">open</span></code> function from the <code class="docutils literal"><span class="pre">io</span></code> module.
+The <code class="docutils literal"><span class="pre">io.open</span></code> function is available in both Python 2 (2.6 and 2.7) and Python 3 and so provides a cross-compatible approach to opening files.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">io</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;secrets.txt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">secret_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>By default, files are opened in &#8220;read text&#8221; mode, which automatically decode the bytes contained in the file to unicode.
+You may provide an <code class="docutils literal"><span class="pre">encoding</span></code> keyword argument to control the &#8220;codec&#8221; that is used to perform this conversion.
+The most common codec you will use is &#8220;utf-8&#8221;.
+If you do not provide an <code class="docutils literal"><span class="pre">encoding</span></code>, then Python will default to the value of <code class="docutils literal"><span class="pre">sys.getdefaultencoding()</span></code>, which is nearly always &#8220;ascii&#8221;.</p>
+<span class="admonition-files"></span><p>If you have needs other than reading unicode test, you may use the <code class="docutils literal"><span class="pre">mode</span></code> argument (<code class="docutils literal"><span class="pre">'rb'</span></code> below) to control aspects of your interaction with the file.</p>
+<p>For example, the <code class="docutils literal"><span class="pre">rb</span></code> mode opens a file for reading bytes.
+When you read data from a file opened in <code class="docutils literal"><span class="pre">rb</span></code> mode, it will be a bytestring.
+If you need to convert it to unicode, you can call <code class="docutils literal"><span class="pre">decode</span></code> on it at that point.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">f</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;secrets.bin&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="n">secret_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<span class="admonition-binary-files"></span><p>There are a number of modes available for files.
+Unfortunately, Python&#8217;s own documentation of the meaning of these modes is not very clear.
+You can use <a class="reference external" href="http://www.manpagez.com/man/3/fopen/">the man page for the unix command fopen</a> which supports the same modes, and has much better information.
+One thing you should be careful of.
+Merely opening a file in <cite>w</cite> mode will always truncate the file, rendering it empty.</p>
+<span class="admonition-file-opening-modes"></span><p>When you open a file with <code class="docutils literal"><span class="pre">io.open</span></code> it defaults to using &#8220;Universal Newline&#8221; mode.
+This means that while some operating systems use different characters as line endings, Python will always translate them into the *nix-tyle <code class="docutils literal"><span class="pre">&quot;\n&quot;</span></code> when you read data from the file.
+The <code class="docutils literal"><span class="pre">&quot;\n&quot;</span></code> characters are translated back to OS-Native line endings when you write data out to a file.
+You should always use the <code class="docutils literal"><span class="pre">&quot;\n&quot;</span></code> character as a line ending when writing strings in Python.</p>
+<span class="admonition-text-file-notes"></span><p>You should be aware that although there is no difference between reading in bytes or text mode on Unix operating systems, the two are quite different in Windows.
+You&#8217;ll be tempted to accept the default and always open files in <code class="docutils literal"><span class="pre">text</span></code> mode.
+This <strong>will break binary files on Windows</strong>.
+Don&#8217;t do it.
+Get in the habit of <em>thinking carefully</em> about whether the content of the file you are reading is text or binary data.</p>
+<span class="admonition-gotcha"></span><p>Beyond the <code class="docutils literal"><span class="pre">mode</span></code> and <code class="docutils literal"><span class="pre">encoding</span></code> parameters we&#8217;ve discussed, there are a number of other parameters to the <code class="docutils literal"><span class="pre">io.open</span></code> function.</p>
+<p>The required first argument is the <code class="docutils literal"><span class="pre">path</span></code> to the file you wish to open.</p>
+<p>The <code class="docutils literal"><span class="pre">errors</span></code> parameter allows you to control how errors in decoding file bytes to Python unicode are handled.
+You may specify that you wish to <code class="docutils literal"><span class="pre">ignore</span></code> errors, <code class="docutils literal"><span class="pre">replace</span></code> broken characters with a specific identifier, or use <code class="docutils literal"><span class="pre">strict</span></code> mode to force errors to terminate reading.</p>
+<p>The other parameters are more advanced and will not come up often in your work with files.
+You may read about them in the <a class="reference external" href="http://docs.python.org/2/library/io.html#module-io" title="(in Python v2.7)"><code class="xref py py-mod docutils literal"><span class="pre">io</span> <span class="pre">module</span> <span class="pre">documentation</span></code></a> (<a class="reference external" href="http://docs.python.org/3/library/io.html#module-io" title="(in Python v3.6)"><code class="xref py py-mod docutils literal"><span class="pre">py3</span></code></a>).</p>
+<span class="admonition-io-open-parameters"></span><p>Once you have an open file, you can read from it.
+The <code class="docutils literal"><span class="pre">read</span></code> method accepts an optional argument of a number of bytes to read.
+If you provide no value, the entire file (starting at your current position) is read.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">header_size</span> <span class="o">=</span> <span class="mi">4096</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;secrets.txt&#39;</span><span class="p">)</span>
+<span class="n">secret_header</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">header_size</span><span class="p">)</span>
+<span class="n">secret_rest</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<span class="admonition-file-reading"></span><p>Files are iterators, which means you can iterate through the lines of text they contain like so:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;secrets.txt&#39;</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">line</span>
+</pre></div>
+</div>
+<span class="admonition-common-idioms"></span><p>In addition, the <code class="docutils literal"><span class="pre">readline</span></code> method will read a single line at a time.
+The <code class="docutils literal"><span class="pre">readlines</span></code> method will read a file and return a list containing the lines of the file.</p>
+<p>If you wish to write text to a file you&#8217;ve opened in <code class="docutils literal"><span class="pre">w</span></code> mode, you may do so with the <code class="docutils literal"><span class="pre">write</span></code> method:
+Newlines are <strong>not</strong> automatically appended to text written this way.
+If you want lines in your file, you must write the newline characters yourself (or place them in your text).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">outfile</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;output.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;this is line: {0}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+</div>
+<span class="admonition-file-writing"></span><p>When you&#8217;ve opened a file in a &#8220;read&#8221; mode, you have the following methods available:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In &#8220;write&#8221; mode, you have rough equivalents.
+The <code class="docutils literal"><span class="pre">write</span></code> method writes a string to an open file.
+The <code class="docutils literal"><span class="pre">writelines</span></code> method takes a sequence of strings and writes them to a file.
+Remember, newlines are not automatically added (despite the name).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In any mode, a file has a few methods you can use to navigate through the file.</p>
+<p>The <code class="docutils literal"><span class="pre">file.seek(offset)</span></code> method will move the file pointer to the byte of the file given by &#8216;offset&#8217;.
+The <code class="docutils literal"><span class="pre">file.tell()</span></code> method will return the byte number of the current position of the file pointer.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span> <span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Finally, whenever you open a file, you must also close it.
+On certain operating systems, if you fail to do so it can render the file unusable by any other process.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<span class="admonition-file-methods"></span><p>In Python, we say that anything which implements both the <code class="docutils literal"><span class="pre">read</span></code> and <code class="docutils literal"><span class="pre">write</span></code> method is <em>File-like</em>.
+There are a number of types which are file-like:</p>
+<ul class="simple">
+<li>loggers</li>
+<li><code class="docutils literal"><span class="pre">sys.stdout</span></code></li>
+<li><code class="docutils literal"><span class="pre">urllib.open()</span></code></li>
+<li>pipes, subprocesses</li>
+<li>StringIO</li>
+</ul>
+<p>When you have a file-like object you can treat is as if it were a file.
+A common use-case for this involves using the <code class="docutils literal"><span class="pre">io.StringIO</span></code> class.
+This class constructs an in-memory buffer that operates just like a file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">417</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">420</span><span class="p">]:</span> <span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">421</span><span class="p">]:</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">u&quot;somestuff&quot;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">422</span><span class="p">]:</span> <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">423</span><span class="p">]:</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">423</span><span class="p">]:</span> <span class="s1">&#39;somestuff&#39;</span>
+</pre></div>
+</div>
+<p>When writing tests for file-handling code this can be very useful.
+It allows you to make &#8220;fake files&#8221; that operate just like the real thing.</p>
+<p>Legacy code will often contain references to <em>modules</em> named <code class="docutils literal"><span class="pre">StringIO</span></code> or <code class="docutils literal"><span class="pre">cStringIO</span></code>.
+These modules should be considered superseded by the <code class="docutils literal"><span class="pre">io.StringIO</span></code> class.</p>
+<span class="admonition-file-like-objects"></span><span class="admonition-stringio"></span></div>
+<div class="section" id="paths-and-directories">
+<h2>Paths and Directories<a class="headerlink" href="#paths-and-directories" title="Permalink to this headline">¶</a></h2>
+<p>In Python, paths are often handled with simple strings (or Unicode strings)
+You can make absolute paths:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">b</span><span class="s2">&quot;/home/cris/stuff.txt&quot;</span>
+<span class="s1">u&#39;/usr/local/bin/python3&#39;</span>
+</pre></div>
+</div>
+<p>or relative paths:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s1">u&#39;./secret.txt&#39;</span>
+<span class="n">b</span><span class="s1">&#39;src/test_ack.py&#39;</span>
+</pre></div>
+</div>
+<p>Either relative or absolute paths, bytes or unicode objects will work as the <code class="docutils literal"><span class="pre">path</span></code> argument to <code class="docutils literal"><span class="pre">io.open()</span></code>.</p>
+<span class="admonition-paths-and-directories"></span><p>The <code class="docutils literal"><span class="pre">os</span></code> module from the Python standard library gives you a number of useful tools for interacting with paths.
+You can get the current working directory with <code class="docutils literal"><span class="pre">os.getcwd</span></code>.
+You can change directories with <code class="docutils literal"><span class="pre">os.chdir</span></code>.
+You can turn any relative path into an absolute path with <code class="docutils literal"><span class="pre">os.path.abspath</span></code>.
+You can obtain the relative path from your current location to any absolute path with <code class="docutils literal"><span class="pre">os.path.relpath()</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">--</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwdu</span><span class="p">()</span> <span class="p">(</span><span class="n">u</span> <span class="k">for</span> <span class="n">Unicode</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">()</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>It&#8217;s possible to list the contents of a directory with <code class="docutils literal"><span class="pre">os.listdir</span></code>.
+You can make new directories with <code class="docutils literal"><span class="pre">os.mkdir</span></code>.
+You can even walk an entire file system using <code class="docutils literal"><span class="pre">os.walk</span></code>.</p>
+<p>There&#8217;s much, much more to learn.  Check out the <a class="reference external" href="http://docs.python.org/2/library/os.html#module-os" title="(in Python v2.7)"><code class="xref py py-mod docutils literal"><span class="pre">documentation</span></code></a> (<a class="reference external" href="http://docs.python.org/3/library/os.html#module-os" title="(in Python v3.6)"><code class="xref py py-mod docutils literal"><span class="pre">py3</span></code></a>)</p>
+<span class="admonition-os-module"></span><span class="admonition-os-path-module"></span><p>Finally, if you&#8217;d prefer to work with paths in an Object-oriented style, the Python 3 standard library has added a new module, <a class="reference external" href="http://docs.python.org/3/library/pathlib.html#module-pathlib" title="(in Python v3.6)"><code class="xref py py-mod docutils literal"><span class="pre">pathlib</span></code></a>.
+This module can also be pip installed in Python 2 for compatibility.</p>
+<p>With the module, you can create paths as objects, and then work with methods on them.
+This allows you access to all the operations in <code class="docutils literal"><span class="pre">os.path</span></code> and more.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="gp">In [2]: </span><span class="n">pth</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="gp">In [3]: </span><span class="n">pth</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span>
+<span class="gh">Out[3]: </span><span class="go">True</span>
+<span class="gp">In [4]: </span><span class="n">pth</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+<span class="gh">Out[4]: </span><span class="go">PosixPath(&#39;/Users/nmhw/projects/training/codefellows/existing_course_repos/python-dev-accelerator&#39;)</span>
+<span class="gp">In [5]: </span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">pth</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+<span class="gp">   ...: </span>    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">   ...:</span>
+<span class="go">.git</span>
+<span class="go">.gitignore</span>
+<span class="go">bin</span>
+<span class="go">build</span>
+<span class="go">cfpython.sublime-project</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<span class="admonition-pathlib-module"></span><span class="admonition-quick-intro"></span></div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introduction To Python: Part 3</a><ul>
+<li><a class="reference internal" href="#sequences">Sequences</a><ul>
+<li><a class="reference internal" href="#indexing">Indexing</a></li>
+<li><a class="reference internal" href="#slicing">Slicing</a></li>
+<li><a class="reference internal" href="#membership">Membership</a></li>
+<li><a class="reference internal" href="#concatenation">Concatenation</a></li>
+<li><a class="reference internal" href="#length">Length</a></li>
+<li><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iteration">Iteration</a><ul>
+<li><a class="reference internal" href="#for-loops">For Loops</a></li>
+<li><a class="reference internal" href="#loop-control">Loop control</a></li>
+<li><a class="reference internal" href="#while-loops">While Loops</a></li>
+<li><a class="reference internal" href="#similarities">Similarities</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#string-features">String Features</a><ul>
+<li><a class="reference internal" href="#unicode-v-bytes">Unicode v. Bytes</a></li>
+<li><a class="reference internal" href="#string-manipulation">String Manipulation</a></li>
+<li><a class="reference internal" href="#building-strings">Building Strings</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dictionaries-and-sets">Dictionaries and Sets</a><ul>
+<li><a class="reference internal" href="#id1">Indexing</a></li>
+<li><a class="reference internal" href="#hashing">Hashing</a></li>
+<li><a class="reference internal" href="#iteration-and-dicts">Iteration and Dicts</a></li>
+<li><a class="reference internal" href="#performance">Performance</a></li>
+<li><a class="reference internal" href="#id2">Miscellaneous</a></li>
+<li><a class="reference internal" href="#sets">Sets</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#file-reading-and-writing">File Reading and Writing</a></li>
+<li><a class="reference internal" href="#paths-and-directories">Paths and Directories</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../schedule/week01/wed.html"
+                        title="previous chapter">Wednesday</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="python_packaging_1.html"
+                        title="next chapter">An Introduction to Python Packaging</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="python_packaging_1.html" title="An Introduction to Python Packaging"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week01/wed.html" title="Wednesday"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week01/wed.html" >Wednesday</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

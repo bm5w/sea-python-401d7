@@ -1,0 +1,57 @@
+********************************************
+Django Imager: Create Photo and Album Models
+********************************************
+
+In this series of assignments you will build a simple image management website using Django.
+
+In this third step you will implement new models specific for viewing and handling images on your site.
+
+Tasks
+=====
+
+This assignment will be done on the ``models-2`` branch.
+The work below should have access to the work from ``models-1``.
+
+Image Management
+----------------
+
+The main functionality of our application will be oriented around uploading and organizing images.
+Our second Django app will encompass the models and views associated with this work.
+
+From the root of your project, where the ``manage.py`` file is located, create a second app called ``imager_images``.
+
+You'll need to create two models in this new app, the ``Photo`` and the ``Album``.
+
+``Photo`` represents an individual picture uploaded by a user.
+It will contain the image file itself, plus metadata about that file.
+One Imager user can own several photos, but photos themselves are owned by a single user.
+Meta-data should include ``title``, ``description``, ``date_uploaded``, ``date_modified``, and ``date_published`` fields.
+You should also have a ``published`` field which takes one of several possible values: ('private', 'shared', 'public')
+
+``Album`` contains ``Photo`` instances and provide meta-data about the collection of photos they contain.
+Any one album **must** be owned by a single User.
+Any album can contain many Photos and any Photo may be in more than one Album.
+Meta-data should include an album ``title`` and ``description``.
+It should also contain a ``date_created``, ``date_modified``, and ``date_published`` as well as a ``published`` field containing the same options described for Photos.
+Users should be able to designate one contained photo as the ``cover`` for the album.
+
+Create migrations to support installing your new app.
+
+Create a default app configuration to handle configuring a few global settings for the app.
+Don't forget to include your models in the Django admin.
+
+Finally, you will implement tests that demonstrate the API you have implemented.
+Use Django's built-in testing systems and the Test Case classes it provides.
+Ensure that the tests demonstrate all aspects of the functionality.
+
+As with ``models-1``, use `FactoryBoy <https://factoryboy.readthedocs.io/en/latest/>`_ to create any required objects your tests need to run properly.
+
+
+Submitting Your Work
+====================
+
+When you are done and all your tests are passing, open a pull request from your ``models-2`` branch to ``master`` in GitHub.
+Submit the URL to your pull request.
+Once you have submitted the URL, please merge your pull request back to ``master`` in preparation for the next stage of your development.
+
+Use the commenting feature in Canvas to submit questions or comments about the work you've done.

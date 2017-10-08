@@ -1,0 +1,91 @@
+===============================
+Python Learning Journal: Step 4
+===============================
+
+We haven't been able to truly interact our learning journals as we would expect a normal user would.
+Today, we change that.
+Today, we add user input.
+
+Tasks
+=====
+
+Create a new branch (``step4``) for today's work. 
+Do your work on this branch.
+
+Using what you learned today, both in class and in your readings, accomplish the following tasks for your learning journal along with your partner:
+
+* Use your mockups to create jinja templates for your ``create`` and ``update`` views.
+* Ensure that there's a button visible on every page so that a user (i.e. YOU) can make the decision to add a new Learning Journal entry at any time.
+* The ``create`` view should take the data from the user's input and use it to create a new model instance.
+    - The view should validate the user's input, ensuring that all the data that's necessary is present for creating new object instances.
+    - When a new entry is created, the user should be redirected to the home page.
+* The ``update`` view should take data from the user's input and use it to edit an existing model instance.
+    - Note that changes for updated content have to be handled somewhat differently than newly-created content. Look into the ``session.flush`` method.
+    - When an entry is successfully edited, the user should be redirected to that entry's specific detail page.
+* Every ``detail`` page should have a button that the user can click to edit that particular learning journal entry.
+* Clean up the styling and structure of your app.
+
+In addition to the above, your code should be *thoroughly* tested.
+
+**READ THIS SECTION, IT IS IMPORTANT**
+
+Just like in today's lecture, make a plan for your tests.
+More explicitly:
+
+* Create a ``TEST_PLAN.md`` file in your project root that lists out every test you intend to run and what that test is looking for.
+* ``TEST_PLAN.md`` should encompass not just the tests you intend to write for the ``create`` and ``update`` views, but **every test** you've written thus far. I want to see your thought process.
+* ``TEST_PLAN.md`` will need to be updated as you update your code next week. Keep it current!
+
+Write unit tests of the view functions themselves, unit tests for your models, and *functional* tests that show the configured system works properly.
+
+You are working with a partner to complete this application.
+
+When all of the above work is completed, update your deployment to Heroku. 
+Make sure to include the URL to your Heroku deployment in your ``README.md`` file. 
+Update your ``README.md`` to include the coverage output of your tests for Python 2 **and** Python 3 for this branch.
+You should have coverage reports for steps 1, 2, and 3 in your ``README.md``.
+
+Submitting Your work
+====================
+
+When your work is done and your site is deployed, push all of your work to your GitHub repo. 
+Merge your ``step4`` branch to master to prepare for your next steps.
+**You will not be submitting this pull request this time. See below.**
+
+Reverse Pull Request
+--------------------
+
+For your submission, a special pull request.
+
+On your development machine, check out the last commit you made to the ``learning-journal`` repository prior to starting work on step one of the learning journal project
+(This is probably your initial commit of the repo).
+You can do so by providing the commit hash as the argument to ``git checkout``:
+
+.. code-block:: bash
+
+    $ git checkout 1a39dc40
+
+Once you've made that checkout, you will see that you are in "detached HEAD" state.
+From here create a new branch called start:
+
+.. code-block:: bash
+
+    $ git checkout -b start
+
+Then, push this branch up to your repository in github:
+
+.. code-block:: bash
+
+    $ git push -u origin start
+
+Finally, make a pull request in github from your master branch to the new start branch.
+This will result in a pull request containing all the code you've written during the tutorial.
+**Do not merge this pull request**.
+
+To submit this assignment, submit the link to this special "reverse pull request".
+
+Use the comment feature in canvas to submit the following:
+
+* At least one well-formed question about the work you did for this assignment
+* At least one comment on what went well
+* At least one comment on what was particularly difficult or challenging

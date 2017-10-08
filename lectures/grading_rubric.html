@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Grading &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="next" title="Presentation Guidelines" href="presentation_guidelines.html" />
+    <link rel="prev" title="Ping Pong Pair Programming Workflow" href="ping_pong_programming.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="presentation_guidelines.html" title="Presentation Guidelines"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ping_pong_programming.html" title="Ping Pong Pair Programming Workflow"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="grading">
+<h1>Grading<a class="headerlink" href="#grading" title="Permalink to this headline">¶</a></h1>
+<p>You will have a lot of assignments of varying types over these 10 weeks, and much of the feedback that you get for your code will come with a grade.
+So, it&#8217;s important to know what a grade may mean when you get one.
+Generally, the grade that you receive is feedback on your code.
+Well-written, well-tested code that follows the assignment guidelines will be rated higher.
+Code that misses the mark, is broken, or is not tested (so, is broken) will get a lower grade.</p>
+<p>What follows are grading guidelines for the most common assignments.</p>
+<div class="section" id="learning-journals">
+<h2>Learning Journals<a class="headerlink" href="#learning-journals" title="Permalink to this headline">¶</a></h2>
+<p><strong>Due before 9AM the day after it is assigned.</strong>
+This is a hard rule, <em>and yes it includes Saturdays and Project Weeks.</em></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="94%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Grade</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>2</td>
+<td>Entry submitted on time and discusses what you&#8217;ve learned and/or your experiences</td>
+</tr>
+<tr class="row-odd"><td>0</td>
+<td>Entry was turned in at or after 9AM on the due date</td>
+</tr>
+<tr class="row-even"><td>0</td>
+<td>Entry submitted has no content</td>
+</tr>
+<tr class="row-odd"><td>0</td>
+<td>Entry submitted does not talk about your progress or experience that day.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="partnered-coding-assignents">
+<h2>Partnered Coding Assignents<a class="headerlink" href="#partnered-coding-assignents" title="Permalink to this headline">¶</a></h2>
+<p>Generally, your coding assignments will be <strong>due before 9AM the Monday after they&#8217;re assigned</strong> unless otherwise noted.</p>
+<ul class="simple">
+<li>Strive to follow the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8 style guide</a> with your code.</li>
+<li>Write at least a one-liner doc string for every function and class.</li>
+<li>Write a verbose <code class="docutils literal"><span class="pre">README.md</span></code> file that fully describes what the code in that repository is about, how it works, and how it&#8217;s been updated.</li>
+<li>Try to keep your code comment-free when submitting.</li>
+<li>Have your tests passing.</li>
+</ul>
+<p>Any coding assignment submitted after the deadline automatically gets a 20% deduction.
+Keep in mind that you <em>can</em> always resubmit code.
+<strong>The grade you get is not final until the end of week following week 10.</strong></p>
+<p>The rubric that follows does not address every possible circumstance.
+In fact, it misses many.
+However, if you get a grade where you&#8217;re like &#8220;what? why?!&#8221;, this may be a helpful guideline.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="97%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Grade</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>10</td>
+<td>Code submitted on time meeting assignment criteria as-stated, with PEP8-compliant style, thorough documentation, with at least 85% test coverage.</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>Code submitted on time meeting assignment criteria as-stated, with PEP8-compliant style, thorough documentation, with at least 70% test coverage.</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>Code has at least 70% test coverage, meets most assignment criteria, but has very little documentation. May also have a bad .gitignore</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>Code has some tests but is significantly broken</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>Code has no tests, regardless of how much of the code-base is functional</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>Assignment called for a link to a pull request and that wasn&#8217;t submitted.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="solo-weekend-coding-assignments">
+<h2>Solo Weekend Coding Assignments<a class="headerlink" href="#solo-weekend-coding-assignments" title="Permalink to this headline">¶</a></h2>
+<p>Most assignments that you submit for this course will be paired assignments.
+One consequence is that we don&#8217;t get a great idea of how you&#8217;re progressing as an individual.
+Hence these assignments.</p>
+<p>These are generally assigned on Fridays and <strong>due by 11:59pm that following Sunday</strong>, unless otherwise noted.
+Late submissions follow the same general loss of 20%.
+Some of these assignments call for you to write your own tests, while others ask for tests from CodeWars.
+Whatever the case, tests should be a part of your submission.
+<strong>These assignments are not up for resubmission, unless otherwise noted.</strong></p>
+<p>The guideline that follows is similar to the one above.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="96%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Grade</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>10</td>
+<td>Code submitted on time that solves the problem, with PEP8-compliant style, thorough documentation, with at least 85% test coverage.</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>Code submitted on time that solves the problem, with PEP8-compliant style, thorough documentation, with at least 70% test coverage.</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>Code has at least 70% test coverage, approaches a solution, but has very little documentation. May also have a bad .gitignore</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>Code has some tests but doesn&#8217;t solve the problem.</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>Code has no tests, regardless of how much of the code-base is functional</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>Assignment called for a link to a pull request and that wasn&#8217;t submitted.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Grading</a><ul>
+<li><a class="reference internal" href="#learning-journals">Learning Journals</a></li>
+<li><a class="reference internal" href="#partnered-coding-assignents">Partnered Coding Assignents</a></li>
+<li><a class="reference internal" href="#solo-weekend-coding-assignments">Solo Weekend Coding Assignments</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ping_pong_programming.html"
+                        title="previous chapter">Ping Pong Pair Programming Workflow</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="presentation_guidelines.html"
+                        title="next chapter">Presentation Guidelines</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="presentation_guidelines.html" title="Presentation Guidelines"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ping_pong_programming.html" title="Ping Pong Pair Programming Workflow"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+.. slideconf::
+    :autoslides: False
+
+******************
+Today I learned...
+******************
+
+.. slide:: Today I learned...
+    :level: 1
+
+    This document contains no slides.
+
+One of the most effective tools in adult learning is reflection.
+By writing coherent summaries of some lesson learned, we cement that learning and deepen our understanding of a subject.
+
+Tasks
+=====
+
+Each day, write an entry in your learning journal about some lesson you learned that day.
+Your entry may contain code examples, links to additional resources you found, or anything else you feel is relevant.
+Mostly though, I want to hear about you and your journey through this class day-to-day.
+
+I have found a correlation between students who write consistently in their journals, and students who succeed in class.
+Take this assignment seriously.
+Cumulatively, they also happen to be worth as much as 5 full coding assignments.
+
+Early in class, you will make these entries in the `class learning journal <http://sea-python-401.herokuapp.com/>`_.
+Once you have created and deployed your own learning journal, you will put your entries there.
+
+Submitting Your Work
+====================
+
+Please paste a link to this entry online where it can be read.
+
+This assignment is due before 9 am on the day after it is assigned.
+Late entries will not be accepted.

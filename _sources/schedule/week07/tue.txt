@@ -1,0 +1,70 @@
+.. slideconf::
+    :autoslides: False
+
+*******
+Tuesday
+*******
+
+.. slide:: Course Presentations
+    :level: 1
+
+    This document contains no slides.
+
+Objectives
+==========
+
+* Learn about the services offered by Amazon Web Services (AWS)
+* Learn to provision a web server in AWS
+* Learn how to deploy a simple WSGI app to AWS.
+* Be comfortable working with Django forms and form handling
+
+Readings
+========
+
+Django Forms
+------------
+
+.. include:: /readings/django_readings.rst
+    :start-line: 59
+    :end-line: 72
+
+AWS and Deployment
+------------------
+
+* (Read *ONLY!* Don't *do* this yet) `Deploying a Django App to Amazon AWS <https://ashokfernandez.wordpress.com/2014/03/11/deploying-a-django-app-to-amazon-aws-with-nginx-gunicorn-git/>`_
+* (Read *ONLY!* Do not *do* yet!) `Creating a Database Server <http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html>`_
+* Be aware of the `security controls for Amazon RDS <http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.html>`_
+* In particular, learn about `RDS Security Groups <http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.RDSSecurityGroups.html>`_ and controlling access between RDS and EC2
+* Screencasts about Django Class-Based Views: `Part 1 <https://godjango.com/15-class-based-views-part-1-templateview-and-redirectview/>`_, `Part 2 <https://godjango.com/16-class-based-views-part-2-listview-and-formview/>`_, and `Part 3 <https://godjango.com/17-class-based-views-part-3-detailview-and-template_name-shortcut/>`_
+
+Review
+======
+
+* Collisions in Hash Tables
+* Self-balancing BST
+
+Concepts
+========
+
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/django_cbv
+    /lectures/django_forms
+    /lectures/simple_wsgi_deployment
+
+Demo
+====
+
+Interacting with AWS through the web, an introduction to Amazon Web Services.
+
+
+Assignments
+===========
+
+* :doc:`/assignments/aws_0_deploy_wsgi_app`
+* :doc:`/assignments/django_5_adding`
+* :doc:`/assignments/bst_4_balancing`
+* :doc:`/assignments/blog_post_draft` (Due Friday)
+* :doc:`/assignments/daily_lj_entry`
+

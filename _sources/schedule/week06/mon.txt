@@ -1,0 +1,61 @@
+.. slideconf::
+    :autoslides: False
+
+******
+Monday
+******
+
+.. slide:: Course Presentations
+    :level: 1
+
+    This document contains no slides.
+
+Objectives
+==========
+
+* Understand how to implement a data model in Django.
+* Understand what a database migration is and how migrations control the relationship between the database and the app.
+* Learn about the Binary Search Tree and how it is structured.
+* Be able to reliably test a Django app.
+
+Readings
+========
+
+* Walk through how to add and insert nodes to a binary search tree at `VisuAlgo <http://visualgo.net/bst>`_
+* Code School's `Try Django Tutorial <http://campus.codeschool.com/courses/try-django/contents>`_
+* `Writing and Running Tests in Django <https://docs.djangoproject.com/en/dev/topics/testing/overview/>`_
+* `Testing in Django <https://docs.djangoproject.com/en/dev/topics/testing/>`_
+* `Django Testing Tools <https://docs.djangoproject.com/en/dev/topics/testing/tools/>`_
+* `Testing Scenarios for Django <http://agiliq.com/blog/2013/04/common-testing-scenarios-for-django-app/>`_
+* `Django Girls Tutorial <https://www.gitbook.com/book/djangogirls/djangogirls-tutorial/details>`_
+
+.. include:: /readings/django_readings.rst
+    :start-line: 17
+    :end-line: 31
+
+Review
+======
+
+Concepts
+========
+
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/django_models
+    /lectures/binary_search_tree1
+    /lectures/django_testing
+
+
+Demo
+====
+
+* Writing first tests with Django
+
+Assignments
+===========
+
+* :doc:`/assignments/bst_1`
+* :doc:`/assignments/django_1_profile_model`
+* :doc:`/assignments/blog_post_draft` (Due Friday of Week 7)
+* :doc:`/assignments/daily_lj_entry`

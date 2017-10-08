@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django Pagination &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="django-pagination">
+<h1>Django Pagination<a class="headerlink" href="#django-pagination" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-pagination">
+<h2>What is Pagination?<a class="headerlink" href="#what-is-pagination" title="Permalink to this headline">¶</a></h2>
+<p>Pagination offers the ability to spread all of your results across multiple pages.
+For example, consider a blog with 10,000 posts.
+If my home page lists all of my blog posts, it&#8217;ll show entirely too many to be seen by one viewer.
+So we split them into pages, showing 5 or 10 per page.</p>
+<p>Most frameworks contain some method for paginating query results.
+Django is no different.</p>
+</div>
+<div class="section" id="the-django-paginator">
+<h2>The Django Paginator<a class="headerlink" href="#the-django-paginator" title="Permalink to this headline">¶</a></h2>
+<p>The Django <code class="docutils literal"><span class="pre">Paginator</span></code> object is part of the Django core.
+In fact, it is imported from: <code class="docutils literal"><span class="pre">django.core.paginator</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.core.paginator</span> <span class="kn">import</span> <span class="n">Paginator</span>
+</pre></div>
+</div>
+<p>In order to use the <code class="docutils literal"><span class="pre">Paginator</span></code> object, you must pass as the first argument a <code class="docutils literal"><span class="pre">QuerySet</span></code> object.</p>
+<p>Let&#8217;s take for example the <code class="docutils literal"><span class="pre">PatronProfile</span></code> model from our Django Lender app.
+If we have more than one user, then we&#8217;ll have more than one profile to work with.
+If we were building our Django Lender into a full <a class="reference external" href="https://www.goodreads.com/">Goodreads</a> clone, then we&#8217;re going to have a lot of users to work with.
+As an admin, you may want to list all the current users for some reason.
+To get them all you&#8217;d write something like the following.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">patron_profile.models</span> <span class="kn">import</span> <span class="n">PatronProfile</span>
+
+<span class="n">all_profiles</span> <span class="o">=</span> <span class="n">PatronProfile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">all_profiles</span></code> now contains a <code class="docutils literal"><span class="pre">QuerySet</span></code> containing all of the available PatronProfile model instances.
+I can access these model instances in pages with one instance each using <code class="docutils literal"><span class="pre">Paginator</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">paginated</span> <span class="o">=</span> <span class="n">Paginator</span><span class="p">(</span><span class="n">all_profiles</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">profiles</span> <span class="o">=</span> <span class="n">paginated</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Pages are not zero-indexed</strong>.
+They follow human counting, starting at 1.</p>
+<p>Let&#8217;s inspect <code class="docutils literal"><span class="pre">profiles</span></code> a sec.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="nb">type</span><span class="p">(</span><span class="n">profiles</span><span class="p">)</span>
+<span class="gh">Out[1]: </span><span class="go">django.core.paginator.Page</span>
+</pre></div>
+</div>
+<p>Even though <code class="docutils literal"><span class="pre">profiles</span></code> holds one page of profiles (in this case, only one),
+it&#8217;s just a <code class="docutils literal"><span class="pre">Page</span></code> object, not a <code class="docutils literal"><span class="pre">PatronProfile</span></code> instance.</p>
+<p>To access the actual objects held within each page, we must use the <code class="docutils literal"><span class="pre">object_list</span></code> attribute.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [2]: </span><span class="n">profiles</span><span class="o">.</span><span class="n">object_list</span>
+<span class="gh">Out[2]: </span><span class="go">&lt;QuerySet [&lt;PatronProfile: Bob Bobberton&gt;]&gt;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">object_list</span></code> contains a QuerySet!
+What else does <code class="docutils literal"><span class="pre">profiles</span></code> contain?</p>
+<blockquote>
+<div><p>In [3]: dir(profiles)
+Out[3]:
+[ # a bunch of special methods</p>
+<blockquote>
+<div>&#8216;count&#8217;,
+&#8216;end_index&#8217;,
+&#8216;has_next&#8217;,
+&#8216;has_other_pages&#8217;,
+&#8216;has_previous&#8217;,
+&#8216;index&#8217;,
+&#8216;next_page_number&#8217;,
+&#8216;number&#8217;,
+&#8216;object_list&#8217;,
+&#8216;paginator&#8217;,
+&#8216;previous_page_number&#8217;,
+&#8216;start_index&#8217;]</div></blockquote>
+<p>In [4]: profiles.has_next()
+Out[4]: True</p>
+<p>In [5]: profiles.has_previous()
+Out[5]: True</p>
+</div></blockquote>
+<p>Experiment to your heart&#8217;s content.
+Let&#8217;s include this in some function-based views though.</p>
+</div>
+<div class="section" id="pagination-in-function-based-views">
+<h2>Pagination in Function-based Views<a class="headerlink" href="#pagination-in-function-based-views" title="Permalink to this headline">¶</a></h2>
+<p>There&#8217;s not much going on here that&#8217;s very unusual given what we&#8217;ve done already.
+We already know how to make a list view.
+The only things we do differently here are reduce the number of items we show
+at one time, and handle the paging itself.</p>
+<p>Let&#8217;s write ourselves a simple list view.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">patron_profile.models</span> <span class="kn">import</span> <span class="n">PatronProfile</span>
+
+<span class="k">def</span> <span class="nf">list_profiles</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;List all of the available user profiles, page by page.&quot;&quot;&quot;</span>
+
+    <span class="n">all_profiles</span> <span class="o">=</span> <span class="n">PatronProfile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;profile_list.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;profiles&quot;</span><span class="p">:</span> <span class="n">all_profiles</span><span class="p">})</span>
+</pre></div>
+</td></tr></table></div>
+<p>We want to paginate our user profiles.
+Let&#8217;s start by initializing a <code class="docutils literal"><span class="pre">Paginator</span></code> object showing 2 items per page.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="hll"><span class="kn">from</span> <span class="nn">django.core.paginator</span> <span class="kn">import</span> <span class="n">Paginator</span>
+</span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">patron_profile.models</span> <span class="kn">import</span> <span class="n">PatronProfile</span>
+
+<span class="k">def</span> <span class="nf">list_profiles</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;List all of the available user profiles, page by page.&quot;&quot;&quot;</span>
+
+    <span class="n">all_profiles</span> <span class="o">=</span> <span class="n">PatronProfile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="hll">    <span class="n">pages</span> <span class="o">=</span> <span class="n">Paginator</span><span class="p">(</span><span class="n">all_profiles</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class="hll">    <span class="n">profiles</span> <span class="o">=</span> <span class="n">pages</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;profile_list.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;profiles&quot;</span><span class="p">:</span> <span class="n">profiles</span><span class="p">})</span>
+</pre></div>
+</td></tr></table></div>
+<p>We start by default getting the first page of items.
+We then return <strong>only those items that exist in that page</strong>.
+Note: we don&#8217;t actually need to pass in the <code class="docutils literal"><span class="pre">object_list</span></code> attribute and actually it works out better for us if we don&#8217;t.</p>
+<p>We can have our simple template that just lists the profile names.</p>
+<div class="highlight-html"><div class="highlight"><pre>{% extends layout.html %}
+{% block content %}
+
+<span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+{% for profile in profiles %}
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{ profile.user.first_name }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+{% endfor %}
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+{% endblock %}
+</pre></div>
+</div>
+<p>Our rendered HTML will look like so:</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="c">&lt;!-- Stuff from the layout --&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Melissa<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>John<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- Stuff from the layout --&gt;</span>
+</pre></div>
+</div>
+<p>If we instead choose a different page, we get different results:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># Python</span>
+
+<span class="kn">from</span> <span class="nn">django.core.paginator</span> <span class="kn">import</span> <span class="n">Paginator</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">patron_profile.models</span> <span class="kn">import</span> <span class="n">PatronProfile</span>
+
+<span class="k">def</span> <span class="nf">list_profiles</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;List all of the available user profiles, page by page.&quot;&quot;&quot;</span>
+
+    <span class="n">all_profiles</span> <span class="o">=</span> <span class="n">PatronProfile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">pages</span> <span class="o">=</span> <span class="n">Paginator</span><span class="p">(</span><span class="n">all_profiles</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">profiles</span> <span class="o">=</span> <span class="n">pages</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;profile_list.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;profiles&quot;</span><span class="p">:</span> <span class="n">profiles</span><span class="p">})</span>
+</pre></div>
+</div>
+<div class="highlight-html"><div class="highlight"><pre><span class="c">&lt;!-- Stuff from the layout --&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Amy<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Kelly<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- Stuff from the layout --&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pagination-with-controls">
+<h2>Pagination with Controls<a class="headerlink" href="#pagination-with-controls" title="Permalink to this headline">¶</a></h2>
+<p>What fun is pagination if you can&#8217;t actually change the page?
+We won&#8217;t have to make a new route for this though, we can just use query
+parameters from the <code class="docutils literal"><span class="pre">GET</span></code> request itself.</p>
+<p>If, for example, the route to our profiles list is <code class="docutils literal"><span class="pre">/patrons</span></code>, then the
+URI for our paged <code class="docutils literal"><span class="pre">GET</span></code> request will look like <code class="docutils literal"><span class="pre">/patrons?page=2</span></code>.</p>
+<p>We can use that to empower our list view to handle pages.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.core.paginator</span> <span class="kn">import</span> <span class="n">Paginator</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">patron_profile.models</span> <span class="kn">import</span> <span class="n">PatronProfile</span>
+
+<span class="k">def</span> <span class="nf">list_profiles</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;List all of the available user profiles, page by page.&quot;&quot;&quot;</span>
+    <span class="n">all_profiles</span> <span class="o">=</span> <span class="n">PatronProfile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="hll">    <span class="n">this_page</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;page&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span>
+    <span class="n">pages</span> <span class="o">=</span> <span class="n">Paginator</span><span class="p">(</span><span class="n">all_profiles</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="hll">    <span class="n">profiles</span> <span class="o">=</span> <span class="n">pages</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">this_page</span><span class="p">)</span>
+</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;profile_list.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;profiles&quot;</span><span class="p">:</span> <span class="n">profiles</span><span class="p">})</span>
+</pre></div>
+</td></tr></table></div>
+<p>Now, whenever the <code class="docutils literal"><span class="pre">/patrons</span></code> route is hit with the <code class="docutils literal"><span class="pre">page</span></code> query parameter
+equal to some number, we return that page of results.</p>
+<p>We can alter our template to give us links to all of the available pages
+of user profiles.
+<code class="docutils literal"><span class="pre">profiles.paginator.page_range</span></code> gives us a range of numbers starting at 1 and ending at the last page we have.
+We can use that in a <code class="docutils literal"><span class="pre">for</span></code> loop to print out all our available pages.</p>
+<div class="highlight-html"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre>{% extends layout.html %}
+{% block content %}
+
+<span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+{% for profile in profiles %}
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{ profile.user.first_name }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+{% endfor %}
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+<span class="hll"><span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+</span><span class="hll">    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span class="hll">    {% for page_num in profiles.paginator.page_range %}
+</span><span class="hll">        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;?page={{ page_num }}&quot;</span><span class="p">&gt;</span>Page {{ page_num }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span class="hll">    {% endfor %}
+</span><span class="hll">    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span class="hll"><span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+</span>
+{% endblock %}
+</pre></div>
+</td></tr></table></div>
+<p>Now clicking on any one of those links will send us to that page of items.</p>
+<p>This is great to start, but we must handle some edge-cases.
+What should happen if a value is provided that is negative, or outside of the range of pages?
+What should happen if a value is provided that isn&#8217;t even a number?</p>
+<div class="section" id="handling-the-edge-cases">
+<h3>Handling the Edge Cases<a class="headerlink" href="#handling-the-edge-cases" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">django.core.paginator</span></code> comes equipped with two useful custom exceptions:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">PageNotAnInteger</span></code>: when the value provided to &#8220;page()&#8221; isn&#8217;t an integer</li>
+<li><code class="docutils literal"><span class="pre">EmptyPage</span></code>: when the requested page has no results</li>
+</ul>
+<p>They both inherit from paginator&#8217;s <code class="docutils literal"><span class="pre">InvalidPage</span></code> exception class.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.core.paginator</span> <span class="kn">import</span> <span class="n">EmptyPage</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">EmptyPage</span><span class="o">.</span><span class="n">__mro__</span>
+<span class="go">(django.core.paginator.EmptyPage,</span>
+<span class="go"> django.core.paginator.InvalidPage,</span>
+<span class="go"> Exception,</span>
+<span class="go"> BaseException,</span>
+<span class="go"> object)</span>
+</pre></div>
+</div>
+<p>With these in hand, we can add a <code class="docutils literal"><span class="pre">try-except</span></code> block to handle these edge-cases
+and return something we think should be relevant to the user.</p>
+<p>Let&#8217;s say that in the event we&#8217;re given completely-invalid input, we return the first page.
+If we get a page number outside of our actual page range, we return the last page.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># other imports</span>
+<span class="kn">from</span> <span class="nn">django.core.paginator</span> <span class="kn">import</span> <span class="n">Paginator</span><span class="p">,</span> <span class="n">EmptyPage</span><span class="p">,</span> <span class="n">PageNotAnInteger</span>
+
+<span class="k">def</span> <span class="nf">list_profiles</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;List all of the available user profiles, page by page.&quot;&quot;&quot;</span>
+    <span class="n">all_profiles</span> <span class="o">=</span> <span class="n">PatronProfile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">this_page</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;page&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">pages</span> <span class="o">=</span> <span class="n">Paginator</span><span class="p">(</span><span class="n">all_profiles</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">profiles</span> <span class="o">=</span> <span class="n">pages</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">this_page</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">PageNotAnInteger</span><span class="p">:</span>
+        <span class="n">profiles</span> <span class="o">=</span> <span class="n">pages</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">EmptyPage</span><span class="p">:</span>
+        <span class="n">profiles</span> <span class="o">=</span> <span class="n">pages</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">pages</span><span class="o">.</span><span class="n">num_pages</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;profile_list.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;profiles&quot;</span><span class="p">:</span> <span class="n">profiles</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pagination-with-class-based-views">
+<h2>Pagination with Class-based Views<a class="headerlink" href="#pagination-with-class-based-views" title="Permalink to this headline">¶</a></h2>
+<p>Pagination is quite simpler with class-based views.
+The bulk of the work gets pushed toward the template instead of the view itself.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.views.generic.list</span> <span class="kn">import</span> <span class="n">ListView</span>
+<span class="kn">from</span> <span class="nn">patron_profile.models</span> <span class="kn">import</span> <span class="n">PatronProfile</span>
+
+<span class="k">class</span> <span class="nc">ProfileListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class-based view for my list of user profiles.&quot;&quot;&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">PatronProfile</span>
+<span class="hll">    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;profile_list.html&quot;</span>
+</span><span class="hll">    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s2">&quot;profiles&quot;</span>
+</span>    <span class="n">paginate_by</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">PatronProfile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>My template will now look a little different.</p>
+<div class="highlight-html"><div class="highlight"><pre>{% extends layout.html %}
+{% block content %}
+
+<span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+{% for profile in profiles %}
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{ profile.user.first_name }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+{% endfor %}
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    {% for page_num in paginator.page_range %}
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;?page={{ page_num }}&quot;</span><span class="p">&gt;</span>Page {{ page_num }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    {% endfor %}
+    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+
+{% endblock %}
+</pre></div>
+</div>
+</div>
+<div class="section" id="wrap-up">
+<h2>Wrap Up<a class="headerlink" href="#wrap-up" title="Permalink to this headline">¶</a></h2>
+<p>Pagination is a great way to use Python to control the user experience.
+No one wants to be inundated with every last object you have in your database.
+Let the user choose the experience that they want with the controls that you set out.</p>
+<p>We&#8217;ve seen a way for adding pagination to our Django app.
+Now let&#8217;s implement pages for images, albums, and images belonging to albums.
+Don&#8217;t forget to test that the Pagination works, as well as the edge cases!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django Pagination</a><ul>
+<li><a class="reference internal" href="#what-is-pagination">What is Pagination?</a></li>
+<li><a class="reference internal" href="#the-django-paginator">The Django Paginator</a></li>
+<li><a class="reference internal" href="#pagination-in-function-based-views">Pagination in Function-based Views</a></li>
+<li><a class="reference internal" href="#pagination-with-controls">Pagination with Controls</a><ul>
+<li><a class="reference internal" href="#handling-the-edge-cases">Handling the Edge Cases</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pagination-with-class-based-views">Pagination with Class-based Views</a></li>
+<li><a class="reference internal" href="#wrap-up">Wrap Up</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

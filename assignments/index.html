@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>401 Python: Homework Assignments &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="python-homework-assignments">
+<h1>401 Python: Homework Assignments<a class="headerlink" href="#python-homework-assignments" title="Permalink to this headline">¶</a></h1>
+<span class="admonition-code-samples"></span><p>A comprehensive list of assignments.
+Not in any particular order.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithmic_analysis.html">Algorithm Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws_0_deploy_wsgi_app.html">Deploy a WSGI app to AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws_1_deploy_imager.html">Deploy the Imager app to AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws_2_ansible_imager.html">Automate Deploying Imager with Ansible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws_account.html">Get an Amazon AWS Account</a></li>
+<li class="toctree-l1"><a class="reference internal" href="binary_heap.html">Implement a Binary Heap in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blog_post_draft.html">Technical Blog Post: Draft Your Post</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blog_post_ideas.html">Technical Blog Post: Generate Ideas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blog_post_outline.html">Technical Blog Post: Outline a Post</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blog_post_publish.html">Technical Blog Post: Publish Your Post</a></li>
+<li class="toctree-l1"><a class="reference internal" href="break_these_funcs.html">Break This Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bst_1.html">Implement a Binary Search Tree in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bst_2_traversal.html">Binary Search Tree: Traversals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bst_3_delete.html">Binary Search Tree: Deleting Nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bst_4_balancing.html">Binary Search Tree: Self-Balancing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clean_code.html">Intro &amp; Chapter 1 of Clean Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Community Involvement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connect_online.html">Connect To Us Online</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daily_lj_entry.html">Today I learned...</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day_of_code.html">Day of Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deck_out_your_editor.html">Deck Out Your Editor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deliberate_programming.html">Read Upgrade your Technical Skills With Deliberate Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deque.html">Implement a Deque in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_0_tutorial.html">Walk Through the Django Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_10_taggit.html">Django: Implement Django Taggit for Imager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_11_api.html">Django: Implement a REST API for Imager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_12_pagination.html">Django: Add Pagination for Imager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_13_social_auth.html">Django: Add Social Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_1_profile_model.html">Django Imager: Create the Imager Profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_2_registration.html">Django Imager: Registration, Login and Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_3_photo_models.html">Django Imager: Create Photo and Album Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_4_data_views.html">Django Imager: Data Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_5_adding.html">Django Imager: Create Views to Add Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_6_editing.html">Django Imager: Create Views to Edit Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_7_complete_frontend.html">Django Imager: Complete Front-End</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_8_drf_tutorial_a.html">Django: Django REST Framework Tutorial, Parts 1-3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_9_drf_tutorial_b.html">Django: Django REST Framework Tutorial, Parts 4-6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doubly_linked_list.html">Implement a Doubly-Linked List in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fabric_1_boto.html">Managing AWS: Use Boto to Create And Destroy Instances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fabric_2.html">Manage AWS: Automation with Fabric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fabric_3_wsgi.html">Manage AWS: Deploying a WSGI App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_dns_account.html">Get an Account with a DNS Provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_workflow.html">Git Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="github_profile.html">Complete Your GitHub Profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph_1.html">Implement a Graph in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph_2_traversal.html">Implement Graph Traversals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph_3_weighted.html">Graph: Implement Weighted Edges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph_4_shortest_path.html">Graph: Find the Shortest Path</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hacker_news_account.html">Sign Up for a Hacker News Account</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hash_table.html">Implement a Hash Table in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heroku_account.html">Acquire a Heroku Account</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http_server_0_echo.html">Socket Echo Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http_server_1.html">Socket HTTP Server, Step 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http_server_2.html">Socket HTTP Server, Step 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http_server_3.html">Socket HTTP Server, Step 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http_server_final.html">Socket HTTP Server, Final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="imperfect_data.html">Working with Imperfect Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_jinja2.html">Introduction to Jinja2 Templating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_sql.html">Introduction to SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iterate_win.html">Read Iterate Towards Your Win Condition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kata_autocomplete.html">Python Practice: Autocomplete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kata_flight_paths.html">Python Practice: Distance Between Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kata_forbes_billionaires.html">Python Practice: The Forbes Top 40</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kata_sort_cards.html">Python Practice: Sort a Deck of Cards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kata_spell_check.html">Python Practice: Spell Check a Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kata_string_pyramid.html">Python Practice: String Pyramid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kata_sum_of_nth_term_series.html">Python Practice: Sum of the First Nth terms of a Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_journal_0_mockup.html">Learning Journal Mockups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_journal_1.html">Python Learning Journal: Step 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_journal_2.html">Python Learning Journal: Step 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_journal_3.html">Python Learning Journal: Step 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_journal_4.html">Python Learning Journal: Step 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_journal_final.html">Learning Journal, Final Submission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_journal_mockup.html">Python Learning Journal: HTML Mockup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_journal_upgrade_ajax.html">Learning Journal Enhancement: AJAX &amp; Twitter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_journal_upgrade_editing.html">Learning Journal Enhancement: Add Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lightning_talks.html">Sign up for Lightning Talks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linked_list.html">Implement a Singly-Linked List in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linkedin_profile.html">Update your LinkedIn Profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mailroom_madness_1_planning.html">Mail Room Madness: Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mailroom_madness_2_building.html">Mail Room Madness: Building</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mashup_1_scraper.html">Mashup Part 1: Scraping Data from King County</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mashup_2_rest.html">Mashup Part 2: Extending Your Mashup With Geolocation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="math_series.html">Mathematical Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml_1_visualizing_data.html">Analyze a Data Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml_2_decision_tree.html">Implement the Decision Tree Classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml_3_k_nearest_neighbors.html">Implement the K-Nearest Neighbors Classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml_4_k_means.html">Implement the K-Means Classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prework_1_python.html">Sharpen your Python Skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prework_2_html_css.html">Learn the Basics of HTML &amp; CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prework_3_javascript.html">Learn the Basics of JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prework_command_line.html">Prework - The Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prework_mindset.html">Prework - Mindset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prework_python_html.html">Prework - Python, HTML, CSS, JS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="priority_queue.html">Implement a Priority Queue in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_01_pitch.html">Group Project: Pitch Ideas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_02_idea.html">Group Project: Form Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_03_repo.html">Group Project: Create a Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_04_readme.html">Group Project: Add a README</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_05_wireframe_begin.html">Group Project: Begin Wireframes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_06_wireframe_end.html">Group Project: Complete Wireframes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_07_stories_begin.html">Group Project: Begin User Stories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_08_stories_continue.html">Group Project: Estimate User Stories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_09_stories_end.html">Group Project: Prioritize User Stories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_10_iteration_planning.html">Group Project: Iteration Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_11_daily_standup.html">Group Project: Daily Standup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_12_presentations.html">Group Project: Final Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_13_retrospective.html">Group Project: Personal Retrospective</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proper_parenthetics.html">Interview Challenge: Proper Parenthetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocols.html">Web Protocols Readings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyramid_lj_1.html">Python Learning Journal: Step 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyramid_lj_2.html">Python Learning Journal: Step 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyramid_lj_3.html">Python Learning Journal: Step 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyramid_lj_4.html">Python Learning Journal: Step 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyramid_lj_5.html">Python Learning Journal: Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyramid_lj_6.html">Python Learning Journal: CSRF Protection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyramid_lj_7.html">Python Learning Journal: AJAX &amp; Twitter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyramid_lj_8.html">Python Learning Journal: Prior Entries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="queue.html">Implement a Queue in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="read_course_intro.html">Read the Python 401 Outline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reddit_account.html">Sign Up for a Reddit Account</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample-vulnerability-report.html">Vulnerability Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="socket_exercise.html">Socket Communications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="socket_readings.html">TCP/IP and Sockets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_1_insertion.html">Implement Insertion Sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_2_mergesort.html">Implement Merge Sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_3_quicksort.html">Implement Quick Sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_4_radix.html">Implement Radix Sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stack.html">Implement a Stack in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trie_autocomplete.html">Trie: AutoComplete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trie_implementation.html">Implement a Trie in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trie_traversal.html">Trie: Traversals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trigrams.html">Kata Fourteen: Tom Swift Under Milk Wood</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twitter_account.html">Create a Twitter Account</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update_canvas.html">Update Your Canvas Profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web_app_security_assignment1.html">Break the Site/Fix the Site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web_app_security_assignment2.html">Break the Site/Fix Your Site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whiteboard.html">Sign Up for the Whiteboard Final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wsgi_app.html">Build a Simple WSGI App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xmlrpc.html">Producing and Consuming XML-RPC in Python</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,695 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Deploying Pyramid to Heroku &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="deploying-pyramid-to-heroku">
+<h1>Deploying Pyramid to Heroku<a class="headerlink" href="#deploying-pyramid-to-heroku" title="Permalink to this headline">¶</a></h1>
+<p>In which we learn how to make a simple Pyramid application run in the Heroku environment.</p>
+<div class="section" id="heroku-s-environment">
+<h2>Heroku&#8217;s Environment<a class="headerlink" href="#heroku-s-environment" title="Permalink to this headline">¶</a></h2>
+<p>Heroku is a great system for getting web applicatons up and running fast.
+But to work with it, you have to make sure that your application meets with Heroku&#8217;s expectations.
+Let&#8217;s take a moment to walk through setting up a simple Pyramid application to run on Heroku.</p>
+<div class="section" id="assumptions">
+<h3>Assumptions<a class="headerlink" href="#assumptions" title="Permalink to this headline">¶</a></h3>
+<p>This quick tutorial assumes that you have:</p>
+<ul class="simple">
+<li>Created an account with Heroku</li>
+<li>Installed the <a class="reference external" href="https://toolbelt.heroku.com/">Heroku Toolbelt</a></li>
+<li>Authenticated the toolbelt via <cite>heroku login</cite> or similar</li>
+<li>Have created a Pyramid application that you want deployed</li>
+</ul>
+</div>
+</div>
+<div class="section" id="heroku-build-needs">
+<h2>Heroku Build Needs<a class="headerlink" href="#heroku-build-needs" title="Permalink to this headline">¶</a></h2>
+<p>The application deployment story for Heroku is tightly coupled to Git.
+It is <strong>not</strong> tightly coupled to GitHub.
+We&#8217;ll use GitHub here because it is familiar.
+But the same process will work for GitLab, BitBucket, or whatever.</p>
+<p>Start by navigating to your repository root.
+The same place where your <code class="docutils literal"><span class="pre">.git</span></code> directory is located.
+As an example I&#8217;ll use the <code class="docutils literal"><span class="pre">expense_tracker</span></code> app we&#8217;ve been constructing in class.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ <span class="nb">pwd</span>
+/absolute/path/to/expense-tracker
+<span class="o">(</span>ENV<span class="o">)</span>$
+</pre></div>
+</div>
+<p>Now that we are at the root of our repository, we are ready to integrate Heroku.</p>
+<div class="section" id="tell-heroku-this-is-python">
+<h3>Tell Heroku This is Python<a class="headerlink" href="#tell-heroku-this-is-python" title="Permalink to this headline">¶</a></h3>
+<p>Heroku uses a series of heuristics to determine what type of application you have.
+The primary heuristic for a Python app is the presence of a <code class="docutils literal"><span class="pre">requirements.txt</span></code> (note: <strong>NOT</strong> <code class="docutils literal"><span class="pre">requirements.pip</span></code>) file <strong>at the same level as your ``.git`` directory*.
+It **MUST</strong> be there or else Heroku will throw a fit, guaranteed.</p>
+<p>Let&#8217;s create that file and add it to our repository:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ pip freeze &gt; requirements.txt
+</pre></div>
+</div>
+<p>The file that was created will contain a reference to the <code class="docutils literal"><span class="pre">expense-tracker</span></code>.
+However, you don&#8217;t actually want to install this with pip when on heroku.
+So edit the <code class="docutils literal"><span class="pre">requirements.txt</span></code> file to remove these lines:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1">## !! Could not determine repository location</span>
+<span class="n">expense</span><span class="o">-</span><span class="n">tracker</span><span class="o">==</span><span class="mf">0.0</span>
+</pre></div>
+</div>
+<p>Add that file to your git repository and commit:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ git add requirements.txt
+<span class="o">(</span>ENV<span class="o">)</span>$ git commit -m <span class="s2">&quot;adds requirements file so Heroku knows it is a Python app&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tell-heroku-you-want-python-3-6">
+<h3>Tell Heroku You Want Python 3.6<a class="headerlink" href="#tell-heroku-you-want-python-3-6" title="Permalink to this headline">¶</a></h3>
+<p>As noted in <a class="reference external" href="https://devcenter.heroku.com/articles/python-runtimes">this handy document on Heroku&#8217;s Python runtimes</a>, Heroku supports Python 2.7.13 and 3.6.1, but defaults to Python 2.</p>
+<p>But we want all of the Python 3.6 goodness we can handle!</p>
+<p>Create a document at your repository root named <code class="docutils literal"><span class="pre">runtime.txt</span></code>.
+Within it, write this one line: <code class="docutils literal"><span class="pre">python-3.6.1</span></code>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ <span class="nb">echo</span> <span class="s2">&quot;python-3.6.1&quot;</span> &gt; runtime.txt
+</pre></div>
+</div>
+<p>Add this file to your git repository and commit.
+Now your deployment will be in glorious Python 3.6.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ git add runtime.txt
+<span class="o">(</span>ENV<span class="o">)</span>$ git commit -m <span class="s2">&quot;adds runtime file so Heroku runs in Python 3.6&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tell-heroku-how-to-run-your-app">
+<h3>Tell Heroku How to Run Your App<a class="headerlink" href="#tell-heroku-how-to-run-your-app" title="Permalink to this headline">¶</a></h3>
+<p>Heroku requires a plain text file called <code class="docutils literal"><span class="pre">Procfile</span></code> (spelling and capitalization count).
+This file tells Heroku what to do to run your application.
+Add this file to your repository, again at the repository&#8217;s root.
+It should contain the text <code class="docutils literal"><span class="pre">web:</span> <span class="pre">./run</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ <span class="nb">echo</span> <span class="s2">&quot;web: ./run&quot;</span> &gt; Procfile
+<span class="o">(</span>ENV<span class="o">)</span>$ git add Procfile
+<span class="o">(</span>ENV<span class="o">)</span>$ git commit -m <span class="s2">&quot;Tells Heroku how to run my app&quot;</span>
+</pre></div>
+</div>
+<p>Because we wrote that line in <code class="docutils literal"><span class="pre">Procfile</span></code>, Heroku is going to look for an executable script by the name <code class="docutils literal"><span class="pre">run</span></code> in our application&#8217;s root directory.
+We need to make that file.
+We&#8217;d like it to install our application and then start up a server to serve it.</p>
+<p>Create the file <code class="docutils literal"><span class="pre">run</span></code> in the repository root.
+Then type the following text into it:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="ch">#!/bin/bash</span>
+<span class="nb">set</span> -e
+<span class="nb">cd</span> expense_tracker
+python setup.py develop
+python runapp.py
+</pre></div>
+</div>
+<p>This script tells the Heroku server to use the <code class="docutils literal"><span class="pre">bash</span></code> shell (<code class="docutils literal"><span class="pre">#!/bin/bash</span></code>).
+It says that if any part of the script returns an error, it should exit the script (<code class="docutils literal"><span class="pre">set</span> <span class="pre">-e</span></code>).
+It then changes directory to the project root.
+Following that, Heroku installs our application in develop mode (equivalent to running <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code> when in the project root).
+Finally, it executes a Python module called <code class="docutils literal"><span class="pre">runapp.py</span></code>, which we have to create.</p>
+<p>The <code class="docutils literal"><span class="pre">run</span></code> file needs to be executable, so that Heroku can run it.
+We can use the <code class="docutils literal"><span class="pre">chmod</span></code> shell command to fix that:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ chmod u+x run
+</pre></div>
+</div>
+<p>We&#8217;ve now made the file executable (that&#8217;s what the <code class="docutils literal"><span class="pre">+x</span></code> means).
+Add the file to your repository and commit it:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ git add run
+<span class="o">(</span>ENV<span class="o">)</span>$ git commit -m <span class="s2">&quot;adds a shell script to start my app&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-the-runapp-py-module">
+<h3>Create the <code class="docutils literal"><span class="pre">runapp.py</span></code> module<a class="headerlink" href="#create-the-runapp-py-module" title="Permalink to this headline">¶</a></h3>
+<p>Everything that we&#8217;ve written thus far is just so that Heroku can recognize our application and start up a worker to serve it.
+We still need to actually write the Python module that will run our application.</p>
+<p>Create a file <code class="docutils literal"><span class="pre">runapp.py</span></code> in the <strong>project root</strong> and type the following Python code into it:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">paste.deploy</span> <span class="kn">import</span> <span class="n">loadapp</span>
+<span class="kn">from</span> <span class="nn">waitress</span> <span class="kn">import</span> <span class="n">serve</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PORT&quot;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">loadapp</span><span class="p">(</span><span class="s1">&#39;config:production.ini&#39;</span><span class="p">,</span> <span class="n">relative_to</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+
+    <span class="n">serve</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>In line 6, we use an <code class="docutils literal"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">main</span></code> block to make this module a Python script that can run from the command line.
+The code in this block will only be executed when the script is run.</p>
+<p>In line 7, we read the &#8220;PORT&#8221; variable from the operating system environment.
+Heroku uses environmental variables to pass information to applications.
+This allows you to separate configuration from code and is a good pattern.
+Notice that we default to port 5000 if no &#8216;PORT&#8217; has been set in the environment.</p>
+<p>In line 8, we create an application, using the <code class="docutils literal"><span class="pre">production.ini</span></code> file that is located adjacent to this Python module.</p>
+<p>Finally, in line 10, we serve our application, setting it up to listen on any available IP address.</p>
+<p>Add this file to our git repository and commit your changes:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ git add runapp.py
+<span class="o">(</span>ENV<span class="o">)</span>$ git commit -m <span class="s2">&quot;adds a python script to run our application&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="set-up-heroku-and-deploy">
+<h2>Set Up Heroku and Deploy<a class="headerlink" href="#set-up-heroku-and-deploy" title="Permalink to this headline">¶</a></h2>
+<p>Okay, with that, we&#8217;ve got all we need to get our app running on Heroku.
+Next, we&#8217;ll use the Heroku toolbelt to create a new app:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ $ heroku create
+Creating app... <span class="k">done</span>, ⬢ safe-scrubland-24595
+https://safe-scrubland-24595.herokuapp.com/ <span class="p">|</span> https://git.heroku.com/safe-scrubland-24595.git
+</pre></div>
+</div>
+<p>Finally, we push our app to heroku:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ git push heroku master
+...
+remote: Verifying deploy... <span class="k">done</span>.
+</pre></div>
+</div>
+<p>And once that is finished, you can view your app in a browser:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ heroku open
+</pre></div>
+</div>
+<p>If anything breaks during or after deployment, check the logs.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ heroku logs
+</pre></div>
+</div>
+<p>If you&#8217;re working on a branch of your repository and don&#8217;t want to merge the changes back to <code class="docutils literal"><span class="pre">master</span></code> yet before deploying those changes to Heroku, you can push that branch instead of <code class="docutils literal"><span class="pre">master</span></code>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ git push heroku &lt;branchname&gt;:master
+</pre></div>
+</div>
+</div>
+<div class="section" id="cleaning-up-the-edges">
+<h2>Cleaning Up the Edges<a class="headerlink" href="#cleaning-up-the-edges" title="Permalink to this headline">¶</a></h2>
+<p>There&#8217;s one last problem here.
+Heroku defaults to serving our application over <code class="docutils literal"><span class="pre">https</span></code>.
+This is desireable.</p>
+<p>But our Pyramid application has no idea that it is being served securely.
+When it generates the URLs for CSS files, it uses <code class="docutils literal"><span class="pre">http</span></code>.
+Our browsers will not appreciate this.</p>
+<p>We can fix it using configuration.</p>
+<p>Open the file <code class="docutils literal"><span class="pre">production.ini</span></code> from your application root directory in your text editor.
+First, find the first section header at the top that contains this <code class="docutils literal"><span class="pre">[app:main]</span></code>.
+Change that to read <code class="docutils literal"><span class="pre">[app:expense_tracker]</span></code></p>
+<p>Next, find the section of the file that looks like this:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="c1">###</span>
+<span class="c1"># wsgi server configuration</span>
+<span class="c1">###</span>
+
+<span class="k">[server:main]</span>
+<span class="na">use</span> <span class="o">=</span> <span class="s">egg:waitress#main</span>
+<span class="na">host</span> <span class="o">=</span> <span class="s">0.0.0.0</span>
+<span class="na">port</span> <span class="o">=</span> <span class="s">6543</span>
+</pre></div>
+</div>
+<p><strong>Before</strong> this section, add the following configuration:</p>
+<div class="highlight-ini"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">[filter:paste_prefix]</span>
+<span class="na">use</span> <span class="o">=</span> <span class="s">egg:PasteDeploy#prefix</span>
+
+<span class="k">[pipeline:main]</span>
+<span class="na">pipeline</span> <span class="o">=</span><span class="s"></span>
+<span class="s">    paste_prefix</span>
+<span class="s">    expense_tracker</span>
+</pre></div>
+</td></tr></table></div>
+<p>Lines 1-2 create a wsgi middleware filter that will detect the <code class="docutils literal"><span class="pre">https</span></code> scheme and make that information available to our Pyramid app.</p>
+<p>Lines 4-7 set up a wsgi pipeline which puts this filter before our new app (remember, we changed the app name above to <code class="docutils literal"><span class="pre">expense_tracker</span></code>).</p>
+<p>Save these changes, add them to the stage, and commit them to your repository.
+Then you can re-deploy your application using <code class="docutils literal"><span class="pre">git</span> <span class="pre">push</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ git add production.ini
+<span class="o">(</span>ENV<span class="o">)</span>$ git commit -m <span class="s2">&quot;enables pyramid to properly render https urls for static resources&quot;</span>
+<span class="o">(</span>ENV<span class="o">)</span>$ git push heroku master
+</pre></div>
+</div>
+<p>And that finishes us up.
+We now have a small, functional Pyramid application running on Heroku, serving resources over https.
+Later, you&#8217;ll repeat this process with your own learning journal application</p>
+</div>
+<div class="section" id="only-once-you-start-using-postgres">
+<h2>Only Once You Start Using Postgres<a class="headerlink" href="#only-once-you-start-using-postgres" title="Permalink to this headline">¶</a></h2>
+<p>Congratulations, you&#8217;ve got a database running locally!
+Isn&#8217;t data persistence awesome?
+However, all of your data is <strong>only</strong> being persisted locally, which does nothing for the website you have on Heroku.
+When it&#8217;s deployed using <code class="docutils literal"><span class="pre">production.ini</span></code>, it&#8217;ll be pointing at the wrong database.</p>
+<p>We could modify <code class="docutils literal"><span class="pre">production.ini</span></code> to set up a <code class="docutils literal"><span class="pre">sqlalchemy.url</span></code> for a Postgres database on our production server.
+However, this only works on a static server whose location we know.
+Heroku uses its own server to host its Postgres database, whose location we do not know.
+Further, they may copy the database and move it elsewhere without our knowledge.
+We want our data to persist no matter where it goes.</p>
+<p>What we need is an <a class="reference external" href="http://www.tutorialspoint.com/unix/unix-environment.htm">Environment Variable</a>.
+This is something that will belong to whatever environment we launch our site in.
+When you use the <a class="reference external" href="https://devcenter.heroku.com/articles/heroku-postgresql#create-a-new-database">postgres add-on in Heroku</a>,
+an environment variable becomes available to you called <code class="docutils literal"><span class="pre">DATABASE_URL</span></code>.
+<code class="docutils literal"><span class="pre">DATABASE_URL</span></code> holds the url for your Postgres database, and will be accessible
+no matter what Heroku does with it.</p>
+<p>We need to make our Pyramid app look for that variable no matter what machine it&#8217;s on and always point to the proper database.</p>
+<div class="section" id="making-and-seeing-environment-variables">
+<h3>Making and Seeing Environment Variables<a class="headerlink" href="#making-and-seeing-environment-variables" title="Permalink to this headline">¶</a></h3>
+<p>Environment variables live in your environment&#8217;s <code class="docutils literal"><span class="pre">bin/activate</span></code> file, as well
+as in your <code class="docutils literal"><span class="pre">.bashrc</span></code> and <code class="docutils literal"><span class="pre">.bash_profile</span></code> files.</p>
+<p>You&#8217;ve already seen a few.
+For example, your <code class="docutils literal"><span class="pre">PATH</span></code>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ <span class="nb">echo</span> $PATH
+/Users/Nick/Documents/codefellows/courses/code401_python/pyramid_lj/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Users/Nick/:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/usr/local/bin:/Users/Nick/bin:/Applications/MAMP/Library/bin/:/Applications/mongodb/bin/:/Applications/Postgres.app/Contents/Versions/latest/bin
+</pre></div>
+</div>
+<p>Your <code class="docutils literal"><span class="pre">PATH</span></code> variable holds all the places that your computer will look for
+console commands and Python packages.
+You can inspect it and any other environment variable using <code class="docutils literal"><span class="pre">echo</span></code> in the console.</p>
+<p>Every environment variable gets prefixed by <code class="docutils literal"><span class="pre">$</span></code> when used in the shell.
+To see what&#8217;s currently available, type <code class="docutils literal"><span class="pre">ENV</span></code>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ ENV
+<span class="nv">TERM_PROGRAM</span><span class="o">=</span>Apple_Terminal
+<span class="nv">TERM</span><span class="o">=</span>xterm-256color
+<span class="nv">SHELL</span><span class="o">=</span>/bin/bash
+...
+... a bunch of variables and their values
+</pre></div>
+</div>
+<p>You can create a new environment variable using the <code class="docutils literal"><span class="pre">export</span></code> command.
+You define that variable with some name and attach it to some value, like a
+string.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ <span class="nb">export</span> <span class="nv">FOO</span><span class="o">=</span><span class="s2">&quot;BAR&quot;</span>
+<span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ <span class="nb">echo</span> <span class="nv">$F</span>OO
+BAR
+</pre></div>
+</div>
+<p>Defining an environment variable in this way will not persist that variable
+across different terminal instances.
+To create a lasting variable, you have to add it to your <code class="docutils literal"><span class="pre">.bashrc</span></code>,
+<code class="docutils literal"><span class="pre">.bash_profile</span></code>, or the <code class="docutils literal"><span class="pre">activate</span></code> script in your virtual environment.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c1"># pretty much anywhere inside ENV/bin/activate</span>
+...
+<span class="nb">export</span> <span class="nv">FOO</span><span class="o">=</span><span class="s2">&quot;BAR&quot;</span>
+...
+
+<span class="c1"># back to the command line</span>
+<span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ deactivate
+
+bash-3.2$ <span class="nb">echo</span> <span class="nv">$F</span>OO
+
+bash-3.2$ <span class="nb">source</span> ENV/bin/activate
+<span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ <span class="nb">echo</span> <span class="nv">$F</span>OO
+BAR
+</pre></div>
+</div>
+<p>Note, if you add a variable to environment&#8217;s <code class="docutils literal"><span class="pre">activate</span></code> script, <strong>it&#8217;ll only be
+accessible in that environment.</strong>
+This is good.
+We want to be able to use this to isolate configuration for an app only to the environment in which the app lives.</p>
+</div>
+<div class="section" id="calling-environment-variables">
+<h3>Calling Environment Variables<a class="headerlink" href="#calling-environment-variables" title="Permalink to this headline">¶</a></h3>
+<p>It&#8217;s actually fairly simple to call environment variables into Python.
+<code class="docutils literal"><span class="pre">os.environ</span></code> returns a <code class="docutils literal"><span class="pre">dict</span></code>-like object whose keys are the currently-available variables.
+Pop open a <code class="docutils literal"><span class="pre">pshell</span></code> and investigate.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">In [2]: </span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="go">    print(key + &quot; = &quot; + value)</span>
+<span class="gp">   ...:</span>
+<span class="go">   # ... a bunch of other variables</span>
+<span class="go">   # ...</span>
+<span class="go">   FOO = BAR</span>
+<span class="go">   # ...</span>
+<span class="go">   # ... even more variables</span>
+
+<span class="gp">In [3]: </span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;FOO&quot;</span><span class="p">]</span>
+<span class="gh">Out[3]: </span><span class="go">&#39;BAR&#39;</span>
+</pre></div>
+</div>
+<p>If we defined our <code class="docutils literal"><span class="pre">DATABASE_URL</span></code> variable in <code class="docutils literal"><span class="pre">ENV/bin/activate</span></code>, then we could call that out too.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [4]: </span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;DATABASE_URL&quot;</span><span class="p">]</span>
+<span class="gh">Out[4]: </span><span class="go">&#39;postgres://Nick@localhost:5432/expense_tracker&#39;</span>
+</pre></div>
+</div>
+<p>Similar functionality can be obtained from the <code class="docutils literal"><span class="pre">os.getenv()</span></code> function.
+For this, you must know exactly the name of the variable you&#8217;re looking for.
+That variable will be returned as a string.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [5]: </span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DATABASE_URL&quot;</span><span class="p">)</span>
+<span class="gh">Out[5]: </span><span class="go">&#39;postgres://Nick@localhost:5432/expense_tracker&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="environment-variables-in-pyramid">
+<h3>Environment Variables in Pyramid<a class="headerlink" href="#environment-variables-in-pyramid" title="Permalink to this headline">¶</a></h3>
+<p>What we ultimately want to do is dynamically set the <code class="docutils literal"><span class="pre">sqlalchemy.url</span></code> to the value of our <code class="docutils literal"><span class="pre">DATABASE_URL</span></code> environment variable.</p>
+<p><code class="docutils literal"><span class="pre">expense_tracker/__init__.py</span></code> is where our <code class="docutils literal"><span class="pre">.ini</span></code> file&#8217;s configuration gets bound to our Pyramid app.
+Before the current settings get added to the <code class="docutils literal"><span class="pre">Configurator</span></code>, we can use os.environ to bring in our environment&#8217;s <code class="docutils literal"><span class="pre">DATABASE_URL</span></code>.
+<code class="docutils literal"><span class="pre">settings</span></code> is, after all, a dictionary like any other.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># __init__.py</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">pyramid.config</span> <span class="kn">import</span> <span class="n">Configurator</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">global_config</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; This function returns a Pyramid WSGI application.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;sqlalchemy.url&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;DATABASE_URL&quot;</span><span class="p">]</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Configurator</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;pyramid_jinja2&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;.models&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;.routes&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">scan</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">make_wsgi_app</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Because we should always try to keep code DRY (and prevent future confusion), remove the <code class="docutils literal"><span class="pre">sqlalchemy.url</span></code> keyword from <code class="docutils literal"><span class="pre">development.ini</span></code> and <code class="docutils literal"><span class="pre">production.ini</span></code>.</p>
+<p>If we invoke <code class="docutils literal"><span class="pre">pserve</span> <span class="pre">development.ini</span></code> and navigate to the site in the browser, everything should show up the same.</p>
+<p>We just have to add one more line of code to make deployment smooth.
+Recall that in order to view the data in your database you have to run that <code class="docutils literal"><span class="pre">initializedb</span></code> shell command.
+You need to do that on Heroku too.</p>
+<p>Why do it manually when you already have a script that&#8217;s automatically changing directories, installing your package, and running your app upon deployment?
+Let&#8217;s just add &#8220;initializing the database&#8221; to that stack of tasks.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c1"># in &quot;run&quot;</span>
+
+<span class="c1">#!/bin/bash</span>
+<span class="nb">set</span> -e
+<span class="nb">cd</span> expense_tracker
+python setup.py develop
+initializedb production.ini <span class="c1"># &lt;--- add this line</span>
+python runapp.py
+</pre></div>
+</div>
+<p>Now, when we re-deploy to Heroku, we&#8217;ll connect to whatever Postgres database they have running for our own site, and initialize our database, tables and all.</p>
+</div>
+<div class="section" id="a-quick-note-for-testing">
+<h3>A Quick Note for Testing<a class="headerlink" href="#a-quick-note-for-testing" title="Permalink to this headline">¶</a></h3>
+<p>Setting <code class="docutils literal"><span class="pre">DATABASE_URL</span></code> in the environment is great, and having <code class="docutils literal"><span class="pre">expense_tracker/__init__.py</span></code> dynamically pick it out for on-the-fly configuration is even better.
+It does produce a snag in our functional tests though.</p>
+<p>Recall that for our functional tests we created a <code class="docutils literal"><span class="pre">testapp</span></code> fixture.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">testapp</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">webtest</span> <span class="kn">import</span> <span class="n">TestApp</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker</span> <span class="kn">import</span> <span class="n">main</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">main</span><span class="p">({},</span> <span class="o">**</span><span class="p">{</span><span class="s2">&quot;sqlalchemy.url&quot;</span><span class="p">:</span> <span class="s2">&quot;postgres:///test_expenses&quot;</span><span class="p">})</span>
+    <span class="n">testapp</span> <span class="o">=</span> <span class="n">TestApp</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+    <span class="n">SessionFactory</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">registry</span><span class="p">[</span><span class="s2">&quot;dbsession_factory&quot;</span><span class="p">]</span>
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">SessionFactory</span><span class="p">()</span><span class="o">.</span><span class="n">bind</span>
+    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">():</span>
+        <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+    <span class="n">request</span><span class="o">.</span><span class="n">addfinalizer</span><span class="p">(</span><span class="n">tearDown</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">testapp</span>
+</pre></div>
+</div>
+<p>Notice that we import the <code class="docutils literal"><span class="pre">main</span></code> function from <code class="docutils literal"><span class="pre">expense_tracker</span></code>.
+That&#8217;s the same <code class="docutils literal"><span class="pre">main</span></code> function we just modified above.</p>
+<p>Since we made the modification, what the <code class="docutils literal"><span class="pre">main</span></code> function is saying now is &#8220;it doesn&#8217;t matter what is included in the application&#8217;s settings, I&#8217;m going to set <code class="docutils literal"><span class="pre">sqlalchemy.url</span></code> to be the value attached to <code class="docutils literal"><span class="pre">DATABASE_URL</span></code>.&#8221;
+This will mean that if you don&#8217;t fix your tests, they&#8217;ll be running against your <strong>development</strong> database instead of your <strong>test</strong> database.</p>
+<p>This is bad.</p>
+<p>We can fix this in one of two ways:</p>
+<ol class="arabic simple">
+<li>Keep the test fixture the same and remove <code class="docutils literal"><span class="pre">DATABASE_URL</span></code> from the local development environment</li>
+<li>Keep the local development environment the same and modify the test fixture</li>
+</ol>
+<p>Either way works.</p>
+<p>If you take the second option, the fix is straightforward.
+We want the testapp to set up configuration just like <code class="docutils literal"><span class="pre">expense_tracker/__init__.py</span></code> right?
+Then just make your own <code class="docutils literal"><span class="pre">main</span></code> function with all the same code, pointing the <code class="docutils literal"><span class="pre">sqlalchemy.url</span></code> directly to your test database.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">testapp</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">webtest</span> <span class="kn">import</span> <span class="n">TestApp</span>
+
+    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">global_config</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">Configurator</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;pyramid_jinja2&#39;</span><span class="p">)</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;expense_tracker.models&#39;</span><span class="p">)</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;expense_tracker.routes&#39;</span><span class="p">)</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">scan</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">make_wsgi_app</span><span class="p">()</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">main</span><span class="p">({},</span> <span class="o">**</span><span class="p">{</span><span class="s2">&quot;sqlalchemy.url&quot;</span><span class="p">:</span> <span class="s2">&quot;postgres:///test_expenses&quot;</span><span class="p">})</span>
+    <span class="n">testapp</span> <span class="o">=</span> <span class="n">TestApp</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+    <span class="n">SessionFactory</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">registry</span><span class="p">[</span><span class="s2">&quot;dbsession_factory&quot;</span><span class="p">]</span>
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">SessionFactory</span><span class="p">()</span><span class="o">.</span><span class="n">bind</span>
+    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">():</span>
+        <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+    <span class="n">request</span><span class="o">.</span><span class="n">addfinalizer</span><span class="p">(</span><span class="n">tearDown</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">testapp</span>
+</pre></div>
+</div>
+<p>And done.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Deploying Pyramid to Heroku</a><ul>
+<li><a class="reference internal" href="#heroku-s-environment">Heroku&#8217;s Environment</a><ul>
+<li><a class="reference internal" href="#assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#heroku-build-needs">Heroku Build Needs</a><ul>
+<li><a class="reference internal" href="#tell-heroku-this-is-python">Tell Heroku This is Python</a></li>
+<li><a class="reference internal" href="#tell-heroku-you-want-python-3-6">Tell Heroku You Want Python 3.6</a></li>
+<li><a class="reference internal" href="#tell-heroku-how-to-run-your-app">Tell Heroku How to Run Your App</a></li>
+<li><a class="reference internal" href="#create-the-runapp-py-module">Create the <code class="docutils literal"><span class="pre">runapp.py</span></code> module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#set-up-heroku-and-deploy">Set Up Heroku and Deploy</a></li>
+<li><a class="reference internal" href="#cleaning-up-the-edges">Cleaning Up the Edges</a></li>
+<li><a class="reference internal" href="#only-once-you-start-using-postgres">Only Once You Start Using Postgres</a><ul>
+<li><a class="reference internal" href="#making-and-seeing-environment-variables">Making and Seeing Environment Variables</a></li>
+<li><a class="reference internal" href="#calling-environment-variables">Calling Environment Variables</a></li>
+<li><a class="reference internal" href="#environment-variables-in-pyramid">Environment Variables in Pyramid</a></li>
+<li><a class="reference internal" href="#a-quick-note-for-testing">A Quick Note for Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

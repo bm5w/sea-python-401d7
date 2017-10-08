@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Community Involvement &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="next" title="Python Post-Grad Road Map" href="../readings/python_developer_roadmap.html" />
+    <link rel="prev" title="Presentation Guidelines" href="../lectures/presentation_guidelines.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../readings/python_developer_roadmap.html" title="Python Post-Grad Road Map"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../lectures/presentation_guidelines.html" title="Presentation Guidelines"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="community-involvement">
+<h1>Community Involvement<a class="headerlink" href="#community-involvement" title="Permalink to this headline">¶</a></h1>
+<p>This course can teach you to become a solid Python developer, but it cannot get you toward &#8220;greatness&#8221; in programming on its own.
+Part of being a great programmer is being involved in your community.
+As a junior developer, you become acquainted with some of the larger players in the local Python community and become aware of some of the wider topics of concern for local and global Python developers.
+As an intermediate developer, regular participation in things like meetups and conferences keep your name in circulation and keep your skills relevant as you learn about subjects outside of your job responsibilities.
+As a senior developer, you get in touch with the less-experienced developers in your field, nurturing the next generation of Python programmers.
+Everyone wins when we get involved in the community, so I figure you should get a reward for doing so yourself.</p>
+<p>There are two very good meetups in the Seattle area for Python: <a class="reference external" href="https://www.meetup.com/PSPPython/">Puget Sound Programs Python (PuPPy)</a> and <a class="reference external" href="https://www.meetup.com/Seattle-PyLadies/">Seattle Pyladies</a>.
+You can get credit for visiting either (or both!).
+More below.</p>
+<div class="section" id="attend-meetups">
+<h2>Attend Meetups<a class="headerlink" href="#attend-meetups" title="Permalink to this headline">¶</a></h2>
+<p><strong>Each meetup you attend is 5 points</strong> (RSVP on the Meetup page and be physically present).</p>
+<p>PuPPy has a meetup on the second Wednesday of every month, which includes lightning talks, hour-long talks, as well as social stuff.
+<em>If you can spare the time</em>, go to one (or some!).
+The upcoming monthly meetups are:</p>
+<ul class="simple">
+<li>Dec 14th at the New Tune Kitchen</li>
+<li>Jan 11th at TBD</li>
+<li>Feb 8th at TBD</li>
+</ul>
+<p>PyLadies has networking and other events once a month in addition to their hack nights.
+Stay tuned to their calendar (and sign up as members to their Meetup page) to find out when/what they are.</p>
+<div class="section" id="submitting">
+<h3>Submitting<a class="headerlink" href="#submitting" title="Permalink to this headline">¶</a></h3>
+<p>Each time you attend, submit/resubmit the assignment.
+Take a screenshot of the registration page where your name appears.
+Also submit in text the titles of the talks you heard about and (at least) two people you met, where they work, and what they do there.
+Write about what you found interesting (or uninteresting) about the subject matter of the talks, as well as anything else that you may have found interesting about the meetup.</p>
+</div>
+</div>
+<div class="section" id="attend-programming-hack-nights">
+<h2>Attend Programming/Hack Nights<a class="headerlink" href="#attend-programming-hack-nights" title="Permalink to this headline">¶</a></h2>
+<p><strong>Each programming/hack night you attend is 5 points</strong> (RSVP on the Meetup page and be physically present).</p>
+<p>Programming and Hacknights are great venues for collaborating with more-experienced Python developers, or just getting a second pair of eyes on your code.
+Also another great way to get your name out in the local Python community.
+Who knows, a connection made during a hacknight may get you your next job.</p>
+<p>PyLadies has Hacknights every other Monday.
+They take place downtown in the Starbucks at 1125 4th Ave.</p>
+<p>PuPPy has Programming Nights every Tuesday night in Bellevue, and every Thursday night at Galvanize in Pioneer Square.</p>
+<p>Each time you attend, submit/resubmit the assignment.
+Take a screenshot of the registration page where your name appears.
+Also submit in text the titles of the talks you heard about and (at least) two people you met, where they work, and what they do there.
+Write about what you found interesting (or uninteresting) about the subject matter of the talks, as well as anything else that you may have found interesting about the meetup.</p>
+<div class="section" id="id1">
+<h3>Submitting<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Each time you attend, submit/resubmit the assignment.
+Take a screenshot of the registration page where your name appears.
+Also submit in text what you worked on and (at least) two people you met, where they work, and what they do there.
+Write about what you found interesting (or uninteresting) about the meetup as well as anything else you feel like writing about with respect to the event.</p>
+</div>
+</div>
+<div class="section" id="present-a-lightning-talk">
+<h2>Present a Lightning Talk<a class="headerlink" href="#present-a-lightning-talk" title="Permalink to this headline">¶</a></h2>
+<p>Investing time and energy into developing a lightning talk about some subject gives you a slight bit more expertise in that area than others (i.e. me).
+It&#8217;s great practice in giving a general overview of a topic, as well as a prime opportunity to explore subject matter that we either can&#8217;t or won&#8217;t get to in this course.
+The subject matter can typically be about anything that interests you, and typically when given at a monthly meetup is about something you&#8217;ve built.</p>
+<p>Going on to present those talks at meetups is a bit of a game changer.
+You put yourself front-and-center in front of the local community.
+It&#8217;s a statement that tells them that not only are you visible, but that you&#8217;re willing to put either your research or your development work up to the scrutiny of devs of many levels of expertise.
+It&#8217;s a great way to get your name out there, as well as just to get public speaking experience.</p>
+<p>In order to give a lightning talk, contact one of the PuPPy organizers and tell them that you&#8217;re interested in giving one.</p>
+<p>Because it&#8217;s not an easy thing to build yourself up to doing, <strong>giving a lightning talk nets you 50 points</strong>.
+The next Meetup that you&#8217;d be eligible to give a talk at is on February 8th.
+Jan 11th is right within our fifth week, which is your first project week, so you should only really be focusing on that (and only attending with the consent of your group).
+<strong>I would highly recommend that you present your midterm project to the PuPPy audience just to show them that you can do the work, even while inexperienced.</strong></p>
+<div class="section" id="id2">
+<h3>Submitting<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Submit the title of your talk and upload the slides you&#8217;ve created.
+Write about your experience, how it felt, and perhaps any feedback you may have gotten during Q&amp;A or other discussions with PuPPy members.
+I will be attending the February 8th meetup myself, so you won&#8217;t need to provide proof of attendance.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Community Involvement</a><ul>
+<li><a class="reference internal" href="#attend-meetups">Attend Meetups</a><ul>
+<li><a class="reference internal" href="#submitting">Submitting</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#attend-programming-hack-nights">Attend Programming/Hack Nights</a><ul>
+<li><a class="reference internal" href="#id1">Submitting</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#present-a-lightning-talk">Present a Lightning Talk</a><ul>
+<li><a class="reference internal" href="#id2">Submitting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../lectures/presentation_guidelines.html"
+                        title="previous chapter">Presentation Guidelines</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../readings/python_developer_roadmap.html"
+                        title="next chapter">Python Post-Grad Road Map</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../readings/python_developer_roadmap.html" title="Python Post-Grad Road Map"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../lectures/presentation_guidelines.html" title="Presentation Guidelines"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

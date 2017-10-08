@@ -1,0 +1,563 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Python Post-Grad Road Map &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="next" title="Prework - Python, HTML, CSS, JS" href="../assignments/prework_python_html.html" />
+    <link rel="prev" title="Community Involvement" href="../assignments/community.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../assignments/prework_python_html.html" title="Prework - Python, HTML, CSS, JS"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../assignments/community.html" title="Community Involvement"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="python-post-grad-road-map">
+<h1>Python Post-Grad Road Map<a class="headerlink" href="#python-post-grad-road-map" title="Permalink to this headline">¶</a></h1>
+<p>So it&#8217;s after week 10 and the Code Fellows 401: Python class is now over.
+You&#8217;ve turned off your Django Imager instances, slept for a few days straight or whatever your body called for, and now you&#8217;re up and ready to do something more.
+The frenzied pace that we&#8217;ve worked at for 2.5 months is gone, and the only pressure to perform is the pressure of unemployment.
+It&#8217;s terrifying, but it&#8217;s not as pressing when there isn&#8217;t a concrete deadline to hit.</p>
+<p>The main danger of this point in time, between the end of class and the start of your careers, is the temptation to ease off on sharpening your skills.
+It&#8217;s easier to make excuses now; easier to let other priorities get in the way.</p>
+<p>However, a muscle unused becomes atrophied and skillsets are no different.
+Consistent practice keeps you sharp and is good to make a habit of, but consistent practice is simply maintenance on the skills that you already have.
+True growth as a developer, and in general, comes from making the habit of adding new things to your repertoire.</p>
+<p>What new tools should you add to your skillset?
+How much time should you allocate to practice vs exploration?
+When do you find time to stay on top of the job application process?</p>
+<p>This Road Map will begin to answer those questions, but is not a hard-and-fast plan for everyone.
+Read it through and do what works best for you, modifying the contents with what fits your schedule, your finances, and your interests.</p>
+<div class="section" id="tips-on-structuring-time-and-accountability">
+<h2>Tips on Structuring Time and Accountability<a class="headerlink" href="#tips-on-structuring-time-and-accountability" title="Permalink to this headline">¶</a></h2>
+<p>The main thing missing from post-graduate, pre-employment life is structure and accountability.
+There&#8217;s nowhere to be at 9am, and nothing to get done by 5pm.
+There are no partners to keep up or communicate with unless you forge those relationships yourself.</p>
+<p>So, create your own time schedule and find someone to keep you accountable.
+Here&#8217;s a guideline for separating your concerns throughout your day:</p>
+<p><strong>Any Given Weekday...</strong></p>
+<ul class="simple">
+<li><strong>2 hours</strong>: interview prep</li>
+<li><strong>3 hours</strong>: job search</li>
+<li><strong>3 hours</strong>: personal project work</li>
+<li><strong>Other Unclaimed Time</strong>: more personal project work</li>
+<li><strong>Evening Hours</strong>: attend meetups</li>
+</ul>
+<div class="section" id="interview-prep-2-hours">
+<h3>Interview Prep (2 hours)<a class="headerlink" href="#interview-prep-2-hours" title="Permalink to this headline">¶</a></h3>
+<p>Interview preparation considers only the actual interview process; what happens when you get a call or an on-site interview.
+There are two main things to prepare for here: <strong>coding questions</strong> and <strong>behavioral questions</strong>.</p>
+<p><strong>For coding questions,</strong> questions are often asked about data structures and sorting algorithms.
+So, review the data structures and algorithms that we&#8217;ve done in this class.
+Here&#8217;s a listing of them:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="34%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Singly-Linked List</td>
+<td>Doubly-Linked List</td>
+<td>Stack</td>
+</tr>
+<tr class="row-even"><td>Queue</td>
+<td>Double-Ended Queue</td>
+<td>Graph</td>
+</tr>
+<tr class="row-odd"><td>Priority Queue</td>
+<td>Heap</td>
+<td>Binary Search Tree</td>
+</tr>
+<tr class="row-even"><td>Hash Table</td>
+<td>Insertion Sort</td>
+<td>Merge Sort</td>
+</tr>
+<tr class="row-odd"><td>Quick Sort</td>
+<td>Radix Sort</td>
+<td>Trie Tree</td>
+</tr>
+</tbody>
+</table>
+<p>How to review them? <strong>Write a blog post about each one!</strong>
+In that blog post, write out the code for the Python implementation of these data structures and know them inside and out.
+If you decide to add the ability for the structure to be initialized with an iterable, say why.
+In fact, look up the specification for each structure on Wikipedia, and then write about every departure that you take from that specification.
+Used a generator? Why?
+Recursion instead of iteration? What motivated that?</p>
+<p>Talk about time complexity.
+Talk about <em>space</em> complexity.
+Talk about the trade-offs between different implementations of the same data structure or algorithmic concept.
+Most importantly, why should a developer care about these differences?
+Digging this deeply into any concept will definitely solidify the functionality and purpose of that concept in your mind.</p>
+<p>Being solid on the theory behind different abstract data structures is great, but they&#8217;re best used in practice.
+Hell, coding in general is best practiced and not read, so practice up using <a class="reference external" href="www.codewars.com">Code Wars</a>, <a class="reference external" href="https://www.interviewcake.com/all-questions/python">Interview Cake</a>, and <a class="reference external" href="https://www.hackerrank.com/">HackerRank</a>.
+There are tons of other sites like these too, so if you tire of any one of them, make Google your friend.
+There&#8217;s also the <a class="reference external" href="http://www.barnesandnoble.com/p/cracking-the-coding-interview-gayle-laakmann-mcdowell/1122334602/2675964704530?st=PLA&amp;sid=BNB_DRS_Marketplace+Shopping+Books_00000000&amp;2sid=Google_&amp;sourceId=PLGoP1495&amp;k_clickid=3x1495">Cracking the Coding Interview</a> book, which supplies a ton of questions that are often used on whiteboard interviews.</p>
+<p>Finally, practice DOING those whiteboard questions on whiteboards!
+If you have one at home, practice handling the questions there.
+If you don&#8217;t, come in to the Code Fellows and use ours.
+Our campus is always open to alumni (though please respect the classes currently in session).</p>
+<p><strong>For behavioral interview questions</strong> practice will always make the master.
+These questions will ask less about what code you can write and instead seek to find out how you behave in a working environment.
+Examples are:</p>
+<ul class="simple">
+<li>Give me an example of a time when you set a goal and were able to meet it.</li>
+<li>Tell me about a time when you had too many things to do and you were required to prioritize your tasks</li>
+<li>Tell me about a time where you had to make a difficult decision</li>
+<li>Give me an example of a time when you failed to accomplish something that you worked hard on</li>
+</ul>
+<p>Find someone to bounce these questions off of.
+Trade roles as interviewer and interviewee.
+Polish your responses not so that they sound &#8220;perfect&#8221;, but so that you&#8217;re doing more than just answering the question.
+You&#8217;re showing with every response why you&#8217;re a good fit as a part of a larger team or organization.
+Show that you can keep goals beyond you in mind when you make decisions.</p>
+<p>There are tons of resources for practicing answering these types of questions.
+A simple google search for &#8220;behavioral interview questions&#8221; returns these as the first few results:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.livecareer.com/quintessential/sample-behavioral">Sample Behavioral Job Interview Questions</a></li>
+<li><a class="reference external" href="https://www.themuse.com/advice/30-behavioral-interview-questions-you-should-be-ready-to-answer">Most Common Behavoral Interview Questions</a></li>
+<li><a class="reference external" href="https://biginterview.com/blog/behavioral-interview-questions">Behavioral Interview Questions</a></li>
+<li><a class="reference external" href="http://college.usatoday.com/2015/04/22/30-behavioral-interview-questions-you-should-be-ready-to-answer/">30 Behavioral Interview Questions you should be Ready to Answer</a></li>
+<li><a class="reference external" href="http://theinterviewguys.com/behavioral-interview-questions-and-answers-101/">Behavioral Interview Questions and Answers 101</a></li>
+</ul>
+</div>
+<div class="section" id="job-search-3-hours">
+<h3>Job Search (3 hours)<a class="headerlink" href="#job-search-3-hours" title="Permalink to this headline">¶</a></h3>
+<p>This phase of your day consists of more than just archiving a set of links.
+The job search is a tedious part of your career, and will never be a pleasant experience.
+However, if you break this up into more digestible components, you can at least ease the pain a bit.</p>
+<p>To start your job search, harvest links to companies that interest you.
+Then, before you even start tailoring your resume or writing the first character of your cover letter, <strong>research the company</strong>.
+Don&#8217;t just throw everything against the wall to see what sticks, look into what actually may interest you.
+What do they do?
+What clientele do they serve?
+What roles do developers serve at that organization?
+Is there anyone on LinkedIn from that organization that I can take out to coffee and get more information from?
+It&#8217;s far more obvious to spot a candidate with actual interest in the position vs a candidate just trying to pay rent.</p>
+<p><strong>AFTER</strong> you research, <strong>then</strong> as a part of the job search process send out applications, write or revise your resume, and write/revise your cover letters.</p>
+<div class="section" id="common-divisions-in-python-careers">
+<h4>Common Divisions in Python Careers<a class="headerlink" href="#common-divisions-in-python-careers" title="Permalink to this headline">¶</a></h4>
+<p>It helps to have a heading when applying for jobs, and there&#8217;s so many titles thrown around that it can be tough to tell what to look for.
+Here are some common titles in the world of Python, along with some <em>VERY</em> general summaries:</p>
+<ul class="simple">
+<li><strong>Software Developer/Development Engineer:</strong> Someone that writes software and features for existing apps, or builds apps from scratch. Often will use Django, Flask, Pyramid, or other web framework. Every once in a while will be tasked with writing scripts to do things solely on the computer side.</li>
+<li><strong>Software Development Engineer in Testing (SDET):</strong> A developer that&#8217;s fluent in the frameworks of the day, but doesn&#8217;t write code that increases the feature set. They only test code, both with automated test suites and with behavioral tests (click this thing and see if it breaks).</li>
+<li><strong>Backend Web Developer:</strong> Often will still be tasked with writing Django code, but nothing that is displayed directly to the front-end. They will often build out the code that powers a site&#8217;s API. They may not even work on a web app at all, sticking only to writing utility scripts on the server-side.</li>
+<li><strong>Full-Stack Web Developer:</strong> A web developer that knows how to serve the site, and also how to tailor the user experience on the front-end. You&#8217;re not going to fit this job well without a solid handle on HTML, CSS, and JS in addition to Python/Django. In this role you&#8217;ll have to have some type of eye for design, and be able to build a useful and intuitive user interface as well as the back-end that serves that interface.</li>
+<li><strong>Developer Operations (DevOps) Engineer:</strong> An app-deployment specialist. The code that they write is used to package and serve the site instead of add features to it. This will require a ton of work with tools from the following stack (note: not a complete list): AWS, Google App Engine, Microsoft Azure, Heroku, Ansible, Fabric, OpenStack, Docker, Jenkins.</li>
+<li><strong>Data Scientist/Machine Learning Engineer:</strong> Data Scientists specialize in the data analysis and presentation process. They&#8217;re adept at drawing insights from a given data set, and will often work closely with the database they&#8217;re pulling data from. If you have a knack for numbers and condensing your insights into easily-digestible visualizations, this is a role you may want to pursue. It&#8217;s closely tied with the role of a Machine Learning Engineer, as both are concerned with generalizable models that are based on the data and can be used for prediction and explanation. The difference is that the Machine Learning Engineer is less concerned with problems like regression and descriptive statistics, focusing more on building the predictive models themselves and tuning them well to add business value. Oftentimes though, the titles are interchangeable and each will often cross over to the other.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="personal-projects-3-hours">
+<h3>Personal Projects (3 hours)<a class="headerlink" href="#personal-projects-3-hours" title="Permalink to this headline">¶</a></h3>
+<p>At the end of the day, no matter how much experience you may have as a developer, all that anyone will care about is that they can tell you to do a thing, and you can actually do that thing.
+However, because you lack experience as a Python developer, you have to make up for the buffer you would have had from a career with a body of work that gives substance to your claims of proficiency.
+Out of all three of these sections, this is the most important.
+<strong>Building personal projects</strong> shows that <strong>you can do the thing</strong>.</p>
+<p>Aim to produce at least one small serious project every 2-3 weeks.
+If you decide to make a larger, more involved project, aim for producing every 4-6 weeks.
+Whatever your other obligations may be, you should set a restriction on yourself to publish <strong>no fewer than one project per month</strong>, unless you absolutely need that extra time.</p>
+<p>Every project that you build needs to show that you have some understanding of best practices.
+What this means is:</p>
+<ul class="simple">
+<li><strong>full documentation</strong> of every script, function, class, and method.</li>
+<li>code adhering religiously to <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8 standards</a>.</li>
+<li>at least one test for every function, class, or method <strong>that you write</strong>. If you extend an existing class (like Django&#8217;s <code class="docutils literal"><span class="pre">DetailView</span></code>), test your class extension.</li>
+<li>THOROUGH tests, meaning anticipating the ways in which your code should succeed, as well as how it should fail</li>
+<li>a verbose <code class="docutils literal"><span class="pre">README.md</span></code> file that details <strong>exactly</strong> how a completely new developer can get up and running with your codebase. Do they need a virtual environment? Do they need Python 2, Python 3, or can they use either? How can they run tests? If you made a web application, what are the routes? What are the models? If someone wants to contribute to your project, what&#8217;s the workflow that they should adhere to? What are the standards for your code base? Do they need to <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></code> your requirements file, or can they simply <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code> from the directory containing <code class="docutils literal"><span class="pre">setup.py</span></code>?</li>
+<li>at least 80% test coverage, with <a class="reference external" href="travis-ci.org">Travis</a> and <a class="reference external" href="coveralls.io">Coveralls</a> badges that show how dope of a developer you are.</li>
+<li>an up-to-date <code class="docutils literal"><span class="pre">requirements.pip</span></code> or <code class="docutils literal"><span class="pre">requirements.txt</span></code> file to go along with your codebase.</li>
+<li>no stale <code class="docutils literal"><span class="pre">git</span></code> branches for your repository (unless they&#8217;re feature branches or works in progress)</li>
+</ul>
+<p>So, what projects should you work on?
+The first thing that you need to do is have a web presence.
+This means that you should have your own website (preferably with a custom email).
+Something like <code class="docutils literal"><span class="pre">http://www.myname.com</span></code>.
+Or, if you have a brand that you want to push forward or a name that applies to you, use that.
+Mine is <code class="docutils literal"><span class="pre">rationalwhimsy</span></code>, so I use that for my own site.
+Be clever with yours.</p>
+<div class="section" id="the-portfolio-site">
+<h4>The Portfolio Site<a class="headerlink" href="#the-portfolio-site" title="Permalink to this headline">¶</a></h4>
+<p>Your portfolio site should tell a newcomer who you are, what your education is, and where your interests lie.
+For that last point, reinforce what your interests are through consistent blog posts.
+Figure out a schedule that works for you.
+Every day is likely entirely too frequent for most humans.
+How about every week? Or every other week? The interval isn&#8217;t what matters so much as the consistency, so choose a pace that you can be consistent with.</p>
+<p>Aside from blog posts, there should be obvious links to your past and ongoing projects.
+See if you can even integrate an AJAX call to your github page that shows what repos you&#8217;ve worked on last!</p>
+<p>Finally make it look good, because all the skill in the world won&#8217;t get you in the door if you present poorly.
+This means some decent HTML, CSS, and even JavaScript.
+If you&#8217;re angling for a job that doesn&#8217;t deal too heavily with the front-end then feel free to use <a class="reference external" href="http://foundation.zurb.com/">Zurb Foundation</a>, <a class="reference external" href="https://startbootstrap.com/">Bootstrap</a>, or any other pre-built themes.
+If you&#8217;re looking more toward front-end development, or true full-stack development, then at least for your portfolio site write your own HTML/CSS/JS.</p>
+</div>
+</div>
+<div class="section" id="after-the-portfolio-site">
+<h3>After the Portfolio Site<a class="headerlink" href="#after-the-portfolio-site" title="Permalink to this headline">¶</a></h3>
+<p>So you&#8217;ve built your portfolio site and need ideas for what to do next.
+Common from-the-ground-up projects are things like:</p>
+<ul class="simple">
+<li>To-Do Lists</li>
+<li>Facebook/Twitter/Tumblr/Instagram clones</li>
+<li>Person-to-person sales sites</li>
+<li>Chat bots</li>
+<li>Recipe sites</li>
+<li>Weather apps</li>
+<li>Friend finders</li>
+<li>Inventory trackers</li>
+<li>User-editable data repositories</li>
+<li>Restaurant/Bar/Hospital/Apartment finders</li>
+</ul>
+<p>If you&#8217;re not really into building things from scratch, feel free to contribute to any one of thousands of active or stale open-source projects.
+Open source projects are a great way to get your name out there, and a great impetus for presenting lightning talks at meetups both local and distant.
+Make a fork, work on some code, and send a pull-request back.</p>
+<p>GitHub keeps track of trending projects for every language.
+Here&#8217;s the listing of Python projects on Github <a class="reference external" href="https://github.com/trending/python">trending in open source</a>.
+Here&#8217;s a few other resources you can look into:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/MunGell/awesome-for-beginners#python">Awesome First PR Opportunities</a></li>
+<li><a class="reference external" href="https://openhatch.org/">OpenHatch</a></li>
+<li><a class="reference external" href="https://wiki.python.org/moin/PythonProjects">Python Projects</a></li>
+</ul>
+</div>
+<div class="section" id="meetups">
+<h3>Meetups<a class="headerlink" href="#meetups" title="Permalink to this headline">¶</a></h3>
+<p>By now you should already be familiar with the <a class="reference external" href="meetup.com/PSPPython/">PuPPy meetup group</a>.
+However, there are dozens of other meetup groups for Python and related subfields.</p>
+<p>Have an interest in Natural Language Processing? Check out any one of <a class="reference external" href="https://www.meetup.com/topics/natural-language-processing/us/wa/seattle/">these Seattle NLP meetups</a>.</p>
+<p>Interested in data science more broadly? Attend an event by the <a class="reference external" href="https://www.meetup.com/seattle-data-geeks/">Seattle Data Geeks</a> or <a class="reference external" href="https://www.meetup.com/Seattle-Data-Science/">Seattle Data Science</a>.</p>
+<p>Do you just want more Python? For that hunger, there&#8217;s <a class="reference external" href="https://www.meetup.com/Seattle-PyLadies/">PyLadies</a>, and yes they do allow men to hang out too.</p>
+<p>Half the battle is being known, so showing your face early and often at various meetups will help you along that line.
+You never know, you may end up sitting beside your next coworker!</p>
+<p>And don&#8217;t simply go to meetups either, speak at them!
+There&#8217;s no reason why you can&#8217;t give a lightning talk about every personal project you complete outside of your portfolio site.
+In fact make that a goal: whenever you complete a project, build an 8-minute lightning talk about it and present at PuPPy.</p>
+</div>
+<div class="section" id="accountability">
+<h3>Accountability<a class="headerlink" href="#accountability" title="Permalink to this headline">¶</a></h3>
+<p>These things are all great in theory, but if no one holds our feet to the fire then we find it much easier to make excuses and fall out of our good habits.
+Find someone to hold you accountable.
+Oftentimes this is easiest with friends or loved ones, however they aren&#8217;t always available.
+Luckily for you, you&#8217;ve got a whole set of classmates and other Code Fellows graduates to pull from to hold you accountable.</p>
+<p>Make a pact with someone (or several people) to meet every week or every few days.
+Review each other&#8217;s code.
+Edit each other&#8217;s blog posts.
+Contribute to each other&#8217;s projects, or collaborate on the same project.
+Set goals together and celebrate together when you meet those goals.
+&#8220;Let&#8217;s each send out 10 applications this week!&#8221;
+&#8220;How about you write a blog post about AWS, I write one about Google App Engine, and we reference each other&#8217;s posts?&#8221;
+&#8220;You build out the scaffolding for this project and I&#8217;ll add this other app, since it&#8217;s something I&#8217;m working on for one of my other projects.&#8221;</p>
+<p>Find someone that you work together well with and...work together!
+A solid collaboration can severely slash any project&#8217;s timeline, giving you more content to fill your resume, LinkedIn, and portfolio.
+And don&#8217;t limit yourself only to Python graduates.
+One of the great things about the larger programming world is that different languages can do different things well that Python cannot (or should not) do.
+Collaborate with a JavaScript grad so that you can build a back-end and they can build a front-end that accesses your API and displays data to the user.
+Work with an iOS developer and build yourself a solid mobile app.
+Bolster the diversity of your experiences with what time you have before you get locked into a career as <em>one</em> thing.</p>
+</div>
+</div>
+<div class="section" id="python-continuing-education">
+<h2>Python Continuing Education<a class="headerlink" href="#python-continuing-education" title="Permalink to this headline">¶</a></h2>
+<p>The world of Python is vast, and we&#8217;ve only covered a small fraction in this class.
+In order for you to grow as a developer, you need to be willing to dive deeper into the wider universe of Python tools, but it&#8217;s difficult to know which ones to hone in on.
+Here&#8217;s a listing of some commonly-cited tools and concepts from the wider world of Python:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/Seedstars/django-react-redux-base">Django React</a>: A project using Django as the back-end and ReactJS as the front-end</li>
+<li><a class="reference external" href="http://flask.pocoo.org/">Flask</a>: A micro webframework for Python. Quick to set up and used often.</li>
+<li><a class="reference external" href="http://www.tornadoweb.org/en/stable/">Tornado</a>: A Python web framework that doesn&#8217;t rely on WSGI like Flask and Django. It supports WebSockets, which allow for a different mode of communication than strict HTTP.</li>
+<li>Pandas/NumPy/SciPy/Scikit-Learn/Matplotlib: The Python science and analysis stack</li>
+<li><a class="reference external" href="http://docs.opencv.org/3.0-beta/doc/py_tutorials/py_tutorials.html">OpenCV</a>: An open source computer vision library. The most popular kind, and used often with large companies looking to automate image classification (or use things like facial recognition) for use in larger products.</li>
+<li><a class="reference external" href="https://docs.python.org/3/library/itertools.html">itertools</a>: Super-efficient looping and iterating</li>
+<li>Celery/Redis/RabbitMQ: Tools for running asynchronous tasks alongside your main app.</li>
+<li><a class="reference external" href="http://oscarcommerce.com/">Oscar Commerce</a>: an open-source ecommerce framework for Django</li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/1.10/ref/contrib/gis/">GeoDjango</a>: a web framework for building GIS (geographic information system)-enabled applications</li>
+<li><a class="reference external" href="http://www.nltk.org/">Python Natural Language Toolkit</a>: the premier Python platform for working with language data</li>
+<li><a class="reference external" href="http://boto.cloudhackers.com/en/latest/">Boto</a>: A Python interface for Amazon Web Services</li>
+<li><a class="reference external" href="http://cython.org/">Cython</a>: A C-extension of Python that is compiled instead of interpreted, making execution super fast..</li>
+<li>Scrapy &amp; BeautifulSoup</li>
+</ul>
+</div>
+<div class="section" id="non-python-continuing-education">
+<h2>Non-Python Continuing Education<a class="headerlink" href="#non-python-continuing-education" title="Permalink to this headline">¶</a></h2>
+<p>The life of a developer always extends outside of their base language.
+It&#8217;s important that you allow yourself time to explore the world outside of Python, and the very next most important languages are JavaScript and Go.
+But, there&#8217;s a lot, and not every thing that you should dip into is even language-specific.
+Here&#8217;s a listing of tools that are commonly paired with Python, as well as other stuff that&#8217;s just good to learn. Not writing descriptions for these because there&#8217;s just too many:</p>
+<ul class="simple">
+<li>JavaScript MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS)</li>
+<li>ReactJS</li>
+<li>MochaJS</li>
+<li>The greater AWS ecosystem, starting with S3</li>
+<li>Microsoft Azure</li>
+<li>Google App Engine</li>
+<li>Java (language)</li>
+<li>C# (language)</li>
+<li>C (because Python is based on it/written in it)</li>
+<li>R (language)</li>
+<li>Go (language)</li>
+<li>Jenkins</li>
+<li>Salt Stack/Fabric</li>
+<li>Hadoop/MapReduce</li>
+<li>Selenium</li>
+<li>Docker</li>
+<li>Various SQL implementations (MySQL, Postgres, etc)</li>
+<li>OpenStack</li>
+<li>Low Level Processes (Memory, heap, stack, the nitty gritty that we don’t have time for.)</li>
+<li>Linux / Bash / Shell scripting</li>
+<li>Apache Cassandra</li>
+<li>D3.js</li>
+<li>Development methodologies (Agile, SCRUM, Extreme Programming, etc.)</li>
+<li>Apache Spark</li>
+<li>Android SDK</li>
+<li>GIS, PostGIS</li>
+<li>GitLab, Bitbucket, and other remote <code class="docutils literal"><span class="pre">git</span></code> implementations</li>
+</ul>
+<p>Above all else, stay sharp, and learn more faster!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Python Post-Grad Road Map</a><ul>
+<li><a class="reference internal" href="#tips-on-structuring-time-and-accountability">Tips on Structuring Time and Accountability</a><ul>
+<li><a class="reference internal" href="#interview-prep-2-hours">Interview Prep (2 hours)</a></li>
+<li><a class="reference internal" href="#job-search-3-hours">Job Search (3 hours)</a><ul>
+<li><a class="reference internal" href="#common-divisions-in-python-careers">Common Divisions in Python Careers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#personal-projects-3-hours">Personal Projects (3 hours)</a><ul>
+<li><a class="reference internal" href="#the-portfolio-site">The Portfolio Site</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#after-the-portfolio-site">After the Portfolio Site</a></li>
+<li><a class="reference internal" href="#meetups">Meetups</a></li>
+<li><a class="reference internal" href="#accountability">Accountability</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#python-continuing-education">Python Continuing Education</a></li>
+<li><a class="reference internal" href="#non-python-continuing-education">Non-Python Continuing Education</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../assignments/community.html"
+                        title="previous chapter">Community Involvement</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../assignments/prework_python_html.html"
+                        title="next chapter">Prework - Python, HTML, CSS, JS</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../assignments/prework_python_html.html" title="Prework - Python, HTML, CSS, JS"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../assignments/community.html" title="Community Involvement"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

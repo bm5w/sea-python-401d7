@@ -1,0 +1,575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django Forms &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="django-forms">
+<span id="django-forms"></span><h1>Django Forms<a class="headerlink" href="#django-forms" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="form-handling-in-django-and-the-form-handling-cbvs">
+<span id="form-handling-in-django-and-the-form-handling-cbvs"></span><h2>Form Handling in Django, and the Form-handling CBVs<a class="headerlink" href="#form-handling-in-django-and-the-form-handling-cbvs" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>We will need to work with the form system in Django if we want to add or update books in our app.</p>
+<p><a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/forms/">Django&#8217;s form system</a> has a couple of layers to it.</p>
+<p>We&#8217;ll make an analogy.
+&#8220;Models are to the Database as Forms are to request/response cycle.&#8221;</p>
+<p>The job of a model in Django is to translate data between python and the database.
+The job of a form in Django is to translate data back and forth between python and the request/reponse cycle.
+A form takes in information that comes from the request and translates it into pythonic values.</p>
+<p>Remember, every time you get information coming in on the request, that information is coming in as a bytestring.
+When you pass a primary key back and forth across a URL, that comes into your app as a bytestring.
+You want to turn that into an integer so you can interact with the database.
+The Django form is going to make that happen for you.</p>
+<p>This can start to get weird because Models have fields, and Forms have fields.
+They look similar, but they are very different from each other.
+The model field holds the responsibility of translating a particular python value into some sort of database query.
+Also it takes the return value and turns it back into a python value.
+The form does the same thing except it does it with data from the request and response.
+It turns one item of information into a pythonic value.</p>
+<p>Forms serialize and deserialize, meaning that they standardize and arrange your data for output to some other medium.
+They do it with a structure called a <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/forms/widgets/">widget</a>.
+The widget renders out HTML elements, visible or hidden, that then is rendered into an HTML page.</p>
+<p>Let&#8217;s say we have something that&#8217;s a <code class="docutils literal"><span class="pre">forms.CharField</span></code> field.
+It will have by default use the <code class="docutils literal"><span class="pre">forms.TextInput</span></code> widget, that has a text input.
+When you call the widget&#8217;s <code class="docutils literal"><span class="pre">render</span></code> method, it will give you <code class="docutils literal"><span class="pre">input[type=&quot;text&quot;]</span></code> and <code class="docutils literal"><span class="pre">value</span></code> = field contents (empty if <code class="docutils literal"><span class="pre">None</span></code>).
+This is the overall structure of how form libraries everywhere work.</p>
+<div class="section" id="forms-in-practice">
+<span id="forms-in-practice"></span><h3>Forms in Practice<a class="headerlink" href="#forms-in-practice" title="Permalink to this headline">¶</a></h3>
+<p>So how do forms in Django work?
+A form is just a collection of fields.</p>
+<p>Let&#8217;s start up our Django shell:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="k">class</span> <span class="nc">FooForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="n">name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Your Name&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="n">description</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Describe Something&quot;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">2048</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">FooForm</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">__main__</span><span class="o">.</span><span class="n">FooForm</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="nb">type</span><span class="p">(</span><span class="n">FooForm</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">django</span><span class="o">.</span><span class="n">forms</span><span class="o">.</span><span class="n">forms</span><span class="o">.</span><span class="n">DeclarativeFieldsMetaclass</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span>  <span class="n">form1</span> <span class="o">=</span> <span class="n">FooForm</span><span class="p">()</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">form1</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">FooForm</span> <span class="n">bound</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="n">Unknown</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">(</span><span class="n">name</span><span class="p">;</span><span class="n">description</span><span class="p">)</span><span class="o">&gt;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="nb">type</span><span class="p">(</span><span class="n">form1_form</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">__main__</span><span class="o">.</span><span class="n">FooForm</span>
+
+</pre></div>
+</div>
+<p>There are a few things to think about here. Our form can be in one of two states: either bound or unbound.
+The difference: a bound form knows about data.
+It has some information that has been passed into it.
+An unbound form doesn&#8217;t have any data attached.</p>
+<p>Now, we have a working form called <code class="docutils literal"><span class="pre">form1</span></code>.
+It tells us that it is unbound.
+It doesn&#8217;t know if it is valid yet, and it has some fields.</p>
+<p>If we just call <code class="docutils literal"><span class="pre">str()</span></code> on our <code class="docutils literal"><span class="pre">form1</span></code>, it will render out into raw HTML:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="nb">str</span><span class="p">(</span><span class="n">form1</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="s1">&#39;&lt;tr&gt;&lt;th&gt;&lt;label for=&quot;id_name&quot;&gt;Your Name:&lt;/label&gt;&lt;/th&gt;&lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;name&quot; maxlength=&quot;100&quot; required id=&quot;id_name&quot; /&gt;&lt;/td&gt;&lt;/tr&gt;</span><span class="se">\n</span><span class="s1">&lt;tr&gt;&lt;th&gt;&lt;label for=&quot;id_description&quot;&gt;Describe Something:&lt;/label&gt;&lt;/th&gt;&lt;td&gt;&lt;textarea name=&quot;description&quot; cols=&quot;40&quot; rows=&quot;10&quot; maxlength=&quot;2048&quot; required id=&quot;id_description&quot;&gt;</span><span class="se">\n</span><span class="s1">&lt;/textarea&gt;&lt;/td&gt;&lt;/tr&gt;&#39;</span>
+</pre></div>
+</div>
+<p>Note that the labels we specified for the fields we wanted rendered out for us as well.
+It also rendered out a few things that we didn&#8217;t ask for, at least not explicitly:</p>
+<ul class="simple">
+<li>Each form field has an ID that&#8217;s a concatenation of the word <code class="docutils literal"><span class="pre">id</span></code> and the name of the field we gave</li>
+<li>Each field&#8217;s <code class="docutils literal"><span class="pre">name</span></code> attribute corresponds to the actual name of the field we specified in <code class="docutils literal"><span class="pre">FooForm</span></code></li>
+<li>Each field is <code class="docutils literal"><span class="pre">required</span></code>, even though we didn&#8217;t ask for that</li>
+</ul>
+<p>The <code class="docutils literal"><span class="pre">form1.as_p()</span></code> method will render our form with <code class="docutils literal"><span class="pre">&lt;p&gt;</span></code> tags:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">form1</span><span class="o">.</span><span class="n">as_p</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="s1">u&#39;&lt;p&gt;&lt;label for=&quot;id_name&quot;&gt;Your Name:&lt;/label&gt; &lt;input type=&quot;text&quot; name=&quot;name&quot; maxlength=&quot;100&quot; required id=&quot;id_name&quot; /&gt;&lt;/p&gt;</span><span class="se">\n</span><span class="s1">&lt;p&gt;&lt;label for=&quot;id_description&quot;&gt;Describe Something:&lt;/label&gt; &lt;textarea name=&quot;description&quot; cols=&quot;40&quot; rows=&quot;10&quot; maxlength=&quot;2048&quot; required id=&quot;id_description&quot;&gt;</span><span class="se">\n</span><span class="s1">&lt;/textarea&gt;&lt;/p&gt;&#39;</span>
+</pre></div>
+</div>
+<p>There are also <code class="docutils literal"><span class="pre">as_table()</span></code> and <code class="docutils literal"><span class="pre">as_ul()</span></code> methods.
+<code class="docutils literal"><span class="pre">as_table()</span></code> is the default and the same as our <code class="docutils literal"><span class="pre">str()</span></code> rendering.</p>
+<p>Notice that the <code class="docutils literal"><span class="pre">&lt;form&gt;</span></code> tag is missing.
+There is also no <code class="docutils literal"><span class="pre">&lt;submit&gt;</span></code> button.
+That&#8217;s up to you.</p>
+</div>
+<div class="section" id="bound-form">
+<span id="bound-form"></span><h3>Bound Form<a class="headerlink" href="#bound-form" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s make another form.
+We&#8217;ll pass in some data as a dictionary, and then the form will be bound.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="n">form2</span> <span class="o">=</span> <span class="n">FooForm</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Instructor for the Python 401 course at Code Fellows&#39;</span><span class="p">})</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">form2</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">FooForm</span> <span class="n">bound</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="n">Unknown</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">(</span><span class="n">name</span><span class="p">;</span><span class="n">description</span><span class="p">)</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Now we can use that information to fill out the form with the data that exists.
+Notice the <code class="docutils literal"><span class="pre">value=&quot;Nick&quot;</span></code> attribute:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">form2</span><span class="o">.</span><span class="n">as_p</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="s1">u&#39;&lt;p&gt;&lt;label for=&quot;id_name&quot;&gt;Your Name:&lt;/label&gt; &lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;Nick&quot; maxlength=&quot;100&quot; required id=&quot;id_name&quot; /&gt;&lt;/p&gt;</span><span class="se">\n</span><span class="s1">&lt;p&gt;&lt;label for=&quot;id_description&quot;&gt;Describe Something:&lt;/label&gt; &lt;textarea name=&quot;description&quot; cols=&quot;40&quot; rows=&quot;10&quot; maxlength=&quot;2048&quot; required id=&quot;id_description&quot;&gt;</span><span class="se">\n</span><span class="s1">Instructor for the Python 401 course at Code Fellows&lt;/textarea&gt;&lt;/p&gt;&#39;</span>
+</pre></div>
+</div>
+<p>Forms are also iterators.
+These objects come out in the order that you specify the attributes.
+If you want to change the ordering of a form, change it in the Django form definition.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">form2</span><span class="p">:</span>
+   <span class="o">....</span><span class="p">:</span>     <span class="k">print</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+   <span class="o">....</span><span class="p">:</span>
+<span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;name&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;Nick&quot;</span> <span class="n">maxlength</span><span class="o">=</span><span class="s2">&quot;100&quot;</span> <span class="n">required</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;id_name&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">textarea</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;description&quot;</span> <span class="n">cols</span><span class="o">=</span><span class="s2">&quot;40&quot;</span> <span class="n">rows</span><span class="o">=</span><span class="s2">&quot;10&quot;</span> <span class="n">maxlength</span><span class="o">=</span><span class="s2">&quot;2048&quot;</span> <span class="n">required</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;id_description&quot;</span><span class="o">&gt;</span>
+<span class="n">Instructor</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Python</span> <span class="mi">401</span> <span class="n">course</span> <span class="n">at</span> <span class="n">Code</span> <span class="n">Fellows</span><span class="o">&lt;/</span><span class="n">textarea</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>If you aren&#8217;t happy with the way Django is rendering <code class="docutils literal"><span class="pre">&lt;p&gt;</span></code> forms or whatever, you can address the field properties directly and lay them out how you like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">field</span><span class="o">.</span><span class="n">id_for_label</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="s1">u&#39;id_description&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="n">field</span><span class="o">.</span><span class="n">label</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="s1">u&#39;Describe Something&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="n">field</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="s1">u&#39;Instructor for the Python 401 course at Code Fellows&#39;</span>
+</pre></div>
+</div>
+<p>It&#8217;s probably best to let Django render the fields for you.</p>
+<p>The <code class="docutils literal"><span class="pre">valid</span></code> value of a form is also important.
+When a form is bound, you can do validation checks on it.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span>  <span class="n">form2</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<p>This allows us access to <code class="docutils literal"><span class="pre">cleaned_data</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="n">form2</span><span class="o">.</span><span class="n">cleaned_data</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">21</span><span class="p">]:</span> 
+<span class="p">{</span><span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Instructor for the Python 401 course at Code Fellows&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">cleaned_data</span></code> is a dictionary of key-value pairs that correspond to the field names and the values those fields contain.
+It is <strong>super important</strong>.
+Why?
+Because: <code class="docutils literal"><span class="pre">form2</span></code> also has a <code class="docutils literal"><span class="pre">data</span></code> attribute:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">22</span><span class="p">]:</span> <span class="n">form2</span><span class="o">.</span><span class="n">data</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">22</span><span class="p">]:</span>
+<span class="p">{</span><span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Instructor for the Python 401 course at Code Fellows&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>It looks the same in this case, but the difference is that <code class="docutils literal"><span class="pre">cleaned_data</span></code> has gone through validation.
+Thus you can be sure that if someone is trying to inject malicious data, Django has already sterilized it and it is safe for python to use.</p>
+<p>Whenever you&#8217;re reading data from a form, always validate the data first.
+Then use the <code class="docutils literal"><span class="pre">cleaned_data</span></code> attribute of your form to get access to the information.</p>
+<p>Let&#8217;s build one that might not be validated.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="n">form3</span> <span class="o">=</span> <span class="n">FooForm</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;My name is reallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreally loooooooong&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">})</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="n">form3</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">NameForm</span> <span class="n">bound</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="n">Unknown</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">(</span><span class="n">your_name</span><span class="p">)</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Notice it is bound, but we don&#8217;t know yet if it is valid.
+That <code class="docutils literal"><span class="pre">valid=Unknown</span></code> flag will only get decided <em>after</em> a manual check for validity.
+When we check the validity:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="n">form3</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="bp">False</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="n">form3</span><span class="o">.</span><span class="n">cleaned_data</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>This particular form will have an <code class="docutils literal"><span class="pre">errors</span></code> attribute now:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">25</span><span class="p">]:</span> <span class="n">form3</span><span class="o">.</span><span class="n">errors</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">25</span><span class="p">]:</span> 
+<span class="p">{</span><span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;This field is required.&#39;</span><span class="p">],</span>
+ <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Ensure this value has at most 100 characters (it has 113).&#39;</span><span class="p">]}</span>
+</pre></div>
+</div>
+<p>Notice how even though we specified the &#8220;description&#8221; field, Django interprets the data as empty because we passed it an empty string as a value.</p>
+<p>You can use the <code class="docutils literal"><span class="pre">errors</span></code> attribute to send error messages back to your forms.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">26</span><span class="p">]:</span> <span class="k">for</span> <span class="n">error_field</span> <span class="ow">in</span> <span class="n">form3</span><span class="o">.</span><span class="n">errors</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;There&#39;s a mistake in field &#39;{field}&#39;: {problem}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">field</span><span class="o">=</span><span class="n">error_field</span><span class="p">,</span>
+        <span class="n">problem</span><span class="o">=</span><span class="n">form3</span><span class="o">.</span><span class="n">errors</span><span class="p">[</span><span class="n">error_field</span><span class="p">]</span>
+    <span class="p">))</span>
+   <span class="o">....</span><span class="p">:</span>
+<span class="n">There</span><span class="s1">&#39;s a mistake in field &#39;</span><span class="n">name</span><span class="s1">&#39;: &lt;ul class=&quot;errorlist&quot;&gt;&lt;li&gt;Ensure this value has at most 100 characters (it has 113).&lt;/li&gt;&lt;/ul&gt;</span>
+<span class="n">There</span><span class="s1">&#39;s a mistake in field &#39;</span><span class="n">description</span><span class="s1">&#39;: &lt;ul class=&quot;errorlist&quot;&gt;&lt;li&gt;This field is required.&lt;/li&gt;&lt;/ul&gt;</span>
+</pre></div>
+</div>
+<p>Django makes some nice default error messages for us with HTML markup too.
+There is ample API documentation for forms, like how to substitute css classes and things like that.
+Dig in when you get the chance!</p>
+</div>
+<div class="section" id="modelform">
+<span id="modelform"></span><h3><a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/forms/modelforms/#django.forms.ModelForm"><code class="docutils literal"><span class="pre">ModelForm</span></code></a><a class="headerlink" href="#modelform" title="Permalink to this headline">¶</a></h3>
+<p>There&#8217;s something else you should know about forms: <strong>the way we built forms above is not the only way.</strong></p>
+<p>Your app is filled up model objects.
+One thing you would like to do is present forms that allow you to create and edit those models directly.
+For this purpose, Django provides a construct called a <code class="docutils literal"><span class="pre">ModelForm</span></code>.</p>
+<p>What a <code class="docutils literal"><span class="pre">ModelForm</span></code> does is inspect your model and its fields.
+It then creates a form that has all the equivalent form fields to your model&#8217;s fields.</p>
+<p>To put a <code class="docutils literal"><span class="pre">ModelForm</span></code> to use:</p>
+<ul class="simple">
+<li>Create a class that subclasses <code class="docutils literal"><span class="pre">ModelForm</span></code>.</li>
+<li>Provide a <code class="docutils literal"><span class="pre">class</span> <span class="pre">Meta</span></code><ul>
+<li>This informs the form object about some options that you can set for it.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">27</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">lender_books.models</span> <span class="kn">import</span> <span class="n">Book</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">28</span><span class="p">]:</span> <span class="n">Book</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">28</span><span class="p">]:</span> <span class="n">lender_books</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Book</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">29</span><span class="p">]:</span> <span class="k">class</span> <span class="nc">BookForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+  <span class="o">....</span><span class="p">:</span>     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+  <span class="o">....</span><span class="p">:</span>         <span class="n">model</span> <span class="o">=</span> <span class="n">Book</span>
+  <span class="o">....</span><span class="p">:</span>         <span class="n">exclude</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="o">....</span><span class="p">:</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">30</span><span class="p">]:</span> <span class="n">BookForm</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">30</span><span class="p">]:</span> <span class="n">__main__</span><span class="o">.</span><span class="n">BookForm</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">31</span><span class="p">]:</span> <span class="n">bkfm1</span> <span class="o">=</span> <span class="n">BookForm</span><span class="p">()</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">32</span><span class="p">]:</span> <span class="n">bkfm1</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">32</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">BookForm</span> <span class="n">bound</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="n">Unknown</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">(</span><span class="n">title</span><span class="p">;</span><span class="n">author</span><span class="p">;</span><span class="n">cover_image</span><span class="p">;</span><span class="n">status</span><span class="p">)</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>This looks familiar.
+Our fields automatically include all of the fields on the Book model.</p>
+<p>Let&#8217;s grab ourselves an instance of the Book object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">33</span><span class="p">]:</span> <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">33</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">QuerySet</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Book</span><span class="p">:</span> <span class="n">Book</span> <span class="nb">object</span><span class="o">&gt;</span><span class="p">]</span><span class="o">&gt;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">34</span><span class="p">]:</span> <span class="n">bk1</span> <span class="o">=</span> <span class="n">_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">35</span><span class="p">]:</span> <span class="n">bk1</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">35</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">Book</span><span class="p">:</span> <span class="n">Book</span> <span class="nb">object</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>When we create a BookForm, if we want to bind it to an instance, we can use the instance keyword argument to instantiate our new BookForm:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">36</span><span class="p">]:</span> <span class="n">lovely_form</span> <span class="o">=</span> <span class="n">BookForm</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">bk1</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">37</span><span class="p">]:</span> <span class="n">lovely_form</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">37</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">BookForm</span> <span class="n">bound</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="n">Unknown</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">(</span><span class="n">title</span><span class="p">;</span><span class="n">author</span><span class="p">;</span><span class="n">cover_image</span><span class="p">;</span><span class="n">status</span><span class="p">)</span><span class="o">&gt;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">38</span><span class="p">]:</span> <span class="n">lovely_form</span><span class="o">.</span><span class="n">as_p</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">38</span><span class="p">]:</span> <span class="s1">&#39;&lt;p&gt;&lt;label for=&quot;id_title&quot;&gt;Title:&lt;/label&gt; &lt;input id=&quot;id_title&quot; maxlength=&quot;255&quot; name=&quot;title&quot; type=&quot;text&quot; value=&quot;Catcher in the Rye&quot; required /&gt;&lt;/p&gt;</span><span class="se">\n</span><span class="s1">&lt;p&gt;&lt;label for=&quot;id_author&quot;&gt;Author:&lt;/label&gt; &lt;input id=&quot;id_author&quot; maxlength=&quot;255&quot; name=&quot;author&quot; type=&quot;text&quot; value=&quot;J.D. Salinger&quot; required /&gt;&lt;/p&gt;</span><span class="se">\n</span><span class="s1">&lt;p&gt;&lt;label for=&quot;id_status&quot;&gt;Status:&lt;/label&gt; &lt;select id=&quot;id_status&quot; name=&quot;status&quot; required&gt;</span><span class="se">\n</span><span class="s1">&lt;option value=&quot;available&quot; selected=&quot;selected&quot;&gt;Available&lt;/option&gt;</span><span class="se">\n</span><span class="s1">&lt;option value=&quot;checked out&quot;&gt;Checked Out&lt;/option&gt;</span><span class="se">\n</span><span class="s1">&lt;/select&gt;&lt;/p&gt;&#39;</span>
+<span class="o">...</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+<p>Django gives us all sorts of options here that allows us to manipulate our model.</p>
+<p>Notice that <code class="docutils literal"><span class="pre">lovely_form</span></code> is not bound:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">39</span><span class="p">]:</span> <span class="n">lovely_form</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">39</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">BookForm</span> <span class="n">bound</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="n">Unknown</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">(</span><span class="n">title</span><span class="p">;</span><span class="n">author</span><span class="p">;</span><span class="n">cover_image</span><span class="p">;</span><span class="n">status</span><span class="p">)</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Why do we suppose that is?
+Because we haven&#8217;t passed in any data.
+We use model forms to take data from somewhere else and either create a new model instance or edit an existing model form.
+Simply providing an instance doesn&#8217;t bind the form to anything.</p>
+<p>If we make a change, the form will become bound, and the <code class="docutils literal"><span class="pre">selected</span></code> attribute will now be <code class="docutils literal"><span class="pre">'bob'</span></code> (our user 3 in this case):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">40</span><span class="p">]:</span> <span class="n">changed_form</span> <span class="o">=</span> <span class="n">BookForm</span><span class="p">({</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Malcolm X&#39;</span><span class="p">},</span> <span class="n">instance</span><span class="o">=</span><span class="n">bk1</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">41</span><span class="p">]:</span> <span class="n">changed_form</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">41</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">BookForm</span> <span class="n">bound</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="n">Unknown</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">(</span><span class="n">title</span><span class="p">;</span><span class="n">author</span><span class="p">;</span><span class="n">cover_image</span><span class="p">;</span><span class="n">status</span><span class="p">)</span><span class="o">&gt;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">42</span><span class="p">]:</span> <span class="nb">str</span><span class="p">(</span><span class="n">changed_form</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">42</span><span class="p">]:</span> <span class="s1">&#39;&lt;tr&gt;&lt;th&gt;&lt;label for=&quot;id_title&quot;&gt;Title:&lt;/label&gt;&lt;/th&gt;&lt;td&gt;&lt;input id=&quot;id_title&quot; maxlength=&quot;255&quot; name=&quot;title&quot; type=&quot;text&quot; value=&quot;Malcolm X&quot; required /&gt;&lt;/td&gt;&lt;/tr&gt;</span><span class="se">\n</span><span class="s1">&lt;tr&gt;&lt;th&gt;&lt;label for=&quot;id_author&quot;&gt;Author:&lt;/label&gt;&lt;/th&gt;&lt;td&gt;&lt;ul class=&quot;errorlist&quot;&gt;&lt;li&gt;This field is required.&lt;/li&gt;&lt;/ul&gt;&lt;input id=&quot;id_author&quot; maxlength=&quot;255&quot; name=&quot;author&quot; type=&quot;text&quot; required /&gt;&lt;/td&gt;&lt;/tr&gt;</span><span class="se">\n</span><span class="s1">&lt;tr&gt;&lt;th&gt;&lt;label for=&quot;id_cover_image&quot;&gt;Cover image:&lt;/label&gt;&lt;/th&gt;......</span>
+</pre></div>
+</div>
+<p>Let&#8217;s look at a bit of this:</p>
+<p><code class="docutils literal"><span class="pre">&lt;input</span> <span class="pre">id=&quot;id_title&quot;</span> <span class="pre">maxlength=&quot;255&quot;</span> <span class="pre">name=&quot;title&quot;</span> <span class="pre">type=&quot;text&quot;</span> <span class="pre">value=&quot;Malcolm</span> <span class="pre">X&quot;</span> <span class="pre">required</span> <span class="pre">/&gt;</span></code></p>
+<p>We see that our provided dictionary&#8217;s data takes precedence.
+The base instance that was attached to the form will still provide its data to the form, but it doesn&#8217;t take priority.</p>
+<p>Is the form valid?</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">43</span><span class="p">]:</span> <span class="n">changed_form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">43</span><span class="p">]:</span> <span class="bp">False</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">44</span><span class="p">]:</span> <span class="n">changed_form</span><span class="o">.</span><span class="n">errors</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">44</span><span class="p">]:</span> <span class="p">{</span><span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;This field is required.&#39;</span><span class="p">],</span> <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;This field is required.&#39;</span><span class="p">]}</span>
+</pre></div>
+</div>
+<p>So let&#8217;s fix our errors and inspect our book:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">45</span><span class="p">]:</span> <span class="n">changed_form</span> <span class="o">=</span> <span class="n">BookForm</span><span class="p">({</span><span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Alex Haley&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;available&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Malcolm X&quot;</span><span class="p">},</span> <span class="n">instance</span><span class="o">=</span><span class="n">bk1</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">46</span><span class="p">]:</span> <span class="n">changed_form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">46</span><span class="p">]:</span> <span class="bp">True</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">47</span><span class="p">]:</span> <span class="n">bk1</span><span class="o">.</span><span class="n">title</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">47</span><span class="p">]:</span> <span class="s1">&#39;Catcher in the Rye&#39;</span>
+</pre></div>
+</div>
+<p>Even though the data provided to the form was valid, nothing changed about the book object itself because the form wasn&#8217;t saved.
+Let&#8217;s remedy that.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">48</span><span class="p">]:</span> <span class="n">changed_form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">48</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">Book</span><span class="p">:</span> <span class="n">Book</span> <span class="nb">object</span><span class="o">&gt;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">49</span><span class="p">]:</span> <span class="n">bk1</span><span class="o">.</span><span class="n">title</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">49</span><span class="p">]:</span> <span class="s1">&#39;Malcolm X&#39;</span>
+</pre></div>
+</div>
+<p>Our instance has already been updated by the fact that we bound some data to a form.
+Once we save the form, it will be updated in the database too.</p>
+</div>
+</div>
+<div class="section" id="forms-and-the-wrrc">
+<span id="forms-and-the-wrrc"></span><h2>Forms and the WRRC<a class="headerlink" href="#forms-and-the-wrrc" title="Permalink to this headline">¶</a></h2>
+<p>We saw how we passed in an instance of a form and some data.
+Where does the data come from when we&#8217;re not working in terminal?</p>
+<p>In Django you have a <code class="docutils literal"><span class="pre">request</span></code> object available within inside any view you create.
+Amongst others, <code class="docutils literal"><span class="pre">request</span></code> will have 2 attributes of importance attached.
+These attributes will contain any form data that got sent to you from the browser.
+Depending on the type of request, data will either be in <code class="docutils literal"><span class="pre">request.post</span></code> or <code class="docutils literal"><span class="pre">request.get</span></code>.
+Using forms you&#8217;ll probably want to use <code class="docutils literal"><span class="pre">post</span></code>.</p>
+<p>Most of this process will be similar to what you have done already with create and update views.</p>
+<p><code class="docutils literal"><span class="pre">request.post</span></code> is a dictionary, and you can pass it in as part of the data that comes to you.
+Provided that everything coming from the <code class="docutils literal"><span class="pre">request</span></code> is what you need to create a new model instance or update one, you can pass it directly.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">updated_book</span> <span class="o">=</span> <span class="n">BookForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">post</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If your data needs to be massaged at all, you&#8217;ll need to do that work and then pass the resulting data into the BookForm.</p>
+<div class="section" id="forms-and-files">
+<span id="forms-and-files"></span><h3>Forms and Files<a class="headerlink" href="#forms-and-files" title="Permalink to this headline">¶</a></h3>
+<p>You are going to want to upload books with images of their covers.
+This might be a bit odd.
+That image data (and any other uploaded data) will be coming to you not in <code class="docutils literal"><span class="pre">request.post</span></code> or <code class="docutils literal"><span class="pre">get</span></code>.
+They come in a completely different place called <code class="docutils literal"><span class="pre">request.files</span></code>.</p>
+<p>There&#8217;s one more trick to this.
+In order to get image data, you have to do something to your HTML <code class="docutils literal"><span class="pre">&lt;form&gt;</span></code> tag.
+There&#8217;s an attribute to forms called the <a class="reference external" href="https://www.w3.org/TR/html401/interact/forms.html#adef-enctype"><code class="docutils literal"><span class="pre">enctype</span></code></a>.
+<strong>In order to upload images, you need to set the <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/http/file-uploads/#basic-file-uploads"><code class="docutils literal"><span class="pre">enctype=&quot;multipart/form-data&quot;</span></code></a> attribute</strong></p>
+<p>On the other end, you need to make sure you bind your form with not only the first dictionary, but also a second containing the file information:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">50</span><span class="p">]:</span> <span class="n">changed_form</span> <span class="o">=</span> <span class="n">BookForm</span><span class="p">({</span><span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Alex Haley&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;available&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Malcolm X&quot;</span><span class="p">}},</span> <span class="p">{</span><span class="s1">&#39;cover_image&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="nb">file</span> <span class="n">upload</span> <span class="nb">object</span><span class="o">&gt;</span><span class="p">},</span> <span class="n">instance</span><span class="o">=</span><span class="n">bk1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Django is responsible for dealing with all of this.
+All you need to do is pass in <code class="docutils literal"><span class="pre">request.post,</span> <span class="pre">request.files,</span> <span class="pre">instance=the_original_instance</span></code>.
+If you&#8217;re creating a new instance, just don&#8217;t pass in an instance and Django will build a new one for you when you call <code class="docutils literal"><span class="pre">form.save()</span></code></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django Forms</a><ul>
+<li><a class="reference internal" href="#form-handling-in-django-and-the-form-handling-cbvs">Form Handling in Django, and the Form-handling CBVs</a><ul>
+<li><a class="reference internal" href="#forms-in-practice">Forms in Practice</a></li>
+<li><a class="reference internal" href="#bound-form">Bound Form</a></li>
+<li><a class="reference internal" href="#modelform"><code class="docutils literal"><span class="pre">ModelForm</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#forms-and-the-wrrc">Forms and the WRRC</a><ul>
+<li><a class="reference internal" href="#forms-and-files">Forms and Files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

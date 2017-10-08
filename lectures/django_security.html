@@ -1,0 +1,547 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django Auth-Auth &amp; Security &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="django-auth-auth-security">
+<h1>Django Auth-Auth &amp; Security<a class="headerlink" href="#django-auth-auth-security" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-authentication">
+<h2>What is Authentication?<a class="headerlink" href="#what-is-authentication" title="Permalink to this headline">¶</a></h2>
+<p><strong>Authentication</strong> checks whether or not a user is who they say that they are
+(or if they are anyone at all).
+We can use authentication (AuthN) rules to restrict site
+access to &#8220;members only&#8221;, or to serve different views to different types of users.
+Let&#8217;s see how this works in Django</p>
+</div>
+<div class="section" id="authentication-in-django">
+<h2>Authentication in Django<a class="headerlink" href="#authentication-in-django" title="Permalink to this headline">¶</a></h2>
+<p>In Django, authentication is granted upon valid user login.
+Currently, our user authentication is handled by the <code class="docutils literal"><span class="pre">django-registration</span></code> package.
+However, this just declares the logged-in user as authenticated.
+How do we control interaction with our app based upon that authentication?</p>
+<p>When a user is authenticated, a flag is set on the user object.
+We can control views based on that flag.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">some_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+    <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
+        <span class="c1"># do something</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># do something else</span>
+</pre></div>
+</div>
+<p><strong>Every logged-in user is authenticated,</strong> and every <code class="docutils literal"><span class="pre">request</span></code> object has a <code class="docutils literal"><span class="pre">user</span></code> attached whether or not that user has logged in.
+When the user hasn&#8217;t logged in yet, the <code class="docutils literal"><span class="pre">user</span></code> object attached to <code class="docutils literal"><span class="pre">request</span></code> is an instance of the <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/contrib/auth/#django.contrib.auth.models.AnonymousUser">AnonymousUser</a>.
+Amongst other things, <code class="docutils literal"><span class="pre">AnonymousUser.is_authenticated</span></code> is always set to <code class="docutils literal"><span class="pre">False</span></code>.</p>
+</div>
+<div class="section" id="authn-with-decorators">
+<h2>AuthN with Decorators<a class="headerlink" href="#authn-with-decorators" title="Permalink to this headline">¶</a></h2>
+<p>For every <code class="docutils literal"><span class="pre">view</span></code> that handles a route, we can check to see if the user is
+authenticated the same way we have above to decide what they should and
+shouldn&#8217;t be able to see.
+That, however, is not only repetitive but tedious.</p>
+<p>Thankfully, <code class="docutils literal"><span class="pre">django.contrib.auth.decorators</span></code> equips us with the <code class="docutils literal"><span class="pre">&#64;login_required</span></code> decorator.
+This decorator <strong>requires that the current user be logged in</strong> and authenticated in order to view the page.</p>
+<p>We can set as an argument on this decorator the <code class="docutils literal"><span class="pre">login_url</span></code>.
+This will be the location of the login page in case the current user isn&#8217;t authenticated.
+This way, when an anonymous user tries to access a route that requires authentication,
+they get redirected to a login page instead.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
+
+<span class="nd">@login_required</span><span class="p">(</span><span class="n">login_url</span><span class="o">=</span><span class="s2">&quot;/login/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">some_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c1"># do whatever you want</span>
+</pre></div>
+</div>
+<p>Of course, as the developer you always have control over the user&#8217;s interaction with <em>your</em> app.
+You don&#8217;t <strong>have</strong> to allow them an opportunity to log in.
+You can just redirect them to a boilerplate <code class="docutils literal"><span class="pre">403</span> <span class="pre">Forbidden</span></code> page.
+All that would be different is the URI that you direct the user to with <code class="docutils literal"><span class="pre">login_url</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
+
+<span class="nd">@login_required</span><span class="p">(</span><span class="n">login_url</span><span class="o">=</span><span class="s2">&quot;/forbidden/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">some_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c1"># do whatever you want</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="authn-vs-authz">
+<h2>AuthN vs AuthZ<a class="headerlink" href="#authn-vs-authz" title="Permalink to this headline">¶</a></h2>
+<p>Often in the world of web development you&#8217;ll hear/read the term &#8220;<strong>auth-auth</strong>&#8221;.
+This refers to Authentication (AuthN) and Authorization (AuthZ).
+They both have a place when considering the security of your app.
+They refer, however, to very different things.</p>
+<p>As we&#8217;ve seen, <strong>AuthN</strong> just checks that the user is who they say that they are.
+<strong>AuthZ</strong> on the other hand checks that the user is able to do what they are trying to do.</p>
+<p>It&#8217;s the difference between the ID card that verifies who you are and the key that gets you in the locked doors.
+In Django, AuthZ is handled by the same module that handles AuthN: <code class="docutils literal"><span class="pre">django.contrib.auth</span></code>.
+With it we can declare what <strong>permissions</strong> a given user (or group of users) may possess.
+We can also decide upon which permissions may be needed to access certain functionality.</p>
+<p>For example, we might expect an <code class="docutils literal"><span class="pre">admin</span></code> to be able to delete our Books at will.
+That&#8217;s part of what an admin <em>should</em> do.
+However, should just any user have that same ability?</p>
+<p>If I set up a work environment for people from my company on a site like Waffle IO or Trello,
+should non-affiliated users have access to reading or writing privileges?</p>
+</div>
+<div class="section" id="how-does-django-grant-permissions-authz">
+<h2>How Does Django Grant Permissions (AuthZ)?<a class="headerlink" href="#how-does-django-grant-permissions-authz" title="Permalink to this headline">¶</a></h2>
+<p>Django grants permissions to individual users and groups of users.
+It checks permissions for actions on individual model instances, or actions within view functions/classes.
+Let&#8217;s see how.</p>
+<div class="section" id="built-in-permissions">
+<h3>Built-In Permissions<a class="headerlink" href="#built-in-permissions" title="Permalink to this headline">¶</a></h3>
+<p>By default, Django has 3 types of permissions built-in: <code class="docutils literal"><span class="pre">add</span></code>, <code class="docutils literal"><span class="pre">change</span></code>, and <code class="docutils literal"><span class="pre">delete</span></code> for <strong>every model</strong>.</p>
+<p>Take, for example, our <code class="docutils literal"><span class="pre">Book</span></code> model.
+If we wanted to require that a user&#8217;s ability to add/change/delete an book depends on permission to do so, we can use the <code class="docutils literal"><span class="pre">permission_required</span></code> decorator like so:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">permission_required</span>
+
+<span class="nd">@permission_required</span><span class="p">(</span><span class="s2">&quot;lender_books.add_book&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">create_book</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c1"># things that create a new book object</span>
+</pre></div>
+</div>
+<p>You can also require that multiple permissions be possessed by a given user for a given view.
+All you must do is provide an iterable of permission names.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@permission_required</span><span class="p">((</span><span class="s2">&quot;lender_books.change_book&quot;</span><span class="p">,</span> <span class="s2">&quot;lender_books.delete_book&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">edit_book</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c1"># things that would either edit or delete a given book</span>
+</pre></div>
+</div>
+<p>If your user doesn&#8217;t have the appropriate permissions, they will get redirected to the default Django login page.
+You can set a URL of your own with the <code class="docutils literal"><span class="pre">login_url</span></code> kwarg, just like with the <code class="docutils literal"><span class="pre">&#64;login_required</span></code> decorator.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@permission_required</span><span class="p">((</span><span class="s2">&quot;lender_books.change_book&quot;</span><span class="p">,</span> <span class="s2">&quot;lender_books.delete_book&quot;</span><span class="p">),</span> <span class="n">login_url</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">edit_book</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c1"># things that would either edit or delete a given book</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-new-permissions">
+<h3>Creating New Permissions<a class="headerlink" href="#creating-new-permissions" title="Permalink to this headline">¶</a></h3>
+<p>The default permissions are great for basic functionality.
+We may however want to require a permission that doesn&#8217;t yet exist.
+For example, we may restrict the ability to view a certain portion of our app only to those with some privilege.</p>
+<p>The only way we&#8217;ve restricted viewability thus far is to require login for a given view.
+However what about if we have authenticated users that shouldn&#8217;t be authorized to do certain things?
+We need to create new permissions.</p>
+<p>We can create custom permissions for a given <code class="docutils literal"><span class="pre">Model</span></code> by altering the <code class="docutils literal"><span class="pre">permissions</span></code> attribute on the model&#8217;s <code class="docutils literal"><span class="pre">Meta</span></code> class.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Book</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">permissions</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="s2">&quot;view_book&quot;</span><span class="p">,</span> <span class="s2">&quot;Can see books&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+<p>This new permission will get created once you make migrations and migrate.
+After the migrations are in place, you will be able to block out users without the <code class="docutils literal"><span class="pre">lender_books.view_book</span></code> permission.</p>
+</div>
+<div class="section" id="adding-user-permissions">
+<h3>Adding User Permissions<a class="headerlink" href="#adding-user-permissions" title="Permalink to this headline">¶</a></h3>
+<p>It&#8217;s great to be able to create new permissions, but you need to also give users these new permissions.
+Otherwise, we have all these great restrictions without any users that can bypass them.
+To add permissions to an individual user, you&#8217;ll have to manually add that permission.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">Permission</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth</span> <span class="kn">import</span> <span class="n">get_user_model</span>
+
+<span class="n">perm</span> <span class="o">=</span> <span class="n">Permission</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Can see books&quot;</span><span class="p">)</span>
+<span class="n">bob</span> <span class="o">=</span> <span class="n">get_user_model</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;bob&quot;</span><span class="p">)</span>
+<span class="n">bob</span><span class="o">.</span><span class="n">user_permissions</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can do this on registration or after some other sequence of tests for a given user, but that&#8217;s tedious.
+It makes more sense to have a <code class="docutils literal"><span class="pre">Group</span></code> of authorized users that you then add users to.
+You can then control permissions for that entire group at once.</p>
+<p>Django allows you to control groups within the Django Admin.
+The <code class="docutils literal"><span class="pre">Groups</span></code> panel lets you manage groups by adding or editing existing ones, choosing which permissions a given group should be allotted.
+You can then go into the <code class="docutils literal"><span class="pre">Users</span></code> section of the panel to add a given user to a Group, thereby managing permissions for many with one single heading.</p>
+</div>
+<div class="section" id="authn-with-authz">
+<h3>AuthN with AuthZ<a class="headerlink" href="#authn-with-authz" title="Permalink to this headline">¶</a></h3>
+<p>There&#8217;s no reason why you should only have <em>either</em> AuthN <em>or</em> AuthZ for a given view.
+Stack your decorators!</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@login_required</span>
+<span class="nd">@permission_required</span><span class="p">((</span><span class="s2">&quot;lender_books.change_book&quot;</span><span class="p">,</span> <span class="s2">&quot;lender_books.delete_book&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">edit_book</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c1"># things that would either edit or delete a given book</span>
+</pre></div>
+</div>
+<p>That way, you not only check that a user is logged in.
+You also that your authenticated users have the appropriate permissions.</p>
+<p>Granted, only authenticated users have permissions, so you could probably just get away with <code class="docutils literal"><span class="pre">&#64;permission_required</span></code>.</p>
+</div>
+</div>
+<div class="section" id="auth-auth-in-class-based-views">
+<h2>Auth-Auth in Class-based Views<a class="headerlink" href="#auth-auth-in-class-based-views" title="Permalink to this headline">¶</a></h2>
+<p>Of course you may not even use function-based views.
+If you only use class-based views, those decorators are now useless.
+You can however use Django&#8217;s mixins to add the same functionality to those views.</p>
+<p>Consider this view to access a book.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.views.generic.detail</span> <span class="kn">import</span> <span class="n">DetailView</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.mixins</span> <span class="kn">import</span> <span class="n">PermissionRequiredMixin</span>
+
+<span class="k">class</span> <span class="nc">BookDetail</span><span class="p">(</span><span class="n">PermissionRequiredMixin</span><span class="p">,</span> <span class="n">DetailView</span><span class="p">):</span>
+    <span class="n">permission_required</span> <span class="o">=</span> <span class="s2">&quot;lender_books.view_book&quot;</span>
+    <span class="c1"># other relevant things</span>
+</pre></div>
+</div>
+<p>By including the <code class="docutils literal"><span class="pre">PermissionRequiredMixin</span></code> in your inheritance list, you have access to functionality similar to that of the decorator on the function-based views.</p>
+<p>You can provide individual permissions or an iterable of permissions.
+You can specify the <code class="docutils literal"><span class="pre">login_url</span></code> as before, just as a class attribute.
+You also have access to the <code class="docutils literal"><span class="pre">handle_no_permission()</span></code> class method, which you can override to do something special to handle users without permissions.</p>
+<p>Similarly there&#8217;s a <code class="docutils literal"><span class="pre">LoginRequiredMixin</span></code>, which provides just the <code class="docutils literal"><span class="pre">login_url</span></code> class attribute and some authentication.
+When a user isn&#8217;t authenticated, they&#8217;re redirected to that URL.</p>
+</div>
+<div class="section" id="security-at-view-template-interface">
+<h2>Security at View/Template Interface<a class="headerlink" href="#security-at-view-template-interface" title="Permalink to this headline">¶</a></h2>
+<p>App security can be enforced not only at the <code class="docutils literal"><span class="pre">Controller</span></code> level in your Django views, but in the templates as well.</p>
+<div class="section" id="escaping-text">
+<h3>Escaping Text<a class="headerlink" href="#escaping-text" title="Permalink to this headline">¶</a></h3>
+<p>One way in which users can abuse each other is via <code class="docutils literal"><span class="pre">Cross-Site</span> <span class="pre">Scripting</span> <span class="pre">(XSS)</span></code>.
+With XSS, one user will set up some malicious JavaScript and submit that to your app&#8217;s database.
+If that user&#8217;s data gets read out and viewed somewhere else, whoever views that code will run that user&#8217;s JavaScript.
+They would then become a victim of whatever that code is meant to do.
+This can mean a redirect, stealing cookies, or some other malicious activity.</p>
+<p>You can prevent malicious code harming your users at large in two ways:</p>
+<ul class="simple">
+<li>by <strong>escaping</strong> whatever text is submitted through your site&#8217;s forms.</li>
+<li>by escaping whatever text is read from your database.</li>
+</ul>
+<p>To escape text coming in from a form, use Django&#8217;s <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/#escape">escape</a> filter</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.utils.html</span> <span class="kn">import</span> <span class="n">escape</span>
+<span class="n">cleaned_body</span> <span class="o">=</span> <span class="n">escape</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s2">&quot;text_field&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>This filter will convert quotes, ampersands, and angle brackets into <a class="reference external" href="http://www.w3schools.com/html/html_entities.asp">HTML entities</a>.
+These entities, though they may still look like valid code, won&#8217;t run any JavaScript or other malicious code embedded within HTML.</p>
+<p>Similarly, you can escape any user input that comes from your database with the <cite>escape</cite> template filter.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        {{ body_text | escape }}
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>It&#8217;s not fool proof, but it will render most potential attack vectors like <cite>&lt;script&gt;</cite> tags to be harmless.
+It&#8217;s still entirely possible for an attacker to use in-line JavaScript,
+and if you suspect that may occur you can enforce more strict escaping rules.</p>
+</div>
+<div class="section" id="csrf-and-security-tokens">
+<h3>CSRF and Security Tokens<a class="headerlink" href="#csrf-and-security-tokens" title="Permalink to this headline">¶</a></h3>
+<p>Consider the following form:</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;my_info.html&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;food&quot;</span><span class="p">&gt;</span>Favorite Food?<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;food&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;school&quot;</span><span class="p">&gt;</span>Where Did You Attend High School?<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;school&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Submit&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Where does this form post data, and what data does it post?
+If the destination page actually existed, then anytime that I submit this form I&#8217;d be altering that website&#8217;s data.</p>
+<p>What about this form?</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;https://onlinebanking.becu.org/BECUBankingWeb/af(kxjASs6RpWPzapPShB2v)/Transfers/AddTransfer.aspx&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;source_acct&quot;</span><span class="p">&gt;</span>Source Account: <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;source_acct&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;1234567890&quot;</span><span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;dest_acct&quot;</span><span class="p">&gt;</span>Destination Account: <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;dest_acct&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;frequency&quot;</span><span class="p">&gt;</span>Frequency: <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">select</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;frequency&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;single&quot;</span> <span class="na">selected</span><span class="o">=</span><span class="s">&quot;selected&quot;</span><span class="p">&gt;</span>One Time<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;weekly&quot;</span><span class="p">&gt;</span>Weekly<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;biweekly&quot;</span><span class="p">&gt;</span>Every Two Weeks<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;monthly&quot;</span><span class="p">&gt;</span>Monthly<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;quarterly&quot;</span><span class="p">&gt;</span>Quarterly<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;annually&quot;</span><span class="p">&gt;</span>Annually<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;transfer_date&quot;</span><span class="p">&gt;</span>First Transfer Date: <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;transfer_date&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;routing&quot;</span><span class="p">&gt;</span>Routing Number: <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;routing&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;amount&quot;</span><span class="p">&gt;</span>Amount: <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;amount&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Continue&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>If this form was written correctly, matching the format that the destination site expects, I could easily steal money from the given account and transfer it wherever I wanted.
+Many people&#8217;s information has been stolen this way, and victims have lost millions from this practice of <strong>Cross Site Request Forgery</strong>.</p>
+<p>One way to combat against this is to authenticate any form submitted to your website.
+Ensure that the form submission came from your website, and goes to somewhere else in your website that expects that form.
+Furthermore, ensure that the form is authentic and is a one-time submission only.</p>
+<p>Django allows you to handle this easily with the <code class="docutils literal"><span class="pre">{%</span> <span class="pre">csrf_token</span> <span class="pre">%}</span></code> template tag.
+This adds a hidden field to your form submission containing a unique cookie, generated at the time of submission.
+Your web app expects to see this hidden field, with a unique value specifically generated by your individual submission.</p>
+<p>To include a CSRF token in your form, just add the template tag.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;my_info.html&quot;</span><span class="p">&gt;</span>
+    {% csrf_token %}
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;food&quot;</span><span class="p">&gt;</span>Favorite Food?<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;food&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;school&quot;</span><span class="p">&gt;</span>Where Did You Attend High School?<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;school&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Submit&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django Auth-Auth &amp; Security</a><ul>
+<li><a class="reference internal" href="#what-is-authentication">What is Authentication?</a></li>
+<li><a class="reference internal" href="#authentication-in-django">Authentication in Django</a></li>
+<li><a class="reference internal" href="#authn-with-decorators">AuthN with Decorators</a></li>
+<li><a class="reference internal" href="#authn-vs-authz">AuthN vs AuthZ</a></li>
+<li><a class="reference internal" href="#how-does-django-grant-permissions-authz">How Does Django Grant Permissions (AuthZ)?</a><ul>
+<li><a class="reference internal" href="#built-in-permissions">Built-In Permissions</a></li>
+<li><a class="reference internal" href="#creating-new-permissions">Creating New Permissions</a></li>
+<li><a class="reference internal" href="#adding-user-permissions">Adding User Permissions</a></li>
+<li><a class="reference internal" href="#authn-with-authz">AuthN with AuthZ</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#auth-auth-in-class-based-views">Auth-Auth in Class-based Views</a></li>
+<li><a class="reference internal" href="#security-at-view-template-interface">Security at View/Template Interface</a><ul>
+<li><a class="reference internal" href="#escaping-text">Escaping Text</a></li>
+<li><a class="reference internal" href="#csrf-and-security-tokens">CSRF and Security Tokens</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Working with Virtual Environments &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="up" title="Monday" href="../schedule/week01/mon.html" />
+    <link rel="next" title="Introduction To Python: Part 1" href="intro_to_python_1.html" />
+    <link rel="prev" title="Installing Python" href="installing_python.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="intro_to_python_1.html" title="Introduction To Python: Part 1"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installing_python.html" title="Installing Python"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week01/mon.html" accesskey="U">Monday</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="working-with-virtual-environments">
+<h1>Working with Virtual Environments<a class="headerlink" href="#working-with-virtual-environments" title="Permalink to this headline">¶</a></h1>
+<blockquote class="epigraph">
+<div><p>For every non-standard package installed in a system Python, the gods kill a kitten</p>
+<p class="attribution">&mdash;me</p>
+</div></blockquote>
+<div class="section" id="why-virtual-environments">
+<h2>Why Virtual Environments?<a class="headerlink" href="#why-virtual-environments" title="Permalink to this headline">¶</a></h2>
+<p>As a professional developer, your projects will often require packages that are not part of Python&#8217;s standard library.
+And as the number of projects you work on increases, so does the likelihood that you require <em>different</em> versions of the <em>same</em> library in different projects.
+Version conflicts are the stuff of which nightmares are made.
+Therefore, it is considered best practice to <em>always</em> isolate your projects using a <em>virtual environment</em>.</p>
+<p>There are a number of different approaches to solving this problem.
+I&#8217;ll list some others later, but for this course we will focus on using the <a class="reference external" href="http://docs.python.org/3/library/venv.html#module-venv" title="(in Python v3.6)"><code class="xref py py-mod docutils literal"><span class="pre">venv</span> <span class="pre">module</span></code></a> module.</p>
+</div>
+<div class="section" id="installing-virtual-environments">
+<h2>Installing Virtual Environments<a class="headerlink" href="#installing-virtual-environments" title="Permalink to this headline">¶</a></h2>
+<p>As of Python 3.3, it is no longer required to install an additional package to create a virtual environment.
+The <a class="reference external" href="http://docs.python.org/3/library/venv.html#module-venv" title="(in Python v3.6)"><code class="xref py py-mod docutils literal"><span class="pre">venv</span> <span class="pre">module</span></code></a> ships with Python as a part of the standard library.</p>
+<p>Some linux distributions (notably Ubuntu) have taken steps to <em>un-bundle</em> the module for some reason.
+If you are using linux, be aware that the following examples may not work at first.
+If they do not, then you will have to install an additional package using your system package manager.
+For Ubuntu 16.04, that package is <code class="docutils literal"><span class="pre">python3-venv</span></code>.</p>
+</div>
+<div class="section" id="using-virtual-environments">
+<h2>Using Virtual Environments<a class="headerlink" href="#using-virtual-environments" title="Permalink to this headline">¶</a></h2>
+<p>To create a new virtual environment, you can use the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ python3 -m venv demoenv
+</pre></div>
+</div>
+<p>That command invokes your Python 3 executable (<code class="docutils literal"><span class="pre">python3</span></code>).
+It is used to run the <code class="docutils literal"><span class="pre">venv</span></code> module (<code class="docutils literal"><span class="pre">-m</span> <span class="pre">venv</span></code>).
+The module is asked to create a named virtual environment (<code class="docutils literal"><span class="pre">demoenv</span></code>).</p>
+<p>The result of this command is to create a folder called <code class="docutils literal"><span class="pre">demoenv</span></code> in your current working directory:</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ls .
+demoenv
+</pre></div>
+</div>
+<p>In general, the form of this command is as follows.
+<code class="docutils literal"><span class="pre">&lt;ENV&gt;</span></code> is the name of the environment you want to create.
+If you are already in a folder and want to create an environment there, use <code class="docutils literal"><span class="pre">./</span></code>.
+The available options are <a class="reference external" href="http://docs.python.org/3/library/venv.html#module-venv" title="(in Python v3.6)"><code class="xref py py-mod docutils literal"><span class="pre">well</span> <span class="pre">documented</span></code></a>.
+You can use the <code class="docutils literal"><span class="pre">-h</span></code> option to get some help at the command line.</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ virtualenv <span class="o">[</span>options<span class="o">]</span> &lt;ENV&gt;
+</pre></div>
+</div>
+<div class="section" id="what-happened">
+<h3>What Happened?<a class="headerlink" href="#what-happened" title="Permalink to this headline">¶</a></h3>
+<p>When you ran that command, a couple of things took place:</p>
+<ul class="simple">
+<li>A new directory with your requested name was created.</li>
+<li>A new Python executable was created in &lt;ENV&gt;/bin (&lt;ENV&gt;/Scripts on Windows).</li>
+<li>The new Python was cloned from your Python 3.</li>
+<li>The new Python was isolated from any libraries installed in the original Python.</li>
+<li><code class="docutils literal"><span class="pre">Pip</span></code> and <code class="docutils literal"><span class="pre">setuptools</span></code> were installed so you can install additional packages.</li>
+</ul>
+<p>You can take a peek to see the resulting structure of the <code class="docutils literal"><span class="pre">demoenv</span></code> directory:</p>
+<div class="highlight-python"><div class="highlight"><pre>demoenv/
+├── bin
+│   ├── activate
+│   ├── activate.csh
+│   ├── activate.fish
+│   ├── easy_install
+│   ├── easy_install-3.6
+│   ├── pip
+│   ├── pip3
+│   ├── pip3.6
+│   ├── python -&gt; python3
+│   └── python3 -&gt; /usr/bin/python3
+├── include
+├── lib
+│   └── python3.6
+├── lib64 -&gt; lib
+├── pyvenv.cfg
+└── share
+    └── python-wheels
+</pre></div>
+</div>
+</div>
+<div class="section" id="activation">
+<h3>Activation<a class="headerlink" href="#activation" title="Permalink to this headline">¶</a></h3>
+<p>The virtual environment you just created, <code class="docutils literal"><span class="pre">demoenv</span></code> contains an executable Python command.
+If you do a quick check to see which Python executable is found by your terminal, you&#8217;ll see that it is not the new one:</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ which python
+/usr/bin/python
+</pre></div>
+</div>
+<p>You can execute the new Python by explicitly pointing to it:</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./demoenv/bin/python -V
+Python 3.6.1
+</pre></div>
+</div>
+<p>That&#8217;s tedious and hard to remember.
+Instead, you can <code class="docutils literal"><span class="pre">activate</span></code> your virtualenv using the bash <code class="docutils literal"><span class="pre">source</span></code> command:</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ <span class="nb">source</span> demoenv/bin/activate
+<span class="o">(</span>demoenv<span class="o">)</span>$ which python
+/Users/cewing/demoenv/bin/python
+</pre></div>
+</div>
+<p>There.
+That&#8217;s better.
+Now whenever you run the <code class="docutils literal"><span class="pre">python</span></code> command, the executable that will be used will be the new one in your <code class="docutils literal"><span class="pre">demoenv</span></code>.</p>
+<p>Notice also that the your shell prompt has changed.
+It indicates which <code class="docutils literal"><span class="pre">virtualenv</span></code> is currently active.
+Little clues like that really help you to keep things straight when you&#8217;ve got a lot of projects going on.
+It&#8217;s nice the makers of virtualenv thought of it.</p>
+</div>
+<div class="section" id="installing-packages">
+<h3>Installing Packages<a class="headerlink" href="#installing-packages" title="Permalink to this headline">¶</a></h3>
+<p>With an active virtual environment, you also have <code class="docutils literal"><span class="pre">pip</span></code> and <code class="docutils literal"><span class="pre">easy_install</span></code>.
+These Python packaging tools allow you to install packages <em>in your virtual environment</em>.
+The installed packages will not be available in your wider Python installation.
+They are isolated and safe.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>demoenv<span class="o">)</span>$ which pip
+/Users/cewing/demoenv/bin/pip
+<span class="o">(</span>demoenv<span class="o">)</span>$ which easy_install
+/Users/cewing/demoenv/bin/easy_install
+</pre></div>
+</div>
+<p>Let&#8217;s see this in action.
+We&#8217;ll install a package called <code class="docutils literal"><span class="pre">docutils</span></code>.
+It provides support for converting ReStructuredText documents into other formats.
+This document you are reading is built using tools from that package.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>demoenv<span class="o">)</span>$ pip install docutils
+Collecting docutils
+  Using cached docutils-0.13.1-py3-none-any.whl
+Installing collected packages: docutils
+Successfully installed docutils-0.13.1
+</pre></div>
+</div>
+<p>And now, when we fire up our Python interpreter, the docutils package is available to us:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="go">(demoenv)$ python</span>
+<span class="go">Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04)</span>
+<span class="go">[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin</span>
+<span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">docutils</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">docutils</span><span class="o">.</span><span class="n">__path__</span>
+<span class="go">[&#39;/Users/Nick/demoenv/lib/python3.6/site-packages/docutils&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">exit</span><span class="p">()</span>
+<span class="go">(demoenv)$</span>
+</pre></div>
+</div>
+<p>There&#8217;s one other interesting side-effect of installing software with <code class="docutils literal"><span class="pre">venv</span></code>.
+The <code class="docutils literal"><span class="pre">docutils</span></code> package provides a number of executable scripts when it is installed: <code class="docutils literal"><span class="pre">rst2html.py</span></code>, <code class="docutils literal"><span class="pre">rst2latex.py</span></code> and so on.
+You can see them in the <code class="docutils literal"><span class="pre">bin</span></code> directory inside your <code class="docutils literal"><span class="pre">demoenv</span></code>.
+These scripts are set up to execute using the Python with which they were built.
+What this means is that running these scripts will use the Python executable in your virtualenv, <em>even if that virtualenv is not active</em>!</p>
+</div>
+<div class="section" id="deactivation">
+<h3>Deactivation<a class="headerlink" href="#deactivation" title="Permalink to this headline">¶</a></h3>
+<p>So you&#8217;ve got a virtual environment created.
+And you&#8217;ve activated it so that you can install packages and use them.
+Eventually you&#8217;ll need to move on to some other project.
+This likely means that you&#8217;ll need to stop working with this <code class="docutils literal"><span class="pre">demoenv</span></code> and switch to another.
+It&#8217;s a good idea to keep a separate virtual environment for every project you work on.</p>
+<p>When a <code class="docutils literal"><span class="pre">venv</span></code> is active, you use the <code class="docutils literal"><span class="pre">deactivate</span></code> command to turn it off:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>demoenv<span class="o">)</span>$ deactivate
+$ which python
+/usr/bin/python
+</pre></div>
+</div>
+<p>Note that your shell prompt returns to normal.
+The executable Python found when you check <code class="docutils literal"><span class="pre">which</span> <span class="pre">python</span></code> is the system one again.</p>
+</div>
+<div class="section" id="cleaning-up">
+<h3>Cleaning Up<a class="headerlink" href="#cleaning-up" title="Permalink to this headline">¶</a></h3>
+<p>There is one more great advantage that <code class="docutils literal"><span class="pre">venv</span></code> confers on you as a developer.
+The ability to easily remove a batch of installed Python software from your system.
+Consider a situation where you installed a library that breaks your Python (it happens).
+If you are working in your system Python, you now have to figure out what that package installed, where, and go clean it out manually.
+With <code class="docutils literal"><span class="pre">venv</span></code> the process is as simple as removing the directory that was created when you started out.</p>
+<p>Let&#8217;s do that with our <code class="docutils literal"><span class="pre">demoenv</span></code>:</p>
+<div class="build highlight-bash"><div class="highlight"><pre>$ rm -rf demoenv
+</pre></div>
+</div>
+<p>And that&#8217;s it.
+The entire environment and all the packages you installed into it are now gone.
+There&#8217;s no traces left to pollute your world.</p>
+</div>
+</div>
+<div class="section" id="other-options">
+<h2>Other Options<a class="headerlink" href="#other-options" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">venv</span></code> module is part of the Python standard library starting with Python 3.3.
+But what if you are forced to use Python 2?
+What if you are on a system where <code class="docutils literal"><span class="pre">venv</span></code> is un-bundled and hopelessly borked?
+There are other options available.</p>
+<p>The <a class="reference external" href="https://virtualenv.pypa.io">virtualenv</a> package is one such option.
+It works for Python 2.x (and for Python 3 as well).
+In fact, it is the predecessor of the <code class="docutils literal"><span class="pre">venv</span></code> module.</p>
+<p>The <code class="docutils literal"><span class="pre">virtualenv</span></code> package can be supplemented by <a class="reference external" href="https://virtualenvwrapper.readthedocs.io">virtualenvwrapper</a>.
+It provides a number of command-line tools that can really add power to your workflow with <code class="docutils literal"><span class="pre">virtualenv</span></code>.</p>
+<p>Another option is the <a class="reference external" href="http://conda.pydata.org/docs/get-started.html">conda</a> packaging system.
+Conda is part of the <a class="reference external" href="https://docs.continuum.io/anaconda/">Anaconda</a> Python distribution.
+It is widely used in the data science and scientific computing communities.
+We will not use it in this class.
+<strong>Do Not</strong> install it on your machine for the duration of class, as it has side effects that can break our working patterns.</p>
+<p><strong>Managing Multiple Pythons</strong></p>
+<p>Sometimes you find yourself needing to install many different versions of Python.
+The more versions you have, the more challenging it can be to keep them cleanly managed.
+The <a class="reference external" href="https://github.com/yyuu/pyenv">pyenv</a> project provides tools that can help.</p>
+<p>You can identify different Python installations available in your system.
+You can choose which of them to treat as your <em>global</em> Python.
+You can change global versions at will.
+You can set different versions to be active in different directories.
+And much more.</p>
+<p>It&#8217;s well beyond the scope of this course to dive into this tool.
+It is mentioned here as a reference, in case you find it useful at some point in your future career.</p>
+</div>
+<div class="section" id="a-note">
+<h2>A Note<a class="headerlink" href="#a-note" title="Permalink to this headline">¶</a></h2>
+<p>It can be easy to confuse the virtual environments provided by the <code class="docutils literal"><span class="pre">venv</span></code> module with OS virtualization (like virtualbox or vagrant).
+Be aware that <code class="docutils literal"><span class="pre">venv</span></code> <strong>only</strong> isolates Python and Python packages.
+It is not responsible for isolating any system packages.
+Packages like <code class="docutils literal"><span class="pre">openssl</span></code>, <code class="docutils literal"><span class="pre">apache</span></code>, <code class="docutils literal"><span class="pre">nginx</span></code> and so on are never managed by <code class="docutils literal"><span class="pre">venv</span></code>.</p>
+</div>
+<div class="section" id="wrap-up">
+<h2>Wrap-Up<a class="headerlink" href="#wrap-up" title="Permalink to this headline">¶</a></h2>
+<p>In this lecture we&#8217;ve:</p>
+<div class="build container">
+<ul class="build simple">
+<li>learned why we might want to use a virtual environment in Python</li>
+<li>learned to use the <code class="docutils literal"><span class="pre">venv</span></code> module in Python 3 to create such an environment</li>
+<li>learned how to activate and deactive a virtual environment</li>
+<li>learned how to install packages in a virtual environment using <code class="docutils literal"><span class="pre">pip</span></code></li>
+<li>learned that virtual environments can be disposed of</li>
+</ul>
+<p>That&#8217;s enough for now.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Working with Virtual Environments</a><ul>
+<li><a class="reference internal" href="#why-virtual-environments">Why Virtual Environments?</a></li>
+<li><a class="reference internal" href="#installing-virtual-environments">Installing Virtual Environments</a></li>
+<li><a class="reference internal" href="#using-virtual-environments">Using Virtual Environments</a><ul>
+<li><a class="reference internal" href="#what-happened">What Happened?</a></li>
+<li><a class="reference internal" href="#activation">Activation</a></li>
+<li><a class="reference internal" href="#installing-packages">Installing Packages</a></li>
+<li><a class="reference internal" href="#deactivation">Deactivation</a></li>
+<li><a class="reference internal" href="#cleaning-up">Cleaning Up</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-options">Other Options</a></li>
+<li><a class="reference internal" href="#a-note">A Note</a></li>
+<li><a class="reference internal" href="#wrap-up">Wrap-Up</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installing_python.html"
+                        title="previous chapter">Installing Python</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="intro_to_python_1.html"
+                        title="next chapter">Introduction To Python: Part 1</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="intro_to_python_1.html" title="Introduction To Python: Part 1"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installing_python.html" title="Installing Python"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week01/mon.html" >Monday</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

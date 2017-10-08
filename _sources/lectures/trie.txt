@@ -1,0 +1,178 @@
+****
+Trie
+****
+
+.. code-block:: bash
+
+                       *  
+                     /   \
+                   /      \
+                 i         t
+                /|         | \ 
+               / |         |  \ 
+              /  |         |   o
+             n   t         e     \
+             |   |    ____/|\____  $ 
+             |   |   /     |     \
+             t   $  a      d      n
+            / \     |      |      |
+           o   $    $      $      $
+           |
+           $
+             
+* adapted from an NYU course: `http://cs.nyu.edu/~kshitij/courses/ds12/index_files/notes-trie.txt <http://cs.nyu.edu/~kshitij/courses/ds12/index_files/notes-trie.txt>`_
+
+In the illustration, each node is marked by a character.
+``$`` marks where a word ends at a specific node.
+
+In this Trie, the words "into", "int", "it", "tea", "ted", "ten", and "to" are captured.
+The word "in" is not, as there's no terminal node that preserves that word.
+
+
+Definition
+==========
+
+A **Trie** (from information re**TRIE**val) is a tree data structure that is used to store an associative array.
+We care about the path to the leaf nodes, rather than any individual content of a leaf node.
+
+All the descendants of a particular node have a common prefix.
+This prefix is the path that lead to the particular node.
+
+An associative array has a key and a value.
+
+The way to read (or think) of the tree is as follows.
+For each node (denoted by ``*`` or ``$``) in the tree we can potentially have 26 neighbors, one for each letter of the alphabet.
+The edge between that node and its neighbor contains that alphabetical character.
+
+The string represented by a leaf node is obtained by following the path from root to that leaf and writing down the characters along the path.
+
+
+Motivation
+==========
+
+* Store data efficiently without collisions (hash)
+* Sorted ordering of the entries by key (related to the `Radix search <https://en.wikipedia.org/wiki/Radix_tree>`_)
+* Autocomplete
+* Matching algorithms (spell check & hyphenation)
+* Used heavily in computational linguistics
+
+Drawbacks
+---------
+
+* Speed dependent on storage - RAM faster than hash, HD perhaps slower
+* Storing in RAM will eventually crush your system
+
+
+Operations
+==========
+
+- ``insert(string):`` for each character in the string we add a node and navigate to the next level of the tree. Once we get to the end of the string, we add a terminal leaf node.
+
+.. code-block:: bash
+
+    >>> trie.insert("amy")
+
+      .     <- level 0 (root)  
+      |  
+      a     <- level 1  
+      |  
+      m     <- level 2  
+      |
+      y     <- level 3  
+      |   
+      $     <- level 4 (terminal leaf)
+
+    >>> trie.insert("awesome")
+
+        .        <- level 0 (root)   
+        |   
+        a        <- level 1   
+      /   \  
+     m     w     <- level 2   
+     |     |  
+     y     e     <- level 3  
+     |     |  
+     $     s     <- level 4 (has a terminal leaf for "amy")
+           |
+           o     <- level 5
+           |
+           m     <- level 6
+           |
+           e     <- level 7
+           |
+           $     <- level 8 (terminal leaf)
+
+    >>> trie.insert("awe")
+
+           .         <- level 0 (root)   
+           |   
+           a         <- level 1
+      ___/ |
+     /     |
+     m     w         <- level 2   
+     |     |  
+     y     e         <- level 3  
+     |     | \___  
+     |     |     \     
+     $     s      $  <- level 4 (has a terminal leaf for "amy" and "awe")
+           |
+           o         <- level 5
+           |
+           m         <- level 6
+           |
+           e         <- level 7
+           |
+           $         <- level 8 (terminal leaf)
+
+- ``search(string):`` return the string if it exists within the tree, else return None.
+- ``remove(string):`` remove the string from the tree
+- ``traverse(start_string):`` depth-first traversal returning all of the words in the trie tree that start with ``start_string``.
+- ``autocomplete(string, n)``: return the first ``n`` words that partially match the starter string, if any match. E.g. if the tree contains ``['kittens', 'kits', 'kilt', 'kaboodle', 'katherine', 'kool aid', 'keyblade']``
+
+.. code-block:: python
+
+    >>> trie.autocomplete("k", n=5)
+    ['kittens', 'kits', 'kilt', 'kaboodle', 'katherine']
+
+    >>> trie.autocomplete("ki", n=5)
+    ['kittens', 'kits', 'kilt']
+
+    >>> trie.autocomplete("kit", n=5)
+    ['kittens', 'kits']
+
+    >>> trie.autocomplete("kite", n=5)
+    []
+
+- ``delete(string)``: removes that previously-searchable string from the tree.
+
+.. code-block:: bash
+
+        .   
+        |   
+        a   
+      /   \  
+     m     w
+     |     |  
+     y     e
+     |     |  
+     $     s
+           |
+           o
+           |
+           m
+           |
+           e
+           |
+           $
+
+    >>> trie.delete("awesome")
+
+      .
+      |  
+      a
+      |  
+      m
+      |
+      y
+      |   
+      $

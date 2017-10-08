@@ -1,0 +1,53 @@
+.. slideconf::
+    :autoslides: False
+
+********
+Thursday
+********
+
+.. slide:: Course Presentations
+    :level: 1
+
+    This document contains no slides.
+
+Objectives
+==========
+
+* Learn about how authentication and authorization work in a Django app
+* Learn more about how to walk through a Trie Tree
+
+Readings
+========
+
+* `Trie Trees <https://www.youtube.com/watch?v=RIUY7ieyH40>`_
+* `Django Security <https://docs.djangoproject.com/en/dev/topics/security/>`_
+* `Is Django's Built-In Security Enough? <http://security.stackexchange.com/questions/27805/is-djangos-built-in-security-enough>`_
+* Read about using `Django's Authentication Systems <https://docs.djangoproject.com/es/dev/topics/auth/default/>`_
+
+Review
+======
+
+Concepts
+========
+
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/django_security
+
+* Trie Tree Traversals
+
+
+Demo
+====
+
+
+Assignments
+===========
+
+* :doc:`/assignments/trie_traversal`
+* :doc:`/assignments/django_7_complete_frontend` (Due Friday Week 8)
+* :doc:`/assignments/blog_post_draft`
+* :doc:`/assignments/daily_lj_entry`
+
+

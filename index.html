@@ -1,0 +1,418 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Code Fellows 401 Python &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="#" />
+    <link rel="next" title="Monday" href="schedule/week01/mon.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="#">
+      <img class="logo" src="_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="schedule/week01/mon.html" title="Monday"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="code-fellows-401-python">
+<h1>Code Fellows 401 Python<a class="headerlink" href="#code-fellows-401-python" title="Permalink to this headline">¶</a></h1>
+<span class="admonition-code-fellows-401-python"></span><p>The materials in this documentation support the Python Dev Accelerator program
+at Code Fellows in Seattle, WA.</p>
+<div class="section" id="overview">
+<span id="course-overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">This Week</p>
+<p class="sidebar-subtitle">quick links to daily schedules</p>
+<p><strong>Week 01</strong></p>
+<p>The theme for the week is Python, Python, Python!</p>
+<div class="toctree-wrapper last compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="schedule/week01/mon.html">Monday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schedule/week01/tue.html">Tuesday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schedule/week01/wed.html">Wednesday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schedule/week01/thu.html">Thursday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schedule/week01/fri.html">Friday</a></li>
+</ul>
+</div>
+</div>
+<p>A quick read on the objectives, philosophy and values held by Code Fellows and
+followed by this Course.</p>
+<div class="section" id="course-objectives">
+<h3>Course Objectives<a class="headerlink" href="#course-objectives" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Acquire strong and idiomatic skills as a Python programmer</li>
+<li>Achieve a deep understanding of the full environment in which web programming
+occurs, from sockets up to frameworks.</li>
+<li>Develop the evaluative criteria to choose the right tool for the job.</li>
+<li>Build facility with associated technologies: git, HTML, CSS, Javascript.</li>
+<li>Gain mastery of the fundamental skills of agile development, testing,
+deployment and teamwork.</li>
+</ul>
+</div>
+<div class="section" id="learning-philosophy">
+<h3>Learning Philosophy<a class="headerlink" href="#learning-philosophy" title="Permalink to this headline">¶</a></h3>
+<p>I would like you to approach this course as if it were a graduate seminar.</p>
+<p>In a university, undergraduates are taught in lectures.
+An &#8220;expert&#8221; delivers lesson material and &#8220;students&#8221; absorb it (or don&#8217;t).</p>
+<p>A graduate seminar is a very different kind of learning environment.
+The professor chooses a topic, provides initial learning resources and facilitates discussion.
+Students are expected to be active participants, asking and answering questions based on their learning and their own experience.</p>
+<p>In this course, your instructor has the benfit of work experience, and his or her own set of knowledge.
+You have your own specific skills and experiences.
+Please bring them to class and apply what you already know to what you are learning.
+This will enhance the experience both for you and for the other students around you.</p>
+</div>
+<div class="section" id="learning-python">
+<h3>Learning Python<a class="headerlink" href="#learning-python" title="Permalink to this headline">¶</a></h3>
+<p>Learning to program in Python is about more than just learning logic, algorithms and data structures.
+It&#8217;s about learning to write idiomatic Python.
+Python lends itself to clear, expressive programs.
+Learning to write the most pythonic Python will result in programs that are clean and easy to understand.
+But more than that, idiomatic Python is Python that operates to the strengths of the language.
+Pythonic code will be faster and more efficient than code that is not Pythonic.
+Throughout the course, an emphasis will be placed on writing truly pythonic Python, and on learning to evaluate what is pythonic.</p>
+</div>
+<div class="section" id="the-honor-code">
+<h3>The Honor Code:<a class="headerlink" href="#the-honor-code" title="Permalink to this headline">¶</a></h3>
+<p>Like the Python community at large, Code Fellows has a <a class="reference external" href="https://github.com/codefellows/code-of-conduct">code of conduct</a>.
+All students in this course are expected to know, and abide by, this code.
+Please make sure you read <a class="reference external" href="https://github.com/codefellows/code-of-conduct">the code</a> and are comfortable with what it means.
+If you have any questions, please address them to one of your instructors or the campus manager.
+Issues should be reported to <a class="reference external" href="mailto:conduct&#37;&#52;&#48;codefellows&#46;com">conduct<span>&#64;</span>codefellows<span>&#46;</span>com</a></p>
+</div>
+<div class="section" id="multi-programmer-workflow">
+<h3>Multi-programmer Workflow<a class="headerlink" href="#multi-programmer-workflow" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lectures/ping_pong_programming.html">Ping Pong Pair Programming Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lectures/ping_pong_programming.html#ping-ponging-for-two">Ping-Ponging for Two</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures/ping_pong_programming.html#ping-ponging-for-three">Ping-Ponging for Three</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="grading-guidelines">
+<h3>Grading Guidelines<a class="headerlink" href="#grading-guidelines" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lectures/grading_rubric.html">Grading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lectures/grading_rubric.html#learning-journals">Learning Journals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures/grading_rubric.html#partnered-coding-assignents">Partnered Coding Assignents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures/grading_rubric.html#solo-weekend-coding-assignments">Solo Weekend Coding Assignments</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="presentation-guidelines">
+<h3>Presentation Guidelines<a class="headerlink" href="#presentation-guidelines" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lectures/presentation_guidelines.html">Presentation Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lectures/presentation_guidelines.html#visually-test-your-presentation">VISUALLY Test your presentation:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures/presentation_guidelines.html#plan-your-presentation-have-a-script">Plan your presentation... have a script:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures/presentation_guidelines.html#rehearse-your-presentation">Rehearse your presentation:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures/presentation_guidelines.html#the-actual-presentation">The actual presentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures/presentation_guidelines.html#overall-time-breakdown">Overall time breakdown:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="community-involvement">
+<h3>Community Involvement<a class="headerlink" href="#community-involvement" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="assignments/community.html">Community Involvement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assignments/community.html#attend-meetups">Attend Meetups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assignments/community.html#attend-programming-hack-nights">Attend Programming/Hack Nights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assignments/community.html#present-a-lightning-talk">Present a Lightning Talk</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="after-graduation">
+<h3>After Graduation<a class="headerlink" href="#after-graduation" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="readings/python_developer_roadmap.html">Python Post-Grad Road Map</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readings/python_developer_roadmap.html#tips-on-structuring-time-and-accountability">Tips on Structuring Time and Accountability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readings/python_developer_roadmap.html#python-continuing-education">Python Continuing Education</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readings/python_developer_roadmap.html#non-python-continuing-education">Non-Python Continuing Education</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="pre-work">
+<h2>Pre-Work<a class="headerlink" href="#pre-work" title="Permalink to this headline">¶</a></h2>
+<p>Having a level of comfort with the basic skills you&#8217;ll be using every day is vital to your success.</p>
+<p>From the pre-work assignments below, please select the area in which you are the weakest.
+Begin by working on that.
+Once you have spent at least 10 hours on that area, select your next weakest area and move on to that.</p>
+<p>You do not need to do a lot of work every day.
+One hour is enough, though just.
+The key is to work every single day.
+Do not let a day go by without spending your time practicing.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="assignments/prework_python_html.html">Prework - Python, HTML, CSS, JS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/prework_command_line.html">Prework - The Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/prework_mindset.html">Prework - Mindset</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="course-schedule">
+<h2>Course Schedule<a class="headerlink" href="#course-schedule" title="Permalink to this headline">¶</a></h2>
+<p>This schedule is subject to change.  Please check back frequently.</p>
+<div class="section" id="week-01">
+<h3>Week 01<a class="headerlink" href="#week-01" title="Permalink to this headline">¶</a></h3>
+<p>The theme for the week is Python, Python, Python!</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="schedule/week01/mon.html">Monday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schedule/week01/tue.html">Tuesday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schedule/week01/wed.html">Wednesday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schedule/week01/thu.html">Thursday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schedule/week01/fri.html">Friday</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Code Fellows 401 Python</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a><ul>
+<li><a class="reference internal" href="#course-objectives">Course Objectives</a></li>
+<li><a class="reference internal" href="#learning-philosophy">Learning Philosophy</a></li>
+<li><a class="reference internal" href="#learning-python">Learning Python</a></li>
+<li><a class="reference internal" href="#the-honor-code">The Honor Code:</a></li>
+<li><a class="reference internal" href="#multi-programmer-workflow">Multi-programmer Workflow</a></li>
+<li><a class="reference internal" href="#grading-guidelines">Grading Guidelines</a></li>
+<li><a class="reference internal" href="#presentation-guidelines">Presentation Guidelines</a></li>
+<li><a class="reference internal" href="#community-involvement">Community Involvement</a></li>
+<li><a class="reference internal" href="#after-graduation">After Graduation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pre-work">Pre-Work</a></li>
+<li><a class="reference internal" href="#course-schedule">Course Schedule</a><ul>
+<li><a class="reference internal" href="#week-01">Week 01</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="schedule/week01/mon.html"
+                        title="next chapter">Monday</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="schedule/week01/mon.html" title="Monday"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

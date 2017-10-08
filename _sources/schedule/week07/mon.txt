@@ -1,0 +1,44 @@
+.. slideconf::
+    :autoslides: False
+
+******
+Monday
+******
+
+.. slide:: Course Presentations
+    :level: 1
+
+    This document contains no slides.
+
+Objectives
+==========
+
+* Get solid on back-end and front-end testing in Django
+* Generally build the mindset of a tester when it comes to any codebase
+* Learn about what a Hash Table is and how it can be implemented.
+
+Readings
+========
+
+Hashing
+-------
+
+* Read all about various `hashing functions <http://www.eternallyconfuzzled.com/tuts/algorithms/jsw_tut_hashing.aspx>`_ and how they work.
+
+Review
+======
+
+Concepts
+========
+
+* Hash Table Basics
+* Deep Dive into Django Testing
+
+
+Assignments
+===========
+
+* :doc:`/assignments/hash_table`
+* :doc:`/assignments/bst_4_balancing` (Due Tuesday)
+* :doc:`/assignments/blog_post_draft` (Due Friday)
+* :doc:`/assignments/daily_lj_entry`

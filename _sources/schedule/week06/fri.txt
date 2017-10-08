@@ -1,0 +1,31 @@
+.. slideconf::
+    :autoslides: False
+
+******
+Friday
+******
+
+.. slide:: Course Presentations
+    :level: 1
+
+    This document contains no slides.
+
+Concepts
+========
+
+Career Development Day
+
+.. warning::
+
+    Today is the last day that the class learning journal will be online.
+
+
+Assignments
+===========
+
+* :doc:`/assignments/django_4_data_views`
+* :doc:`/assignments/bst_4_balancing` (Due Tuesday)
+* :doc:`/assignments/kata_forbes_billionaires`
+* :doc:`/assignments/aws_account`
+* :doc:`/assignments/blog_post_draft` (Due Friday of Week 7)
+* :doc:`/assignments/daily_lj_entry`

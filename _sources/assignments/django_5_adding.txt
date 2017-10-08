@@ -1,0 +1,45 @@
+*****************************************
+Django Imager: Create Views to Add Models
+*****************************************
+
+In this series of assignments you will build a simple image management website using Django.
+In this fifth step, you will provide users with a way to add resources from the front-end of the application.
+That way, you need not grant them access to the Django admin.
+
+Tasks
+=====
+
+Do your work for this assignment on a branch called ``front-end-3``.
+Be sure that the branch contains your work for the previous parts of this work.
+
+**BEFORE YOU START ANY OF THE NEW VIEWS BELOW**, convert your existing function-based views to be **class-based views.**
+Instead of going generic and using the ``TemplateView``, do what you can to try and use a more specific CBV.
+The right CBV for the right job.
+
+Creating
+--------
+
+- Construct views that allow the creation of ``album`` and ``photo`` instances.
+- From the ``library`` page you created previously, add prominent buttons that allow for easy navigation to the ``album`` and ``photo`` creation pages.
+- Each creation page should show a form with the needed fields to create a new album or photo.
+- The ``album`` form need not offer the ability to upload photos. Only assign photos that already exist.
+- When the form is submitted, the user should be redirected to the ``library`` page where they can see the newly created object.
+
+The URLs for these pages should be 
+
+- ``/images/albums/add/``
+- ``/images/photos/add/``
+
+Tests
+-----
+
+You must implement tests to ensure your views are functioning properly.
+As an example, a user should not be able to create a photo or album with any required field missing.
+
+Submitting Your Work
+--------------------
+
+When you are done working and all your tests are passing, create a Pull Request from the ``front-end-3`` branch to ``master``.
+Submit the URL for that pull request.
+
+When you are done, you can merge the pull request in preparation for the next stage of your work.

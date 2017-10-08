@@ -1,0 +1,971 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting Started With Pyramid &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="getting-started-with-pyramid">
+<h1>Getting Started With Pyramid<a class="headerlink" href="#getting-started-with-pyramid" title="Permalink to this headline">¶</a></h1>
+<p>Create a new directory called <code class="docutils literal"><span class="pre">expense-tracker</span></code>.
+Make sure it&#8217;s easily located; we&#8217;ll be using this for the next two weeks.</p>
+<p>Within this new directory, create and activate a virtual environment.
+It&#8217;s probably easiest to maintain if you create your environment as a directory called <code class="docutils literal"><span class="pre">ENV</span></code> inside of your <code class="docutils literal"><span class="pre">expense-tracker</span></code> directory.</p>
+<div class="highlight-bash"><div class="highlight"><pre>bash-3.2$ python3 -m venv ENV
+bash-3.2$ <span class="nb">source</span> ENV/bin/activate
+<span class="o">(</span>ENV<span class="o">)</span> bash-3.2$
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">pip</span></code> install the most recent versions of <code class="docutils literal"><span class="pre">pip</span></code>, <code class="docutils literal"><span class="pre">setuptools</span></code>, and <code class="docutils literal"><span class="pre">ipython</span></code>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ pip install -U pip setuptools
+<span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ pip install ipython
+</pre></div>
+</div>
+<p>In the root level of your directory, create <code class="docutils literal"><span class="pre">.gitignore</span></code>, <code class="docutils literal"><span class="pre">README.md</span></code>, and <code class="docutils literal"><span class="pre">LICENSE</span></code> files.</p>
+<ul class="simple">
+<li>Get a good Python <code class="docutils literal"><span class="pre">.gitignore</span></code> file from GitHub. If you Google for &#8220;Python gitignore&#8221;, the first result should be a fine one. Because we mostly use Macs in this class, add a line to ignore any <code class="docutils literal"><span class="pre">.DS_Store</span></code> files.</li>
+<li>An MIT license should work, as this is an open source project that should be easily used and improved upon by anyone.</li>
+<li>Your README should include the name of the project (Expense Tracker), the author (you), and a description of what it is, how to install it, and how it works. You can fill those out (and update them) as the week goes on, but it should be accurate with whatever work has been done to that point.</li>
+</ul>
+<p>Initialize a repository, in this directory, and we can get to work.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>In order to begin working with Pyramid, we have to install it.
+We&#8217;ll also install the extension that allows Pyramid to interact with iPython, so that we get a nice-looking interpreter instead of the default Python one:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ pip install pyramid pyramid_ipython
+</pre></div>
+</div>
+<p>The version that should be pulled down is the latest version, 1.8.
+Note the other packages that get installed along with it, as it has dependencies.
+For example, <code class="docutils literal"><span class="pre">WebOb</span></code> provides an HTTP Request and Response class, and those you work with in Pyramid inherit from them.
+Many other frameworks also use this package.</p>
+<p>When it is installed, Pyramid creates a bunch of new shell commands (<code class="docutils literal"><span class="pre">pcreate</span></code>, <code class="docutils literal"><span class="pre">pshell</span></code>, <code class="docutils literal"><span class="pre">prequest</span></code>, etc).
+You can see them all in the <code class="docutils literal"><span class="pre">bin</span></code> directory of your virtual environment.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ ls ENV/bin
+activate         hupper           pcreate          prequest         pviews
+activate.csh     iptest           pdistreport      proutes          pygmentize
+activate.fish    iptest3          pip              pserve           python
+easy_install     ipython          pip3             pshell           python3
+easy_install-3.6 ipython3         pip3.6           ptweens
+</pre></div>
+</div>
+</div>
+<div class="section" id="writing-a-hello-world-app">
+<h2>Writing a &#8220;Hello World&#8221; App<a class="headerlink" href="#writing-a-hello-world-app" title="Permalink to this headline">¶</a></h2>
+<p>Source: <a class="reference external" href="http://www.trypyramid.com">trypyramid.com</a>.</p>
+<p>As is tradition, when using a new bit of technology we test that it works by having it print something like &#8220;Hello World&#8221;.
+This is no different.
+Make a directory for your &#8220;hello world&#8221; app called <code class="docutils literal"><span class="pre">hello_world</span></code>.
+Within that directory create a file named <code class="docutils literal"><span class="pre">app.py</span></code> and type the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;Simple Hello World! app.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">wsgiref.simple_server</span> <span class="kn">import</span> <span class="n">make_server</span>
+<span class="kn">from</span> <span class="nn">pyramid.config</span> <span class="kn">import</span> <span class="n">Configurator</span>
+<span class="kn">from</span> <span class="nn">pyramid.response</span> <span class="kn">import</span> <span class="n">Response</span>
+
+
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Basic view for the hello_world application.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Configurator</span><span class="p">()</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span><span class="n">hello_world</span><span class="p">,</span> <span class="n">route_name</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">make_wsgi_app</span><span class="p">()</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">make_server</span><span class="p">(</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="mi">6543</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Save that file and run the following from the command line:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ python app.py
+</pre></div>
+</div>
+<p>Notice how the shell returns nothing.
+This is a good thing.
+That means that the server you&#8217;ve set up through Pyramid is running and listening for requests.</p>
+<p>Finally, open <code class="docutils literal"><span class="pre">http://localhost:6543/</span></code> in your browser.
+This will simply connect you to the port that you told Pyramid to listen to, at 6543.</p>
+<p>This is an almost irresponsibly-simple web application.
+It proves that the Pyramid framework can handle HTTP requests and generate HTTP responses.
+We&#8217;ll definitely be using Pyramid for significantly more-complex things.
+You can see that it is easy to get a simple site up and running with Pyramid.
+For the more complex stuff, it helps to have some structure set up beforehand.</p>
+<p>Navigate back up one directory, and delete <code class="docutils literal"><span class="pre">hello_world</span></code> so that we can continue fresh.</p>
+</div>
+<div class="section" id="using-cookiecutter-to-create-a-scaffold">
+<h2>Using <code class="docutils literal"><span class="pre">cookiecutter</span></code> to Create a Scaffold<a class="headerlink" href="#using-cookiecutter-to-create-a-scaffold" title="Permalink to this headline">¶</a></h2>
+<p>A scaffold is a skeleton of code for a web app.
+This skeleton includes the basic functionality and reflects the best practices involved in build a Pyramid application.</p>
+<p>In the past, this scaffold was generated by the <code class="docutils literal"><span class="pre">pcreate</span></code> shell command that is installed in your environment when you <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></code> the Pyramid package.
+As of Pyramid 1.8, we&#8217;ve moved away from <code class="docutils literal"><span class="pre">pcreate</span></code> and now use the <code class="docutils literal"><span class="pre">cookiecutter</span></code> package.
+It accomplishes the same goal, but is more efficient than what came prepackaged with Pyramid.
+We&#8217;ve gotta go through a couple extra steps though to get it.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ pip install cookiecutter
+<span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ cookiecutter https://github.com/Pylons/pyramid-cookiecutter-alchemy
+project_name <span class="o">[</span>Pyramid Scaffold<span class="o">]</span>:
+</pre></div>
+</div>
+<p>You&#8217;ll be hit with a few prompts asking you about how you want your scaffold configured.
+Here&#8217;s how we&#8217;ll handle it for the <code class="docutils literal"><span class="pre">expense-tracker</span></code> app we&#8217;re building:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">project_name</span></code>: Expense Tracker</li>
+<li><code class="docutils literal"><span class="pre">repo_name</span></code>: expense_tracker</li>
+</ul>
+<p>Once you&#8217;ve set these, <code class="docutils literal"><span class="pre">cookiecutter</span></code> will create a directory called <code class="docutils literal"><span class="pre">expense_tracker</span></code> inside of your current <code class="docutils literal"><span class="pre">expense-tracker</span></code> directory.
+Let&#8217;s be clear here about where things are located, now that we have a bit of a nested situation:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">expense-tracker</span></code> is the directory holding everything. It contains your <code class="docutils literal"><span class="pre">README.md</span></code>, your <code class="docutils literal"><span class="pre">LICENSE</span></code>, your <code class="docutils literal"><span class="pre">.gitignore</span></code>, the actual location of your <code class="docutils literal"><span class="pre">.git</span></code> repository, and your <code class="docutils literal"><span class="pre">ENV</span></code> directory that houses your virtual environment</li>
+<li><code class="docutils literal"><span class="pre">expense-tracker/expense_tracker</span></code> is your <strong>project root</strong>. It holds your project configuration files (ending in <code class="docutils literal"><span class="pre">.ini</span></code>), your <code class="docutils literal"><span class="pre">setup.py</span></code>, and your <code class="docutils literal"><span class="pre">expense_tracker</span></code> application.</li>
+<li><code class="docutils literal"><span class="pre">expense-tracker/expense_tracker/expense_tracker</span></code> is your <strong>application root</strong>. It holds the files that make your application actually run.</li>
+</ul>
+<p>As a part of the scaffold, <code class="docutils literal"><span class="pre">cookiecutter</span></code> assumes that we&#8217;ll be creating this project as its own directory, with Pyramid installed globally on our machines.
+As a part of that, it assumes that we&#8217;ll be initializing a git repository at the level of the project root.
+That is not the case.
+As such, we can delete the <code class="docutils literal"><span class="pre">.gitignore</span></code> file that <code class="docutils literal"><span class="pre">cookiecutter</span></code> provided for us.
+We&#8217;ve got our own.</p>
+<p>Add this entire directory to your repository with <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code>.
+Commit it, as we&#8217;ve got the setup for our first project.</p>
+<p>The project root directory contains a bunch of files.
+They contain packaging metadata, information for other developers and configuration instructions for our application:
+Type <code class="docutils literal"><span class="pre">tree</span> <span class="pre">-L</span> <span class="pre">1</span></code> so you&#8217;ll see all of the new files that were just created in this directory (without seeing the full depth of directory tree).</p>
+<div class="highlight-text"><div class="highlight"><pre>(ENV) bash-3.2$ tree -L 1
+
+├── CHANGES.txt - here, we can track what changes we make to our app over time
+├── MANIFEST.in - controls what files are actually present when we package our stuff together and upload it
+├── README.txt - is our README file. If you prefer one in Markdown, edit setup.py accordingly
+├── development.ini - discussed later
+├── production.ini - discussed later
+├── pytest.ini - directs ``pytest`` as to which files to test (presuming any file ending in &quot;``.py``&quot;)
+├── setup.py - lets our directory become an installable python package
+├── .coveragerc - determines which directories get targeted for reports of coverage with testing
+</pre></div>
+</div>
+<p>Let&#8217;s start by inspecting <code class="docutils literal"><span class="pre">setup.py</span></code>.
+We can see that this app requires Pyramid, <code class="docutils literal"><span class="pre">Jinja2</span></code> (a templating engine), and a few other packages to work that we&#8217;ll get to later on this week.
+It also comes packed ready to install some packages for tests.</p>
+<p>Let&#8217;s modify <code class="docutils literal"><span class="pre">setup.py</span></code> so that it runs with <code class="docutils literal"><span class="pre">tox</span></code> as part of its test suite, and also includes <code class="docutils literal"><span class="pre">ipython</span></code> and <code class="docutils literal"><span class="pre">pyramid_ipython</span></code> as a part of the installation process:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in setup.py</span>
+<span class="n">requires</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;pyramid&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pyramid_jinja2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pyramid_debugtoolbar&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pyramid_tm&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ipython&#39;</span><span class="p">,</span> <span class="c1"># &lt;---- add this line</span>
+    <span class="s1">&#39;pyramid_ipython&#39;</span><span class="p">,</span> <span class="c1"># &lt;---- add this line</span>
+    <span class="s1">&#39;SQLAlchemy&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;transaction&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;zope.sqlalchemy&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;waitress&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="o">...</span>
+<span class="n">tests_require</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;WebTest &gt;= 1.3.1&#39;</span><span class="p">,</span>  <span class="c1"># py3 compat</span>
+    <span class="s1">&#39;pytest&#39;</span><span class="p">,</span>  <span class="c1"># includes virtualenv</span>
+    <span class="s1">&#39;pytest-cov&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tox&#39;</span><span class="p">,</span> <span class="c1"># you have to add this one in</span>
+<span class="p">]</span>
+<span class="o">...</span>
+<span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;expense_tracker&#39;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.0&#39;</span><span class="p">,</span>
+    <span class="o">...</span> <span class="c1"># package metadata</span>
+    <span class="n">install_requires</span><span class="o">=</span><span class="n">requires</span><span class="p">,</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;paste.app_factory&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;main = expense_tracker:main&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;console_scripts&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;initialize_expense_tracker_db = expense_tracker.scripts.initializedb:main&#39;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Don&#8217;t forget to fill in the appropriate information about <code class="docutils literal"><span class="pre">author</span></code>, <code class="docutils literal"><span class="pre">author_email</span></code>, etc.
+Now, let&#8217;s install it in editing mode so that the changes we make to this project will be immediately available to us when running the app.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ pip install -e .
+</pre></div>
+</div>
+<p>One of the things produced after installing our package is an <code class="docutils literal"><span class="pre">*.egg-info</span></code> directory.
+This file is package metadata <strong>that should never be in version control</strong>.
+Thankfully, our super <code class="docutils literal"><span class="pre">.gitignore</span></code> from GitHub includes this, so we don&#8217;t have to worry about it.</p>
+</div>
+<div class="section" id="pyramid-is-python">
+<h2>Pyramid is Python<a class="headerlink" href="#pyramid-is-python" title="Permalink to this headline">¶</a></h2>
+<p>Navigate to the <code class="docutils literal"><span class="pre">expense_tracker</span></code> application in your project root and inspect it.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ ls
+__init__.py models      routes.py   scripts     static      templates   tests.py    views
+</pre></div>
+</div>
+<p>In the <code class="docutils literal"><span class="pre">__init__.py</span></code> file you&#8217;ll find a <code class="docutils literal"><span class="pre">main</span></code> function.
+This function is the &#8220;entry point&#8221; for our application.
+You can find it registered in <code class="docutils literal"><span class="pre">setup.py</span></code> as a <code class="docutils literal"><span class="pre">paste.app_factory</span></code> entry point.
+When you use <code class="docutils literal"><span class="pre">pserve</span></code> to start a web server serving your app, this function is executed.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyramid.config</span> <span class="kn">import</span> <span class="n">Configurator</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">global_config</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; This function returns a Pyramid WSGI application.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Configurator</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;pyramid_jinja2&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;.models&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;.routes&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">scan</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">make_wsgi_app</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This looks somewhat different from the <code class="docutils literal"><span class="pre">app.py</span></code> file we had created earlier.
+The machinery of our framework is now handling some of the stuff we hard coded before.
+Let&#8217;s look at this in detail.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">global_config</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Configuration is passed into an application after being read from the specified <code class="docutils literal"><span class="pre">.ini</span></code> file (e.g. <code class="docutils literal"><span class="pre">development.ini</span></code>).
+The settings come in through, you guessed it, the <code class="docutils literal"><span class="pre">**settings</span></code> kwarg.
+The <code class="docutils literal"><span class="pre">.ini</span></code> files contain sections (e.g. <code class="docutils literal"><span class="pre">[app:main]</span></code>) containing <code class="docutils literal"><span class="pre">name</span> <span class="pre">=</span> <span class="pre">value</span></code> pairs of <em>configuration data</em>.
+This data is parsed with the Python <a class="reference external" href="https://docs.python.org/2/library/configparser.html">ConfigParser</a> module,
+which reads the configuration data and returns it as a dictionary.</p>
+<p>The name-value pairs in the <code class="docutils literal"><span class="pre">[app:main]</span></code> section of the configuration file are passed in to our app as <code class="docutils literal"><span class="pre">settings</span></code>.
+All other information in the configuration file is passed as <code class="docutils literal"><span class="pre">global_config</span></code>.
+In the context of our <code class="docutils literal"><span class="pre">main</span></code> function, <code class="docutils literal"><span class="pre">settings</span></code> is a Python dictionary:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s1">&#39;pyramid.debug_notfound&#39;</span><span class="p">:</span> <span class="s1">&#39;false&#39;</span><span class="p">,</span>
+<span class="s1">&#39;pyramid.reload_templates&#39;</span><span class="p">:</span> <span class="s1">&#39;true&#39;</span><span class="p">,</span>
+<span class="s1">&#39;pyramid.default_locale_name&#39;</span><span class="p">:</span> <span class="s1">&#39;en&#39;</span><span class="p">,</span>
+<span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Those settings are used on the next line after the docstring:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config</span> <span class="o">=</span> <span class="n">Configurator</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here, a Configurator class object is instantiated using the settings for our specific app.</p>
+<p>We can also <code class="docutils literal"><span class="pre">include</span></code> configuration from other add-on packages and even other regions of the app we&#8217;re inside of.
+This allows for including plugin code that changes how Pyramid behaves.
+Our app includes configuration from the package we will want to use for templating:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;pyramid_jinja2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The next bit would include the <code class="docutils literal"><span class="pre">models</span></code> directory in the app configuration.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;.models&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, as we&#8217;re not using models for a couple days, we can safely comment this line out.</p>
+<p>Following the models, we include <code class="docutils literal"><span class="pre">routes.py</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;.routes&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This includes all of the URL paths that we want accessible with our application, split out line-by-line.
+It also includes where our static files (e.g. our HTML, CSS, and JavaScript files if we have any) will reside.</p>
+<p>The last bit is</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">scan</span><span class="p">()</span>
+<span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">make_wsgi_app</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">config.scan()</span></code> finds all configuration and checks it to make sure that there are no problems with how everything is wired together.
+Calling <code class="docutils literal"><span class="pre">config.make_wsgi_app()</span></code> builds your Pyramid application and returns it to the framework to be served.</p>
+<p>We&#8217;ll return to the configuration of our application repeatedly over the next few sessions.
+For greater detail about configuration in Pyramid,
+check the <a class="reference external" href="http://docs.pylonsproject.org/projects/pyramid/en/latest/api/config.html">configuration chapter</a> of the Pyramid documentation.</p>
+</div>
+<div class="section" id="routes-and-the-mvc-controller">
+<h2>Routes and The MVC Controller<a class="headerlink" href="#routes-and-the-mvc-controller" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s go back to thinking for a bit about the <em>Model-View-Controller</em> pattern.</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/4/40/MVC_passive_view.png"><img alt="By Alan Evangelista (Own work) [CCo]" src="https://upload.wikimedia.org/wikipedia/commons/4/40/MVC_passive_view.png" style="width: 275px;" /></a>
+<p class="caption"><span class="caption-text">By Alan Evangelista (Own work) [CCo], via Wikimedia Commons</span></p>
+</div>
+<div class="section" id="http-request-response">
+<h3>HTTP Request/Response<a class="headerlink" href="#http-request-response" title="Permalink to this headline">¶</a></h3>
+<p>Recall the HTTP server that we built last week.
+It shows how internet software is driven by the HTTP Request/Response cycle.
+A <em>client</em> (perhaps a user with a web browser) makes a <strong>request</strong>.
+A <em>server</em> receives and handles that request and returns a <strong>response</strong>.
+The <em>client</em> receives the response and views it, perhaps making a new <strong>request</strong>, and so on and so forth.</p>
+<p>An HTTP request arrives at a server through the magic of a <strong>URL</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre>http://www.codefellows.org/courses/code-401/advanced-software-development-in-python
+</pre></div>
+</div>
+<p>Let&#8217;s break that up into its constituent parts:</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">http://</span></code>:</dt>
+<dd>This part is the <em>protocol</em>, it determines how the request will be sent.</dd>
+<dt><code class="docutils literal"><span class="pre">www.codefellows.org</span></code>:</dt>
+<dd>This is a <em>domain name</em>. It&#8217;s the human-facing address for a server somewhere.</dd>
+<dt><code class="docutils literal"><span class="pre">/courses/code-401/advanced-software-development-in-python</span></code>:</dt>
+<dd>This part is the <em>path</em>. It serves as a locator for a resource <em>on the server</em>.</dd>
+</dl>
+<p>In a static website the <em>path</em> identifies a <strong>physical location</strong> in the server&#8217;s file system.
+Some directory on the server is the <em>home</em> for the web process, and the <em>path</em> is looked up relative to that.
+Whatever resource (a file, an image, whatever) is located there is returned to the user as a response.
+If the path leads to a location that doesn&#8217;t exist, the server responds with a <strong>404 Not Found</strong> error.</p>
+<p>In the golden days of yore, this was the only way content was served via HTTP.
+In today&#8217;s world we have dynamic systems, employing server-side web frameworks like Pyramid.
+The requests that you send to a server are handled by a software process that <em>assembles a response</em> instead of looking up a physical location.
+But, we still have URLs, with <em>protocol</em>, <em>domain</em>, and <em>path</em>.
+What is the role for a path in a process that doesn&#8217;t refer to a physical file system?</p>
+</div>
+<div class="section" id="routes-in-pyramid">
+<h3>Routes in Pyramid<a class="headerlink" href="#routes-in-pyramid" title="Permalink to this headline">¶</a></h3>
+<p>Most web frameworks now call the <em>path</em> a <strong>route</strong>, and provide a way of matching <em>routes</em> to the code that will be run to handle requests.
+This process is called &#8220;dispatch&#8221;.</p>
+<p>In our Pyramid scaffold, routes are handled as <em>configuration</em>.
+They can be configured in the <em>main</em> function in <code class="docutils literal"><span class="pre">__init__.py</span></code> by writing a line that adds a route to the base Configurator instance:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># back inside __init__.py</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">global_config</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="c1">#...</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="c1">#...</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">add_route</span></code> method takes a required <code class="docutils literal"><span class="pre">name</span></code> argument for each route added.
+Everything else is, to some degree, an optional argument.
+Above, we also provide the <code class="docutils literal"><span class="pre">pattern</span></code> that gets appended to the site&#8217;s root URL (in this case, &#8220;/&#8221;).
+Anything that we use accessing the specified <code class="docutils literal"><span class="pre">name</span></code> argument in our Pyramid app will be broadcast to the <code class="docutils literal"><span class="pre">pattern</span></code> that we provide.</p>
+<p>When a request comes in to a Pyramid application, the framework looks at all the <em>routes</em> that have been configured.
+One by one, in order, it tries to match the <em>path</em> of the incoming request against the <em>pattern</em> of the route.
+As soon as a <em>pattern</em> matches the <em>path</em> from the incoming request, that route is used and no further matching is performed.
+If no route is found that matches, then the framework will automatically generate a <strong>404 Not Found</strong> error response.</p>
+<p>In a very real sense, the <em>routes</em> defined in an application <em>are</em> the public API.
+Any route that is present represents something the user can do.
+Any route that is not present is something the user cannot do.</p>
+<p>One can imagine that if we were to build a site with many routes (as we will), it would clutter up this <code class="docutils literal"><span class="pre">main</span></code> function,
+causing it to really be handling multiple things instead of being singularly focused (as functions should be).
+As a completely hypothetical example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># a hypothetical __init__.py; DO NOT TYPE THIS</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">global_config</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; This function returns a Pyramid WSGI application.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Configurator</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;pyramid_jinja2&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_static_view</span><span class="p">(</span><span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="n">cache_max_age</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_static_view</span><span class="p">(</span><span class="s1">&#39;special_styles&#39;</span><span class="p">,</span> <span class="s1">&#39;special_styles&#39;</span><span class="p">,</span> <span class="n">cache_max_age</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_static_view</span><span class="p">(</span><span class="s1">&#39;misc_styles&#39;</span><span class="p">,</span> <span class="s1">&#39;misc_styles&#39;</span><span class="p">,</span> <span class="n">cache_max_age</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;/about-me&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="s1">&#39;/journal/new-entry&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;edit&#39;</span><span class="p">,</span> <span class="s1">&#39;/journal/edit-entry&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="s1">&#39;/journal/delete-entry&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;view&#39;</span><span class="p">,</span> <span class="s1">&#39;/journal/{id:\d+}&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;contact&#39;</span><span class="p">,</span> <span class="s1">&#39;/contact-me&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;register&#39;</span><span class="p">,</span> <span class="s1">&#39;/register&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="s1">&#39;/login&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;logout&#39;</span><span class="p">,</span> <span class="s1">&#39;/logout&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;settings&#39;</span><span class="p">,</span> <span class="s1">&#39;/settings&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">scan</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">make_wsgi_app</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Luckily, we can break out our routes and our static views into a <code class="docutils literal"><span class="pre">routes.py</span></code> file in the same directory.
+The sole purpose of this file will be to handle all of the routing configuration for our Pyramid site.
+The configurator&#8217;s <code class="docutils literal"><span class="pre">include()</span></code> method will look for a function called <code class="docutils literal"><span class="pre">includeme</span></code>, within which we define all of our routes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># inside routes.py</span>
+<span class="k">def</span> <span class="nf">includeme</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; This function adds routes to Pyramid&#39;s Configurator &quot;&quot;&quot;</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_static_view</span><span class="p">(</span><span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="n">cache_max_age</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>The first line establishes a directory to hold our static files (css, javascript, images, etc).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">add_static_view</span><span class="p">(</span><span class="s2">&quot;static&quot;</span><span class="p">,</span> <span class="s2">&quot;static&quot;</span><span class="p">,</span> <span class="n">cache_max_age</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">add_static_view</span></code> method takes two arguments.
+The first is a path to the directory you will use to hold static files, relative to the location of this <code class="docutils literal"><span class="pre">__init__.py</span></code> file.
+The second is an initial path segment to be used in URLs.
+The latter is used when Pyramid is automatically generating URLs for static files to be served.</p>
+<p>That first one adds a path to your URL of <code class="docutils literal"><span class="pre">&lt;whatever</span> <span class="pre">your</span> <span class="pre">domain</span> <span class="pre">name</span> <span class="pre">is&gt;/</span></code>.
+The <code class="docutils literal"><span class="pre">.add_route()</span></code> method adds a &#8220;route name&#8221; to your Pyramid site.
+Route names are used to connect the URLs that a client requests to something that produces HTML.
+Here, when a client requests <code class="docutils literal"><span class="pre">&lt;whatever</span> <span class="pre">your</span> <span class="pre">domain</span> <span class="pre">name</span> <span class="pre">is&gt;/</span></code>, the route named <code class="docutils literal"><span class="pre">home</span></code> will be found.
+That name can be used to find some HTML to return.
+If instead the second argument was <code class="docutils literal"><span class="pre">'/new_entry'</span></code>, then requesting <code class="docutils literal"><span class="pre">&lt;whatever</span> <span class="pre">your</span> <span class="pre">domain</span> <span class="pre">name</span> <span class="pre">is&gt;/new_entry</span></code> would find the <code class="docutils literal"><span class="pre">home</span></code> route.</p>
+<p>The <code class="docutils literal"><span class="pre">config.add_route</span></code> line actually adds a new &#8220;path&#8221; to our route configuration, with the name of <code class="docutils literal"><span class="pre">home</span></code>.
+Later on when we connect &#8220;view&#8221; functions to these routes, we&#8217;ll use this name and not worry about what the actual path is, because it&#8217;ll be mapped to the name we set.</p>
+<p>Let&#8217;s take a look back at the <code class="docutils literal"><span class="pre">main</span></code> function in <code class="docutils literal"><span class="pre">__init__.py</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># inside __init__.py</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">global_config</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; This function returns a Pyramid WSGI application.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Configurator</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;pyramid_jinja2&#39;</span><span class="p">)</span>
+    <span class="c1"># config.include(&#39;.models&#39;)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;.routes&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">scan</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">make_wsgi_app</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The name <code class="docutils literal"><span class="pre">includeme</span></code> for a function that takes a Configurator instance is not just convention.
+This is an example of &#8220;magic&#8221;.
+If you provide a dotted path to a Python module or script to <code class="docutils literal"><span class="pre">include</span></code>, that module <strong>must</strong> provide a function called <code class="docutils literal"><span class="pre">includeme</span></code>.</p>
+</div>
+<p>We have our routes, and so anything we connect to specific route names will be shown on the associated pages.
+However, we do not yet have anything (of substance) to show on those pages.
+We can change all that with <strong>Views</strong>.</p>
+</div>
+<div class="section" id="the-pyramid-view">
+<h3>The Pyramid View<a class="headerlink" href="#the-pyramid-view" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s imagine that a <em>request</em> has come to our application for the path <code class="docutils literal"><span class="pre">'/'</span></code>.
+The framework made a match of that path to a <em>route</em> with the pattern <code class="docutils literal"><span class="pre">'/'</span></code>.
+Configuration can connect that route to a <em>view</em> in our application.
+Then the view that is connected will be <em>called</em>.</p>
+<p>This brings us to the nature of <em>views</em>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A Pyramid View is a callable that takes <cite>request</cite> as an argument.</p>
+</div>
+<p>The view can use information from that request to build appropriate data,
+perhaps using the application&#8217;s <em>models</em> (more on that tomorrow).
+Finally, it returns the data it assembled.</p>
+<p>If you recall our <code class="docutils literal"><span class="pre">hello_world</span></code> app, we defined a function named <code class="docutils literal"><span class="pre">hello_world()</span></code>.
+It took a <code class="docutils literal"><span class="pre">request</span></code> as an argument and used Pyramid&#8217;s <code class="docutils literal"><span class="pre">Response</span></code> object to provide an HTTP response.
+If we look inside of the <code class="docutils literal"><span class="pre">views/default.py</span></code> file provided by the Alchemy scaffold, we&#8217;ll find something similar.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># views.py</span>
+<span class="kn">from</span> <span class="nn">pyramid.response</span> <span class="kn">import</span> <span class="n">Response</span>
+<span class="kn">from</span> <span class="nn">pyramid.view</span> <span class="kn">import</span> <span class="n">view_config</span>
+
+<span class="kn">from</span> <span class="nn">sqlalchemy.exc</span> <span class="kn">import</span> <span class="n">DBAPIError</span>
+
+<span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">MyModel</span>
+
+
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s1">&#39;../templates/mytemplate.jinja2&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">dbsession</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span>
+    <span class="n">one</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">MyModel</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;one&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="k">except</span> <span class="n">DBAPIError</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">db_err_msg</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;text/plain&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="k">return</span> <span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="p">:</span> <span class="n">one</span><span class="p">,</span> <span class="s1">&#39;project&#39;</span><span class="p">:</span> <span class="s1">&#39;Expense Tracker&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal"><span class="pre">my_view</span></code> is the function name, taking a request, and a dictionary is being returned as a response.
+This is great and all, but let&#8217;s start more simply.
+Delete everything in the file and replace it with the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;Views for the Expense Tracker app.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">pyramid.response</span> <span class="kn">import</span> <span class="n">Response</span>
+
+
+<span class="k">def</span> <span class="nf">home_page</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;View for the home route.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="s2">&quot;This is my first view!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, in the <code class="docutils literal"><span class="pre">__init__.py</span></code> file in the <code class="docutils literal"><span class="pre">views</span></code> directory write</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">.default</span> <span class="kn">import</span> <span class="n">home_page</span>
+
+
+<span class="k">def</span> <span class="nf">includeme</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;List of views to include for the configurator object.&quot;&quot;&quot;</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span><span class="n">home_page</span><span class="p">,</span> <span class="n">route_name</span><span class="o">=</span><span class="s1">&#39;home&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the <code class="docutils literal"><span class="pre">includeme</span></code> function in this module, we connect this view to our existing <code class="docutils literal"><span class="pre">home</span></code> route.
+The <code class="docutils literal"><span class="pre">add_view</span></code> method takes the name of a view callable and the name of a route as arguments.</p>
+<p>Finally, we can include this configuration in our main function in <code class="docutils literal"><span class="pre">__init__.py</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># __init__.py</span>
+
+<span class="c1">#...</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">global_config</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;.views&#39;</span><span class="p">)</span> <span class="o">&lt;--</span> <span class="n">connects</span> <span class="n">our</span> <span class="n">views</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">scan</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">make_wsgi_app</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Again, this says &#8220;look in the <code class="docutils literal"><span class="pre">views</span></code> module for a function called <code class="docutils literal"><span class="pre">includeme</span></code> and include any additions to the overall app configuration.&#8221;</p>
+<p>Note, it doesn&#8217;t matter what order you pull in the <code class="docutils literal"><span class="pre">config.include</span></code> statements.</p>
+<p>Now that we&#8217;re all wired together, let&#8217;s navigate back to our project root and <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></code> this Pyramid app.
+Do you remember how to do that?
+Then, we can use <code class="docutils literal"><span class="pre">pserve</span> <span class="pre">development.ini</span></code> to start up a server and investigate the fruits of our labor.</p>
+<p>What happens if instead of providing a simple string as an argument to <code class="docutils literal"><span class="pre">Response</span></code>,
+we try to include the text contained within another file?
+Let&#8217;s set ourselves up for it by creating a file with that text.</p>
+<p>In the same directory as <code class="docutils literal"><span class="pre">default.py</span></code> create a file called <code class="docutils literal"><span class="pre">sample.txt</span></code>.
+Within that file, stick some text.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ <span class="nb">echo</span> <span class="s2">&quot;This is text in an external file.&quot;</span> &gt; sample.txt
+</pre></div>
+</div>
+<p>Now modify the view that we&#8217;ve made to read this file into Python, and return that text in the HTTP <code class="docutils literal"><span class="pre">Response</span></code> object.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># views.py</span>
+<span class="c1"># ...</span>
+<span class="kn">import</span> <span class="nn">io</span> <span class="c1"># for backwards compatability</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">HERE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">home_page</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">imported_text</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">HERE</span><span class="p">,</span> <span class="s1">&#39;sample.txt&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">imported_text</span><span class="p">)</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>Check the browser to see the result.</p>
+<p>We don&#8217;t just have to work with plain text.
+Let&#8217;s make a new file that contains HTML instead.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ <span class="nb">echo</span> <span class="s2">&quot;&lt;h1&gt;This is text in an external file.&lt;/h1&gt;&quot;</span> &gt; sample.html
+</pre></div>
+</div>
+<p>And now modify our view to access this new file</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># views.py</span>
+<span class="c1"># ...</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">HERE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">home_page</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">imported_text</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">HERE</span><span class="p">,</span> <span class="s1">&#39;sample.html&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">imported_text</span><span class="p">)</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>Re-launch the server and voila, html appears!</p>
+</div>
+</div>
+<div class="section" id="testing-your-pyramid-app">
+<h2>Testing Your Pyramid App<a class="headerlink" href="#testing-your-pyramid-app" title="Permalink to this headline">¶</a></h2>
+<p><strong>THIS WILL NOT BE COMPLETE, JUST AN EXAMPLE OF A COUPLE TESTS</strong></p>
+<p>Thus far we have written a bit of code for handling HTTP routing and serving data.
+But we haven&#8217;t yet written any tests of our own to make sure that things work the way that we need them to work.
+We can fortunately do this with Pyramid&#8217;s own <code class="docutils literal"><span class="pre">testing</span></code> module
+(<a class="reference external" href="http://docs.pylonsproject.org/projects/pyramid/en/latest/api/testing.html#module-pyramid.testing">Documentation</a>).</p>
+<p>When it comes to testing your Pyramid app (as well as other apps in general), you need to not only perform unit tests for individual pieces of functionality.
+You also need to test for how things perform when in practice.
+For example, if your app sends an email, you need to check that the email is actually sent.</p>
+<p>However, for today, we&#8217;ll focus only on unit tests, refactoring and building out more about functional tests tomorrow.</p>
+<div class="section" id="setting-up-a-test-for-a-view">
+<h3>Setting Up a Test for a View<a class="headerlink" href="#setting-up-a-test-for-a-view" title="Permalink to this headline">¶</a></h3>
+<p>Our scaffold provided for us a <code class="docutils literal"><span class="pre">tests.py</span></code> file complete with some basic tests.
+However, since we won&#8217;t be using <code class="docutils literal"><span class="pre">unittest</span></code> for our test suite we&#8217;ll gut it completely.
+In its place, write:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in tests.py</span>
+
+<span class="kn">from</span> <span class="nn">pyramid</span> <span class="kn">import</span> <span class="n">testing</span>
+<span class="kn">from</span> <span class="nn">pyramid.response</span> <span class="kn">import</span> <span class="n">Response</span>
+
+
+<span class="k">def</span> <span class="nf">test_home_view_returns_response</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Home view returns a Response object.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">home_page</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">testing</span><span class="o">.</span><span class="n">DummyRequest</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">home_page</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">Response</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">test_home_view_is_good</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Home view response has a status 200 OK.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">home_page</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">testing</span><span class="o">.</span><span class="n">DummyRequest</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">home_page</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+
+<span class="k">def</span> <span class="nf">test_home_view_returns_proper_content</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Home view response has file content.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">home_page</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">testing</span><span class="o">.</span><span class="n">DummyRequest</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">home_page</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s2">&quot;This is text in an external file&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+<p>As part of the setup, we have Pyramid&#8217;s own <code class="docutils literal"><span class="pre">testing</span></code> module.
+This module provides tools to set up the configuration we need for our app.
+It also gives access to the <code class="docutils literal"><span class="pre">request</span></code> and <code class="docutils literal"><span class="pre">response</span></code> objects that we need to test our views.
+Recall that our views must be called with a <code class="docutils literal"><span class="pre">request</span></code> as an argument.
+Depending on what work your views must do, this can be any Python object, even a simple string or dict.
+But if you require something with a bit more resemblance to a real request, you can use <code class="docutils literal"><span class="pre">testing.DummyRequest</span></code>.</p>
+<p>Recall that our <code class="docutils literal"><span class="pre">home_page</span></code> view returns a <code class="docutils literal"><span class="pre">Response</span></code> object filled with some text.
+We make our tests reflect that.
+First we check that what was returned by our view callable is a <code class="docutils literal"><span class="pre">Response</span></code> object.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># tests.py</span>
+<span class="kn">from</span> <span class="nn">pyramid</span> <span class="kn">import</span> <span class="n">testing</span>
+<span class="kn">from</span> <span class="nn">pyramid.response</span> <span class="kn">import</span> <span class="n">Response</span>
+
+
+<span class="k">def</span> <span class="nf">test_home_view_returns_response</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Home view returns a Response object.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">home_page</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">testing</span><span class="o">.</span><span class="n">DummyRequest</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">home_page</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">Response</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then we check that the request was processed properly, returning a status 200.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_home_view_is_good</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Home view response has a status 200 OK.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">home_page</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">testing</span><span class="o">.</span><span class="n">DummyRequest</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">home_page</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+</pre></div>
+</div>
+<p>Finally, we test that the actual content of the response matches what we expect.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_home_view_returns_proper_content</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Home view response has file content.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">home_page</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">testing</span><span class="o">.</span><span class="n">DummyRequest</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">home_page</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s2">&quot;This is text in an external file&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-pyramid-tests">
+<h3>Running Pyramid Tests<a class="headerlink" href="#running-pyramid-tests" title="Permalink to this headline">¶</a></h3>
+<p>To run these tests we have to first install all the packages that we need for testing.
+We defined those in our <code class="docutils literal"><span class="pre">setup.py</span></code> so just navigate to the project root and install like so:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ pip install -e .<span class="o">[</span>testing<span class="o">]</span>
+</pre></div>
+</div>
+<p>We have <code class="docutils literal"><span class="pre">.[testing]</span></code> because we want to install everything in the current directory (the <code class="docutils literal"><span class="pre">.</span></code>), but we also want the extra packages that we specified for testing.
+If you have other extra packages you want for some other reason, you install them in this fashion.</p>
+<p>Now that all is installed, run our tests!</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> bash-3.2$ py.test expense_tracker -v
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">-v</span></code> flag makes your test output verbose, telling you the name of every test that passes/fails.
+For less verbose output, use <code class="docutils literal"><span class="pre">-q</span></code>.</p>
+<p>We&#8217;ve designed these two tests to pass, so we should get a statement saying they pass.</p>
+<p>Spectacular.</p>
+<p>But we want to test across versions of Python, so we need to incorporate <code class="docutils literal"><span class="pre">tox</span></code>.
+Recall that when we first set up our app via the scaffold, we added <code class="docutils literal"><span class="pre">tox</span></code> into <code class="docutils literal"><span class="pre">tests_require</span></code>.
+When we pip-installed <code class="docutils literal"><span class="pre">testing</span></code> above, tox was installed along with everything else.
+Now we just have to construct our <code class="docutils literal"><span class="pre">tox.ini</span></code> configuration file so that we can run tox.</p>
+<p>Let&#8217;s add a little bit more to our tox file than we usually do.
+We don&#8217;t want to just run our tests across versions, we ultimately want to make sure that our app is well-tested across everything we&#8217;ve written.
+We want to add coverage.
+So, our tox file should look like the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">[</span>tox<span class="o">]</span>
+<span class="nv">envlist</span> <span class="o">=</span> py27, py36
+
+<span class="o">[</span>testenv<span class="o">]</span>
+<span class="nv">commands</span> <span class="o">=</span> py.test --cov<span class="o">=</span>expense_tracker -q
+<span class="nv">deps</span> <span class="o">=</span>
+    pytest
+    pytest-cov
+    webtest
+</pre></div>
+</div>
+<p>Now we run tox as we always have and ensure that our test passes across Python 2.7 and 3.6.
+On top of that, we get a report of the coverage of our tests in the console.</p>
+<div class="highlight-bash"><div class="highlight"><pre>------ coverage: platform darwin, python 3.6.1-final-0 -------
+Name                                      Stmts   Miss  Cover
+--------------------------------------------------------------
+expense_tracker/__init__.py                   <span class="m">8</span>      <span class="m">6</span>    25%
+expense_tracker/data/__init__.py              <span class="m">0</span>      <span class="m">0</span>   100%
+expense_tracker/data/expense_data.py              <span class="m">1</span>      <span class="m">0</span>   100%
+expense_tracker/models/__init__.py           <span class="m">22</span>     <span class="m">12</span>    45%
+expense_tracker/models/meta.py                <span class="m">5</span>      <span class="m">0</span>   100%
+expense_tracker/models/mymodel.py             <span class="m">8</span>      <span class="m">0</span>   100%
+expense_tracker/routes.py                     <span class="m">4</span>      <span class="m">3</span>    25%
+expense_tracker/scripts/__init__.py           <span class="m">0</span>      <span class="m">0</span>   100%
+expense_tracker/scripts/initializedb.py      <span class="m">26</span>     <span class="m">16</span>    38%
+expense_tracker/views/__init__.py             <span class="m">3</span>      <span class="m">1</span>    67%
+expense_tracker/views/default.py              <span class="m">7</span>      <span class="m">0</span>   100%
+expense_tracker/views/notfound.py             <span class="m">4</span>      <span class="m">2</span>    50%
+--------------------------------------------------------------
+TOTAL                                        <span class="m">88</span>     <span class="m">40</span>    55%
+
+<span class="m">3</span> passed in 4.32 seconds
+</pre></div>
+</div>
+<p>This seems trivial now because in this particular moment we&#8217;re just testing that the view is returning the data that we put into it in the first place.
+That&#8217;s OK, even trivial tests are still evidence that your code works.
+You will of course write more unit tests than just this one, though for the moment even those will be small.
+Tomorrow when we talk about data models and hook those up to our views, testing our views will involve several more bits.</p>
+<p>Let&#8217;s add a little bit more.
+This coverage report is not really helpful, as it&#8217;s showing coverage for a bunch of files that we either didn&#8217;t write ourselves, or haven&#8217;t yet written code for.
+We can alter what files are reported as covered by altering what&#8217;s in the <code class="docutils literal"><span class="pre">.coveragerc</span></code> file that sits at our project root.</p>
+<p>Currently, it looks like this:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[run]</span>
+<span class="na">source</span> <span class="o">=</span> <span class="s">expense_tracker</span>
+<span class="na">omit</span> <span class="o">=</span><span class="s"></span>
+<span class="s">    expense_tracker/test*</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">.coveragerc</span></code> is omitting the &#8220;tests.py&#8221; file from coverage.
+In fact, it&#8217;s omitting any file or directory whose name starts with &#8220;test&#8221;.
+Let&#8217;s add other scripts and directories that we don&#8217;t need covered to our <code class="docutils literal"><span class="pre">.coveragerc</span></code> so we get a better feeling of what actually needs to be covered in our app.</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[run]</span>
+<span class="na">source</span> <span class="o">=</span> <span class="s">expense_tracker</span>
+<span class="na">omit</span> <span class="o">=</span><span class="s"></span>
+<span class="s">    expense_tracker/test*</span>
+<span class="s">    expense_tracker/models/*</span>
+<span class="s">    expense_tracker/scripts/*</span>
+<span class="s">    expense_tracker/data/*</span>
+<span class="s">    expense_tracker/views/notfound.py</span>
+<span class="s">    expense_tracker/views/__init__.py</span>
+<span class="s">    expense_tracker/routes.py</span>
+<span class="s">    expense_tracker/__init__.py</span>
+
+<span class="k">[report]</span>
+<span class="na">show_missing</span> <span class="o">=</span> <span class="s">True</span>
+</pre></div>
+</div>
+<p>I&#8217;ve omitted the <code class="docutils literal"><span class="pre">routes.py</span></code>, <code class="docutils literal"><span class="pre">__init__.py</span></code>, and <code class="docutils literal"><span class="pre">views/__init__.py</span></code> files because even though we&#8217;ve written code for those files, we are not yet at the point of testing how the app is wired together.
+As such, checking coverage for those files isn&#8217;t going to help.</p>
+<p>I added in that bottom line so that when the coverage report prints out, the individual missing lines show up.</p>
+<p>Now when we run <code class="docutils literal"><span class="pre">tox</span></code> we&#8217;ll get a more representative coverage report.</p>
+<div class="highlight-bash"><div class="highlight"><pre>---------- coverage: platform darwin, python 3.6.1-final-0 -----------
+Name                               Stmts   Miss  Cover   Missing
+----------------------------------------------------------------
+expense_tracker/views/default.py       <span class="m">7</span>      <span class="m">0</span>   100%
+</pre></div>
+</div>
+<p>This seems cut down beyond all actual utility, but it&#8217;s far more representative of the work we&#8217;ve done thus far.
+We can use this setup to continue building out our site as we please.
+Tomorrow, we&#8217;ll write a different type of test that will show that our app is all wired together in just the right ways, and get more of that delicious coverage.</p>
+</div>
+</div>
+<div class="section" id="recap">
+<h2>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>Today we got Pyramid working and set up to run a simple &#8220;Hello World&#8221; app.
+We went from there to using the <code class="docutils literal"><span class="pre">cookiecutter</span></code> shell command to set up a  more complex skeleton using a scaffold,
+complete with the files we&#8217;d need to start work toward a larger project.
+We learned how to connect incoming requests to routes using configuration.
+We learned how to write view callables to take in a request and return a response.
+We also learned how to use configuration to connect those view callables to routes.</p>
+<p>First we used views to simply write a message onto a browser page.
+We soon saw that we could also use views to display the contents of an external file, and even display HTML within that file.</p>
+<p>Finally, we learned about how to write some basic tests for our app.
+This way, we know exactly how our app is working in the moment.
+We also start building a more solid testing foundation for our codebase, so that tomorrow we can write an even greater testing framework.</p>
+<p>Tonight you will use views to display your own HTML, complete with whatever CSS styles your project.
+Tomorrow, we&#8217;ll learn about a better way to use Pyramid to serve up HTML via templates,
+and we&#8217;ll begin to write robust tests for our Pyramid app.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting Started With Pyramid</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#writing-a-hello-world-app">Writing a &#8220;Hello World&#8221; App</a></li>
+<li><a class="reference internal" href="#using-cookiecutter-to-create-a-scaffold">Using <code class="docutils literal"><span class="pre">cookiecutter</span></code> to Create a Scaffold</a></li>
+<li><a class="reference internal" href="#pyramid-is-python">Pyramid is Python</a></li>
+<li><a class="reference internal" href="#routes-and-the-mvc-controller">Routes and The MVC Controller</a><ul>
+<li><a class="reference internal" href="#http-request-response">HTTP Request/Response</a></li>
+<li><a class="reference internal" href="#routes-in-pyramid">Routes in Pyramid</a></li>
+<li><a class="reference internal" href="#the-pyramid-view">The Pyramid View</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing-your-pyramid-app">Testing Your Pyramid App</a><ul>
+<li><a class="reference internal" href="#setting-up-a-test-for-a-view">Setting Up a Test for a View</a></li>
+<li><a class="reference internal" href="#running-pyramid-tests">Running Pyramid Tests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recap">Recap</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

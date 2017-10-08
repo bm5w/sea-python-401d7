@@ -1,0 +1,44 @@
+.. slideconf::
+    :autoslides: False
+
+******************************************
+Django: Implement Django Taggit for Imager
+******************************************
+
+.. slide:: Django: Implement Django Taggit for Imager
+    :level: 1
+
+    This document contains no slides.
+
+We've seen how tags can be used to categorize models on the back-end and the front.
+It's time for you to implement them yourself.
+
+For your next assignment for the Imager app, you'll be adding tags to your images. 
+
+Tasks
+=====
+
+* Install `Django Taggit <https://django-taggit.readthedocs.io/en/latest/>`_ into your virtualenv.
+* Make sure to update your requirements.txt file.
+* Make sure to also update your installed apps and migrations.
+* Add tags to your photo models that fulfill these user stories:
+    - As a user, I want to add tags to newly-uploaded images.
+    - As a user, I want to add tags to existing photos.
+    - As a user, I want to be able to see the tags that I've given photos when I go to the page associated with that photo.
+    - As a user, I want to be able to see the tags of my photos on the library page.
+    - As a user, I want to be able to click on a tag and get a list view of every photo that shares that tag.
+    - As a user, when I'm on the page of an individual photo, I want to be able to see access at most 5 other photos that share the same tag(s) as the current photo.
+    - As a user, when I click on an album I should be able to see all of the tags associated with all of the photos in that album.
+
+Add tests that show your tagging system works the way that it should.
+
+
+Submitting Your Work
+====================
+
+When you are finished with your implementation and all tests are passing, create a Pull request from your ``taggit`` branch to ``master``. 
+Copy the URL of the new pull request. 
+Submit that URL using the URL input. 
+After you have completed this task, you may merge your branch back to ``master``.
+
+As usual, use the comment feature to submit questions, comments and reflections on the work you did for this assignment.

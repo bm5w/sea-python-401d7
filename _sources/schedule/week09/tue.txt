@@ -1,0 +1,52 @@
+.. slideconf::
+    :autoslides: False
+
+*******
+Tuesday
+*******
+
+.. slide:: Course Presentations
+    :level: 1
+
+    This document contains no slides.
+
+Objectives
+==========
+
+* Learn about when and why to re-scale data
+* Use K-Nearest Neighbors to predict categories by distance
+
+Readings
+========
+
+* `Feature Scaling and Normalization <http://www.datasciencecentral.com/profiles/blogs/feature-scaling-and-normalization>`_
+* `A Detailed Introduction to K-Nearest Neighbors <https://saravananthirumuruganathan.wordpress.com/2010/05/17/a-detailed-introduction-to-k-nearest-neighbor-knn-algorithm/>`_
+* K-Nearest Neighbors Algorithm (`Wikipedia <https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm>`_)
+* How KNN Works (`video <https://www.youtube.com/watch?v=UqYde-LULfs>`_)
+
+Review
+======
+
+Concepts
+========
+
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/rescaling_data
+    /lectures/k_nearest_neighbors
+
+* Final Whiteboarding
+
+Demo
+====
+
+
+Assignments
+===========
+
+* :doc:`/assignments/ml_3_k_nearest_neighbors`
+* :doc:`/assignments/project_07_stories_begin`
+* :doc:`/assignments/django_13_social_auth`
+* :doc:`/assignments/blog_post_publish` (Due Friday)
+* :doc:`/assignments/daily_lj_entry`

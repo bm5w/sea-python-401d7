@@ -1,0 +1,25 @@
+============================
+Test-in For Code 401: Python
+============================
+
+Guidelines
+==========
+
+**Create a Python module** that generates a K-12 school with students and teachers at every grade level. Make sure to appropriately document your code. Show us what you can do!
+
+Data Representation
+-------------------
+
+1. Your school should have a name, and can have many students and many teachers.
+2. Students should have names, GPAs (out of 100), grade level (K - 12), and a teacher name.
+3. Teachers should have names and grade levels, and should be able to have multiple students.
+4. A teacher should have no more than 10 students.
+5. If there are no teachers, there should be no students.
+
+
+Submitting Your Work
+====================
+
+* You will create a public GitHub repository for your work and email in the link to that repository.
+* In the README of that repository, you'll include a description of the module that you built and links to any code that you may have used. In that description, you'll include explanations of any functions/objects/methods you write.
+* Use a good Git workflow, with branches for new features and work only being merged to `master`, not done directly on `master`. Write meaningful commit messages as well. No one wants to end up on http://www.commitlogsfromlastnight.com/

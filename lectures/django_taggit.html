@@ -1,0 +1,596 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django: Tagging &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="django-tagging">
+<h1>Django: Tagging<a class="headerlink" href="#django-tagging" title="Permalink to this headline">¶</a></h1>
+<p>Thus far we&#8217;ve been making an effort to run a library, talking about Patrons and all the books they borrow.
+However, we haven&#8217;t done much to organize our assets!
+Let&#8217;s set up some categorization with tags.</p>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>Recall the fields on our Book model objects:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Books</dt>
+<dd><ul class="first last simple">
+<li>Cover Image</li>
+<li>Title</li>
+<li>Author</li>
+<li>Year</li>
+<li>Status</li>
+<li>Date Added</li>
+<li>Date Borrowed</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="c1"># Create your models here.</span>
+
+<span class="n">YEARS</span> <span class="o">=</span> <span class="p">[(</span><span class="n">year</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+         <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">year</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">Book</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">cover_image</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ImageField</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+
+    <span class="n">YEARS</span> <span class="o">=</span> <span class="p">[(</span><span class="n">year</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+         <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">year</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">YEARS</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">2016</span><span class="p">)</span>
+
+    <span class="n">BOOK_STATUS</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;available&quot;</span><span class="p">,</span> <span class="s2">&quot;Available&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;checked out&quot;</span><span class="p">,</span> <span class="s2">&quot;Checked Out&quot;</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">BOOK_STATUS</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;available&quot;</span>
+    <span class="p">)</span>
+    <span class="n">date_added</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">last_borrowed</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Of course we want to be able to look at this model from our Django Admin, so register them in this directory&#8217;s <code class="docutils literal"><span class="pre">admin.py</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+
+<span class="kn">from</span> <span class="nn">lender_books.models</span> <span class="kn">import</span> <span class="n">Book</span>
+
+<span class="c1"># Register your models here.</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Book</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, let&#8217;s make sure that Django can see and install our newest app.
+In the project&#8217;s <code class="docutils literal"><span class="pre">settings.py</span></code> add it to the list of <code class="docutils literal"><span class="pre">INSTALLED_APPS</span></code>.</p>
+</div>
+<div class="section" id="bringing-in-tagging">
+<h2>Bringing in Tagging<a class="headerlink" href="#bringing-in-tagging" title="Permalink to this headline">¶</a></h2>
+<p>The books in our simple library app currently don&#8217;t have a way for us to categorize them.
+You might imagine that in a real library, this would result in utter chaos as individual books would be very difficult to find.
+One thing that we could do is group them by their genres!
+Now, we could go and make a whole new model just to refer to genres, establishing a many-to-many relationship between them and books but why do all that?
+There&#8217;s already a Django app that does it for us!</p>
+<p>Install Django-Taggit like any other Python package.</p>
+<div class="highlight-shell"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ pip install django-taggit
+</pre></div>
+</div>
+<p>Add it to the list of our project&#8217;s <code class="docutils literal"><span class="pre">INSTALLED</span> <span class="pre">APPS</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">...</span>
+    <span class="s2">&quot;taggit&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Django-Taggit is an independent app, so it has its own migrations to apply to your database.
+After adding it to your list of <code class="docutils literal"><span class="pre">INSTALLED</span> <span class="pre">APPS</span></code>, apply those migrations.</p>
+</div>
+<div class="section" id="adding-tags-to-a-model">
+<h2>Adding Tags to a Model<a class="headerlink" href="#adding-tags-to-a-model" title="Permalink to this headline">¶</a></h2>
+<p>To add tagging to a model is fairly straightforward.
+In <code class="docutils literal"><span class="pre">lending_library/lender_books/models.py</span></code> we&#8217;ll need to import the <code class="docutils literal"><span class="pre">TaggableManager</span></code> from <code class="docutils literal"><span class="pre">taggit.managers</span></code>.
+Once imported, we can use that <code class="docutils literal"><span class="pre">TaggableManager</span></code> to add a field onto our model that...manages the tags.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span>
+<span class="kn">from</span> <span class="nn">taggit.managers</span> <span class="kn">import</span> <span class="n">TaggableManager</span>
+<span class="o">...</span>
+
+<span class="k">class</span> <span class="nc">Book</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c1"># all the other fields</span>
+
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">TaggableManager</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Our books now have the option of maintaining tags, and we can see those tags if we migrate then pop open the Django admin.
+At the bottom of the landing page for the admin, we gain a third category: <code class="docutils literal"><span class="pre">Taggit</span> <span class="pre">-&gt;</span> <span class="pre">Tags</span></code>.</p>
+<p>Currently we have no tags, so let&#8217;s add some.
+Still inside of the admin, lets go to one of our existing Book instances.
+We can see that there&#8217;s now a field for adding a comma-separated list of tags!</p>
+</div>
+<div class="section" id="incorporating-tags-into-views">
+<h2>Incorporating Tags into Views<a class="headerlink" href="#incorporating-tags-into-views" title="Permalink to this headline">¶</a></h2>
+<p>Because tags are a field on model instances, we should be able to query and filter based on that field.
+Let&#8217;s modify our app&#8217;s views to give us that functionality.
+The result we want is a list of books that match the tag we&#8217;ve given.</p>
+<p>In <code class="docutils literal"><span class="pre">lending_library/lender_books/views.py</span></code> we add the following code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">ListView</span>
+
+<span class="kn">from</span> <span class="nn">lender_books.models</span> <span class="kn">import</span> <span class="n">Book</span>
+
+<span class="k">class</span> <span class="nc">BookListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The listing for all books.&quot;&quot;&quot;</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;lender_books/list.html&quot;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s2">&quot;books&quot;</span>
+
+<span class="k">class</span> <span class="nc">TagListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The listing for tagged books.&quot;&quot;&quot;</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;lender_books/list.html&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">tags__slug</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;slug&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">TagListView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s2">&quot;tag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;slug&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">context</span>
+
+<span class="k">def</span> <span class="nf">book_detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The detail view for one book&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;lender_books/detail.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first two class-based views will both return a list of books.
+The <code class="docutils literal"><span class="pre">TagListView</span></code> will only return those where the tag contains some input slug.
+That slug will come from the keyword arguments in the URL.
+We&#8217;ve also modified the context to include the tag itself.
+This way we actually have access to the tag in the template.</p>
+<p>The last view will serve as the detail view for a single book.
+We&#8217;re just creating a base for it now.
+We&#8217;ll fill it out later on to take advantage of tagging.</p>
+<p>Let&#8217;s create this app&#8217;s <code class="docutils literal"><span class="pre">urls.py</span></code> and write the url patterns that will deliver these books to the front-end.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in lending_library/lender_books/urls.py</span>
+
+<span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">url</span>
+
+<span class="kn">from</span> <span class="nn">lender_books.views</span> <span class="kn">import</span> <span class="n">TagListView</span><span class="p">,</span> <span class="n">BookListView</span><span class="p">,</span> <span class="n">book_detail</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">BookListView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;book_list&quot;</span><span class="p">)</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^tagged/(?P&lt;slug&gt;[-\w]+)/$&#39;</span><span class="p">,</span> <span class="n">TagListView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tagged_books&quot;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^(?P&lt;id&gt;\d+)$&#39;</span><span class="p">,</span> <span class="n">book_detail</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;book_page&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Finally, let&#8217;s hook a URL into this app by modifying the <code class="docutils literal"><span class="pre">urls.py</span></code> file in our project&#8217;s configuration root:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in lending_library/lending_library/urls.py</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># the other URL patterns</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^books/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;lender_books.urls&quot;</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s2">&quot;books&quot;</span><span class="p">,</span> <span class="n">app_name</span><span class="o">=</span><span class="s2">&quot;library_books&quot;</span><span class="p">))</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Now our URL patterns will look like</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">http://www.example.com/books/</span></code> for the listing of all of our books</li>
+<li><code class="docutils literal"><span class="pre">http://www.example.com/books/tagged/foo</span></code> for the listing of all books tagged with &#8220;foo&#8221;</li>
+<li><code class="docutils literal"><span class="pre">http://www.example.com/books/42</span></code> for the book with the ID of 42</li>
+</ul>
+</div>
+<div class="section" id="getting-tagged-items-into-templates">
+<h2>Getting Tagged Items into Templates<a class="headerlink" href="#getting-tagged-items-into-templates" title="Permalink to this headline">¶</a></h2>
+<p>So now we have our URL patterns that point to our views for serving up books and tagged books.
+The final piece of the puzzle is creating some templates that will display these books in list and in detail form.</p>
+<p>Recall the path we&#8217;ve provided in our views to the templates we&#8217;re interested in.
+Let&#8217;s create a templates directory and populate it with templates at those locations.</p>
+<div class="highlight-shell"><div class="highlight"><pre><span class="c1"># assuming your current directory is &quot;lender_books&quot;</span>
+
+<span class="o">(</span>ENV<span class="o">)</span>$ mkdir templates templates/lender_books
+
+<span class="o">(</span>ENV<span class="o">)</span>$ touch templates/lender_books/list.html
+
+<span class="o">(</span>ENV<span class="o">)</span>$ touch templates/lender_books/detail.html
+</pre></div>
+</div>
+<div class="section" id="the-list-template">
+<h3>The List Template<a class="headerlink" href="#the-list-template" title="Permalink to this headline">¶</a></h3>
+<p>The book listing and the tagged-book listing are extremely similar.
+We should save time and use the same template for both, adding in conditionals for when there are tagged items.</p>
+<div class="highlight-html"><div class="highlight"><pre>{% extends &quot;layout.html&quot; %}
+{% block content %}
+&lt;h1&gt;Books&lt;/h1&gt;
+
+{% if tag %}
+    &lt;h2&gt;Books Tagged As {{ tag }}&lt;/h2&gt;
+{% endif %}
+
+&lt;ul&gt;
+    {% for book in books %}
+        &lt;li&gt;
+            &lt;h3&gt;
+                &lt;a href=&quot;{% url &quot;library_books:book_page&quot; book.id %}&quot;&gt;{{ book.title }}&lt;/a&gt;
+            &lt;/h3&gt;
+            &lt;p&gt;&lt;strong&gt;Author:&lt;/strong&gt; {{ book.author }} &lt;/p&gt;
+        &lt;/li&gt;
+    {% endfor %}
+&lt;/ul&gt;
+
+{% endblock %}
+</pre></div>
+</div>
+</div>
+<div class="section" id="tags-in-the-detail-template">
+<h3>Tags in the Detail Template<a class="headerlink" href="#tags-in-the-detail-template" title="Permalink to this headline">¶</a></h3>
+<p>The main benefit of including a tagging system in your site is that it allows you to categorize things.
+These tags should also be able to help you find other items like the one you&#8217;re looking at.
+In the detail for a single book we can accomplish this in two ways.
+The first is to simply include the tags for a book in the template.</p>
+<p>Let&#8217;s modify our simple function-based detail view so that we return a book.
+There&#8217;s no new magic here, this is the same basic view function you&#8217;ve written before.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span> <span class="n">other</span> <span class="n">package</span> <span class="n">imports</span>
+
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span><span class="p">,</span> <span class="n">get_object_or_404</span>
+
+<span class="o">...</span> <span class="n">the</span> <span class="n">other</span> <span class="n">views</span>
+
+<span class="k">def</span> <span class="nf">book_detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The detail view for one book.&quot;&quot;&quot;</span>
+    <span class="n">book</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Book</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;lender_books/detail.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;book&quot;</span><span class="p">:</span> <span class="n">book</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Now in our detail template, we can look at the book&#8217;s details, as well as its tags.
+It&#8217;s straightforward to incorporate tags here, as they&#8217;re just another field on a model.
+The tags field itself is iterable, so we can treat it as such in the template.</p>
+<div class="highlight-html"><div class="highlight"><pre>{% extends &quot;layout.html&quot; %}
+{% block content %}
+
+&lt;h1&gt;Title: {{ book.title }}&lt;/h1&gt;
+&lt;ul&gt;
+    &lt;li&gt;Author: {{ book.author }}&lt;/li&gt;
+    &lt;li&gt;Published: {{ book.year }}&lt;/li&gt;
+    &lt;li&gt;Tags:
+        {% for tag in book.tags.all %}
+            &lt;a href=&quot;{% url &quot;library_books:tagged&quot; tag.slug %}&quot;&gt;{{ tag }}&lt;/a&gt;,
+        {% endfor %}
+    &lt;/li&gt;
+    &lt;li&gt;Added to Library: {{ book.date_added }}&lt;/li&gt;
+    &lt;li&gt;Last Checked Out: {{ book.date_borrowed }}&lt;/li&gt;
+&lt;/ul&gt;
+
+{% endblock %}
+</pre></div>
+</div>
+<p>Now, not only do we have the list of tags for each book embedded in the detail view, but the tags themselves are clickable, serving as links to lists of other books with the same tag.</p>
+</div>
+<div class="section" id="using-tags-to-find-similar-books">
+<h3>Using Tags to Find Similar Books<a class="headerlink" href="#using-tags-to-find-similar-books" title="Permalink to this headline">¶</a></h3>
+<p>The second way to harness the power of tags is to include within the book detail a handful of other books with similar tags.
+This does not mean just pick one tag and find the books corresponding to it.
+<em>For every tag that a book has</em>, we should be able to have some other books we can find from it.
+This type of item retrieval should be handled by our view, so we&#8217;ll be adding to it.</p>
+<p>Recall that our tags are in fact model instances handled by the <code class="docutils literal"><span class="pre">django-taggit</span></code> add-on.
+As such, every tag that&#8217;s been created can be queried.
+We can see this by looking at our Book instances in the Django shell</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">lender_books.models</span> <span class="kn">import</span> <span class="n">Book</span>
+
+<span class="gp">In [2]: </span><span class="n">book</span> <span class="o">=</span> <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+<span class="gp">In [3]: </span><span class="k">print</span><span class="p">(</span><span class="n">book</span><span class="o">.</span><span class="n">tags</span><span class="p">)</span>
+<span class="gh">Out[3]: </span><span class="go">&lt;taggit.managers._TaggableManager at 0x1050ebeb8&gt;</span>
+
+<span class="gp">In [4]: </span><span class="k">print</span><span class="p">(</span><span class="n">book</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+<span class="gh">Out[4]: </span><span class="go">&lt;QuerySet [&lt;Tag: easter&gt;, &lt;Tag: egg&gt;]&gt;</span>
+</pre></div>
+</div>
+<p>Great we can get the tags.
+Here&#8217;s what we want to do now:</p>
+<ol class="arabic simple">
+<li>Harvest all of the tags belonging to an individual book.</li>
+<li>Get every book with a tag matching one of the harvested tags.</li>
+<li>Make sure to exclude the book we already have.</li>
+<li>Make the result set into a unique list.</li>
+</ol>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [5]: </span><span class="n">all_tags</span> <span class="o">=</span> <span class="n">book</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+<span class="gp">In [6]: </span><span class="n">similar_books</span> <span class="o">=</span> <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">tags__in</span><span class="o">=</span><span class="n">all_tags</span><span class="p">)</span>
+
+<span class="gp">In [7]: </span><span class="n">not_current</span> <span class="o">=</span> <span class="n">similar_books</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">book</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+<span class="gp">In [8]: </span><span class="n">unique_books</span> <span class="o">=</span> <span class="n">not_current</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Let&#8217;s port this back into our detail view!</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">book_detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The detail view for one book.&quot;&quot;&quot;</span>
+    <span class="n">book</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Book</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+
+    <span class="c1"># List of similar books</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">book</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">similar_books</span> <span class="o">=</span> <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+        <span class="n">tags__in</span><span class="o">=</span><span class="n">tags</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="n">book</span><span class="o">.</span><span class="n">id</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span>
+                  <span class="s2">&quot;lender_books/detail.html&quot;</span><span class="p">,</span>
+                  <span class="p">{</span><span class="s2">&quot;book&quot;</span><span class="p">:</span> <span class="n">book</span><span class="p">,</span>
+                   <span class="s2">&quot;similar_books&quot;</span><span class="p">:</span> <span class="n">similar_books</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Now that we&#8217;ve gotten our similar books in hand, we can access them from the detail template like any other model that we&#8217;ve passed into context.</p>
+<div class="highlight-html"><div class="highlight"><pre>{% extends &quot;layout.html&quot; %}
+{% block content %}
+
+&lt;h1&gt;Title: {{ book.title }}&lt;/h1&gt;
+&lt;ul&gt;
+    &lt;li&gt;Author: {{ book.author }}&lt;/li&gt;
+    &lt;li&gt;Published: {{ book.year }}&lt;/li&gt;
+    &lt;li&gt;Tags:
+        {% for tag in book.tags.all %}
+            &lt;a href=&quot;{% url &quot;library_books:tagged&quot; tag.slug %}&quot;&gt;{{ tag }}&lt;/a&gt;,
+        {% endfor %}
+    &lt;/li&gt;
+    &lt;li&gt;Added to Library: {{ book.date_added }}&lt;/li&gt;
+    &lt;li&gt;Last Checked Out: {{ book.date_borrowed }}&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Books in the same category:&lt;/h2&gt;
+&lt;ul&gt;
+    {% for next_book in similar_books %}
+        &lt;li&gt;
+            &lt;a href=&quot;{% url &quot;library_books:book_page&quot; next_book.id %}&quot;&gt;{{ next_book.title }}&lt;/a&gt;
+        &lt;/li&gt;
+    {% endfor %}
+&lt;/ul&gt;
+
+{% endblock %}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="recap">
+<h2>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>Categorization is a powerful tool for allowing your site to talk to itself, and allowing the user to find &#8220;like&#8221; things.
+In Django this categorization ability is made fairly simple with tags, coming from the add-on <code class="docutils literal"><span class="pre">django-taggit</span></code>.
+It treats tags as model instances, and lets us use tags as many-to-many relationships with whatever it is we&#8217;re tagging, be it cars, books, movies, blog posts, images, whatever.
+Find ways to incorporate tags into your work, and make your site more user friendly!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django: Tagging</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#bringing-in-tagging">Bringing in Tagging</a></li>
+<li><a class="reference internal" href="#adding-tags-to-a-model">Adding Tags to a Model</a></li>
+<li><a class="reference internal" href="#incorporating-tags-into-views">Incorporating Tags into Views</a></li>
+<li><a class="reference internal" href="#getting-tagged-items-into-templates">Getting Tagged Items into Templates</a><ul>
+<li><a class="reference internal" href="#the-list-template">The List Template</a></li>
+<li><a class="reference internal" href="#tags-in-the-detail-template">Tags in the Detail Template</a></li>
+<li><a class="reference internal" href="#using-tags-to-find-similar-books">Using Tags to Find Similar Books</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recap">Recap</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

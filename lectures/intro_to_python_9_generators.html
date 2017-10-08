@@ -1,0 +1,426 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>A Python Miscellany: Iterators &amp; Generators &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="a-python-miscellany-iterators-generators">
+<h1>A Python Miscellany: Iterators &amp; Generators<a class="headerlink" href="#a-python-miscellany-iterators-generators" title="Permalink to this headline">¶</a></h1>
+<p>In this lesson we will discuss a few more features of programming in Python.
+We&#8217;ll be exploring the idea and implementation of iterators and generators.
+Understanding these topics will allow you to make your own classes and functions operate more Pythonically.</p>
+<div class="section" id="iterators">
+<h2>Iterators<a class="headerlink" href="#iterators" title="Permalink to this headline">¶</a></h2>
+<p>Iterators are one of the main reasons Python code is so readable:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">just_about_anything</span><span class="p">:</span>
+    <span class="n">do_stuff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>What&#8217;s fun is that <code class="docutils literal"><span class="pre">just_about_anything</span></code> does not have to be a &#8220;sequence&#8221;.
+Rather, you can loop through anything that satisfies the <a class="reference external" href="http://docs.python.org/2/library/stdtypes.html#typeiter" title="(in Python v2.7)"><span class="xref std std-ref">iterator protocol</span></a> (<a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#typeiter" title="(in Python v3.6)"><span class="xref std std-ref">py3</span></a>).</p>
+<div class="section" id="the-iterator-protocol">
+<h3>The Iterator Protocol<a class="headerlink" href="#the-iterator-protocol" title="Permalink to this headline">¶</a></h3>
+<p>An iterator must have the following methods:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">an_iterator</span><span class="o">.</span><span class="n">__iter__</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <a class="reference external" href="http://docs.python.org/2/library/stdtypes.html#iterator.__iter__" title="(in Python v2.7)"><code class="xref py py-meth docutils literal"><span class="pre">__iter__</span></code></a> special method (<a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#iterator.__iter__" title="(in Python v3.6)"><code class="xref py py-meth docutils literal"><span class="pre">py3</span></code></a>) returns the iterator object itself.
+The return value might be <code class="docutils literal"><span class="pre">self</span></code>, or it might be an object constructed that can be iterated over.
+This is required to allow both containers and iterators to be used with the <code class="docutils literal"><span class="pre">for</span></code> and <code class="docutils literal"><span class="pre">in</span></code> statements.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># python 2</span>
+<span class="n">an_iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+
+<span class="c1"># python 3</span>
+<span class="n">an_iterator</span><span class="o">.</span><span class="n">__next__</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <a class="reference external" href="http://docs.python.org/2/library/stdtypes.html#iterator.next" title="(in Python v2.7)"><code class="xref py py-meth docutils literal"><span class="pre">next</span></code></a> method (in python 3 it is <a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#iterator.__next__" title="(in Python v3.6)"><code class="xref py py-meth docutils literal"><span class="pre">__next__</span></code></a>) returns the next item from the container.
+If there are no further items, this method must raise a <code class="docutils literal"><span class="pre">StopIteration</span></code> exception.</p>
+<p>This change in interface leads to some compatibility problems.
+In order to write iterators that are compatible with both Python 2 and Python 3, use one of the <a class="reference external" href="http://python-future.org/compatible_idioms.html#custom-iterators">compatible idioms</a> from python-future.</p>
+<p>In Python, data types like lists, tuples, sets, an dicts are sometimes referred to as &#8220;iterables&#8221;.
+They too implement the iterator interface, and you can get at the &#8220;iterator&#8221; directly if you like:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="gp">In [2]: </span><span class="n">list_iter</span> <span class="o">=</span> <span class="n">a_list</span><span class="o">.</span><span class="n">__iter__</span><span class="p">()</span>
+
+<span class="gp">In [3]: </span><span class="nb">next</span><span class="p">(</span><span class="n">list_iter</span><span class="p">)</span>
+<span class="gh">Out[3]: </span><span class="go">1</span>
+
+<span class="gp">In [4]: </span><span class="nb">next</span><span class="p">(</span><span class="n">list_iter</span><span class="p">)</span>
+<span class="gh">Out[4]: </span><span class="go">2</span>
+
+<span class="gp">In [5]: </span><span class="nb">next</span><span class="p">(</span><span class="n">list_iter</span><span class="p">)</span>
+<span class="gh">Out[5]: </span><span class="go">3</span>
+
+<span class="gp">In [6]: </span><span class="nb">next</span><span class="p">(</span><span class="n">list_iter</span><span class="p">)</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">StopIteration</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-6-9bc6d561c69b&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">next</span><span class="p">(</span><span class="n">list_iter</span><span class="p">)</span>
+
+<span class="ne">StopIteration</span>:
+</pre></div>
+</div>
+<p>It&#8217;s not really polite (or proper) to access <em>special methods</em> of objects directly like that, though.
+Instead, you should use the Python function that utilizes those methods.
+In this case, that is the <a class="reference external" href="http://docs.python.org/2/library/functions.html#iter" title="(in Python v2.7)"><code class="xref py py-func docutils literal"><span class="pre">iter()</span></code></a> function (<a class="reference external" href="http://docs.python.org/3/library/functions.html#iter" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">py3</span></code></a>).</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [7]: </span><span class="nb">iter</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gh">Out[7]: </span><span class="go">&lt;list_iterator at 0x1053d9828&gt;</span>
+
+<span class="gp">In [8]: </span><span class="nb">iter</span><span class="p">(</span><span class="s2">u&quot;a string&quot;</span><span class="p">)</span>
+<span class="gh">Out[8]: </span><span class="go">&lt;str_iterator at 0x1053d9f60&gt;</span>
+
+<span class="gp">In [9]: </span><span class="nb">iter</span><span class="p">((</span><span class="s1">u&#39;a&#39;</span><span class="p">,</span> <span class="s1">u&#39;tuple&#39;</span><span class="p">))</span>
+<span class="gh">Out[9]: </span><span class="go">&lt;tuple_iterator at 0x1053e70f0&gt;</span>
+</pre></div>
+</div>
+<p>For arbitrary objects, <code class="docutils literal"><span class="pre">iter()</span></code> calls the <code class="docutils literal"><span class="pre">__iter__</span></code> special method.
+But it can also handle objects (<code class="docutils literal"><span class="pre">str</span></code>, for instance) that don&#8217;t have a <code class="docutils literal"><span class="pre">__iter__</span></code> method (note: strings in Python 3 <em>DO</em> have an <code class="docutils literal"><span class="pre">__iter__</span></code> method.</p>
+</div>
+<div class="section" id="making-an-iterator">
+<h3>Making an Iterator<a class="headerlink" href="#making-an-iterator" title="Permalink to this headline">¶</a></h3>
+<p>Understanding the iterator protocol allows us to build iterators of our own.
+Let&#8217;s try this out by building a simple iterator that will operate a bit like the Python 2 <code class="docutils literal"><span class="pre">xrange</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">IterateMe_1</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span>
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+</pre></div>
+</div>
+<p>We can even use the protocol to build a function that emulates the Python <code class="docutils literal"><span class="pre">for</span></code> loop:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">my_for</span><span class="p">(</span><span class="n">an_iterable</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Emulation of a for loop.</span>
+
+<span class="sd">    func() will be called with each item in an_iterable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># equiv of &quot;for i in l:&quot;</span>
+    <span class="n">iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">an_iterable</span><span class="p">)</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">func</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="http://docs.python.org/2/library/itertools.html#module-itertools" title="(in Python v2.7)"><code class="xref py py-mod docutils literal"><span class="pre">itertools</span></code></a> (<a class="reference external" href="http://docs.python.org/3/library/itertools.html#module-itertools" title="(in Python v3.6)"><code class="xref py py-mod docutils literal"><span class="pre">py3</span></code></a>) is a collection of utilities that make it easy to build an iterator that iterates over sequences in various common ways.
+The utilities it contains work with any object that supports the iterator protocol.
+And the iterators they return can be used with any Python functions that expect iterators as arguments.
+Things like <code class="docutils literal"><span class="pre">sum</span></code>, <code class="docutils literal"><span class="pre">tuple</span></code>, <code class="docutils literal"><span class="pre">sorted</span></code>, and <code class="docutils literal"><span class="pre">list</span></code>, for example.</p>
+</div>
+</div>
+<div class="section" id="generators">
+<h2>Generators<a class="headerlink" href="#generators" title="Permalink to this headline">¶</a></h2>
+<p>A generator object is a bit like an iterator, except that it is itself the iterator.
+Another difference is that with a generator you have no access to the data that is being returned, if it even exists.</p>
+<p>Conceptually, an iterator allows you to loop over data that exists.
+Generators, on the other hand, <em>generate</em> their data on the fly.
+Practically speaking, you can use them interchangeably, and generators are in fact a special case of iterators.
+Generators just handle some of the internal book-keeping for you.</p>
+<div class="section" id="yield">
+<h3><code class="docutils literal"><span class="pre">yield</span></code><a class="headerlink" href="#yield" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">a_generator_function</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="n">some_stuff</span>
+    <span class="k">yield</span> <span class="n">something</span>
+</pre></div>
+</div>
+<p>The <a class="reference external" href="http://docs.python.org/2/reference/simple_stmts.html#yield" title="(in Python v2.7)"><code class="xref std std-keyword docutils literal"><span class="pre">yield</span></code></a> statement (<a class="reference external" href="http://docs.python.org/3/reference/simple_stmts.html#yield" title="(in Python v3.6)"><code class="xref std std-keyword docutils literal"><span class="pre">py3</span></code></a>) can be used to create generators.
+Using the <code class="docutils literal"><span class="pre">yield</span></code> statement in a function causes the function to become a <code class="docutils literal"><span class="pre">generator</span> <span class="pre">function</span></code>.
+The function can then <code class="docutils literal"><span class="pre">yield</span></code> values instead of returning them.
+And the state of the names and values inside the function is preserved between <code class="docutils literal"><span class="pre">yield</span></code> statements.</p>
+<p>When you write a function with <code class="docutils literal"><span class="pre">yield</span></code>  in it, it becomes a &#8220;factory&#8221; for a <code class="docutils literal"><span class="pre">generator</span> <span class="pre">object</span></code>.
+Calling the function returns a <code class="docutils literal"><span class="pre">generator</span> <span class="pre">object</span></code>.
+And every time you call it, a <em>new</em> and <em>independent</em> generator object is returned.
+Each independent instance keeps track of its own internal state.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">gen_a</span> <span class="o">=</span> <span class="n">a_generator_function</span><span class="p">()</span>
+<span class="n">gen_b</span> <span class="o">=</span> <span class="n">a_generator_function</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>One possible example of a simple generator function might be again to emulate the <code class="docutils literal"><span class="pre">xrange</span></code> object from Python 2:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">y_xrange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">start</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">i</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="n">step</span>
+</pre></div>
+</div>
+<p>It is most common to write generator functions to return a series of values like this.
+And as we have noted, generators are in fact just a special case of iterators.
+But notice that we do not use <code class="docutils literal"><span class="pre">StopIteration</span></code> to signal when a generator function is complete.
+In fact, calling <code class="docutils literal"><span class="pre">return</span></code> inside a generator function (or simply allowing an implicit return to happen <em>at the end</em>) causes <code class="docutils literal"><span class="pre">StopIteration</span></code> to be raised.
+You don&#8217;t need to do it explicitly.</p>
+<p>A final note on writing generator functions.
+Any callable can be a generator if it uses <code class="docutils literal"><span class="pre">yield</span></code> instead of <code class="docutils literal"><span class="pre">return</span></code>.
+This means, of course, that methods on classes can also be generators.
+And even classes themselves, if they have a <code class="docutils literal"><span class="pre">__call__</span></code> method that uses yield, can be generators.</p>
+</div>
+<div class="section" id="generator-comprehensions">
+<h3>Generator Comprehensions<a class="headerlink" href="#generator-comprehensions" title="Permalink to this headline">¶</a></h3>
+<p>There is one last way to create a generator.
+It turns out that if you use <code class="docutils literal"><span class="pre">()</span></code> instead of <code class="docutils literal"><span class="pre">[]</span></code> when writing a comprehension, the result is a generator.
+It behaves exactly like the equivalent <em>list comprehension</em>, except that it only generates the values one at a time.
+This can be especially powerful if the item the comprehension is iterating over is itself a generator.
+The result can be extremely efficient processing of massive amounts of data.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [10]: </span><span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+<span class="gh">Out[10]: </span><span class="go">[2, 4, 6]</span>
+
+<span class="gp">In [11]: </span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gh">Out[11]: </span><span class="go">&lt;generator object &lt;genexpr&gt; at 0x105281200&gt;</span>
+
+<span class="gp">In [12]: </span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]):</span>
+<span class="go">    ...:     print(n)</span>
+<span class="go">    ...:</span>
+<span class="go">2</span>
+<span class="go">4</span>
+<span class="go">6</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="wrap-up">
+<h2>Wrap Up<a class="headerlink" href="#wrap-up" title="Permalink to this headline">¶</a></h2>
+<p>In this lecture, we&#8217;ve learned a bit about two powerful concepts in Python.
+Using the <em>iterator protocol</em>, we learned to create iterators.
+We can thus create classes that can work natively with Python&#8217;s looping structures and the <code class="docutils literal"><span class="pre">itertools</span></code> library.
+Generators, as we learned, are objects that <code class="docutils literal"><span class="pre">yield</span></code> values one-at-a-time, preserving their internal state.
+We learned that we can create them using <code class="docutils literal"><span class="pre">yield</span></code> inside functions or methods.
+And we learned that there are also <em>generator comprehensions</em>.
+That&#8217;s enough to be going on.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">A Python Miscellany: Iterators &amp; Generators</a><ul>
+<li><a class="reference internal" href="#iterators">Iterators</a><ul>
+<li><a class="reference internal" href="#the-iterator-protocol">The Iterator Protocol</a></li>
+<li><a class="reference internal" href="#making-an-iterator">Making an Iterator</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#generators">Generators</a><ul>
+<li><a class="reference internal" href="#yield"><code class="docutils literal"><span class="pre">yield</span></code></a></li>
+<li><a class="reference internal" href="#generator-comprehensions">Generator Comprehensions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#wrap-up">Wrap Up</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

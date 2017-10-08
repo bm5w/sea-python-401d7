@@ -1,0 +1,53 @@
+.. slideconf::
+    :autoslides: False
+
+******
+Monday
+******
+
+.. slide:: Course Presentations
+    :level: 1
+
+    This document contains no slides.
+
+Objectives
+==========
+
+* Learn about supervised classification and how to use data you have to predict new data.
+* Build and understand the Decision Tree Classifier
+* Incorporate Pagination into your Django Imager
+
+Readings
+========
+
+* The first 3 sections of `this chapter <http://www.ise.bgu.ac.il/faculty/liorr/hbchap8.pdf>`_
+* `Decision Tree Learning <https://en.wikipedia.org/wiki/Decision_tree_learning>`_
+* Sections 3.1 through 3.3 of `this chapter <https://www.cs.princeton.edu/courses/archive/spring07/cos424/papers/mitchell-dectrees.pdf>`_
+* `How to Implement the Decision Tree Algorithm from Scratch in Python <http://machinelearningmastery.com/implement-decision-tree-algorithm-scratch-python/>`_
+* `How to Paginate with Django <https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html>`_
+
+Review
+======
+
+Concepts
+========
+
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/supervised_classification
+    /lectures/decision_tree
+    /lectures/django_pagination
+
+Demo
+====
+
+Assignments
+===========
+
+* :doc:`/assignments/whiteboard`
+* :doc:`/assignments/ml_2_decision_tree`
+* :doc:`/assignments/project_06_wireframe_end`
+* :doc:`/assignments/django_12_pagination`
+* :doc:`/assignments/blog_post_publish` (Due Friday)
+* :doc:`/assignments/daily_lj_entry`

@@ -1,0 +1,408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Deploying a Simple WSGI Application on AWS &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="deploying-a-simple-wsgi-application-on-aws">
+<h1>Deploying a Simple WSGI Application on AWS<a class="headerlink" href="#deploying-a-simple-wsgi-application-on-aws" title="Permalink to this headline">¶</a></h1>
+<p>Let&#8217;s walk through manually deploying a simple WSGI application to an AWS EC2
+instance we&#8217;ve created.</p>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre>$ mkdir wsgiapp
+$ <span class="nb">cd</span> wsgiapp
+$ python3 -m venv ENV
+$ . ENV/bin/activate
+<span class="o">(</span>ENV<span class="o">)</span>$
+</pre></div>
+</div>
+<p>In the new <code class="docutils literal"><span class="pre">wsgiapp</span></code> directory, create a very simple WSGI application.
+Start by creating a new file <code class="docutils literal"><span class="pre">myapp.py</span></code> and opening it in your editor.
+In the file, type the following Python code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;A simple WSGI app for deployment.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">version_info</span>
+
+
+<span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+    <span class="s2">&quot;&quot;&quot;A simple WSGI app.&quot;&quot;</span>
+<span class="s2">    data = &quot;Hello, World!</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+<span class="s2">    if version_info.major &gt; 3:</span>
+<span class="s2">        data = data.encode(&quot;utf-8&quot;)</span>
+
+<span class="s2">    start_response(&quot;200 OK&quot;, [</span>
+<span class="s2">        (&quot;Content-Type&quot;, &quot;text/plain&quot;),</span>
+<span class="s2">        (&quot;Content-Length&quot;, str(len(data)))</span>
+<span class="s2">    ])</span>
+<span class="s2">    return [data]</span>
+
+<span class="s2">if __name__ == &#39;__main__&#39;:</span>
+<span class="s2">    from wsgiref.simple_server import make_server</span>
+<span class="s2">    srv = make_server(&#39;localhost&#39;, 8080, app)</span>
+<span class="s2">    srv.serve_forever()</span>
+</pre></div>
+</div>
+<p>Test your application to be sure it works by running it from the command line:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ python myapp.py
+</pre></div>
+</div>
+<p>Point your web browser at <a href="#id1"><span class="problematic" id="id2">`http://localhost:8080/`_</span></a> and verify that you can see &#8220;Hello World!&#8221; printed.</p>
+<p>Next, provision a new EC2 instance on AWS using the through-the-web provisioner.</p>
+<ul class="simple">
+<li>Make sure you are using an Ubuntu image, either version 14.04 or 16.04.</li>
+<li>Make sure that your security group allows inbound SSH, HTTP, and HTTPS</li>
+<li>Download and save a private key for the EC2 instance to your filesystem</li>
+<li>Change permissions on the private key file (<code class="docutils literal"><span class="pre">chmod</span> <span class="pre">400</span></code>)</li>
+<li>Move the private key to the <code class="docutils literal"><span class="pre">~/.ssh/</span></code> directory.</li>
+</ul>
+<p>Next, use the shell command <code class="docutils literal"><span class="pre">scp</span></code> to securely copy your wsgi application to the new server instance.
+You&#8217;ll need to update the path to your <strong>private key file</strong> and the <strong>public DNS name</strong> of your EC2 instance from the values shown here.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ scp -i ~/.ssh/pk-cpe.pem myapp.py ubuntu@ec2-54-184-162-20.us-west-2.compute.amazonaws.com:~/
+...
+Are you sure you want to <span class="k">continue</span> connecting <span class="o">(</span>yes/no<span class="o">)</span>? yes
+...
+myapp.py                                      100%  <span class="m">381</span>     0.4KB/s   00:00
+<span class="o">(</span>ENV<span class="o">)</span>$
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">-i</span> <span class="pre">~/.ssh/pk-cpe.pem</span></code> provides a file that gives you credentials for copying data from your computer to some other one.
+In our case, these credentials come in the form of the private key provided by AWS.</p>
+</div>
+<div class="section" id="manual-configuration">
+<h2>Manual Configuration<a class="headerlink" href="#manual-configuration" title="Permalink to this headline">¶</a></h2>
+<p>We are going to do this manually once together.
+Later on in the week, you&#8217;ll have a chance to repeat the process using the configuration management tool Ansible.</p>
+<div class="section" id="configure-nginx">
+<h3>Configure Nginx<a class="headerlink" href="#configure-nginx" title="Permalink to this headline">¶</a></h3>
+<p>The first step is to configure <code class="docutils literal"><span class="pre">nginx</span></code> to proxy HTTP requests to our simple application.</p>
+<p>If you know, or are more comfortable with the <code class="docutils literal"><span class="pre">Apache</span></code> webserver, you can also use that.
+However, the trend I&#8217;ve seen over the last few years is toward the use of <code class="docutils literal"><span class="pre">nginx</span></code> over the old stand-by.</p>
+<p>Nginx stores site configuration on Ubuntu in the <code class="docutils literal"><span class="pre">/etc/nginx/sites-available</span></code> directory.
+This is in fact a pattern you&#8217;ll get used to.
+On most Linux machines, configuration of individual applications can be found in some subdirectory of the <code class="docutils literal"><span class="pre">/etc</span></code> directory.</p>
+<p>Let&#8217;s SSH into our new instance and look at what&#8217;s there:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ ssh -i ~/.ssh/pk-cpe.pem ubuntu@ec2-54-184-162-20.us-west-2.compute.amazonaws.com
+Welcome to Ubuntu 12.04.4 LTS <span class="o">(</span>GNU/Linux 3.2.0-58-virtual x86_64<span class="o">)</span>
+...
+Last login: Wed Feb <span class="m">26</span> 19:10:01 <span class="m">2014</span> from 199.231.242.170
+ubuntu@ip-10-254-159-140:~$
+</pre></div>
+</div>
+<p>The first time you enter your EC2 instance, there is literally the barest-minimum installed on it.
+You will have to install <code class="docutils literal"><span class="pre">Nginx</span></code> yourself, with <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">nginx</span></code>.</p>
+<p>The <code class="docutils literal"><span class="pre">sites-available</span></code> directory will hold individual site configuration for <strong>all</strong> sites that <strong>might</strong> be available on a server.</p>
+<div class="highlight-bash"><div class="highlight"><pre>ubuntu@ip-10-254-159-140:~$ ls /etc/nginx/sites-available/
+default
+ubuntu@ip-10-254-159-140:~$ more /etc/nginx/sites-available/default
+<span class="c1"># You may add here your</span>
+<span class="c1"># server {</span>
+<span class="c1">#   ...</span>
+<span class="c1"># }</span>
+<span class="c1"># statements for each of your virtual hosts to this file</span>
+...
+
+ubuntu@ip-10-254-159-140:~$
+</pre></div>
+</div>
+<p><strong>Active</strong> site configuration is listed in the <code class="docutils literal"><span class="pre">/etc/nginx/sites-enabled</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre>ubuntu@ip-10-254-159-140:~$ ls /etc/nginx/sites-enabled/
+default
+ubuntu@ip-10-254-159-140:~$ ls -l /etc/nginx/sites-enabled/
+total 0
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">34</span> Feb <span class="m">26</span> 19:09 default -&gt; /etc/nginx/sites-available/default
+ubuntu@ip-10-254-159-140:~$
+</pre></div>
+</div>
+<p>Notice that in fact, although <code class="docutils literal"><span class="pre">default</span></code> is in that directory too,
+it&#8217;s actually a soft link to the file in <code class="docutils literal"><span class="pre">sites-available</span></code>.</p>
+<p>Let&#8217;s move aside the existing <code class="docutils literal"><span class="pre">default</span></code> config by renaming it and replace it with a simple one of our own.</p>
+<p>On your local machine, in the <code class="docutils literal"><span class="pre">wsgiapp</span></code> directory, make a new file <code class="docutils literal"><span class="pre">simple_nginx_config</span></code>.
+No file format extension is necessary.</p>
+<p>Open that file in your editor and add the following:</p>
+<div class="highlight-nginx"><div class="highlight"><pre><span class="c1"># in simple_nginx_config</span>
+
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">ec2-54-184-162-20.us-west-2.compute.amazonaws.com</span><span class="p">;</span> <span class="c1"># replace with the DNS of your instance</span>
+    <span class="kn">access_log</span>  <span class="s">/var/log/nginx/test.log</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://127.0.0.1:8080</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now, copy that file up to your server too with <code class="docutils literal"><span class="pre">scp</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span>$ scp -i ~/.ssh/pk-cpe.pem simple_nginx_config ubuntu@ec2-54-184-162-20.us-west-2.compute.amazonaws.com:~/
+simple_nginx_config                           100%  <span class="m">363</span>     0.4KB/s   00:00
+<span class="o">(</span>ENV<span class="o">)</span>$
+</pre></div>
+</div>
+<p>Next, on the server, move the original default configuration file aside and put your new one in its place:</p>
+<div class="highlight-bash"><div class="highlight"><pre>ubuntu@ip-10-254-159-140:~$ ls
+myapp.py  simple_nginx_config
+ubuntu@ip-10-254-159-140:~$ sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.orig
+ubuntu@ip-10-254-159-140:~$ sudo mv simple_nginx_config /etc/nginx/sites-available/default
+ubuntu@ip-10-254-159-140:~$ ls -l /etc/nginx/sites-enabled/
+total 0
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">34</span> Feb <span class="m">26</span> 19:09 default -&gt; /etc/nginx/sites-available/default
+ubuntu@ip-10-254-159-140:~$
+</pre></div>
+</div>
+<p>Once that&#8217;s complete, you can restart nginx to have it pick up your changes.
+Note, if you alter the nginx configuration file <code class="docutils literal"><span class="pre">default</span></code>, you <em>must</em> restart the nginx service in order to see any changes:</p>
+<div class="highlight-bash"><div class="highlight"><pre>ubuntu@ip-10-254-159-140:~$ sudo service nginx restart
+...
+ubuntu@ip-10-254-159-140:~$
+</pre></div>
+</div>
+<p>If you now try to load the public DNS name for your EC2 instance, you&#8217;ll see that nginx has updated and is now throwing an error: <strong>502 Bad Gateway</strong></p>
+<p>The <code class="docutils literal"><span class="pre">502</span> <span class="pre">Bad</span> <span class="pre">Gateway</span></code> error means &#8220;I am a proxy set up to receive requests at this URL, but the thing I&#8217;m proxying to is either not running at all, or not running at the URL/port I was told!&#8221;</p>
+</div>
+<div class="section" id="running-a-wsgi-server">
+<h3>Running a WSGI Server<a class="headerlink" href="#running-a-wsgi-server" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s make our wsgi app run, so we can fix that.</p>
+<p>On your server, run the wsgi app:</p>
+<div class="highlight-bash"><div class="highlight"><pre>ubuntu@ip-10-254-159-140:~$ python myapp.py
+</pre></div>
+</div>
+<p>And now reload your web browser and verify that you can see &#8220;Hello, World!&#8221;</p>
+</div>
+</div>
+<div class="section" id="automation">
+<h2>Automation<a class="headerlink" href="#automation" title="Permalink to this headline">¶</a></h2>
+<p>The steps we took above allowed us to upload an application and some configuration to our server,
+apply the configuration to the <code class="docutils literal"><span class="pre">nginx</span></code> web server we installed,
+and then run our WSGI application in a terminal to get a response via public DNS.</p>
+<p>Your task is to repeat this process for homework with a different WSGI application.
+Later, we&#8217;ll learn how to automate this task using configuration management tools.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Deploying a Simple WSGI Application on AWS</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#manual-configuration">Manual Configuration</a><ul>
+<li><a class="reference internal" href="#configure-nginx">Configure Nginx</a></li>
+<li><a class="reference internal" href="#running-a-wsgi-server">Running a WSGI Server</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#automation">Automation</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

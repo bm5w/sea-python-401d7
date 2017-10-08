@@ -1,0 +1,93 @@
+***********
+Day of Code
+***********
+
+A programming language is simply syntactical sugar that describes logical processes.
+The best way to learn how to use that syntactical sugar is to practice implementing your logic and strategy while speaking that language.
+As such, I want you to spend every day writing a boatload of code.
+Here's an assignment to help facilitate that.
+
+If you don't already have one, create an account on `Code Wars <https://www.codewars.com>`_.
+Set your language of choice to "Python".
+
+Task
+====
+
+Code Wars is a website that allows you to take on a number of user-supplied code challenges in one of a host of languages.
+The difficulty level for a given code challenge is set by the "kyu".
+8th kyu is the simplest level, testing more of the basic understanding of the language.
+7th kyu is more complex and requires a slightly deeper understanding of language fundamentals.
+6th kyu increases the complexity in thought and application, etc.
+**Every step down in kyu represents a substantially significant increase in difficulty.**
+
+Your goal is to complete, on your own, 20 credits-worth of code challenges **BY MIDNIGHT**.
+Here's what this means in terms of what you'll be attacking.
+Each...
+
+- 8th kyu: 1 credit
+- 7th kyu: 2 credits
+- 6th kyu: 4 credits
+- 5th kyu: 5 credits
+- 4th kyu: 6 credits
+- 3rd kyu: 8 credits
+- 2nd kyu: 9 credits
+- 1st kyu: 10 credits
+
+For reference, my profile is at the 5th kyu, and the person holding Position 1 in the Code Fellows clan is at the 3rd kyu.
+The steps up in difficulty are, again, *significant*.
+
+**You will need to budget your time well.**
+If you wish to challenge yourself, step up in level.
+Otherwise, stay at the level you're comfortable and simply complete the challenges.
+
+If you don't yet have one, create a repository called ``code-katas`` and push its ``master`` branch to GitHub before doing anything further.
+Then, checkout a branch named ``day-of-code``.
+
+For every code challenge you complete, create a new Python module using the name of the challenge.
+At the top of the file, above all of your code, write a doc string that includes the "Best Practices" #1 solution.
+For example:
+
+.. code-block:: python
+
+    """Kata: Opposite Number - Return the opposite of the input number.
+
+    #1 Best Practices Solution by CrazyMerlyn & others
+
+    def opposite(number):
+        return -number
+    """
+
+Create an accompanying test file for that module.
+Within, re-write the tests that are given to you by Code Wars using Pytest.
+Add another 4 tests of your own to those, and ensure that they all pass in Python 2 and 3.
+
+Finally, create a ``README.md`` for this repository, listing out the title and URL of every kata you complete, as well as the module name and test file for each.
+Something like...
+
+.. code-block:: markdown
+
+    # Completed Katas
+
+    **Opposite Number (8th kyu)**
+
+    - **Module**: `opposite_number.py`
+    - **Tests**: `test_opposite_number.py`
+    - **URL**: [challenge url](https://www.codewars.com/kata/opposite-number)
+
+    **Invert Values (8th kyu)**
+    ...
+
+
+Submitting Your Work
+====================
+
+When you're done, create a pull request from ``day-of-code`` to ``master``.
+Submit the link to your pull request to Canvas.
+
+Again, this must be submitted **BY MIDNIGHT**!
+There will be **NO RESUBMITS AFTER MIDNIGHT** and **NO CREDIT GIVEN** for assignments submitted after the deadline.
+Do **NOT** make the mistake of running this up until the very last minute.
+
+Use the comment box in Canvas to talk about your thought process, as well as any difficulty you had with these katas.
+
+Good luck!

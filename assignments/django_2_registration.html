@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django Imager: Registration, Login and Home &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="django-imager-registration-login-and-home">
+<h1>Django Imager: Registration, Login and Home<a class="headerlink" href="#django-imager-registration-login-and-home" title="Permalink to this headline">¶</a></h1>
+<span class="admonition-django-imager-registration-login-and-home"></span><p>In this series of assignments you will build a simple image management website using Django.
+You began by defining a data model.
+Next, you&#8217;ll create a home page, and allow new users to register for an account.</p>
+<div class="section" id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<p>You will do your work for today on a branch.
+Call it <code class="docutils literal"><span class="pre">front-end-1</span></code>.
+You&#8217;ll need your work from <code class="docutils literal"><span class="pre">models-1</span></code> to continue with this.</p>
+<p>Unless you have strong opinions about design, you can get a reasonably nice-looking design using a front-end framework like Bootstrap or Zurb Foundation.
+There are good add-ons available for both (django-bootstrap3, django-zurb-foundation).
+In any case, put some effort into making your <code class="docutils literal"><span class="pre">base.html</span></code> look nice, whether you choose to use a framework for that or not.
+Note that Django templates use inheritance in <em>the exact same way</em> as Jinja2.
+Use <code class="docutils literal"><span class="pre">base.html</span></code> as your layout skeleton, and have your other templates inherit from that.</p>
+<div class="section" id="home-page">
+<h3>Home Page<a class="headerlink" href="#home-page" title="Permalink to this headline">¶</a></h3>
+<p>The home page for your application should have the url <code class="docutils literal"><span class="pre">/</span></code>.
+It will contain marketing text that invites users to join the site.
+It will include a prominent display of an image chosen at random from all the public photos uploaded by your users.
+For the moment there are no public photos, so it should show an image you pre-select (served as a static resource) instead.
+Check <a class="reference external" href="https://docs.djangoproject.com/en/dev/howto/static-files/">these docs</a> for information on how to serve up static resources.</p>
+<p>In addition to the above elements the page will provide clear calls to action for logging in or joining the site.
+The login call to action, when clicked, will lead to a login form.
+The registration call to action will lead to the registration page.</p>
+<p>The home page should make use of a basic HTML skeleton provided by a <code class="docutils literal"><span class="pre">base.html</span></code> template.
+It should fill blocks in that skeleton rather than defining the entire layout of the page itself.</p>
+</div>
+<div class="section" id="login-logout">
+<h3>Login / Logout<a class="headerlink" href="#login-logout" title="Permalink to this headline">¶</a></h3>
+<p>The site will allow users to log in and out of the system without needing to go to the Django admin login page.
+The urls for these views will be <code class="docutils literal"><span class="pre">/login</span></code> and <code class="docutils literal"><span class="pre">/logout</span></code>.
+I encourage you to use the views already provided by the django.contrib.auth package for login and logout rather than creating your own.
+You can override the view template used for login to make it extend your <code class="docutils literal"><span class="pre">base.html</span></code> skeleton template.</p>
+<p>A successful login will try to redirect the user to a route called <code class="docutils literal"><span class="pre">/accounts/profile</span></code>.
+For now, enable your Imager app to redirect to the home page instead.
+To do this, create a <code class="docutils literal"><span class="pre">LOGIN_REDIRECT_URL</span></code> in your <code class="docutils literal"><span class="pre">settings.py</span></code>.
+It should be a simple string pointing to a route that is registered and exists in your app, like <code class="docutils literal"><span class="pre">/profile</span></code> or <code class="docutils literal"><span class="pre">/images/library</span></code>.</p>
+</div>
+<div class="section" id="registration">
+<h3>Registration<a class="headerlink" href="#registration" title="Permalink to this headline">¶</a></h3>
+<p>The site will allow new users to register themselves so as to begin using the service.
+To make this work, you will install and configure a Django add-on called <a class="reference external" href="http://django-registration.readthedocs.io/en/stable/">django-registration</a>.
+It provides all the required functionality.</p>
+<p>You will need to add the URLs for the application to your site urlconf.
+You will also need to provide all the required templates.
+You will use the HMAC registration backend which uses the following registration flow:</p>
+<ul class="simple">
+<li>Users fills out registration form and clicks &#8216;submit&#8217;</li>
+<li>User ends up at a page that informs them that an email has been sent to them with a link to finish the registration.</li>
+<li>User clicks on the link in the email and ends up at a page that tells them that their registration has been confirmed.</li>
+<li>User can then log in to the site with the username and password they provided when they registered.</li>
+<li>Once a user logs in, they should be redirected to the home page, but they should now see their username in the top left corner of the page.</li>
+</ul>
+<p>Because the registration service involves sending emails, you will have to configure <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/email/">email services for Django</a>.
+However, you don&#8217;t want to send real emails when developing, so make sure that you <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/email/#configuring-email-for-development">configure the Django console email backend</a>.
+Then any emails you send while working will simply print to the console where Django is running.</p>
+</div>
+<div class="section" id="tests">
+<h3>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h3>
+<p>You must write tests for each view you implement, verifying that it works as expected.
+Since these tests will involve rendered html you will want to read about the <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/testing/tools/#the-test-client">Django test client</a>.</p>
+<p>To test registration you will want to be aware of how Django&#8217;s <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/testing/tools/#email-services">email services work in a test environment</a>.</p>
+</div>
+<div class="section" id="submitting-your-work">
+<h3>Submitting Your Work<a class="headerlink" href="#submitting-your-work" title="Permalink to this headline">¶</a></h3>
+<p>When you have completed the work for this assignment, open a pull request from the <code class="docutils literal"><span class="pre">front-end-1</span></code> branch back to <code class="docutils literal"><span class="pre">master</span></code>.
+Submit the URL for that pull request.
+Then, merge the pull request back to <code class="docutils literal"><span class="pre">master</span></code> to prepare for the next stage of your app&#8217;s development.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django Imager: Registration, Login and Home</a><ul>
+<li><a class="reference internal" href="#tasks">Tasks</a><ul>
+<li><a class="reference internal" href="#home-page">Home Page</a></li>
+<li><a class="reference internal" href="#login-logout">Login / Logout</a></li>
+<li><a class="reference internal" href="#registration">Registration</a></li>
+<li><a class="reference internal" href="#tests">Tests</a></li>
+<li><a class="reference internal" href="#submitting-your-work">Submitting Your Work</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

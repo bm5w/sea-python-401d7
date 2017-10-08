@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tuesday &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../../index.html">
+      <img class="logo" src="../../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="tuesday">
+<h1>Tuesday<a class="headerlink" href="#tuesday" title="Permalink to this headline">¶</a></h1>
+<span class="admonition-course-presentations"></span><div class="section" id="objectives">
+<h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Learn about the services offered by Amazon Web Services (AWS)</li>
+<li>Learn to provision a web server in AWS</li>
+<li>Learn how to deploy a simple WSGI app to AWS.</li>
+<li>Be comfortable working with Django forms and form handling</li>
+</ul>
+</div>
+<div class="section" id="readings">
+<h2>Readings<a class="headerlink" href="#readings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="django-forms">
+<h3>Django Forms<a class="headerlink" href="#django-forms" title="Permalink to this headline">¶</a></h3>
+<p>To support creating and editing objects in Django, you&#8217;ll need to learn about Django Forms.  Here are some readings to keep in mind as you progress:</p>
+<ul class="simple">
+<li>Start by learning how to <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/forms/">work with forms</a> in general</li>
+<li>Follow that up with reading about <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/forms/modelforms/">ModelForms</a> and what they provide</li>
+<li>Make sure you understand <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/forms/validation/">form and field validation</a> so you can ensure proper data is submitted</li>
+<li>Particularly complex forms, or forms which require javascript or special css, will need to utilize <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/forms/media/">form assets</a></li>
+<li>You&#8217;ll want to keep a reference open for the <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/forms/api/">Forms API</a></li>
+<li>Keep in mind that the custom form field you imagine may already have been created and check <a class="reference external" href="https://www.djangopackages.com/grids/g/forms/">the Forms category</a> on <a class="reference external" href="http://www.djangopackages.com">http://www.djangopackages.com</a></li>
+</ul>
+</div>
+<div class="section" id="aws-and-deployment">
+<h3>AWS and Deployment<a class="headerlink" href="#aws-and-deployment" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>(Read <em>ONLY!</em> Don&#8217;t <em>do</em> this yet) <a class="reference external" href="https://ashokfernandez.wordpress.com/2014/03/11/deploying-a-django-app-to-amazon-aws-with-nginx-gunicorn-git/">Deploying a Django App to Amazon AWS</a></li>
+<li>(Read <em>ONLY!</em> Do not <em>do</em> yet!) <a class="reference external" href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html">Creating a Database Server</a></li>
+<li>Be aware of the <a class="reference external" href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.html">security controls for Amazon RDS</a></li>
+<li>In particular, learn about <a class="reference external" href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.RDSSecurityGroups.html">RDS Security Groups</a> and controlling access between RDS and EC2</li>
+<li>Screencasts about Django Class-Based Views: <a class="reference external" href="https://godjango.com/15-class-based-views-part-1-templateview-and-redirectview/">Part 1</a>, <a class="reference external" href="https://godjango.com/16-class-based-views-part-2-listview-and-formview/">Part 2</a>, and <a class="reference external" href="https://godjango.com/17-class-based-views-part-3-detailview-and-template_name-shortcut/">Part 3</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="review">
+<h2>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Collisions in Hash Tables</li>
+<li>Self-balancing BST</li>
+</ul>
+</div>
+<div class="section" id="concepts">
+<h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/django_cbv.html">First Steps into Class-Based Views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_cbv.html#the-templateview">The <code class="docutils literal"><span class="pre">TemplateView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/django_forms.html">Django Forms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_forms.html#form-handling-in-django-and-the-form-handling-cbvs">Form Handling in Django, and the Form-handling CBVs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_forms.html#forms-and-the-wrrc">Forms and the WRRC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/simple_wsgi_deployment.html">Deploying a Simple WSGI Application on AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/simple_wsgi_deployment.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/simple_wsgi_deployment.html#manual-configuration">Manual Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/simple_wsgi_deployment.html#automation">Automation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="demo">
+<h2>Demo<a class="headerlink" href="#demo" title="Permalink to this headline">¶</a></h2>
+<p>Interacting with AWS through the web, an introduction to Amazon Web Services.</p>
+</div>
+<div class="section" id="assignments">
+<h2>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../../assignments/aws_0_deploy_wsgi_app.html"><em>Deploy a WSGI app to AWS</em></a></li>
+<li><a class="reference internal" href="../../assignments/django_5_adding.html"><em>Django Imager: Create Views to Add Models</em></a></li>
+<li><a class="reference internal" href="../../assignments/bst_4_balancing.html"><em>Binary Search Tree: Self-Balancing</em></a></li>
+<li><a class="reference internal" href="../../assignments/blog_post_draft.html"><em>Technical Blog Post: Draft Your Post</em></a> (Due Friday)</li>
+<li><a class="reference internal" href="../../assignments/daily_lj_entry.html"><em>Today I learned...</em></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tuesday</a><ul>
+<li><a class="reference internal" href="#objectives">Objectives</a></li>
+<li><a class="reference internal" href="#readings">Readings</a><ul>
+<li><a class="reference internal" href="#django-forms">Django Forms</a></li>
+<li><a class="reference internal" href="#aws-and-deployment">AWS and Deployment</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#review">Review</a></li>
+<li><a class="reference internal" href="#concepts">Concepts</a></li>
+<li><a class="reference internal" href="#demo">Demo</a></li>
+<li><a class="reference internal" href="#assignments">Assignments</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

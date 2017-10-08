@@ -1,0 +1,54 @@
+.. slideconf::
+    :autoslides: False
+
+*******
+Tuesday
+*******
+
+.. slide:: Course Presentations
+    :level: 1
+
+    This document contains no slides.
+
+Objectives
+==========
+
+* Understand how Merge Sort works
+* Implement Photo and Album tagging into our Django imager
+
+Readings
+========
+
+* `Merge Sort <http://www.tutorialspoint.com/data_structures_algorithms/merge_sort_algorithm.htm>`_
+* `Tagging with Django Taggit <https://godjango.com/33-tagging-with-django-taggit/>`_
+
+Review
+======
+
+
+Concepts
+========
+
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/django_taggit
+
+* The Merge Sort algorithm
+
+Demo
+====
+
+* Merge Sort!!!
+
+Assignments
+===========
+
+* :doc:`/assignments/sort_2_mergesort`
+* :doc:`/assignments/project_02_idea`
+* :doc:`/assignments/django_7_complete_frontend` (Due Friday)
+* :doc:`/assignments/django_9_drf_tutorial_b`
+* :doc:`/assignments/django_10_taggit`
+* :doc:`/assignments/aws_2_ansible_imager` (Due Friday)
+* :doc:`/assignments/blog_post_publish` (Due Friday Week 9)
+* :doc:`/assignments/daily_lj_entry`

@@ -1,0 +1,133 @@
+***************
+PyTest Fixtures
+***************
+
+As developers, one of the things we strive to do with our code is keep it DRY.
+This ideal should apply not only to the functional code that we write, but also to our testing suites.
+If we know that we need the same objects or the same functions for every single test, each of which requires the same setup every time,
+why should we write them multiple times?
+`pytest <http://doc.pytest.org/en/latest/builtin.html>`_ fixtures help to answer that question.
+
+Creating a New Fixture
+======================
+
+A **fixture** is simply a function or method whose processes and/or result are
+intended to be used by a number of sources.
+We identify it as a fixture using the `` @pytest.fixture`` decorator.
+
+.. code-block:: python
+
+    import pytest
+
+    @pytest.fixture
+    def the_fixture():
+        print("this line runs")
+        print("this line also runs")
+        created_value = 5
+        return created_value
+
+With this done, we can use it in any of our test functions by providing the
+function name as a parameter.
+**Before each test is run, it'll run the function defined as a fixture if it is
+in the parameter list.**
+If the function has a return value, that value will then be assigned to the 
+parameter name inside of the test.
+
+.. code-block:: python
+
+    def test_one(the_fixture):
+        assert the_fixture == 5
+
+If we now run this with ``pytest`` in the command line, we see that our test 
+passes despite ``the_fixture`` being declared as a function and not a variable.
+We'll also see that those print statements fire just as we tell them to.
+
+.. code-block:: bash
+
+    $ py.test -s
+    ============================== test session starts ==============================
+    platform darwin -- Python 3.6.1, pytest-3.0.7, py-1.4.33, pluggy-0.4.0
+    rootdir: /Users/Nick/Documents/codefellows/courses/seattle-python/fixture/src, inifile: 
+    collected 1 items 
+
+    test_me.py this line runs
+    this line also runs
+    .
+
+    =========================== 1 passed in 0.01 seconds ===========================
+
+
+Fixture Scope
+=============
+
+The **scope** defines how often the fixture runs and how it is seen within your test suite.
+The options for fixture scope are:
+
+* function
+* class
+* module
+* session
+
+By default, fixtures are at the **function**-level scope.
+This means that they run once for each test they're called into.
+**module** scope is like function scope, but the fixture is run *once* for the
+span of the entire module.
+
+Later on, we'll be writing tests that occur as ``class`` objects, and we'll need
+fixtures at the ``class`` level, run once for every ``TestCase`` class.
+
+To set the scope of a fixture, set the kwarg in the decorator:
+
+.. code-block:: python
+
+    import pytest
+
+    @pytest.fixture(scope="function")
+    def the_fixture():
+        print("this line runs")
+        print("this line also runs")
+        created_value = 5
+        return created_value
+
+
+A Better Example
+================
+
+The examples above are great and all, but they're not all that useful moving forward.
+Instead, let's consider the **mailroom madness** app we built last week.
+Several of my tests included adding new donors with a set of randomized donations.
+I had to persist those across several tests, so in several places my tests start with:
+
+.. code-block:: python
+
+    from faker import Faker # imported at the top, not in function
+    from random import randint # same here
+    from email_admin import add_donation
+
+    fake = Faker()
+    for i in range(20):
+        name = fake.name()
+        for j in range(randint(1, 10)):
+            add_donation(name, randint(500, 2000))
+
+Instead of repeating myself every time, I could create a fixture that handled
+all of this functionality for me.
+
+.. code-block:: python
+
+    from faker import Faker
+    from random import randint
+
+    @pytest.fixture
+    def generate_donors():
+        from email_admin import add_donation
+
+        fake = Faker()
+        for i in range(20):
+            name = fake.name()
+            for j in range(randint(1, 10)):
+                add_donation(name, randint(500, 2000))
+
+Here I don't need to have anything returned.
+I just need to have some donors generated.
+From there, I can just run my tests with ``generate_donors`` as a parameter.

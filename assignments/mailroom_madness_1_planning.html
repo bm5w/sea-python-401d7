@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Mail Room Madness: Planning &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="mail-room-madness-planning">
+<h1>Mail Room Madness: Planning<a class="headerlink" href="#mail-room-madness-planning" title="Permalink to this headline">¶</a></h1>
+<span class="admonition-mail-room-madness-planning"></span><p>This is an abstract task.
+Given a list of goals for a software project, you create a plan for completing these goals.
+After next session, you&#8217;ll use your plan to build the described program.</p>
+<p>To accomplish this task, you&#8217;ll need to write some <em>pseudocode</em>. Like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">get_user_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">validator</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;return the value input by a user prompted by `prompt`</span>
+
+<span class="sd">    optionally, validate the input with a function `validator` which must</span>
+<span class="sd">    take one argument, the input from the user and must return the input if</span>
+<span class="sd">    valid, and None if not valid</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">reply</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">while</span> <span class="n">reply</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">ask_for_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">there_is_a_validator</span><span class="p">:</span>
+            <span class="n">validate_the_reply</span>
+    <span class="k">return</span> <span class="n">reply</span>
+</pre></div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>You work in the mail room at a local charity.
+Part of your job is to write incredibly boring, repetitive emails thanking your donors for their generous gifts.
+You are tired of doing this over an over again, so you&#8217;ve decided to let Python help you out of a jam.</p>
+<p>You want to write a small command-line script that can handle some of the tasks associated with this job for you.
+Here&#8217;s a list of the things you want to be able to do:</p>
+<ul class="simple">
+<li>The script should have a data structure that holds a list of your donors and a history of the amounts they have donated.</li>
+<li>When run, the script should prompt the user to choose from a menu of 2 actions: &#8216;Send a Thank You&#8217; or &#8216;Create a Report&#8217;.</li>
+<li>If the user selects &#8216;Send a Thank You&#8217;, prompt for a Full Name.<ul>
+<li>If the user types &#8216;list&#8217;, show them a list of the donor names and re-prompt</li>
+<li>If the user types a name not in the list, add that name to the data structure and use it.</li>
+<li>If the user types a name in the list, use it.</li>
+<li>Once a name has been selected, prompt for a donation amount.</li>
+<li>Verify that the amount is in fact a number, and re-prompt if it isn&#8217;t.</li>
+<li>Once an amount has been given, add that amount to the donation history of the selected user.</li>
+<li>Finally, use string formatting to compose an email thanking the donor for their generous donation.
+Print the email to the terminal and return to the original prompt.</li>
+</ul>
+</li>
+</ul>
+<p><strong>You need not persist the new donors when the script quits running.</strong></p>
+<ul class="simple">
+<li>If the user (you) selected &#8216;Create a Report&#8217; Print a list of your donors,
+sorted by total historical donation amount.<ul>
+<li>Include Donor Name, total donated, number of donations and average donation amount as values in each row.</li>
+<li>Using string formatting, format the output rows as nicely as possible.
+The end result should be tabular (values in each column should align with those above and below)</li>
+<li>After printing this report, return to the original prompt.</li>
+</ul>
+</li>
+<li>At any point, the user should be able to quit their current task and return to the original prompt.</li>
+<li>From the original prompt, the user should be able to quit the script cleanly.</li>
+</ul>
+</div>
+<div class="section" id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<p>Begin by thinking of each individual step as a stand-alone operation.
+What kind of function would you need to write to accomplish a single step from the above list of steps?</p>
+<p>Write a series of <em>pseudocode</em> functions to accomplish the tasks identified by the list of steps above.</p>
+<p>Continue by planning the <em>flow</em> of your script.
+What should happen first, second?
+How will you move from one step to the next?</p>
+<p>You may find that creating a <em>flow chart</em> that shows how you expect your script to work can help you to visualize this process.</p>
+<p>You can use a program to create a flow chart, or a free web service like <a class="reference external" href="https://www.draw.io">draw.io</a>.
+Or you can simply sketch something by hand.</p>
+</div>
+<div class="section" id="submitting-your-work">
+<h2>Submitting Your Work<a class="headerlink" href="#submitting-your-work" title="Permalink to this headline">¶</a></h2>
+<p>To submit this homework, attach a file containing your pseudocode functions and a screenshot of your flow chart to the submission page in canvas.</p>
+<p>We will discuss the implementation of this program in more detail during the next session.
+Make sure you think this through so you can participate in that discussion.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Mail Room Madness: Planning</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#tasks">Tasks</a></li>
+<li><a class="reference internal" href="#submitting-your-work">Submitting Your Work</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

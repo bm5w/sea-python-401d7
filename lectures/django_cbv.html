@@ -1,0 +1,424 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>First Steps into Class-Based Views &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="first-steps-into-class-based-views">
+<span id="first-steps-into-class-based-views"></span><h1>First Steps into Class-Based Views<a class="headerlink" href="#first-steps-into-class-based-views" title="Permalink to this headline">¶</a></h1>
+<p>Thus far we&#8217;ve been using functional views to handle all of our requests and return our responses.
+However, Django is largely moving toward <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/class-based-views/">Class-Based Views</a>, so it&#8217;s worth understanding how they work.</p>
+<div class="section" id="the-templateview">
+<span id="the-templateview"></span><h2>The <code class="docutils literal"><span class="pre">TemplateView</span></code><a class="headerlink" href="#the-templateview" title="Permalink to this headline">¶</a></h2>
+<p>We can update the views in our <code class="docutils literal"><span class="pre">lending_library</span></code> app to use a class view.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in lending_library/lending_library/views.py</span>
+
+<span class="o">...</span>
+<span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">TemplateView</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>The purpose of every class-based view inheriting from <code class="docutils literal"><span class="pre">django.views.generic.TemplateView</span></code> is to render a template.</p>
+<p>All of the class-based views are going to provide us with simple ways of performing common tasks.
+They also provide us with API methods to take care of some of the things that go around those common tasks.</p>
+<p>There is <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/class-based-views/">good documentation</a> regarding the class-based views API.
+It has a list of all of the different kinds of views that there are.
+Let&#8217;s click on <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/class-based-views/base/#templateview">TemplateView</a> and see what it contains.</p>
+<p>A flowchart of methods:</p>
+<ul class="simple">
+<li>a <code class="docutils literal"><span class="pre">dispatch()</span></code> method</li>
+<li><code class="docutils literal"><span class="pre">http_method_not_allowed()</span></code></li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/class-based-views/mixins-simple/#django.views.generic.base.ContextMixin.get_context_data"><code class="docutils literal"><span class="pre">get_context_data()</span></code></a>: this method returns a dictionary that includes all of the items we want to pass in as part of the view&#8217;s context.</li>
+</ul>
+<p>So let&#8217;s go back to our <code class="docutils literal"><span class="pre">views.py</span></code> and create for ourselves a class-based view that uses the <code class="docutils literal"><span class="pre">get_context_data()</span></code> method to return a dictionary.
+We&#8217;ll also insert a breakpoint so we can inspect the state of things when this method is called:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># lending_library/lending_library/views.py</span>
+
+<span class="o">...</span>
+<span class="k">class</span> <span class="nc">SampleView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;lending_library/home.html&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span> <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">{}</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>We also need to rewire our urls:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># lending_library/lending_library/urls.py</span>
+
+<span class="o">...</span>
+<span class="kn">from</span> <span class="nn">lending_library.views</span> <span class="kn">import</span> <span class="n">SampleView</span>
+<span class="o">...</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">...</span>
+    <span class="n">url</span><span class="p">(</span>
+        <span class="s2">r&quot;^(?P&lt;num&gt;\d+)/(?P&lt;name&gt;\w+)/$&quot;</span><span class="p">,</span>
+        <span class="n">SampleView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;testme&quot;</span>
+    <span class="p">),</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>The temptation will be to just drop the class in there like we had with function-based views.
+That&#8217;s not gonna work.
+When you use a class-based view in a <code class="docutils literal"><span class="pre">url</span></code> pattern, you need to call the <code class="docutils literal"><span class="pre">as_view()</span></code> method on it.</p>
+<p>What&#8217;s the difference between calling the class itself and calling the method of <code class="docutils literal"><span class="pre">as_view()</span></code>?
+The <code class="docutils literal"><span class="pre">as_view()</span></code> method is a <code class="docutils literal"><span class="pre">classmethod</span></code> (remember the <code class="docutils literal"><span class="pre">&#64;classmethod</span></code> decorator?).
+What&#8217;s the most common case of using a <code class="docutils literal"><span class="pre">classmethod</span></code>?
+To provide you with an alternate constructor.</p>
+<p><code class="docutils literal"><span class="pre">as_view()</span></code> builds an instance of this view and hands it back to you.
+What gets handed back to you is a callable, like the function-based views we had used before.</p>
+<p>What is the implication of this?
+As was mentioned before, the <code class="docutils literal"><span class="pre">urlpatterns</span></code> are evaluated and then cached.
+The pointers to the view functions are evaluated and then cached, so the view functions themselves end up as the target to these url paths.</p>
+<p>When we say <code class="docutils literal"><span class="pre">SampleView.as_view()</span></code> and that is evaluated, what does our route point at?
+It points at <strong><em>one instance</em></strong> of the class, and that one instance is <em>cached</em> and held on to.</p>
+<p>What this means is that <strong>every request</strong> that is received by your Django app matching that url gets handed off to that instance, and that instance is the only instance that exists.
+There is only ever one instance.
+What that means is that if one of our methods we do something like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">SampleView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;lending_library/home.html&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span> <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flibbertygibbet</span> <span class="o">=</span> <span class="s2">&quot;horcrux&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">potato</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>Now our <code class="docutils literal"><span class="pre">self.flibbertygibbet</span></code> attribute is set for every request that comes after this until we restart Django.
+So <em>don&#8217;t mutate your class objects. Don&#8217;t mutate your instances in views.</em>
+Try <em>REALLY</em> hard not to hang too much state on your class objects because <em>that state persists between requests</em>.</p>
+<p>Flask and Pyramid create classes when the request comes in, and the state of that class is local to a particular request.
+That is not the case in Django.
+The state of a class-based view is <em>global to all requests</em>.
+So watch out for that.</p>
+<p>There will come a time when something unexpected happens to you.
+You make a call to a view that you set up some sort of fancy switch on, and it works perfectly.
+Then you&#8217;ll make a different call to it and it no longer works as you expect.
+9 times out of 10 this happens because you flip a switch in the state of your view, and you didn&#8217;t flip it back.
+Again, be careful.
+Be aware that the internal state of a Django class-based view is global to all requests.</p>
+<p>Let&#8217;s try our new class-based view:</p>
+<p><code class="docutils literal"><span class="pre">http://localhost:8000/123/pancakes/</span></code></p>
+<p>This drops into our debugger:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; .../lending_library/lending_library/views.py(22)get_context_data()
+-&gt; return {}
+(Pdb) l
+ 17     class SampleView(TemplateView):
+ 18         template_name = &#39;home.html&#39;
+ 19
+ 20         def get_context_data(self, num=0, name=&#39;balloons&#39;):
+ 21             import pdb; pdb.set_trace()
+ 22             self.flibbertygibbet = &quot;horcrux&quot;
+ 23             self.potato = True
+ 24  -&gt;         return {}
+[EOF]
+(Pdb) num
+u&#39;123&#39;
+(Pdb) name
+u&#39;pancakes&#39;
+(Pdb) c
+[19/Jan/2016 08:06:32]&quot;GET /123/pancakes/ HTTP/1.1&quot; 200 136
+</pre></div>
+</div>
+<p>Notice, we passed off a context that doesn&#8217;t have any of the values in it that our template is expecting.
+Did our template break?
+No!
+This is a Django <em>feature</em>.</p>
+<p>If there is an error that happens when you render a template, Django will swallow it silently unless you take extra measures to set up a template debugger.
+This can be annoying when you try to debug, so remember there are settings that can allow you to turn on template debugging.</p>
+<p>Let&#8217;s actually return our context here, and remove our breakpoint:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># lending_library/lending_library/views.py</span>
+
+<span class="k">class</span> <span class="nc">SampleView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;lending_library/home.html&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;balloons&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;num&quot;</span><span class="p">:</span> <span class="n">num</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Reload our browser and we should see our &#8220;Hello pancakes!&#8221; message.</p>
+<p>One last interesting thing: We set our <code class="docutils literal"><span class="pre">TemplateView</span></code> to have a <code class="docutils literal"><span class="pre">template_name</span> <span class="pre">=</span> <span class="pre">&quot;lending_library/home.html&quot;</span></code>.
+If we take that away, we&#8217;ll get an error.
+These kinds of attributes of class-based views can also be used as arguments of the <code class="docutils literal"><span class="pre">as_view()</span></code> call.
+So in our <code class="docutils literal"><span class="pre">urlpatterns</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># lending_library/lending_library/urls.py</span>
+<span class="o">...</span>
+    <span class="n">url</span><span class="p">(</span>
+        <span class="s1">r&#39;^(?P&lt;num&gt;\d+)/(?P&lt;name&gt;\w+)/$&#39;</span><span class="p">,</span>
+        <span class="n">SampleView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">template_name</span><span class="o">=</span><span class="s2">&quot;lending_library/home.html&quot;</span><span class="p">),</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;testme&quot;</span>
+    <span class="p">),</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>What does this mean?
+There&#8217;s a reason these views are called &#8220;generic&#8221;.
+The reason is because they have a certain number of attributes that control how they work.
+Things like <code class="docutils literal"><span class="pre">template_name</span></code> need a template in order to render.
+They provide a method by which all of those things can be passed in as arguments to the <code class="docutils literal"><span class="pre">as_view()</span></code> call, because that means you can use this view over and over and over again in different ways with different templates.</p>
+<p>This is actually kind of cool.
+In fact, as an experiment, we can try to use <code class="docutils literal"><span class="pre">TemplateView</span></code> without any view code at all, and it will still render:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># lending_library/lending_library/urls.py</span>
+<span class="o">...</span>
+<span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">TemplateView</span>
+<span class="o">...</span>
+    <span class="n">url</span><span class="p">(</span>
+        <span class="s1">r&#39;^(?P&lt;num&gt;\d+)/(?P&lt;name&gt;\w+)/$&#39;</span><span class="p">,</span>
+        <span class="n">TemplateView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">template_name</span><span class="o">=</span><span class="s2">&quot;lending_library/home.html&quot;</span><span class="p">),</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;testme&quot;</span>
+    <span class="p">),</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>And now we reload our browser, and our <code class="docutils literal"><span class="pre">TemplateView</span></code> is able to render our template automatically from the context of the url.</p>
+<p>This is just the first, very-most generic Class-based view available.
+There are of course, many others.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">django.views</span> <span class="kn">import</span> <span class="n">generic</span>
+
+<span class="gp">In [2]: </span><span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">generic</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;View&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">]</span>
+<span class="go">[&#39;ArchiveIndexView&#39;,</span>
+<span class="go"> &#39;CreateView&#39;, # &lt;---- most likely to use</span>
+<span class="go"> &#39;DateDetailView&#39;,</span>
+<span class="go"> &#39;DayArchiveView&#39;,</span>
+<span class="go"> &#39;DeleteView&#39;, # &lt;---- most likely to use</span>
+<span class="go"> &#39;DetailView&#39;, # &lt;---- most likely to use</span>
+<span class="go"> &#39;FormView&#39;, # &lt;---- most likely to use</span>
+<span class="go"> &#39;GenericViewError&#39;,</span>
+<span class="go"> &#39;ListView&#39;, # &lt;---- most likely to use</span>
+<span class="go"> &#39;MonthArchiveView&#39;,</span>
+<span class="go"> &#39;RedirectView&#39;,</span>
+<span class="go"> &#39;TemplateView&#39;,</span>
+<span class="go"> &#39;TodayArchiveView&#39;,</span>
+<span class="go"> &#39;UpdateView&#39;, # &lt;---- most likely to use</span>
+<span class="go"> &#39;View&#39;,</span>
+<span class="go"> &#39;WeekArchiveView&#39;,</span>
+<span class="go"> &#39;YearArchiveView&#39;]</span>
+</pre></div>
+</div>
+<p>Like any toolkit, you choose the right tool for the right job.
+You can drive a nail into a wall with a shoe, but that&#8217;s the <em>job</em> of a hammer.
+Similarly, you can get any data onto to the page with a <em>TemplateView</em>, but the <strong>ListView</strong> is specialized for listing instances of one model, <strong>DetailView</strong> for showing the data for an individual model instance, and <strong>CreateView</strong> for adding a new instance of a model to your web app.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">First Steps into Class-Based Views</a><ul>
+<li><a class="reference internal" href="#the-templateview">The <code class="docutils literal"><span class="pre">TemplateView</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Ping Pong Pair Programming Workflow &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="next" title="Grading" href="grading_rubric.html" />
+    <link rel="prev" title="Friday" href="../schedule/week01/fri.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="grading_rubric.html" title="Grading"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week01/fri.html" title="Friday"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="ping-pong-pair-programming-workflow">
+<h1>Ping Pong Pair Programming Workflow<a class="headerlink" href="#ping-pong-pair-programming-workflow" title="Permalink to this headline">¶</a></h1>
+<p>To date, most Pair Programming that you all have one has been of the <strong>Driver-Navigator</strong> form.
+The <strong>driver</strong> sits at the keyboard and types the code that the <strong>navigator</strong> dictates should be typed.
+This is all well and good, but often leads to a lot of idleness for half the team.
+In this class, most assignments from this point forward will be Pair Programming assignments, and I want you all to get the most out of it, so we&#8217;ll be putting a different spin on it.
+We&#8217;ll be Ping Pong Pair Programming.</p>
+<p>With Ping Pong Pair Programming, the roles are somewhat different.
+Instead of a Driver-Navigator split, the team is now a <strong>Tester-Coder</strong> split, following the Red-Green-Refactor cycle.
+In this way, each one of the pair gets experience writing tests and each one of the pair gets experience writing code that makes the app run.
+Here&#8217;s how it will work moving forward.</p>
+<div class="section" id="ping-ponging-for-two">
+<h2>Ping-Ponging for Two<a class="headerlink" href="#ping-ponging-for-two" title="Permalink to this headline">¶</a></h2>
+<p>Consider the following scenario.
+Selena and I are working together on the <a class="reference external" href="/assignments/math_series.rst">Mathematical Series</a> assignment.
+We&#8217;ve decided to work on my code first, so I make my repository with License, .gitignore, and README.
+Then we both clone it down to our local machines.
+I start a new branch called <code class="docutils literal"><span class="pre">fibonacci</span></code>.
+Finally, I create empty files for <code class="docutils literal"><span class="pre">series.py</span></code> and <code class="docutils literal"><span class="pre">test_series.py</span></code>, building out the basic scaffolding for my work.
+I then add these files to my local repository, push them to GitHub, and Selena clones those files down.</p>
+<p>It&#8217;s my code so I&#8217;m trying to navigate, dictating to Selena what code I want written.
+However, instead of just dictating what I want, <strong>I start by writing a test for my code</strong> while she looks on.
+One test that of course fails.
+I add, commit, and push this code to GitHub on my <code class="docutils literal"><span class="pre">fibonacci</span></code> branch.
+Selena fetches the new branch and pulls it to her local machine, where she writes the code that makes the test pass while I look on.
+Once the test is passing, if the code needs to be refactored, Selena refactors while I look on.
+After, she adds, commits, and pushes this code to GitHub on the same branch.
+I pull the updated branch back down and write my next test.</p>
+<p>We continue going back and forth like this until the <code class="docutils literal"><span class="pre">fibonacci</span></code> feature is done.
+When it is done, we switch and work on her code, with me as <strong>Coder</strong> and Selena as <strong>Tester</strong>.</p>
+<p>We go back and forth for <strong>*every feature*</strong>, where my feature gets completed and then hers gets completed.</p>
+<p>Once the code is ready for submission, the commit history on <em>my code</em> should look like:</p>
+<ul class="simple">
+<li>nhuntwalker: started the repository</li>
+<li>nhuntwalker: wrote test for fibonacci returning &#8220;2&#8221; for n=3</li>
+<li>SeleniumK: created the fibonacci function satisfying the n=3 test</li>
+<li>nhuntwalker: wrote test for fibonacci at n=10</li>
+<li>SeleniumK: fibonacci function now satisfies the n=10 test</li>
+<li>nhuntwalker: created pytest value table and a test for large numbers</li>
+<li>SeleniumK: modified and refactored fibonacci function to past tests for any N</li>
+</ul>
+<p>And so on.</p>
+</div>
+<div class="section" id="ping-ponging-for-three">
+<h2>Ping-Ponging for Three<a class="headerlink" href="#ping-ponging-for-three" title="Permalink to this headline">¶</a></h2>
+<p>In a three-person group it&#8217;s a little bit of a different situation.
+The person whose code is being worked on serves on a more classical Navigator role.
+Their partners then take on the Tester and Coder roles.
+As the Navigator, they dictate the test to be written and the code that gets written to pass the test.
+In practice, it looks like the following:</p>
+<p>I&#8217;m triple-programming with Selena and Norton on my codebase.
+I create the repository, with License, README, and a proper <code class="docutils literal"><span class="pre">.gitignore</span></code>.
+I also push up the basic scaffolding for my code.
+Norton and Selena both pull it down, with Norton as my Tester and Selena as my coder.
+They work as in Ping-Ponging for two, while I act as Navigator and dictate which tests get written and which code gets written to pass the test.</p>
+<p>When the feature in my codebase is written, we rotate.</p>
+<p>Follow these guidelines in the coming weeks and, as always, please come if you have questions about how this workflow should progress.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Ping Pong Pair Programming Workflow</a><ul>
+<li><a class="reference internal" href="#ping-ponging-for-two">Ping-Ponging for Two</a></li>
+<li><a class="reference internal" href="#ping-ponging-for-three">Ping-Ponging for Three</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../schedule/week01/fri.html"
+                        title="previous chapter">Friday</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="grading_rubric.html"
+                        title="next chapter">Grading</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="grading_rubric.html" title="Grading"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week01/fri.html" title="Friday"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

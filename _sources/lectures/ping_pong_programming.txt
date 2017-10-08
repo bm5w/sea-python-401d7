@@ -1,0 +1,93 @@
+===================================
+Ping Pong Pair Programming Workflow
+===================================
+
+To date, most Pair Programming that you all have one has been of the **Driver-Navigator** form.
+The **driver** sits at the keyboard and types the code that the **navigator** dictates should be typed.
+This is all well and good, but often leads to a lot of idleness for half the team.
+In this class, most assignments from this point forward will be Pair Programming assignments, and I want you all to get the most out of it, so we'll be putting a different spin on it.
+We'll be Ping Pong Pair Programming.
+
+With Ping Pong Pair Programming, the roles are somewhat different.
+Instead of a Driver-Navigator split, the team is now a **Tester-Coder** split, following the Red-Green-Refactor cycle.
+In this way, each one of the pair gets experience writing tests and each one of the pair gets experience writing code that makes the app run.
+Here's how it will work moving forward.
+
+Ping-Ponging for Two
+====================
+
+Consider the following scenario.
+Selena and I are working together on the `Mathematical Series </assignments/math_series.rst>`_ assignment.
+We've decided to work on my code first, so I make my repository with License, .gitignore, and README.
+Then we both clone it down to our local machines.
+I start a new branch called ``fibonacci``.
+Finally, I create empty files for ``series.py`` and ``test_series.py``, building out the basic scaffolding for my work.
+I then add these files to my local repository, push them to GitHub, and Selena clones those files down.
+
+It's my code so I'm trying to navigate, dictating to Selena what code I want written.
+However, instead of just dictating what I want, **I start by writing a test for my code** while she looks on.
+One test that of course fails.
+I add, commit, and push this code to GitHub on my ``fibonacci`` branch.
+Selena fetches the new branch and pulls it to her local machine, where she writes the code that makes the test pass while I look on.
+Once the test is passing, if the code needs to be refactored, Selena refactors while I look on.
+After, she adds, commits, and pushes this code to GitHub on the same branch.
+I pull the updated branch back down and write my next test.
+
+We continue going back and forth like this until the ``fibonacci`` feature is done.
+When it is done, we switch and work on her code, with me as **Coder** and Selena as **Tester**.
+
+We go back and forth for ***every feature***, where my feature gets completed and then hers gets completed.
+
+Once the code is ready for submission, the commit history on *my code* should look like:
+
+* nhuntwalker: started the repository
+* nhuntwalker: wrote test for fibonacci returning "2" for n=3
+* SeleniumK: created the fibonacci function satisfying the n=3 test
+* nhuntwalker: wrote test for fibonacci at n=10
+* SeleniumK: fibonacci function now satisfies the n=10 test
+* nhuntwalker: created pytest value table and a test for large numbers
+* SeleniumK: modified and refactored fibonacci function to past tests for any N
+
+And so on.
+
+Ping-Ponging for Three
+======================
+
+In a three-person group it's a little bit of a different situation.
+The person whose code is being worked on serves on a more classical Navigator role.
+Their partners then take on the Tester and Coder roles.
+As the Navigator, they dictate the test to be written and the code that gets written to pass the test.
+In practice, it looks like the following:
+
+I'm triple-programming with Selena and Norton on my codebase.
+I create the repository, with License, README, and a proper ``.gitignore``.
+I also push up the basic scaffolding for my code.
+Norton and Selena both pull it down, with Norton as my Tester and Selena as my coder.
+They work as in Ping-Ponging for two, while I act as Navigator and dictate which tests get written and which code gets written to pass the test.
+
+When the feature in my codebase is written, we rotate.
+
+Follow these guidelines in the coming weeks and, as always, please come if you have questions about how this workflow should progress.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

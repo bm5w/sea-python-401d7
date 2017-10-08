@@ -1,0 +1,57 @@
+.. slideconf::
+    :autoslides: False
+
+********
+Thursday
+********
+
+.. slide:: Course Presentations
+    :level: 1
+
+    This document contains no slides.
+
+Objectives
+==========
+
+* Learn about how Django accesses files
+* Learn about AVL rotations and how to build a self-balancing Binary Search Tree
+
+Readings
+========
+
+* Managing Static Files (`Django Docs <https://docs.djangoproject.com/en/dev/howto/static-files/>`_)
+* Managing Files - More Generally (`Django Docs <https://docs.djangoproject.com/en/dev/topics/files/>`_)
+* Accessing Media Files in Django (`Stack Overflow <http://stackoverflow.com/questions/6418072/accessing-media-files-in-django>`_)
+* `Understanding, setting up, accessing and serving media files and static files in Django <https://timmyomahony.com/blog/static-vs-media-and-root-vs-path-in-django/>`_
+* `Templates and Static Media <http://www.tangowithdjango.com/book/chapters/templates_static.html>`_
+* `Balancing a Binary Search Tree <https://appliedgo.net/balancedtree/>`_
+
+Review
+======
+
+* Django Models (the Photo and Album)
+
+Concepts
+========
+
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/django_files
+
+
+* Tree Rotations and self-balancing Binary Search Trees
+
+
+Demo
+====
+
+
+
+Assignments
+===========
+
+* :doc:`/assignments/django_4_data_views`
+* :doc:`/assignments/bst_4_balancing` (Due Tuesday)
+* :doc:`/assignments/blog_post_draft` (Due Friday of Week 7)
+* :doc:`/assignments/daily_lj_entry`

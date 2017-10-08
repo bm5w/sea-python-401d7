@@ -1,0 +1,56 @@
+.. slideconf::
+    :autoslides: False
+
+****************************************
+Implement a Binary Search Tree in Python
+****************************************
+
+.. slide:: Implement a Binary Search Tree in Python
+    :level: 1
+
+    This document contains no slides.
+
+Tasks
+=====
+
+Create a new branch for your data structures repository.
+Call it ``bst``.
+You will use this branch to do your work for this assignment.
+
+Add a new file to your data-structures repository.
+Call it ``bst.py``.
+
+In this file, implement a Binary Search Tree as a Python class (or classes).
+Your tree should have the following methods:
+
+* **insert(self, val)**: will insert the value ``val`` into the BST. If val is already present, it will be ignored.
+* **search(self, val)**: will return the node containing that value, else ``None``
+* **size(self)**: will return the integer size of the BST (equal to the total number of values stored in the tree). It will return 0 if the tree is empty.
+* **depth(self)**: will return an integer representing the total *number of levels* in the tree. If there is one value, the depth should be 0, if two values it will be 1, if three values it may be 1 or 2, depending, etc.
+* **contains(self, val)**: will return ``True`` if val is in the BST, ``False`` if not.
+* **balance(self)**: will return an integer, positive or negative that represents how well balanced the tree is. Trees which are higher on the left than the right should return a positive value, trees which are higher on the right than the left should return a negative value. An ideally-balanced tree should return 0.
+
+In implementing the tree you may find it useful to allow it to take an iterable on initialization.
+This is not required, but is recommended.
+
+Your BST implementation must include tests.
+The tests, as usual for our data structures, must run both in Python 2.7 and Python 3.6.
+
+You may create a number of "private" attributes and methods, prefixed with a single underscore, to help you create the public BST API.
+However, like any code you write, if you write it you need to test it.
+
+Beyond unit testing for the methods you implement, include an ``if __name__ == '__main__'`` block that documents the best-case and worst-case performance of searching the tree for a given value using ``timeit``.
+
+Expand your ``README`` to include notes about the BST you've constructed.
+Document the public API, making sure that someone deciding to use your code knows exactly how it works from a fresh clone.
+Include any sources or collaborations.
+
+Submitting Your Work
+====================
+
+When you've completed your work and all your tests are passing, submit a pull request from the ``bst`` branch back to ``master``.
+Copy the URL for that pull request and submit it using the URL input.
+When that is done, you may merge your branch back to ``master``.
+However, do not delete your working branch until your assignment has been graded.
+
+As usual, use the comment function to submit questions, comments and reflections on the work you've done here.

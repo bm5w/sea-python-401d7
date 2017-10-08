@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Amazon RDS and Deployment Prep &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="amazon-rds-and-deployment-prep">
+<h1>Amazon RDS and Deployment Prep<a class="headerlink" href="#amazon-rds-and-deployment-prep" title="Permalink to this headline">¶</a></h1>
+<p>Up to this point we&#8217;ve been working solely in development mode.
+We&#8217;ve had a local PostgreSQL database, local settings, all dealing locally.
+However, we want to be able to put ourselves on the map by displaying the results of our development efforts to the world.</p>
+<p>For this, we&#8217;ve started using Amazon Web Services.
+Once it&#8217;s up and running, it ends up being a pretty straight-forward way to deploy a website.
+We have yet, however, to be able to deploy something as complex as a Django application because we haven&#8217;t had access to a remote database.
+Until now.</p>
+<div class="section" id="provision-an-aws-rds-instance-with-postgresql">
+<h2>Provision an AWS RDS Instance with PostgreSQL<a class="headerlink" href="#provision-an-aws-rds-instance-with-postgresql" title="Permalink to this headline">¶</a></h2>
+<p>Amazon&#8217;s RDS (Relational Database System) prepares and deploys a machine whose sole purpose is to serve as your relational database.
+You can decide which type of SQL database you intend to use (MySQL, PostgreSQL, Oracle, etc) and how large it should be.
+You set up the base credentials and who should be able to access it.</p>
+<p>Then... it sits there.
+A bucket waiting to be filled.
+Provided that you have the proper credentials, it can then be used <strong>just like any other database</strong>.</p>
+<p>In your dashboard, navigate to the RDS Dashboard.
+Here, you can look at which database instances you have up and running.
+You can also force your database(s) to back up, or be removed entirely.</p>
+<p>Just like with the EC2 instances, you can <strong>launch an RDS DB instance</strong> by clicking the big blue <code class="docutils literal"><span class="pre">Launch</span> <span class="pre">a</span> <span class="pre">DB</span> <span class="pre">Instance</span></code> button.</p>
+<p>Since we&#8217;ve been using <code class="docutils literal"><span class="pre">PostgreSQL</span></code>, <strong>choose the Postgres database engine.</strong></p>
+<p>Although this database should be for production, let&#8217;s stick to what&#8217;s eligible for the &#8220;Free Tier&#8221; and <strong>go with the Dev/Test DB instance</strong>.
+The differences between the two are mainly in the realm of scalability and performance.</p>
+<p>On the next screen, do yourself a favor and click the checkbox with the label <code class="docutils literal"><span class="pre">Only</span> <span class="pre">show</span> <span class="pre">options</span> <span class="pre">that</span> <span class="pre">are</span> <span class="pre">eligible</span> <span class="pre">for</span> <span class="pre">RDS</span> <span class="pre">Free</span> <span class="pre">Tier</span></code> next to it.
+The resulting default settings are perfectly fine.</p>
+<p><strong>If you haven&#8217;t been paying attention up to this point, now&#8217;s the time to wake up.</strong></p>
+<p>The <code class="docutils literal"><span class="pre">DB</span> <span class="pre">Instance</span> <span class="pre">Identifier</span></code> field will contribute to what will be the final host name of the database.
+While it&#8217;s required, it&#8217;s not something that you&#8217;ll need to keep a record of yourself.</p>
+<p>You will however need a record of the <code class="docutils literal"><span class="pre">Master</span> <span class="pre">Username</span></code> and <code class="docutils literal"><span class="pre">Master</span> <span class="pre">Password</span></code>.
+<strong>These can/will be different from the username/password that you use to log in to AWS.</strong>
+These will serve as the username and password that you use to access the database from whatever app you&#8217;re deploying.
+<strong>Know what they are.</strong></p>
+<p>The default settings on the next screen are mostly fine.
+There are a few that are important to modify:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">VPC</span> <span class="pre">Security</span> <span class="pre">Group(s)</span></code>: this database may be accessible by one or more applications. Therefore, you get the choice of using one (or more) of your existing security groups or of making a new one. Whatever security group(s) is attached to this RDS instance will need a new Custom TCP rule for allowing Inbound access on Postgres&#8217;s post 5432.</li>
+<li><code class="docutils literal"><span class="pre">Database</span> <span class="pre">Name</span></code>: the actual name of the database going into your settings file. <strong>Know what this is</strong>.</li>
+</ul>
+<p>Finally, click on the button for launching your instance.
+This will take significantly longer than launching an EC2 instance (though stiill just short enough for a class demo!).</p>
+<p>Once your RDS instance is up and running, more more key piece of information will become available to you: the <code class="docutils literal"><span class="pre">Endpoint</span></code>.
+This URL (minus the port number) will serve as our <code class="docutils literal"><span class="pre">Host</span></code> URL.</p>
+<p>Congratulations, you&#8217;ve now set up a remote database!</p>
+</div>
+<div class="section" id="prepare-settings-py-for-deployment">
+<h2>Prepare <code class="docutils literal"><span class="pre">settings.py</span></code> for Deployment<a class="headerlink" href="#prepare-settings-py-for-deployment" title="Permalink to this headline">¶</a></h2>
+<p>Setting up the database is one thing.
+However, we&#8217;ve got an app that needs to USE that database.</p>
+<p>In our Django Lender&#8217;s <code class="docutils literal"><span class="pre">settings.py</span></code> file, there&#8217;s a few keywords there that need to be modified (and a few that need to be declared) for the sake of deployment.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/settings/#secret-key">SECRET_KEY</a></li>
+<li>DEBUG (should be set to <code class="docutils literal"><span class="pre">False</span></code> in production, <code class="docutils literal"><span class="pre">True</span></code> in development)</li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts">ALLOWED_HOSTS</a></li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/settings/#databases">DATABASES</a> and related information</li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/settings/#static-root">STATIC_ROOT</a></li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/email/#smtp-backend">EMAIL_BACKEND</a> and related information. If our app is to be in production, it must send actual registration emails, and not just print them to the console anymore.</li>
+</ul>
+<p>You could hard-code all of these values if you wanted, however there are massive security issues that would result.
+You&#8217;d also have trouble running your code locally, because all your settings would be attuned to what&#8217;s in production.</p>
+<p>There are a couple of ways of dealing with this.</p>
+<p>One of the most commonly-cited methods (e.g. in <a class="reference external" href="https://www.twoscoopspress.com/products/two-scoops-of-django-1-11">Two Scoops of Django</a>) is to convert your <code class="docutils literal"><span class="pre">settings.py</span></code> file into a <code class="docutils literal"><span class="pre">settings/</span></code> directory.
+You would then fill that directory with a base settings file, and other files that import those settings and override the necessary ones for production, development, testing, etc.</p>
+<p>There are a number of problems and lingering security issues with this method.
+Not least of these problems is that you start to produce large divisions between your app in development and in production.
+To have an adequate idea of how your app will be run in production, <strong>you need to have your development settings be as close to your production settings as possible</strong>.
+So, this method won&#8217;t do.</p>
+<p>The second method, championed by followers of the <a class="reference external" href="https://12factor.net/">12-Factor App</a> is to have <strong>one and only one settings file.</strong>
+Within that settings file, you import your configuration using environment variables.
+Much like how we used the <code class="docutils literal"><span class="pre">DATABASE_URL</span></code> environment variable to set the <code class="docutils literal"><span class="pre">sqlalchemy.url</span></code> in the settings dict when we used Pyramid.
+Remember, <code class="docutils literal"><span class="pre">os.environ.get()</span></code> allows you to set a default if the environment variable of choice doesn&#8217;t exist, while <code class="docutils literal"><span class="pre">os.environ[&quot;KEY_NAME&quot;]</span></code> will throw a <code class="docutils literal"><span class="pre">KeyError</span></code> if the chosen variable doesn&#8217;t exist.</p>
+<p>Remember the Master User, Database Name, Master Password, and Endpoint from the RDS dashboard?
+Use those here.</p>
+</div>
+<div class="section" id="prepare-ec2-instance-to-pull-and-start-app">
+<h2>Prepare EC2 Instance to pull and start app<a class="headerlink" href="#prepare-ec2-instance-to-pull-and-start-app" title="Permalink to this headline">¶</a></h2>
+<p>Finally you must get all of the files from your app onto the instance.
+You could always <code class="docutils literal"><span class="pre">scp</span></code> everything over like we did for the simple WSGI app, but that&#8217;s not a good or sustainable method.
+For one, you&#8217;re pushing development code to your production machine.
+You should be able to use version control to get the last stable copy of your software.
+You should be able to use <code class="docutils literal"><span class="pre">git</span></code>.</p>
+<p>On your EC2 instance,</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">git</span> <span class="pre">python3</span> <span class="pre">python3.4-pip</span> <span class="pre">python3-venv</span></code></li>
+<li>add environment variables to the app environment</li>
+</ul>
+<p>Finish hooking your deployed Django app all together with environment variables tonight for homework.
+Remember, when <code class="docutils literal"><span class="pre">DEBUG=False</span></code>, your app will behave somewhat differently than it did in development (e.g. static and media files).
+Be aware!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Amazon RDS and Deployment Prep</a><ul>
+<li><a class="reference internal" href="#provision-an-aws-rds-instance-with-postgresql">Provision an AWS RDS Instance with PostgreSQL</a></li>
+<li><a class="reference internal" href="#prepare-settings-py-for-deployment">Prepare <code class="docutils literal"><span class="pre">settings.py</span></code> for Deployment</a></li>
+<li><a class="reference internal" href="#prepare-ec2-instance-to-pull-and-start-app">Prepare EC2 Instance to pull and start app</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

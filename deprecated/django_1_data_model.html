@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django Imager: Create a Data Model &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="django-imager-create-a-data-model">
+<h1>Django Imager: Create a Data Model<a class="headerlink" href="#django-imager-create-a-data-model" title="Permalink to this headline">¶</a></h1>
+<span class="admonition-django-imager-create-a-data-model"></span><p>In this series of assignments you will build a simple image management website using Django.</p>
+<div class="section" id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<p>Create a new repository named <code class="docutils literal"><span class="pre">django-imager</span></code> in github.
+Set it up with a Python <code class="docutils literal"><span class="pre">.gitignore</span></code> file and a good license (MIT, most likely).</p>
+<p>On your machine, create a new virtualenv project to work on this new repository.
+Install Django 1.10 into the new virtualenv and clone your project.
+Set up a <code class="docutils literal"><span class="pre">requirements.txt</span></code> file and a basic <code class="docutils literal"><span class="pre">README</span></code> and commit these changes to <code class="docutils literal"><span class="pre">master</span></code>.
+Then make a branch called <code class="docutils literal"><span class="pre">models</span></code> to start your work.</p>
+<p>Once the branch is created, start a new Django project using <code class="docutils literal"><span class="pre">django-admin</span></code>.
+Call the project <code class="docutils literal"><span class="pre">imagersite</span></code>.
+Add the structure created by Django to your repository and commit the changes to your <code class="docutils literal"><span class="pre">models</span></code> branch.</p>
+<p>You&#8217;ll be creating the data models for a simple photo management application.</p>
+<div class="section" id="user-profile">
+<h3>User Profile<a class="headerlink" href="#user-profile" title="Permalink to this headline">¶</a></h3>
+<p>We will begin with users.
+Django has a full-featured user system, but we want a few more bits of data about our users.
+Users of our application will have a profile that captures information about each user not directly related to authentication.
+The Django way is to organize individual units of functionality in a website into &#8220;apps&#8221;.
+Our user profile is just such a unit.</p>
+<p>Create a new app by changing directories into the <code class="docutils literal"><span class="pre">imagersite</span></code> folder you created above.
+You should be in a folder with a file called <code class="docutils literal"><span class="pre">manage.py</span></code>.
+Build a new app using that management command file and call it <code class="docutils literal"><span class="pre">imager_profile</span></code>.
+The model for our user profile will be contained in this app.</p>
+<p>We will discuss in class the specifications for this model.
+Implement the specifications as described as an ImagerProfile model.
+In addition to what we discuss in class, your model must support the following API:</p>
+<ul class="simple">
+<li><strong>ImagerProfile.active</strong>: provides full query functionality limited to profiles for users who are active (allowed to log in)</li>
+<li><strong>profile.is_active</strong>: a property which returns a boolean value indicating whether the user associated with the given profile is active</li>
+</ul>
+<p>Ensure that each of your models has a string representation that appropriately displays it when using the Django shell.
+Use Django&#8217;s provided systems to ensure that this representation is compatible both with Python 2 and Python 3.</p>
+<p>You must ensure that every standard Django user object created automatically gets an ImagerProfile.</p>
+<p>You must also ensure that if a user is deleted from the database, the ImagerProfile associated with that user is also deleted.</p>
+</div>
+<div class="section" id="image-management">
+<h3>Image Management<a class="headerlink" href="#image-management" title="Permalink to this headline">¶</a></h3>
+<p>The main functionality of our application will be oriented around uploading and organizing images.
+Our second Django app will encompass the models and views associated with this work.</p>
+<p>From the root of your project, where the <code class="docutils literal"><span class="pre">manage.py</span></code> file is located, create a second app called <code class="docutils literal"><span class="pre">imager_images</span></code>.</p>
+<p>You&#8217;ll need to create two models in this new app, the <code class="docutils literal"><span class="pre">Photo</span></code> and the <code class="docutils literal"><span class="pre">Album</span></code>.</p>
+<p><code class="docutils literal"><span class="pre">Photo</span></code> represents an individual picture uploaded by a user.
+It will contain the image file itself, plus metadata about that file.
+Photos are owned by a single Imager user.
+Meta-data should include <code class="docutils literal"><span class="pre">title</span></code>, <code class="docutils literal"><span class="pre">description</span></code>, <code class="docutils literal"><span class="pre">date_uploaded</span></code>, <code class="docutils literal"><span class="pre">date_modified</span></code>, and <code class="docutils literal"><span class="pre">date_published</span></code> fields.
+You should also have a <code class="docutils literal"><span class="pre">published</span></code> field which takes one of several possible values: (&#8216;private&#8217;, &#8216;shared&#8217;, &#8216;public&#8217;)</p>
+<p><code class="docutils literal"><span class="pre">Album</span></code> contains <code class="docutils literal"><span class="pre">Photo</span></code> instances and provide meta-data about the collection of photos they contain.
+Any one album <strong>must</strong> be owned by a single User.
+Any album can contain many Photos and any Photo may be in more than one Album.
+Meta-data should include an album <code class="docutils literal"><span class="pre">title</span></code> and <code class="docutils literal"><span class="pre">description</span></code>.
+It should also contain a <code class="docutils literal"><span class="pre">date_created</span></code>, <code class="docutils literal"><span class="pre">date_modified</span></code>, and <code class="docutils literal"><span class="pre">date_published</span></code> as well as a <code class="docutils literal"><span class="pre">published</span></code> field containing the same options described for Photos.
+Users should be able to designate one contained photo as the <code class="docutils literal"><span class="pre">cover</span></code> for the album.</p>
+<p>Create migrations to support installing your new app.</p>
+<p>Create a default app configuration to handle configuring a few global settings for the app.</p>
+<p>Finally, you will implement tests that demonstrate the API you have implemented.
+Use Django&#8217;s built-in testing systems and the Test Case classes it provides.
+Ensure that the tests demonstrate all aspects of the functionality, including access control.
+As demonstrated in class, use <a class="reference external" href="https://factoryboy.readthedocs.io/en/latest/">FactoryBoy</a> to create any required objects your tests need to run properly.</p>
+</div>
+</div>
+<div class="section" id="submitting-your-work">
+<h2>Submitting Your Work<a class="headerlink" href="#submitting-your-work" title="Permalink to this headline">¶</a></h2>
+<p>When you are done and all your tests are passing, open a pull request from your <code class="docutils literal"><span class="pre">models</span></code> branch to <code class="docutils literal"><span class="pre">master</span></code> in GitHub.
+Submit the URL to your pull request.
+Once you have submitted the URL, please merge your pull request back to <code class="docutils literal"><span class="pre">master</span></code> in preparation for the next stage of your development.</p>
+<p>Use the commenting feature in Canvas to submit questions or comments about the work you&#8217;ve done.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django Imager: Create a Data Model</a><ul>
+<li><a class="reference internal" href="#tasks">Tasks</a><ul>
+<li><a class="reference internal" href="#user-profile">User Profile</a></li>
+<li><a class="reference internal" href="#image-management">Image Management</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#submitting-your-work">Submitting Your Work</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Break the Site/Fix Your Site &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="break-the-site-fix-your-site">
+<span id="break-the-site-fix-your-site"></span><h1>Break the Site/Fix Your Site<a class="headerlink" href="#break-the-site-fix-your-site" title="Permalink to this headline">¶</a></h1>
+<p>This is a continuation of the last Break the Site/Fix the Site assignment. The website is again from <a class="reference external" href="https://github.com/nVisium/django.nV">https://github.com/nVisium/django.nV</a>. This assignment will go through the next four of the top ten. This assignment will also have you trying to attack one of your partner&#8217;s projects and expose a vulnerability if one exists.</p>
+<div class="section" id="tasks">
+<span id="tasks"></span><h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-primary-work">
+<span id="the-primary-work"></span><h3>The Primary Work<a class="headerlink" href="#the-primary-work" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Create a github branch for this assignment called <code class="docutils literal"><span class="pre">repairman-2</span></code></li>
+<li>Add your vulnerability tests to your existing <code class="docutils literal"><span class="pre">vulnerability-report.md</span></code>.</li>
+<li>Address the following vulnerabilities. <strong>DO NOT JUST REGURGITATE THE GIVEN SOLUTION</strong>:<ul>
+<li>A5 - Misconfig</li>
+<li>A6 - Exposure</li>
+<li>A7 - Access</li>
+<li>A8 - CSRF</li>
+</ul>
+</li>
+<li>For each of the above vulnerabilities report:<ul>
+<li>How you found and exploited the vulnerability, including the code/method you used</li>
+<li>What you were able to do with the vulnerability (i.e. what was exposed?)</li>
+<li>The code that fixes the vulnerability</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For your vulnerability report, please see <a class="reference internal" href="sample-vulnerability-report.html"><em>this sample-vulnerability-report</em></a>. Use the format shown in that document.</p>
+</div>
+</div>
+<div class="section" id="infuriate-your-partner">
+<span id="infuriate-your-partner"></span><h3>Infuriate Your Partner<a class="headerlink" href="#infuriate-your-partner" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Clone one of your partner&#8217;s working sites prior to week 6. Can be from this class, or any other working project.</li>
+<li>Create a branch for your clone called <code class="docutils literal"><span class="pre">housecall-[projectname]</span></code></li>
+<li>Test for at least one vulnerability.</li>
+<li>Report on this test in another <code class="docutils literal"><span class="pre">vulnerability-report.md</span></code> for this project. Same method as before.</li>
+<li><strong>If no vulnerabilities are found</strong>, write about what you <em>tried</em> to test for and how you <em>tried</em> to test for it.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submitting-your-work">
+<span id="submitting-your-work"></span><h2>Submitting Your Work<a class="headerlink" href="#submitting-your-work" title="Permalink to this headline">¶</a></h2>
+<p>When you&#8217;ve addressed the vulnerabilities and filled out your reports, push your code sets to github. You should be pushing the vulnerability reports for each project, as well as the <em>fixed</em> code. Open a pull request from your <code class="docutils literal"><span class="pre">repairman-2</span></code> branch to the <code class="docutils literal"><span class="pre">master</span></code> branch. Copy the URL of that pull request and submit it in Canvas.</p>
+<p>For the test on your partner&#8217;s project, open a pull request from your <code class="docutils literal"><span class="pre">housecall-[projectname]</span></code> branch to your clone&#8217;s <code class="docutils literal"><span class="pre">master</span></code> branch. Copy the URL of that pull request into the Comments box of the same Canvas submission.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Break the Site/Fix Your Site</a><ul>
+<li><a class="reference internal" href="#tasks">Tasks</a><ul>
+<li><a class="reference internal" href="#the-primary-work">The Primary Work</a></li>
+<li><a class="reference internal" href="#infuriate-your-partner">Infuriate Your Partner</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#submitting-your-work">Submitting Your Work</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

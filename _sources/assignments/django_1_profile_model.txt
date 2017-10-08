@@ -1,0 +1,72 @@
+****************************************
+Django Imager: Create the Imager Profile
+****************************************
+
+In this series of assignments you will build a simple image management website using Django.
+
+Tasks
+=====
+
+Create a new repository named ``django-imager`` in GitHub.
+Set it up with a Python ``.gitignore`` file and a good license (MIT, most likely).
+
+Clone your project and create a new virtual environment within.
+``pip`` install the latest version of Django into your environment.
+Set up a ``requirements.pip`` file and a basic ``README.md`` and commit these changes to ``master``.
+Then make a branch called ``models-1`` to start your work.
+
+Once the branch is created, start a new Django project using the ``django-admin``.
+Call the project ``imagersite``.
+Add the structure created by Django to your repository and commit the changes to your ``models-1`` branch.
+
+You'll be creating your first data model for a simple photo management application.
+
+User Profile
+------------
+
+We will begin with users.
+Django has a full-featured user system, but we want a few more bits of data about our users.
+Users of our application will have a profile that captures information about each user not directly related to authentication.
+The Django way is to organize individual units of functionality in a website into "apps".
+Our user profile is just such a unit.
+
+Create a new app by changing directories into the ``imagersite`` folder you created above.
+You should be in a folder with a file called ``manage.py``.
+Build a new app using that management command file and call it ``imager_profile``.
+The model for our user profile will be contained in this app.
+
+We will discuss in class the specifications for this model.
+Implement the specifications as described as an ImagerProfile model.
+In addition to what we discuss in class, your model must support the following API:
+
+* **ImagerProfile.active**: provides full query functionality limited to profiles for users who are active (allowed to log in)
+* **profile.is_active**: a property which returns a boolean value indicating whether the user associated with the given profile is active
+
+Ensure that each of your models has a string representation that appropriately displays it when using the Django shell.
+Use Django's provided systems to ensure that this representation is compatible both with Python 2 and Python 3.
+
+You must ensure that every standard Django user object created automatically gets an ImagerProfile.
+
+You must also ensure that if a user is deleted from the database, the ImagerProfile associated with that user is also deleted.
+
+Create migrations to support installing your new app.
+We may or may not have discussed Django migrations in class.
+Regardless, if you need a reference, check `the Django documentation <https://docs.djangoproject.com/en/dev/topics/migrations/>`_ or read `this lecture on migrations <../lectures/django_migrations.html>`_.
+**You will not be able to save Model instances to your database without migrations!**
+
+Create a default app configuration to handle configuring a few global settings for the app.
+
+Finally, you will implement tests that demonstrate the API you have implemented.
+Use Django's built-in testing systems and the Test Case classes it provides.
+Ensure that the tests demonstrate all aspects of the functionality, including access control.
+As demonstrated in class, use `FactoryBoy <https://factoryboy.readthedocs.io/en/latest/>`_ to create any required objects your tests need to run properly.
+
+
+Submitting Your Work
+====================
+
+When you are done and all your tests are passing, open a pull request from your ``models-1`` branch to ``master`` in GitHub.
+Submit the URL to your pull request.
+Once you have submitted the URL, please merge your pull request back to ``master`` in preparation for the next stage of your development.
+
+Use the commenting feature in Canvas to submit questions or comments about the work you've done.

@@ -1,0 +1,50 @@
+.. slideconf::
+    :autoslides: False
+
+*********
+Wednesday
+*********
+
+.. slide:: Course Presentations
+    :level: 1
+
+    This document contains no slides.
+
+Objectives
+==========
+
+* Get introduced to unsupervised classification algorithms and how they're used
+* Walk through a brief introduction to the scikit-learn Python package
+* Become familiar with K-Means Clustering
+
+Readings
+========
+
+* `Supervised and Unsupervised Machine Learning Algorithms <http://machinelearningmastery.com/supervised-and-unsupervised-machine-learning-algorithms/>`_
+* `Supervised and Unsupervised Learning <http://www.astro.caltech.edu/~george/aybi199/Donalek_Classif.pdf>`_
+* `K-Means Clustering <http://stanford.edu/~cpiech/cs221/handouts/kmeans.html>`_
+
+Concepts
+========
+
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/unsupervised_classification
+    /lectures/k_means
+
+* Introduction to Scikit-Learn
+* Final Whiteboarding
+
+Demo
+====
+
+
+Assignments
+===========
+
+* :doc:`/assignments/project_08_stories_continue`
+* :doc:`/assignments/ml_4_k_means`
+* :doc:`/assignments/blog_post_publish` (Due Friday)
+* :doc:`/assignments/daily_lj_entry`
+

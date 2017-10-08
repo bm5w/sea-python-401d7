@@ -1,0 +1,40 @@
+**************************
+Implement a Trie in Python
+**************************
+
+Tasks
+=====
+
+Create a new branch in your data structures repository called ``trie``. 
+You will use this branch to do your work for this assignment.
+Add a new file to your data structures repository. 
+Call it ``trie.py``.
+In this file, implement a Trie as a Python class (or classes). 
+Your Trie should have the following methods:
+
+* ``insert(self, string)``: will insert the input string into the trie. If character in the input string is already present, it will be ignored.
+* ``contains(self, string)``: will return ``True`` if the string is in the trie, False if not.
+* ``size(self)``: will return the total number of words contained within the trie. 0 if empty.
+* ``remove(self, string)``: will remove the given string from the trie. If the word doesn't exist, will raise an appropriate exception.
+
+Your Trie implementation must include tests. 
+The tests, as usual for our data structures, must run both in Python 2.7 and Python 3.5.
+Ensure that your tests are properly connected to Travis CI and that you have a Travis badge displayed on your ``README.md``.
+
+Coming up with words for testing your Trie tree can become tedious.
+It may help to use the same word dictioanry as you used in the hash table, located on most Unix-style machines at ``/usr/share/dict/words``.
+**IT IS IMPERATIVE THAT YOU DO NOT INCLUDE THIS IN YOUR REPOSITORY!!!**
+
+Expand your ``README.md`` to include notes about the trie you’ve constructed. 
+Include any sources or collaborations.
+
+**Each method you are required to implement must also include the time complexity in Big O notation in your README.**
+
+Submitting Your Work
+====================
+
+When you’ve completed your work and all your tests are passing, submit a pull request from the ``trie`` branch back to ``master``. 
+Copy the URL for that pull request and submit it using the URL input. 
+When that is done, you may merge your branch back to ``master``. 
+
+As usual, use the comment function to submit questions, comments and reflections on the work you’ve done here.

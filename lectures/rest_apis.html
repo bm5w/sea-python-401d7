@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>APIs and RESTfulness &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="apis-and-restfulness">
+<h1>APIs and RESTfulness<a class="headerlink" href="#apis-and-restfulness" title="Permalink to this headline">¶</a></h1>
+<p>Up to this point, we&#8217;ve been creating some web apps using Pyramid or Django.
+Each of the web apps has had a front-end of some sort, many borrowing liberally from template sites like Zurb Foundation or Bootstrap.
+However, we don&#8217;t learn Python so that we can make pretty front-end sites.</p>
+<p>We learn and write Python so that we can efficiently and sensibly control the back-end processes that put websites into production.
+It shouldn&#8217;t matter what our front-end looks like.
+We process input and deliver data, and we do so via an API.</p>
+<div class="section" id="what-is-an-api">
+<h2>What is an API?<a class="headerlink" href="#what-is-an-api" title="Permalink to this headline">¶</a></h2>
+<p><strong>API</strong> stands for <strong>A</strong> pplication <strong>P</strong> rogramming <strong>I</strong> nterface.
+As the name implies, it is the interface that sits between the application (e.g. the front-end or client-side of your app) and the back-end (e.g. where the data is housed).
+An API embodies all of the functionality of your app: what can be created and deleted, what can be displayed and how to display it, how navigation works, etc.
+For our Django and Pyramid applications, our API has been embodied by our Views and URLs.</p>
+<p>We&#8217;ve also thrown around the word API a lot with respect to our data structures assignments.
+Really, all that means is the set of functionality that&#8217;s available to the user of the code that we&#8217;re producing.
+So, our <code class="docutils literal"><span class="pre">Queue</span></code> API allows a user to set up data to be removed and inspected in the order in which it was inserted.
+Our <code class="docutils literal"><span class="pre">Graph</span></code> API lets us store information as a set of nodes and relations, that we can then traverse and find paths between.
+Our <code class="docutils literal"><span class="pre">Trie</span> <span class="pre">Tree</span></code> API allows us to store words as branches of alphabetical stubs, and allows us to retrieve words (and even in some cases use it for auto-completion of a word stub).</p>
+<p>With Pyramid we had a specific example of our API having two different ways of being visualized.
+Our main means came in the form of HTTP responses returning rendered HTML, which was provided for a specific URL route.
+We also had routes and views that returned information in the form of JSON (<strong>J</strong> ava <strong>S</strong> cript <strong>O</strong> bject <strong>N</strong> otation).
+This was so that some external HTTP request could access raw data, without all of the frills and trappings of rendered HTML and CSS.
+It was just pure text.
+In the web world, this view is what is most often thought of as an application&#8217;s API, and provides a simple means for machines (or applications) to talk to each other in simple, easily-parsed ways.</p>
+<p>There are many types of web app APIs.
+Two main ones set standards and rule the pack: <strong>SOAP</strong> and <strong>REST</strong></p>
+<div class="section" id="soap">
+<h3>SOAP<a class="headerlink" href="#soap" title="Permalink to this headline">¶</a></h3>
+<p><strong>S</strong> imple <strong>O</strong> bject <strong>A</strong> ccess <strong>P</strong> rotocol is a separate protocol, distinct from HTTP (though was often used over HTTP).
+SOAP is a set of instructions, typically sent as XML (slow to parse, and lacking more universal standards) that allow for...simple object access.
+The responses would also come back as XML, with object attributes set out in parseable XML tags.</p>
+<p>SOAP interactions would happen via <code class="docutils literal"><span class="pre">GET</span></code> requests.
+Each <code class="docutils literal"><span class="pre">GET</span></code> would act on an endpoint that would retrieve or modify data.
+For example:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/images/get-photo</span></code></li>
+<li><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/images/get-photos</span></code></li>
+<li><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/images/add-photo</span></code></li>
+<li><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/images/edit-photo</span></code></li>
+<li><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/images/delete-photo</span></code></li>
+</ul>
+<p>That data would then be returned as XML which would then need to be parsed apart and used for whatever.
+We will not be using this.</p>
+</div>
+</div>
+<div class="section" id="restful-apis">
+<h2>RESTful APIs<a class="headerlink" href="#restful-apis" title="Permalink to this headline">¶</a></h2>
+<p>The modern standard for application APIs is REST: <strong>RE</strong> presentational <strong>S</strong> tate <strong>T</strong> ransfer.
+It&#8217;s concerned most with scalability and portability of web applications, seeking to increase visibility and decrease dependencies between the back-end and front-end.</p>
+<p>Instead of interacting with an application with a focus on routes, REST focuses instead on the resources (objects) themselves.
+It uses HTTP verbs to interact with those objects, just like we would with an HTML form.
+For example:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/images/photos/:id</span></code></li>
+<li><code class="docutils literal"><span class="pre">GET</span> <span class="pre">/images/photos</span></code></li>
+<li><code class="docutils literal"><span class="pre">POST</span> <span class="pre">/images/photos</span></code></li>
+<li><code class="docutils literal"><span class="pre">PUT</span> <span class="pre">/images/photos/:id</span></code></li>
+<li><code class="docutils literal"><span class="pre">DELETE</span> <span class="pre">/images/photos/:id</span></code></li>
+</ul>
+<p>The result would then be returned as JSON, which would also then need to be parsed and used for whatever.
+That&#8217;s great and all, but what differentiates a REST API from any other API?</p>
+<div class="section" id="constraints-of-a-restful-api">
+<h3>5+ Constraints of a RESTful API<a class="headerlink" href="#constraints-of-a-restful-api" title="Permalink to this headline">¶</a></h3>
+<p>In order for an API to be considered a REST API, it must adhere to the following constraints:</p>
+<ul class="simple">
+<li>it must separate client interactions from server interactions</li>
+<li>be stateless</li>
+<li>enable cacheing of page results</li>
+<li>present a uniform interface between components</li>
+<li>enable a layered system architecture</li>
+</ul>
+<p>It can also optionally allow for code on demand.
+Let&#8217;s dig into each of these a bit.</p>
+<div class="section" id="client-server-separation-of-concerns">
+<h4>Client-Server Separation of Concerns<a class="headerlink" href="#client-server-separation-of-concerns" title="Permalink to this headline">¶</a></h4>
+<p>We&#8217;ve separated HTML from CSS, we&#8217;ve separated views from routes from templates from models.
+We&#8217;ve seen that when you focus a script on one thing, you can actually manage to do that one thing well.
+A similar notion is employed here.</p>
+<p>The back-end shouldn&#8217;t have to consider anything about how the front-end is designed.
+The entire focus of a web app&#8217;s back-end is on the storage and processing of information.</p>
+<p>Similarly, the front-end (client side) shouldn&#8217;t have any concern about how the back-end stores or processes information.
+Its only focus should be on the user interface and user experience.
+It should expect data to be accessible, and provide all of the configuration needed in order to retrieve it from the back-end.</p>
+<p>This separation allows for the client-side and the server-side to evolve completely independently.
+In fact, as long as the basic functionality is preserved, the front-end and the back-end could more or less be two entirely separate applications.
+This is why you&#8217;ll often see Django in job postings with AngularJS or ReactJS.
+Those front-end frameworks don&#8217;t need to care where the data is coming from, they just need to have data to present.
+Similarly, the back-end can scale up, scale down, or add new features and not worry about how it affects the front-end as long as the basic functionality expected by the front-end is preserved.</p>
+</div>
+<div class="section" id="statelessness">
+<h4>Statelessness<a class="headerlink" href="#statelessness" title="Permalink to this headline">¶</a></h4>
+<p>As a part of the client-server separation of concerns, the back-end doesn&#8217;t concern itself with the client&#8217;s state (or by extension the user&#8217;s state).
+This means that no session information, nor any cookies need be stored on the server-side.
+As far as the server is concerned, every request from the client-side is fresh and brand new, containing all of the information that is needed to make the request it wants.
+This includes things like authentication keys.</p>
+<p>An advantage of statelessness is reduced load on the server side, and by extension a more scalable back-end.
+Session state is inherently small in size.
+However, one can imagine that an application with thousands, millions, or billions of users may see the server load spike up and response speed slow down as a result.
+This way, the only thing that the server need do is handle the request.
+This also means that any machine that&#8217;s serving the same site that can handle the request can return the appropriate response, without having to pass around session information about client state.</p>
+<p>There is a trade-off here.
+Putting the responsibility of maintaining client state on client side requires the trust that the client side can always handle its own state well, across software updates and different client architectures.
+It also means that repetitive requests may have to be made for the same resources, instead of having something saved on the server side as a shortcut for that state.</p>
+</div>
+<div class="section" id="cacheing">
+<h4>Cacheing<a class="headerlink" href="#cacheing" title="Permalink to this headline">¶</a></h4>
+<p>Cacheability refers to the ability for an often-used resource response to be stored client-side for quick access, instead of having to run through the entire web request-response cycle in order to retrieve that information.
+This constraint doesn&#8217;t require that every HTTP response be cached on the client-side.
+All that this means is that the <em>possibility</em> exists for certain responses to be labeled as cacheable or non-cacheable.</p>
+<p>The benefit of a cacheable respones is that it removes some client-server interactions.
+The fewer interactions, the faster the response.
+The faster the response, the better the performance of the application.
+Also, the easier it is to scale the app instead of having to worry about server load.</p>
+<p>The downside is that you have to be careful about what you allow to be cacheable.
+The reliability of the data in the response is compromised if stale data differs significantly from what would be returned by a full request to the server.
+The remedy of course is to be mindful of what is and isn&#8217;t cacheable from your API.</p>
+<ul class="simple">
+<li>CSS files? Definitely cacheable.</li>
+<li>JS files? Probably cacheable.</li>
+<li>Image files that are a part of your site&#8217;s design? Probably cacheable.</li>
+<li>Rendered HTML responses? Not likely.</li>
+</ul>
+</div>
+<div class="section" id="uniform-interface">
+<h4>Uniform interface<a class="headerlink" href="#uniform-interface" title="Permalink to this headline">¶</a></h4>
+<p>&#8220;Uniform interface&#8221; refers to a standard interface between the client and the resources provided by the application.
+This <strong>does not mean</strong> that resources (in our case, model instances) are easily discoverable and set up in the exact same way at all times.
+All that this means is that the interface must adhere to <em>A</em> standard.</p>
+<p>That interface standard is described by four constraints:</p>
+<ul class="simple">
+<li>A uniform identifier (i.e. URIs) for resources</li>
+<li>Manipulation of resources through the representations provided by URIs and HTTP verbs</li>
+<li>Self-descriptive messages that depict how you may interact with the app in general and the resource in particular</li>
+<li>Hypermedia as the Engine of Application State (a.k.a. HATEOAS)</li>
+</ul>
+<p>That last one is a fancy way of saying that you can use links and URI templates (e.g. /images/photos/&lt;photoid&gt; instead of just /images/photos/1) to dictate the state of the application.</p>
+</div>
+<div class="section" id="layered-system-architecture">
+<h4>Layered System Architecture<a class="headerlink" href="#layered-system-architecture" title="Permalink to this headline">¶</a></h4>
+<p>Similar to how we&#8217;ve been using Nginx as the intermediary between the Internet at large and our tender little Django apps, a proper REST API restricts any layer between the client and server to only be aware of what it&#8217;s immediately interacting with.
+Our clients have no idea that they&#8217;re interacting with a Django app serving on localhost port 8080 because Nginx sits between them.
+Similarly, our Django apps have no idea that the web requests are coming from a Chrome/Firefox/Safari browser because it only sees the requests as they are handed out by the Nginx proxy server.</p>
+<p>If the Client we&#8217;re using is built on ancient technology, then our layered system can have mechanisms in place that will serve a response that it can handle.
+Similarly, our layered system can provide requests that our Server can handle, depending on the requirements of that server.</p>
+<p>Similarly, the Client will never know which machine it&#8217;s getting a response from when we&#8217;re working with a load-balanced network of computers.
+The load-balancer is the intermediary that tries to spread work across a number of computers/processors such that the work can be adequately handled.
+It doesn&#8217;t matter which worker does handle it though, all that matters is a response is sent back.</p>
+<p>While this constraint on a REST API does invite more server overhead, it&#8217;s mitigated by other advantages.
+Previously we spoke about cacheing.
+The intermediaries between the client and server can share a cache across a distributed network.
+The intermediaries can also serve as security gateways, inspecting requests and responses to ensure that appropriate messages get passed to where they need to go, and inappropriate ones get blocked or rerouted elsewhere.</p>
+</div>
+<div class="section" id="code-on-demand">
+<h4>Code on Demand<a class="headerlink" href="#code-on-demand" title="Permalink to this headline">¶</a></h4>
+<p>Typically the resources that we request are representations of the objects that make our app work.
+These come back to the client in a response as rendered HTML, XML, or JSON.
+However, it can be the case that a resource is returned to a client without the means or ability to process that resource&#8217;s information.
+In this circumstance, a REST API can return code.
+Hence, code on demand.</p>
+<p>This allows for the back-end to add to or extend features of the deployed client.
+It still wouldn&#8217;t manage client state, it would simply extend functionality.
+It can, however, increase server performance by offloading work to the client side.</p>
+<p>The catch here is that the client needs to trust that the executable code the server sends back is legitimate and should be trusted.
+This isn&#8217;t always applicable, so this last constraint on a REST API is left optional.</p>
+</div>
+</div>
+</div>
+<div class="section" id="wrap-up">
+<h2>Wrap Up<a class="headerlink" href="#wrap-up" title="Permalink to this headline">¶</a></h2>
+<p>You&#8217;ve practiced your way through the Django REST Framework tutorial, and now you have some information as to &#8220;why&#8221;.
+This is, of course, not all of it but enough to get you started.
+Continue work on your existing Django Imager and add a REST API to standardize it, adding more of an ability to interact with any front end.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">APIs and RESTfulness</a><ul>
+<li><a class="reference internal" href="#what-is-an-api">What is an API?</a><ul>
+<li><a class="reference internal" href="#soap">SOAP</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#restful-apis">RESTful APIs</a><ul>
+<li><a class="reference internal" href="#constraints-of-a-restful-api">5+ Constraints of a RESTful API</a><ul>
+<li><a class="reference internal" href="#client-server-separation-of-concerns">Client-Server Separation of Concerns</a></li>
+<li><a class="reference internal" href="#statelessness">Statelessness</a></li>
+<li><a class="reference internal" href="#cacheing">Cacheing</a></li>
+<li><a class="reference internal" href="#uniform-interface">Uniform interface</a></li>
+<li><a class="reference internal" href="#layered-system-architecture">Layered System Architecture</a></li>
+<li><a class="reference internal" href="#code-on-demand">Code on Demand</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#wrap-up">Wrap Up</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

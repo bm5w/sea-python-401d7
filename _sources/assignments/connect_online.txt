@@ -1,0 +1,32 @@
+.. slideconf::
+    :autoslides: False
+
+********************
+Connect To Us Online
+********************
+
+.. slide:: Connect To Us Online
+    :level: 1
+
+    This document contains no slides.
+
+There are a number of ways we will communicate during class.
+The primary channel will be Slack.
+
+Slack
+=====
+
+You should have received an invitation to join the Code Fellows Slack community. 
+Make sure you can connect and interact. 
+Take the time to set up
+your personal preferences so that you get notifications. 
+You will also want to set your email preferences to allow you to hear about it when you are notified
+even if you aren't logged in. 
+Make sure you join the class channel (the course number is the channel name)
+
+Submitting Your Work
+====================
+
+There is no submission for this assignment.
+We'll see youin the class channel in Slack.
+It's very useful for sending links and other correspondence to everyone during class.

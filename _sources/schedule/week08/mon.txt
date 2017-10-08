@@ -1,0 +1,58 @@
+.. slideconf::
+    :autoslides: False
+
+******
+Monday
+******
+
+.. slide:: Course Presentations
+    :level: 1
+
+    This document contains no slides.
+
+Objectives
+==========
+
+* Solidify our understanding of web app security and securing an existing code base
+* Learn about the Insertion Sort algorithm
+* Pitch our projects for project week
+
+Readings
+========
+
+* `Web App Security Best Practices <https://www.alienvault.com/blogs/security-essentials/web-application-security-methods-and-best-practices>`_
+* `Insertion Sort <http://www.tutorialspoint.com/data_structures_algorithms/insertion_sort_algorithm.htm>`_
+
+Review
+======
+
+
+
+Concepts
+========
+
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/web_app_security_2
+
+
+Demo
+====
+
+* Insertion Sort
+* Creating a task queue with Celery
+
+Assignments
+===========
+
+* :doc:`/assignments/project_01_pitch`
+* :doc:`/assignments/web_app_security_assignment2`
+* :doc:`/assignments/sort_1_insertion`
+
+* :doc:`/assignments/django_8_drf_tutorial_a`
+* :doc:`/assignments/django_7_complete_frontend` (Due Friday)
+* :doc:`/assignments/aws_2_ansible_imager` (Due Friday)
+* :doc:`/assignments/blog_post_publish` (Due Friday Week 9)
+* :doc:`/assignments/daily_lj_entry`
+

@@ -1,0 +1,99 @@
+=======
+Grading
+=======
+
+You will have a lot of assignments of varying types over these 10 weeks, and much of the feedback that you get for your code will come with a grade.
+So, it's important to know what a grade may mean when you get one.
+Generally, the grade that you receive is feedback on your code.
+Well-written, well-tested code that follows the assignment guidelines will be rated higher.
+Code that misses the mark, is broken, or is not tested (so, is broken) will get a lower grade.
+
+What follows are grading guidelines for the most common assignments.
+
+
+Learning Journals
+=================
+
+**Due before 9AM the day after it is assigned.** 
+This is a hard rule, *and yes it includes Saturdays and Project Weeks.*
+
+===== =================================================================================
+Grade Description
+===== =================================================================================
+2     Entry submitted on time and discusses what you've learned and/or your experiences
+0     Entry was turned in at or after 9AM on the due date
+0     Entry submitted has no content
+0     Entry submitted does not talk about your progress or experience that day.
+===== =================================================================================
+
+
+Partnered Coding Assignents
+===========================
+
+Generally, your coding assignments will be **due before 9AM the Monday after they're assigned** unless otherwise noted.
+
+* Strive to follow the `PEP8 style guide <https://www.python.org/dev/peps/pep-0008/>`_ with your code.
+* Write at least a one-liner doc string for every function and class.
+* Write a verbose ``README.md`` file that fully describes what the code in that repository is about, how it works, and how it's been updated.
+* Try to keep your code comment-free when submitting.
+* Have your tests passing.
+
+Any coding assignment submitted after the deadline automatically gets a 20% deduction.
+Keep in mind that you *can* always resubmit code.
+**The grade you get is not final until the end of week following week 10.**
+
+The rubric that follows does not address every possible circumstance.
+In fact, it misses many.
+However, if you get a grade where you're like "what? why?!", this may be a helpful guideline.
+
+===== =================================================================================================================================================
+Grade Description
+===== =================================================================================================================================================
+10    Code submitted on time meeting assignment criteria as-stated, with PEP8-compliant style, thorough documentation, with at least 85% test coverage.
+9     Code submitted on time meeting assignment criteria as-stated, with PEP8-compliant style, thorough documentation, with at least 70% test coverage.
+7     Code has at least 70% test coverage, meets most assignment criteria, but has very little documentation. May also have a bad .gitignore
+5     Code has some tests but is significantly broken
+2     Code has no tests, regardless of how much of the code-base is functional
+2     Assignment called for a link to a pull request and that wasn't submitted.
+===== =================================================================================================================================================
+
+
+Solo Weekend Coding Assignments
+===============================
+
+Most assignments that you submit for this course will be paired assignments.
+One consequence is that we don't get a great idea of how you're progressing as an individual.
+Hence these assignments.
+
+These are generally assigned on Fridays and **due by 11:59pm that following Sunday**, unless otherwise noted.
+Late submissions follow the same general loss of 20%.
+Some of these assignments call for you to write your own tests, while others ask for tests from CodeWars.
+Whatever the case, tests should be a part of your submission.
+**These assignments are not up for resubmission, unless otherwise noted.**
+
+The guideline that follows is similar to the one above.
+
+===== ========================================================================================================================================
+Grade Description
+===== ========================================================================================================================================
+10    Code submitted on time that solves the problem, with PEP8-compliant style, thorough documentation, with at least 85% test coverage.
+9     Code submitted on time that solves the problem, with PEP8-compliant style, thorough documentation, with at least 70% test coverage.
+7     Code has at least 70% test coverage, approaches a solution, but has very little documentation. May also have a bad .gitignore
+5     Code has some tests but doesn't solve the problem.
+2     Code has no tests, regardless of how much of the code-base is functional
+2     Assignment called for a link to a pull request and that wasn't submitted.
+===== ========================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+

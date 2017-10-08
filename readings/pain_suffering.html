@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Pain vs. Suffering &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="pain-vs-suffering">
+<h1>Pain vs. Suffering<a class="headerlink" href="#pain-vs-suffering" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the Code Fellows 401 Python course in Advanced Software Development.
+Over the next 10 weeks of this course, you&#8217;ll learn far more than most people learn in 2 years of study in a University setting about software development, web app development, best practices, and the Python language overall.
+That accelerated learning environment is great, but it does come at a price that is felt in all spheres of life: physical, mental, and emotional.</p>
+<p>That price is <strong>pain</strong>, the pain of growth.</p>
+<p>Pain does not feel good. Duh.
+The pain that you&#8217;ll experience during this course is no exception; most times it won&#8217;t feel good.
+You won&#8217;t feel good.</p>
+<p>You&#8217;ll be pushed mentally, having to think your way through problems that you had only even heard about a few hours beforehand.
+You&#8217;ll have to forge your own path toward a solution.
+You&#8217;ll have to research for hours on end, fleshing out the skeleton that we discuss in class, piling information on top of application so that you can reach your goals.</p>
+<p>You&#8217;ll be pushed emotionally, constantly confronted with your own lack of understanding of a topic.
+Constantly having to figure out how to collaborate with new people and deal with their (and your own) emotional quirks.
+Constantly thrust far outside of your comfort zone with the expectation that you&#8217;ll survive for the next push forward.
+Constantly dealing with uncertainty of what awaits you at the end of the 10 weeks, and whether or not you&#8217;ll make it.</p>
+<p>You&#8217;ll be pushed physically, and while sitting in a chair and staring at your screen isn&#8217;t the most strenuous exercise in the world, the consecutive hours of it will take its toll.
+You&#8217;ll lose sleep, you&#8217;ll forget to work out, and you&#8217;ll feel exhausted all while being filled with information day after day.</p>
+<p>These are all painful.</p>
+<p>They are also the ways in which you grow.</p>
+<p>All growth comes with some degree of pain, as it pulls you out of your comfort zone.
+The greater the growth, the greater the pain.
+But pain in the service of growth is a good thing, as long as that pain is what&#8217;s necessary to achieve the growth that you&#8217;re aiming for.
+And even better than that, this pain is only temporary.
+It&#8217;s what will launch you forward into the next phase of your life.</p>
+<p>Do not confuse this with suffering.</p>
+<p>Suffering is pain without purpose.
+Pain with no higher goal.
+Pain with no dreams, no ambition, no aspiration.</p>
+<p><a class="reference external" href="http://acleanmind.org/essential-topics/pain-vs-suffering/">Suffering is dependent on the story that we layer on top of our pain</a>.
+As you work through feeling the pain of growth over the next 10 weeks, consider heavily the story that you attach to it.
+What&#8217;s your perspective?
+Why are you doing this?
+Do you want what comes at the end of this journey?
+Are you doing this for you?</p>
+<p>As you experience pain, seek the remedy!
+Ask questions that bridge the gap between what you know and what you need to be able to do.
+Research!
+Build your resources and your community!
+Don&#8217;t experience the pain in silence—that slides toward needless pain and the realm of suffering.</p>
+<p>Find the common thread that makes the pain worthwhile, that puts the pain into perspective.
+You&#8217;re here because you chose to invest in a different life.
+A better life.</p>
+<p>You&#8217;re in this class so that you can become not just a competent Python developer, but a spectacular craftsman of software with Python as your tool.
+The pain that you feel?
+Those are the callouses that you build while learning to use that tool.</p>
+<p>It&#8217;s not easy, nor is it common.
+This is why such skilled people are highly-valued in the industry.
+You are building your value.
+You are experiencing the pain of growth.
+Live it, love it, and take it forward into your future as a full-stack software developer capable of meeting all challenges with a clear head and strong heart.</p>
+<p>Welcome to Code 401.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

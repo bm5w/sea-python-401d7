@@ -1,0 +1,40 @@
+.. slideconf::
+    :autoslides: False
+
+************************
+Create a Twitter Account
+************************
+
+.. slide:: Create a Twitter Account
+    :level: 1
+
+    This document contains no slides.
+
+Twitter has become a very effective way for connecting with the developer community.
+
+Tasks
+=====
+
+* If you don't already have a Twitter account, set one up.
+* Add a nice or interesting photo of your lovely face
+* Practice "mentioning" another user. Not sure what to say? Try tweeting something about Code Fellows, using the CF handle: @codefellows
+* Follow @codefellows, @nhuntwalker (with caution), @crisewing, & your classmates. Twitter will then suggest a number of other interesting accounts.
+* You may want to start following influential programmers, Python-focused accounts, and other tech-aware accounts as well. Here's a few to start:
+    * `@gvanrossum <https://twitter.com/gvanrossum>`_
+    * `@realpython <https://twitter.com/realpython>`_
+    * `@SEA_TechEvents <https://twitter.com/SEA_TechEvents>`_
+    * `@PythonHub <https://twitter.com/PythonHub>`_
+    * `@ThePracticalDev <https://twitter.com/ThePracticalDev>`_ 
+    * `@ps_python <https://twitter.com/ps_python>`_
+    * `@pybites <https://twitter.com/pybites>`_
+    * `@PythonStack <https://twitter.com/PythonStack>`_
+    * `@fullstackpython <https://twitter.com/fullstackpython>`_
+    * `@importpython <https://twitter.com/importpython>`_
+    * `@TalkPython <https://twitter.com/TalkPython>`_
+    * `@raymondh <https://twitter.com/raymondh>`_
+    * `@mitsuhiko <https://twitter.com/mitsuhiko>`_
+
+Submitting Your Work
+====================
+
+Submit the url to your Twitter page

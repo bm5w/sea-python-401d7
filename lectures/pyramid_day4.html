@@ -1,0 +1,901 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>User Interactions and More About Testing &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="user-interactions-and-more-about-testing">
+<h1>User Interactions and More About Testing<a class="headerlink" href="#user-interactions-and-more-about-testing" title="Permalink to this headline">¶</a></h1>
+<p>Up until now we&#8217;ve been able to make a front-end, build out the back-end, and even add a model to persist our data for the long term.
+The last major piece involves being able to edit that data from the front-end.
+We need to create some views that handle user interaction.</p>
+<div class="section" id="working-with-forms-in-pyramid">
+<h2>Working with Forms in Pyramid<a class="headerlink" href="#working-with-forms-in-pyramid" title="Permalink to this headline">¶</a></h2>
+<p>The whole point of creating a model is so that we can persist data across sessions.
+However, without an interface how can we add new data?
+Forms allow for user input, and we can use the <code class="docutils literal"><span class="pre">request</span></code> method in a view to handle that input and create new data.</p>
+<p>Let&#8217;s create a template called <code class="docutils literal"><span class="pre">new-expense.jinja2</span></code>.
+In that template, we&#8217;ll write the following HTML/Jinja2 code:</p>
+<div class="highlight-html+jinja"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">extends</span> <span class="s2">&quot;layout.jinja2&quot;</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">body</span> <span class="cp">%}</span>
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;category&quot;</span><span class="p">&gt;</span>Category:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;category&quot;</span> <span class="na">required</span> <span class="p">/&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;amount&quot;</span><span class="p">&gt;</span>Amount ($USD):<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;amount&quot;</span> <span class="na">step</span><span class="o">=</span><span class="s">&quot;0.01&quot;</span> <span class="na">required</span> <span class="p">/&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;description&quot;</span><span class="p">&gt;</span>Description:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+                                <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;description&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Briefly describe your expense&quot;</span><span class="p">&gt;</span>
+                                <span class="p">&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
+                        <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Submit New Expense&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+</pre></div>
+</div>
+<p>Here we&#8217;ve got 3 fields, with convenient names that we can use to pull data into the back-end when the form is submitted.</p>
+<p>We don&#8217;t have to specify an <code class="docutils literal"><span class="pre">action</span></code> attribute because we can control where the page goes after a submission via the back-end.
+We want to add data to our app and not just get data from our app.
+Thus, the method on our form needs to be a <code class="docutils literal"><span class="pre">POST</span></code> method.</p>
+<p>We use <code class="docutils literal"><span class="pre">required</span></code> for our form fields here to do some front-end data validation, but we&#8217;ll definitely add to that on the back-end.</p>
+<p>Let&#8217;s also create the route that we intend to use.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in routes.py</span>
+
+<span class="k">def</span> <span class="nf">includeme</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_static_view</span><span class="p">(</span><span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="n">cache_max_age</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;detail&#39;</span><span class="p">,</span> <span class="s1">&#39;/expense/{id:\d+}&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="s1">&#39;/new-expense&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And lets connect it to an appropriate view.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in views/default.py</span>
+
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s2">&quot;create&quot;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;../templates/new-expense.jinja2&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">create_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>Run <code class="docutils literal"><span class="pre">pserve</span></code> and look at the new page that was made.</p>
+<p>Here we have a simple form.
+We can fill out the input field and submit it, and the data that we sent goes...absolutely nowhere.
+With <code class="docutils literal"><span class="pre">pshell</span></code> we can check our database and see that nothing new has been added.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">expense_tracker.models</span> <span class="kn">import</span> <span class="n">get_engine</span><span class="p">,</span> <span class="n">MyModel</span>
+<span class="gp">In [2]: </span><span class="n">engine</span> <span class="o">=</span> <span class="n">get_engine</span><span class="p">(</span><span class="n">registry</span><span class="o">.</span><span class="n">settings</span><span class="p">)</span> <span class="c1"># default prefixes are &#39;sqlalchemy.&#39;</span>
+<span class="gp">In [3]: </span><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+<span class="gp">In [4]: </span><span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="gp">In [5]: </span><span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+<span class="gp">In [6]: </span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="gh">Out[6]: </span><span class="go">4</span>
+</pre></div>
+</div>
+<p>We need to configure our view such that it can do more than just display the form.
+We need it to take the data submitted in the form and <strong>do something with it.</strong></p>
+<div class="section" id="harvesting-form-data">
+<h3>Harvesting Form Data<a class="headerlink" href="#harvesting-form-data" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s get a hold on the data first.
+For this we need to look at the <code class="docutils literal"><span class="pre">request</span></code> object.</p>
+<p>We can inspect the <code class="docutils literal"><span class="pre">request</span></code> object in our interpreter and see it has tons of attributes and methods.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [7]: </span><span class="n">request</span><span class="o">.</span>
+<span class="go">Display all 120 possibilities? (y or n)</span>
+<span class="go">request.GET                          request.is_body_seekable</span>
+<span class="go">request.POST                         request.is_response</span>
+<span class="go">...                                  ...</span>
+</pre></div>
+</div>
+<p>If you submit a form, the form&#8217;s data will be a part of the <code class="docutils literal"><span class="pre">method</span></code> it was submitted with.
+Whether it&#8217;s a <code class="docutils literal"><span class="pre">GET</span></code> or a <code class="docutils literal"><span class="pre">POST</span></code> method, that data will exist within a <code class="docutils literal"><span class="pre">MultiDict</span></code> object.
+For our purposes it acts the same as a Python dictionary.
+With the <code class="docutils literal"><span class="pre">GET</span></code> or <code class="docutils literal"><span class="pre">POST</span></code> multidict, the <strong>name</strong> of the form field will be a <strong>key</strong> in the multidict.</p>
+<p>The <code class="docutils literal"><span class="pre">request</span></code> object also has an attribute called <code class="docutils literal"><span class="pre">.method</span></code> that holds the type of HTTP method used to call up the page.
+<strong>No matter what, when we first load the page it&#8217;ll be with a ``GET`` request.</strong>
+The <strong>only time</strong> a <code class="docutils literal"><span class="pre">POST</span></code> request is sent is when a form is submitted.</p>
+<p>Knowing this, we can begin to reconfigure our <code class="docutils literal"><span class="pre">create_view</span></code> function.
+When we submit our form with a <code class="docutils literal"><span class="pre">POST</span></code> request, we want to pull the data from the <code class="docutils literal"><span class="pre">request</span></code> object, and use it to create a new <code class="docutils literal"><span class="pre">Expense</span></code> object.
+We can then add that new <code class="docutils literal"><span class="pre">Expense</span></code> object to the <code class="docutils literal"><span class="pre">request.dbsession</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># at the top of views/default.py...</span>
+
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="c1"># underneath all the rest of the views...</span>
+
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;../templates/new-expense.jinja2&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">create_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creating a new instance of the Expense object.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+            <span class="n">form_data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span>
+            <span class="n">new_expense</span> <span class="o">=</span> <span class="n">Expense</span><span class="p">(</span>
+                        <span class="n">category</span><span class="o">=</span><span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">],</span>
+                        <span class="n">description</span><span class="o">=</span><span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">],</span>
+                        <span class="n">creation_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+                        <span class="n">amount</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">])</span>
+                    <span class="p">)</span>
+                    <span class="n">request</span><span class="o">.</span><span class="n">dbsession</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_expense</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="p">{}</span>
+
+    <span class="k">return</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>Now when we submit new data via our form, as long as it hits all of the correct fields specified by the <code class="docutils literal"><span class="pre">required</span></code> attribute in our HTML, a new <code class="docutils literal"><span class="pre">Expense</span></code> gets created and added to the database.</p>
+<p>How do you think the <code class="docutils literal"><span class="pre">edit_view</span></code> works?
+Likely in much the same way, except that the form should start out with all the data that&#8217;s currently present on the object being requested.
+There are checks in place to make sure that the item being accessed actually exists, like with the <code class="docutils literal"><span class="pre">detail_view</span></code>.
+Then there&#8217;s another check to see if the request is a <code class="docutils literal"><span class="pre">GET</span></code> or <code class="docutils literal"><span class="pre">POST</span></code> request to determine what to do with the data, like with the <code class="docutils literal"><span class="pre">create_view</span></code> above.
+Its true form will lie somewhere in between those two.
+Try to work it out for yourself!</p>
+</div>
+<div class="section" id="cleaning-up-edge-cases-missing-data">
+<h3>Cleaning Up Edge Cases: Missing Data<a class="headerlink" href="#cleaning-up-edge-cases-missing-data" title="Permalink to this headline">¶</a></h3>
+<p>Currently, our <code class="docutils literal"><span class="pre">create_view</span></code> takes whatever data is coming in from the <code class="docutils literal"><span class="pre">POST</span></code> request and uses it to create a new model instance.
+This is great, but doesn&#8217;t handle any situations where data is missing from the submission form.</p>
+<p>For the moment, the front-end we wrote up in Jinja should protect us from such situations, but front-ends change all the time.
+In other cases, a front-end may not even be necessary to send data to our app.</p>
+<p>Submitting a POST request with empty data happens all the time, so we should proof our shiny, new view against that situation by checking if data exists in the incoming POST request.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;../templates/new-expense.jinja2&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">create_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creating a new instance of the Expense object.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">:</span>
+        <span class="n">form_data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span>
+        <span class="n">new_expense</span> <span class="o">=</span> <span class="n">Expense</span><span class="p">(</span>
+            <span class="n">category</span><span class="o">=</span><span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">],</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">],</span>
+            <span class="n">creation_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+            <span class="n">amount</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">dbsession</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_expense</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{}</span>
+
+    <span class="k">return</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>Now our conditional statement checks not only that the incoming request is a <code class="docutils literal"><span class="pre">POST</span></code> request, but that there&#8217;s actual data coming along with that request.
+We could get more granular and check that every field we want is a part of the <code class="docutils literal"><span class="pre">POST</span></code> multidict, but we won&#8217;t here.
+Feel free to do that on your own.</p>
+<p>We could, however do something a little different.
+What if only part of the data had been submitted?
+Should the user have to fill in everything all over again?
+What if we could use what they&#8217;ve already sent to prefill the data that was good?</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;../templates/new-expense.jinja2&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">create_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creating a new instance of the Expense object.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">:</span>
+        <span class="n">form_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="s2">&quot;amount&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">sum</span><span class="p">([</span><span class="n">key</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">form_names</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">form_names</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="s1">&#39;&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+                <span class="n">form_data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span>
+                <span class="n">new_expense</span> <span class="o">=</span> <span class="n">Expense</span><span class="p">(</span>
+                    <span class="n">category</span><span class="o">=</span><span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">],</span>
+                    <span class="n">description</span><span class="o">=</span><span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">],</span>
+                    <span class="n">creation_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+                    <span class="n">amount</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">form_data</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">])</span>
+                <span class="p">)</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">dbsession</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_expense</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">{}</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span>
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+<p>We&#8217;ve added two checks here:</p>
+<ol class="arabic simple">
+<li>Are all of the fields we want present in the POST request?</li>
+<li>If all of the fields are present, do they all have some non-null data?</li>
+</ol>
+<p>If either of the above two checks fail, whatever data was passed in the POST request gets sent back to the front-end.</p>
+<p>Let&#8217;s modify our form to take advantage of the data that can get returned.
+If we&#8217;re doing a simple GET request, the POST dictionary should be empty, so our form will work as-is.
+If a POST request with incomplete data gets sent, we harvest what was completed and re-insert it into the form.</p>
+<div class="highlight-html+jinja"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">extends</span> <span class="s2">&quot;layout.jinja2&quot;</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">body</span> <span class="cp">%}</span>
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;category&quot;</span><span class="p">&gt;</span>Category:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;category&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">category</span> <span class="cp">}}</span><span class="s">&quot;</span> <span class="na">required</span> <span class="p">/&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;amount&quot;</span><span class="p">&gt;</span>Amount ($USD):<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;amount&quot;</span> <span class="na">step</span><span class="o">=</span><span class="s">&quot;0.01&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">amount</span> <span class="cp">}}</span><span class="s">&quot;</span> <span class="na">required</span> <span class="p">/&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;description&quot;</span><span class="p">&gt;</span>Description:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;description&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Briefly describe your expense&quot;</span><span class="p">&gt;</span>
+                    <span class="cp">{{</span> <span class="nv">description</span> <span class="cp">}}</span>
+                <span class="p">&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Submit New Expense&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+</pre></div>
+</div>
+<p>If one of those keys isn&#8217;t present, the template will just render nothing in its place.</p>
+</div>
+<div class="section" id="redirecting-the-user">
+<h3>Redirecting the User<a class="headerlink" href="#redirecting-the-user" title="Permalink to this headline">¶</a></h3>
+<p>When the user submits this form, where does the page go?
+Currently, it takes them back to the same page, which is great if they want to input multiple expenses.
+But, what if they just want to go back to the home page and see a listing of all their expenses?
+Or, what if they want to be redirected to the page displaying the data of their object instance?
+Enter: HTTP redirects.</p>
+<p>Pyramid&#8217;s <code class="docutils literal"><span class="pre">httpexceptions</span></code> module contains a ton of <code class="docutils literal"><span class="pre">HTTPException</span></code> objects.
+These handle all types of situations that you may encounter when handling an incoming request.
+We&#8217;ve already used one before: the <code class="docutils literal"><span class="pre">HTTPNotFound</span></code> for indicating a resource wasn&#8217;t able to be located.
+Here are just a few more of note:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">HTTPBadRequest</span></code>: for raising a 400 error when the incoming request was bad for any reason (bad syntax, missing data, etc.)</li>
+<li><code class="docutils literal"><span class="pre">HTTPForbidden</span></code>: raised when the user isn&#8217;t permitted to view the page they&#8217;re attempting to view</li>
+<li><code class="docutils literal"><span class="pre">HTTPNoContent</span></code>: request was successful and there was nothing to return back to the user</li>
+<li><code class="docutils literal"><span class="pre">HTTPCreated</span></code>: request was successful and the object you intended to create was in fact created</li>
+<li><code class="docutils literal"><span class="pre">HTTPFound</span></code>: redirect the user to a different location (we&#8217;ll be using this one)</li>
+</ul>
+<p>To redirect the user, we have to <code class="docutils literal"><span class="pre">return</span> <span class="pre">HTTPFound</span></code> and provide it with the location of where we want to send the user next as an argument.
+It contains a <a class="reference external" href="http://www.restapitutorial.com/httpstatuscodes.html">status code 302</a>, and will simply send the user to the next spot.</p>
+<p>If we wanted to send the user to the home page, we would <code class="docutils literal"><span class="pre">return</span> <span class="pre">HTTPFound(location=request.route_url('home'))</span></code>.
+What about the specific detail page for the expense that was just created?</p>
+<p>Remember, until this particular view finishes its session and directs the user elsewhere, no changes to the database are committed.
+So it&#8217;s not as simple as <code class="docutils literal"><span class="pre">return</span> <span class="pre">HTTPFound(request.route_url('detail',</span> <span class="pre">id=new_expense.id))</span></code>.
+It&#8217;s close though.
+Figure it out!</p>
+</div>
+</div>
+<div class="section" id="testing-testing-and-more-testing">
+<h2>Testing, Testing, and More Testing<a class="headerlink" href="#testing-testing-and-more-testing" title="Permalink to this headline">¶</a></h2>
+<p>From the side of functional code, we&#8217;ve added one new thing that needs testing: the <code class="docutils literal"><span class="pre">create_view</span></code>.
+On the front-end side, we created the <code class="docutils literal"><span class="pre">new-expense.jinja2</span></code> template.
+We need to test both of these thoroughly to be sure that our application works exactly how it should.</p>
+<div class="section" id="plan-the-work">
+<h3>Plan The Work...<a class="headerlink" href="#plan-the-work" title="Permalink to this headline">¶</a></h3>
+<p>Before we write these tests, let&#8217;s consider what tests we should write.
+How should our app work?
+Based on the code above, the <code class="docutils literal"><span class="pre">create_view</span></code> itself as a function should do the following:</p>
+<ul>
+<li><p class="first">Take a <code class="docutils literal"><span class="pre">GET</span> <span class="pre">request</span></code> object as an argument and return any empty dict-like object.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Take a <code class="docutils literal"><span class="pre">POST</span> <span class="pre">request</span></code> object as an argument and...</dt>
+<dd><ul class="first last">
+<li><p class="first">if there is no data attached, return an empty dict-like object.</p>
+</li>
+<li><p class="first">if the data attached is incomplete return a dict-like object with what data WAS complete.</p>
+</li>
+<li><p class="first">if the key-value data attached is not the data we&#8217;re looking for, return a dict-like object with whatever data was included.</p>
+</li>
+<li><p class="first">if the appropriate key-value data is attached but any of the values are empty, return a dict-like object with whatever data was included.</p>
+</li>
+<li><dl class="first docutils">
+<dt>if the appropriate key-value data is attached and every field is filled...</dt>
+<dd><ul class="first last simple">
+<li>create a new expense object.</li>
+<li>return a status code 302</li>
+<li>return a response-like object attempting to redirect somewhere else (home page, detail page, whatever you set)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>That&#8217;s at least 8 unit tests for the ``create_view`` callable.</strong></p>
+<p>What about the functional tests?
+How should this new code interact with the fully wired-together application?
+What should happen when the <code class="docutils literal"><span class="pre">create</span></code> route is accessed?</p>
+<ul>
+<li><p class="first">With a <code class="docutils literal"><span class="pre">GET</span></code> request, an empty form should be rendered in the HTML with all of the appropriate form fields and a button for submitting. Each form field element should have a <code class="docutils literal"><span class="pre">name</span></code> that&#8217;s used for the back-end when processing submitted data.</p>
+</li>
+<li><dl class="first docutils">
+<dt>With a <code class="docutils literal"><span class="pre">POST</span></code> request...</dt>
+<dd><ul class="first last">
+<li><p class="first">if there is no data attached, the above form should be rendered in the HTML.</p>
+</li>
+<li><p class="first">if the data attached is incomplete, whatever data WAS complete should be rendered in the form as the <code class="docutils literal"><span class="pre">value</span></code> of its appropriate field.</p>
+</li>
+<li><p class="first">if the data attached is not the data we need, whatever data WAS valid should be rendered in the form as above.</p>
+</li>
+<li><p class="first">if the data attached has the right field names but empty values, re-render the form.</p>
+</li>
+<li><dl class="first docutils">
+<dt>if the data attached is all appropriate and every field is filled...</dt>
+<dd><ul class="first last simple">
+<li>a new expense object is created.</li>
+<li>a status code 302 is in the response.</li>
+<li>if the redirection is followed, you land on whatever page is expected to be at the end of that redirect</li>
+<li>the home page that lists all your expenses should include the new expense.</li>
+<li>the detail page for the new expense should exist and be accessible.</li>
+<li>the detail page for the new expense should include the actual expected detail of the new object.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>This is a solid start, and means <strong>another 10 functional tests</strong> to add to the test stack.
+Again, we want to test all of the ins-and-outs of our code.</p>
+<p>We can use the above listings as our guide for testing.
+When you plan out code for your own projects and are writing your code in a test-driven way (as you should if you are able), you should do the same before writing a single line of code.
+It&#8217;ll make the testing process that much easier, as we can simply check off the items that we expected to cover as we complete the indiviudal tests!</p>
+</div>
+<div class="section" id="and-work-the-plan">
+<h3>...and Work the Plan<a class="headerlink" href="#and-work-the-plan" title="Permalink to this headline">¶</a></h3>
+<p>We&#8217;ll only cover a few of the newer tests here, as you should already know how to test for status codes and the results of <code class="docutils literal"><span class="pre">GET</span></code> requests.
+First, the unit tests.</p>
+<div class="section" id="unit-test-an-empty-post-request-returns-an-empty-dict">
+<h4>Unit Test: An Empty POST Request Returns an Empty Dict<a class="headerlink" href="#unit-test-an-empty-post-request-returns-an-empty-dict" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal"><span class="pre">DummyRequest</span></code> that we&#8217;ve been using from <code class="docutils literal"><span class="pre">pyramid.testing</span></code> is a <code class="docutils literal"><span class="pre">GET</span></code> request by default.
+How do we change it to be a <code class="docutils literal"><span class="pre">POST</span></code> request?</p>
+<p>Recall in the <code class="docutils literal"><span class="pre">create_view</span></code> when we check the <code class="docutils literal"><span class="pre">method</span></code> and the <code class="docutils literal"><span class="pre">POST</span></code> multidict attached to the <code class="docutils literal"><span class="pre">request</span></code> object?
+The <code class="docutils literal"><span class="pre">DummyRequest</span></code> instance is essentially the exact same type of object.
+So, just like we can check the <code class="docutils literal"><span class="pre">request.method</span></code> to see if it&#8217;s a <code class="docutils literal"><span class="pre">POST</span></code> request, we can <strong>set</strong> the <code class="docutils literal"><span class="pre">dummy_request.method</span></code> to be the POST request we need.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_create_view_post_empty_is_empty_dict</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;POST requests without data should return an empty dictionary.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">create_view</span>
+    <span class="n">dummy_request</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;POST&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">dummy_request.POST</span></code> multidict is empty to start with.
+We can simply supply the modified <code class="docutils literal"><span class="pre">dummy_request</span></code> as-is to our view and check the response.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_create_view_post_empty_is_empty_dict</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;POST requests without data should return an empty dictionary.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">create_view</span>
+    <span class="n">dummy_request</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;POST&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">create_view</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span> <span class="o">==</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unit-test-incomplete-data-returns-what-data-was-sent">
+<h4>Unit Test: Incomplete Data Returns What Data Was Sent<a class="headerlink" href="#unit-test-incomplete-data-returns-what-data-was-sent" title="Permalink to this headline">¶</a></h4>
+<p>We need to be able to send some data along with our <code class="docutils literal"><span class="pre">POST</span></code> request, just like when a form is submitted.
+What happens is that the form fields populate the <code class="docutils literal"><span class="pre">request.POST</span></code> dict with key-value pairs.
+The <strong>keys</strong> are the <code class="docutils literal"><span class="pre">name</span></code> attributes of the individual form fields.
+The <strong>values</strong> are whatever data has been entered into the form field, or is assigned to the <code class="docutils literal"><span class="pre">value</span></code> attribute of an unchanged field.</p>
+<p>If the data doesn&#8217;t contain each and every one of the fields we expect, we just send it back to the user to try again.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_create_view_post_incomplete_data_returns_data</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;POST data that is incomplete just gets returned to the user.&quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">create_view</span>
+        <span class="n">dummy_request</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;POST&quot;</span>
+        <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">CATEGORIES</span><span class="p">)}</span>
+        <span class="n">dummy_request</span><span class="o">.</span><span class="n">POST</span> <span class="o">=</span> <span class="n">data_dict</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">create_view</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span> <span class="o">==</span> <span class="n">data_dict</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unit-test-correctly-submitted-data-returns-status-code-302">
+<h4>Unit Test: Correctly-Submitted Data Returns Status Code 302<a class="headerlink" href="#unit-test-correctly-submitted-data-returns-status-code-302" title="Permalink to this headline">¶</a></h4>
+<p>This should be just like every other status code check we&#8217;ve ever written.
+We should start off the same way.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_create_view_post_good_data_is_302</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;POST request with correct data should redirect with status code 302.&quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">expense_tracker.views.default</span> <span class="kn">import</span> <span class="n">create_view</span>
+        <span class="n">dummy_request</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;POST&quot;</span>
+        <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">CATEGORIES</span><span class="p">),</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">FAKE_FACTORY</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+                <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">dummy_request</span><span class="o">.</span><span class="n">POST</span> <span class="o">=</span> <span class="n">data_dict</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">create_view</span><span class="p">(</span><span class="n">dummy_request</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">302</span>
+</pre></div>
+</div>
+<p>When we run our tests, we get a nice big fail.
+Why does this test fail?
+Let&#8217;s check the output:</p>
+<div class="highlight-bash"><div class="highlight"><pre>
+</pre></div>
+</div>
+<p>__________________________ test_create_view_post_good_data_is_302 ___________________________</p>
+<blockquote>
+<div><p>dummy_request = &lt;pyramid.testing.DummyRequest object at 0x104ff3358&gt;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>def test_create_view_post_good_data_is_302(dummy_request):</dt>
+<dd><p class="first">&#8220;&#8221;&#8220;POST request with correct data should redirect with status code 302.&#8221;&#8220;&#8221;
+from expense_tracker.views.default import create_view
+dummy_request.method = &#8220;POST&#8221;
+data_dict = {</p>
+<blockquote>
+<div>&#8220;category&#8221;: random.choice(CATEGORIES),
+&#8220;description&#8221;: FAKE_FACTORY.text(100),
+&#8220;amount&#8221;: random.random() * random.randint(0, 1000)</div></blockquote>
+<p class="last">}
+dummy_request.POST = data_dict</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>&gt;       response = create_view(dummy_request)</p>
+<p>expense_tracker/tests.py:166:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+expense_tracker/views/default.py:48: in create_view</p>
+<blockquote>
+<div>return HTTPFound(request.route_url(&#8216;home&#8217;))</div></blockquote>
+<dl class="docutils">
+<dt>../ENV/lib/python3.6/site-packages/pyramid/url.py:260: in route_url</dt>
+<dd>mapper = reg.getUtility(IRoutesMapper)</dd>
+</dl>
+<p>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</p>
+<p>self = &lt;Registry testing&gt;, provided = &lt;InterfaceClass pyramid.interfaces.IRoutesMapper&gt;
+name = &#8216;&#8217;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>def getUtility(self, provided, name=u&#8217;&#8216;):</dt>
+<dd>utility = self.utilities.lookup((), provided, name)
+if utility is None:</dd>
+</dl>
+</div></blockquote>
+<p>&gt;           raise ComponentLookupError(provided, name)
+E           zope.interface.interfaces.ComponentLookupError: (&lt;InterfaceClass pyramid.interfaces.IRoutesMapper&gt;, &#8216;&#8217;)</p>
+<p>../ENV/lib/python3.6/site-packages/zope/interface/registry.py:286: ComponentLookupError</p>
+</div></blockquote>
+<p>Well that&#8217;s great.
+But what does it all MEAN?</p>
+<p>First let&#8217;s note that the error took place within the <code class="docutils literal"><span class="pre">create_view</span></code> (the first frame here).</p>
+<p>The next frame shows that the error occurred when our test runner tried to call the <code class="docutils literal"><span class="pre">HTTPFound</span></code> object with the <code class="docutils literal"><span class="pre">request.route_url('home')</span></code> as an argument.
+<strong>The very next line</strong> shows that the error was in <code class="docutils literal"><span class="pre">route_url</span></code> itself.</p>
+<p>How did <code class="docutils literal"><span class="pre">route_url</span></code> foul up?
+In <code class="docutils literal"><span class="pre">ENV/lib/python3.6/site-packages/pyramid/url.py</span></code>, the <code class="docutils literal"><span class="pre">route_url</span></code> method tries to call the <code class="docutils literal"><span class="pre">getUtility</span></code> method using an <code class="docutils literal"><span class="pre">iRoutesMapper</span></code> object.</p>
+<p>Things get more obscure here and are poorly explained by simply diving into the source code.
+Effectively what&#8217;s happening is that Pyramid is expecting to look up the name of the route that we provided to <code class="docutils literal"><span class="pre">request.route_url</span></code> in whatever has been saved to its registry of all configured routes.
+Funny thing about that though, our testing environment has no routes configured to anything.
+The result? That nice <code class="docutils literal"><span class="pre">ComponentLookupError</span></code> gets raised and our test dies.</p>
+<p>So how do we fix this?
+Remember how in <code class="docutils literal"><span class="pre">expense_tracker/__init__.py</span></code> we had <code class="docutils literal"><span class="pre">config.include('.routes')</span></code>?
+<strong>THAT</strong> is where our routes get added to Pyramid&#8217;s registry, and THAT&#8217;s how <code class="docutils literal"><span class="pre">request.route_url</span></code> knows to look up what <code class="docutils literal"><span class="pre">&quot;home&quot;</span></code> means.
+Our configuration is severely lacking in that <code class="docutils literal"><span class="pre">include</span></code>.
+So, just like when we included our <code class="docutils literal"><span class="pre">models</span></code> yesterday so that we could test against the database, let&#8217;s include our <code class="docutils literal"><span class="pre">routes</span></code> so that our HTTP redirect has somewhere to go.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">configuration</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Set up a Configurator instance.</span>
+
+<span class="sd">    This Configurator instance sets up a pointer to the location of the</span>
+<span class="sd">        database.</span>
+<span class="sd">    It also includes the models from your app&#39;s model package.</span>
+<span class="sd">    Finally it tears everything down, including the in-memory SQLite database.</span>
+
+<span class="sd">    This configuration will persist for the entire duration of your PyTest run.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">testing</span><span class="o">.</span><span class="n">setUp</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;sqlalchemy.url&#39;</span><span class="p">:</span> <span class="s1">&#39;postgres:///test_expenses&#39;</span>
+    <span class="p">})</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;expense_tracker.models&quot;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;expense_tracker.routes&quot;</span><span class="p">)</span> <span class="c1"># &lt;---- this is the line that should be added</span>
+
+    <span class="k">def</span> <span class="nf">teardown</span><span class="p">():</span>
+        <span class="n">testing</span><span class="o">.</span><span class="n">tearDown</span><span class="p">()</span>
+
+    <span class="n">request</span><span class="o">.</span><span class="n">addfinalizer</span><span class="p">(</span><span class="n">teardown</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">config</span>
+</pre></div>
+</div>
+<p>When we run our tests again, we see green text and lots of glorious dots.</p>
+<p>Note: this test was looking to check that the response from the view contained a redirection for the status code.
+However, this is a <strong>UNIT</strong> test.
+That redirection will go nowhere.
+We cannot (and should not) follow the redirection, as that defeats the purpose of unit-testing this one function.</p>
+<p>A full redirection pipeline is a demonstration of how the codebase is wired together.
+That just screams &#8220;functional test&#8221;.</p>
+</div>
+<div class="section" id="functional-test-if-redirection-is-followed-result-is-home-page">
+<h4>Functional Test: If Redirection is Followed, Result is Home Page<a class="headerlink" href="#functional-test-if-redirection-is-followed-result-is-home-page" title="Permalink to this headline">¶</a></h4>
+<p>Similar to how our unit tests for the <code class="docutils literal"><span class="pre">create_view</span></code> have been working, we&#8217;ll need to send a <code class="docutils literal"><span class="pre">POST</span></code> request to our app.
+For our functional tests, our app is the <code class="docutils literal"><span class="pre">testapp</span></code> fixture.</p>
+<p>Before we dig into this test, we need to add a new test fixture.
+Currently, because the <code class="docutils literal"><span class="pre">testapp</span></code> has <code class="docutils literal"><span class="pre">session</span></code> scope, its connection to the test database is open when the tests start, with the tables having been created once and only once.
+What this means is that after we add and remove model instances a bunch of times, the table is still there, but with the <code class="docutils literal"><span class="pre">id</span></code> field having been incremented up time and time again.</p>
+<p>When we post data through the &#8220;front-end&#8221; of the <code class="docutils literal"><span class="pre">testapp</span></code>, it&#8217;s going to try to start with <code class="docutils literal"><span class="pre">id=1</span></code>.
+However, because the table itself has remained, as far as the table is concerned, <code class="docutils literal"><span class="pre">id=1</span></code> has already existed.
+You can&#8217;t use it again because that&#8217;s a primary key field.
+All primary key fields must be unique.</p>
+<p>So, what to do?
+We could create a fixture whose only purpose is to nuke the database and create a new table.
+There are other things we could do, but let&#8217;s do that.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@pytest.fixture</span>
+<span class="k">def</span> <span class="nf">empty_db</span><span class="p">(</span><span class="n">testapp</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Tear down the database and add a fresh table.&quot;&quot;&quot;</span>
+    <span class="n">SessionFactory</span> <span class="o">=</span> <span class="n">testapp</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">registry</span><span class="p">[</span><span class="s2">&quot;dbsession_factory&quot;</span><span class="p">]</span>
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">SessionFactory</span><span class="p">()</span><span class="o">.</span><span class="n">bind</span>
+    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Whenever this function gets called, all existing tables will get dropped then immediately rebuilt anew.</p>
+<p>Let&#8217;s get back to testing redirection.
+Up to this point, we&#8217;ve only used the <code class="docutils literal"><span class="pre">get()</span></code> method to access our routes.
+However, the <code class="docutils literal"><span class="pre">testapp</span></code> can do so much more than that.
+Check out <a class="reference external" href="http://docs.pylonsproject.org/projects/webtest/en/latest/api.html">the docs</a> here.</p>
+<p>Even more information</p>
+<p>Now, it&#8217;s time for <code class="docutils literal"><span class="pre">post()</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_new_expense_redirects_to_home</span><span class="p">(</span><span class="n">testapp</span><span class="p">,</span> <span class="n">empty_db</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;When redirection is followed, result is home page.&quot;&quot;&quot;</span>
+<span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">CATEGORIES</span><span class="p">),</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">FAKE_FACTORY</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">testapp</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/new-expense&#39;</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">)</span>
+        <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span> <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="bp">False</span>
+</pre></div>
+</div>
+<p>We don&#8217;t directly set some attribute like with the <code class="docutils literal"><span class="pre">dummy_request</span></code>.
+Instead, we provide the data directly to the <code class="docutils literal"><span class="pre">post()</span></code> method call.</p>
+<p>So, what actually comes back on the response?
+The breakpoint is there so that we can check.</p>
+<div class="highlight-bash"><div class="highlight"><pre>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; PDB set_trace <span class="o">(</span>IO-capturing turned off<span class="o">)</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt; /Users/Nick/Documents/codefellows/courses/develop-401/expense-tracker/expense_tracker/expense_tracker/tests.py<span class="o">(</span>251<span class="o">)</span>test_new_expense_redirects_to_home<span class="o">()</span>
+-&gt; assert False
+<span class="o">(</span>Pdb<span class="o">)</span> print<span class="o">(</span>response<span class="o">)</span>
+Response: <span class="m">302</span> Found
+Content-Type: text/plain<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+Location: http://localhost/
+<span class="m">302</span> Found
+The resource was found at http://localhost/<span class="p">;</span> you should be redirected automatically.
+</pre></div>
+</div>
+<p>Wow, that&#8217;s convenient.
+It appears that there might be a <code class="docutils literal"><span class="pre">location</span></code> attribute that we could use to figure out where the redirection goes.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>Pdb<span class="o">)</span> response.location
+<span class="s1">&#39;http://localhost/&#39;</span>
+</pre></div>
+</div>
+<p>That looks like the full URL of our home page!
+It&#8217;s not quite what we expect though.
+Our routes, as detailed in <code class="docutils literal"><span class="pre">routes.py</span></code> don&#8217;t start with the domain name.
+They simply contain <code class="docutils literal"><span class="pre">URI</span></code> paths that get concatenated with whatever the domain might be.</p>
+<p>There&#8217;s a number of ways that we can handle this.
+The way we&#8217;ll handle it here is to assign the domain name of our test environment to an appropriately-named global variable like <code class="docutils literal"><span class="pre">SITE_ROOT</span></code> or <code class="docutils literal"><span class="pre">DOMAIN</span></code>.
+Then we can check that the <code class="docutils literal"><span class="pre">location</span></code> attribute returns a combination of the <code class="docutils literal"><span class="pre">SITE_ROOT</span></code> and the path that we expect the redirect to go to.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># somewhere in tests.py</span>
+<span class="n">SITE_ROOT</span> <span class="o">=</span> <span class="s2">&quot;http://localhost&quot;</span>
+
+<span class="c1"># back amongst the functional tests</span>
+
+<span class="k">def</span> <span class="nf">test_new_expense_redirects_to_home</span><span class="p">(</span><span class="n">testapp</span><span class="p">,</span> <span class="n">empty_db</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;When redirection is followed, result is home page.&quot;&quot;&quot;</span>
+    <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">CATEGORIES</span><span class="p">),</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">FAKE_FACTORY</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+        <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">testapp</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/new-expense&#39;</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">)</span>
+    <span class="n">home_path</span> <span class="o">=</span> <span class="n">testapp</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">routes_mapper</span><span class="o">.</span><span class="n">get_route</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">path</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">location</span> <span class="o">==</span> <span class="n">SITE_ROOT</span> <span class="o">+</span> <span class="n">home_path</span>
+</pre></div>
+</div>
+<p>What is this incantation right before the <code class="docutils literal"><span class="pre">assert</span></code>?</p>
+<p>The <code class="docutils literal"><span class="pre">app</span></code> object contains all of the configuration and knowledge of our application.
+It is the actual return value of the <code class="docutils literal"><span class="pre">main</span></code> function that constructs our app when we run <code class="docutils literal"><span class="pre">pserve</span></code> or deploy to Heroku.</p>
+<p>In the <code class="docutils literal"><span class="pre">testapp</span></code> fixture, this <code class="docutils literal"><span class="pre">app</span></code> object is provided to <code class="docutils literal"><span class="pre">TestApp</span></code> as an argument.
+In this way, in addition to all of the application configuration that we need, we also have access to all of the functionality afforded by the <code class="docutils literal"><span class="pre">TestApp</span></code> from <code class="docutils literal"><span class="pre">webtest</span></code>.</p>
+<p>Amongst all of the other information it possesses about our application, <code class="docutils literal"><span class="pre">app</span></code> knows about our route names and the paths attached to those names.
+The <code class="docutils literal"><span class="pre">routes_mapper</span></code> is the object that handles all of the connections of route names to route paths.
+The <code class="docutils literal"><span class="pre">routes_mapper</span></code> has a <code class="docutils literal"><span class="pre">get_route</span></code> method which, as you might imagine, gets the route.
+However what <code class="docutils literal"><span class="pre">get_route</span></code> returns is not a string like we need.
+<code class="docutils literal"><span class="pre">get_route</span></code> returns a <code class="docutils literal"><span class="pre">Route</span></code> object.</p>
+<p>It&#8217;s that <code class="docutils literal"><span class="pre">Route</span></code> object that we need to access so that we can get the <code class="docutils literal"><span class="pre">path</span></code>.
+And it&#8217;s that <code class="docutils literal"><span class="pre">path</span></code> that needs to be concatenated with the domain name to make the full URL.</p>
+<p>Ta Da!</p>
+</div>
+<div class="section" id="functional-test-similar-to-above-but-a-different-way">
+<h4>Functional Test: Similar to Above, But a Different Way<a class="headerlink" href="#functional-test-similar-to-above-but-a-different-way" title="Permalink to this headline">¶</a></h4>
+<p>Above we wrote a test that checks the redirect location of a successful form submission against the path to the page that it should redirect to.</p>
+<p>That&#8217;s one way to do it.</p>
+<p>However, an issue is that we&#8217;re not actaully checking that you land on the appropriate page.
+All that we check is that you <em>intend</em> to land on the appropriate page.
+It&#8217;s a small distinction, but part of the reason that we write tests is to be absolutely 100% explicit about what it is that our application is doing at any point at time.</p>
+<p>So let&#8217;s test that what you get redirected to is, in fact, the home page.
+We start out very much the same.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_new_expense_redirection_lands_on_home</span><span class="p">(</span><span class="n">testapp</span><span class="p">,</span> <span class="n">empty_db</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;When redirection is followed, result is home page.&quot;&quot;&quot;</span>
+    <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">CATEGORIES</span><span class="p">),</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">FAKE_FACTORY</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+        <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">testapp</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/new-expense&#39;</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="bp">False</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">response</span></code> above contains a method called <code class="docutils literal"><span class="pre">follow</span></code>.
+When this method is called, it&#8217;ll return a new <code class="docutils literal"><span class="pre">response</span></code> object representing the actual followthrough of the redirect.
+It&#8217;ll be as if we made a separate <code class="docutils literal"><span class="pre">get</span></code> request to the <code class="docutils literal"><span class="pre">home</span></code> route!</p>
+<p>...that actually sounds like a good thing to use for our test.
+We could havest the return value of <code class="docutils literal"><span class="pre">response.follow()</span></code>, then check its contents against a fresh <code class="docutils literal"><span class="pre">get</span></code> request to the <code class="docutils literal"><span class="pre">home</span></code> route.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_new_expense_redirection_lands_on_home</span><span class="p">(</span><span class="n">testapp</span><span class="p">,</span> <span class="n">empty_db</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;When redirection is followed, result is home page.&quot;&quot;&quot;</span>
+    <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">CATEGORIES</span><span class="p">),</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">FAKE_FACTORY</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+        <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">testapp</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/new-expense&#39;</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">)</span>
+    <span class="n">next_response</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">follow</span><span class="p">()</span>
+    <span class="n">home_response</span> <span class="o">=</span> <span class="n">testapp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">next_response</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="n">home_response</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+<p>When our tests are run, green text and black dots validate our decision-making.
+Now we are just a bit more certain about how exactly new view works on its own and in tandem with the rest of our application.</p>
+</div>
+</div>
+</div>
+<div class="section" id="recap">
+<h2>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>Today&#8217;s work focused on creating new data.
+We created a template that uses a form to take user input, as well as a view that handles form data.
+We investigated the <code class="docutils literal"><span class="pre">request</span></code> object in greater detail, seeing that its <code class="docutils literal"><span class="pre">.method</span></code>, <code class="docutils literal"><span class="pre">.POST</span></code>, and <code class="docutils literal"><span class="pre">.GET</span></code> attributes can allow us to produce different outputs on the same view and template.</p>
+<p>Once we put together the view itself, we got serious about testing.
+Before we wrote one more new test, we got clear on what we wanted to test by writing out a test plan.
+We then set about writing tests that were unique to the <code class="docutils literal"><span class="pre">create_view</span></code>, both for unit and functional tests.</p>
+<p>For unit tests we saw that we had to add a little more application configuration before we could handle all of the cases that were needed for this view.
+We then saw how we could pass information through a <code class="docutils literal"><span class="pre">POST</span></code> request to our view callable.</p>
+<p>After we got solid on unit tests, we dove deep into the functional testing landscape.
+We saw two distinctly different ways to handle redirection in our web application.
+Both of these methods tested different aspects of redirection, and each showed us something different about how our app is all wired together.</p>
+<p>Our next hit of Pyramid will add User registration, authentication, and authorization to our web app.
+After that, more about security.
+Following that, we&#8217;ll learn how to our site without a browser, as well as how to use AJAX to add some asynchronicity to our front-end.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">User Interactions and More About Testing</a><ul>
+<li><a class="reference internal" href="#working-with-forms-in-pyramid">Working with Forms in Pyramid</a><ul>
+<li><a class="reference internal" href="#harvesting-form-data">Harvesting Form Data</a></li>
+<li><a class="reference internal" href="#cleaning-up-edge-cases-missing-data">Cleaning Up Edge Cases: Missing Data</a></li>
+<li><a class="reference internal" href="#redirecting-the-user">Redirecting the User</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing-testing-and-more-testing">Testing, Testing, and More Testing</a><ul>
+<li><a class="reference internal" href="#plan-the-work">Plan The Work...</a></li>
+<li><a class="reference internal" href="#and-work-the-plan">...and Work the Plan</a><ul>
+<li><a class="reference internal" href="#unit-test-an-empty-post-request-returns-an-empty-dict">Unit Test: An Empty POST Request Returns an Empty Dict</a></li>
+<li><a class="reference internal" href="#unit-test-incomplete-data-returns-what-data-was-sent">Unit Test: Incomplete Data Returns What Data Was Sent</a></li>
+<li><a class="reference internal" href="#unit-test-correctly-submitted-data-returns-status-code-302">Unit Test: Correctly-Submitted Data Returns Status Code 302</a></li>
+<li><a class="reference internal" href="#functional-test-if-redirection-is-followed-result-is-home-page">Functional Test: If Redirection is Followed, Result is Home Page</a></li>
+<li><a class="reference internal" href="#functional-test-similar-to-above-but-a-different-way">Functional Test: Similar to Above, But a Different Way</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recap">Recap</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>
