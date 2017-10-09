@@ -117,6 +117,14 @@ Community Involvement
 
     /assignments/community
 
+Sample Read Me
+---------------------
+
+.. toctree::
+    :maxdepth: 2
+
+    /readings/sample_readme
+
 After Graduation
 ----------------
 
