@@ -73,6 +73,15 @@ Pythonic code will be faster and more efficient than code that is not Pythonic.
 Throughout the course, an emphasis will be placed on writing truly pythonic Python, and on learning to evaluate what is pythonic.
 
 
+Mental and Emotional Prep
+-------------------------
+
+.. toctree::
+    :maxdepth: 2
+
+    /readings/pain_suffering
+
+
 The Honor Code:
 ---------------
 
