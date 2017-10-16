@@ -24,7 +24,7 @@ I have found a correlation between students who write consistently in their jour
 Take this assignment seriously.
 Cumulatively, they also happen to be worth as much as 5 full coding assignments.
 
-Early in class, you will make these entries in the `class learning journal <http://sea-python-401.herokuapp.com/>`_.
+Early in class, you will make these entries in the `class learning journal <https://sea-python-401.herokuapp.com/>`_.
 Once you have created and deployed your own learning journal, you will put your entries there.
 
 Submitting Your Work
