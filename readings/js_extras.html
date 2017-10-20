@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>401 Python: Course Readings &mdash; Python 401 2.1 documentation</title>
+    <title>Extra Credit with JavaScript &mdash; Python 401 2.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,6 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="next" title="Python Post-Grad Road Map" href="python_developer_roadmap.html" />
+    <link rel="prev" title="README Layout" href="sample_readme.html" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 
@@ -51,6 +53,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="python_developer_roadmap.html" title="Python Post-Grad Road Map"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sample_readme.html" title="README Layout"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -174,20 +182,47 @@ div.nboutput  > :nth-child(2).stderr {
 
 .ansibold { font-weight: bold; }
 </style>
-<div class="section" id="python-course-readings">
-<h1>401 Python: Course Readings<a class="headerlink" href="#python-course-readings" title="Permalink to this headline">¶</a></h1>
-<span class="admonition-code-samples"></span><p>A comprehensive list of readings for the Code Fellows Python 401 course.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="django_readings.html">Suggested Readings for Django</a></li>
-<li class="toctree-l1"><a class="reference internal" href="js_extras.html">Extra Credit with JavaScript</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pain_suffering.html">Pain vs. Suffering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pyramid_readings.html">Suggested Readings for Pyramid</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_developer_roadmap.html">Python Post-Grad Road Map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_learning_resources.html">Useful Learning Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sample_readme.html">README Layout</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sublime_as_ide.html">Turning Sublime Text Into a Lightweight Python IDE</a></li>
-</ul>
+<div class="section" id="extra-credit-with-javascript">
+<h1>Extra Credit with JavaScript<a class="headerlink" href="#extra-credit-with-javascript" title="Permalink to this headline">¶</a></h1>
+<p>In industry, true full-stack developers are highly valued.
+A full-stack developer is one that can write code both for the back-end (with Python, NodeJS, C#, Java, etc.), as well as write code for the front-end (HTML, CSS, JavaScript).
+We&#8217;ll do some front-end work in this class, but we&#8217;ll rarely if ever actually write any JavaScript.</p>
+<p>Until now.</p>
+<p>Every data structures/algorithms assignment will now have the option for <strong>5 points extra credit</strong> if you can implement the same data structure/algorithm in JavaScript.
+This is a solo submission, so you don&#8217;t have to coordinate this extra effort with your partner if you don&#8217;t want to.
+There are, of course, some conditions.</p>
+<ol class="arabic simple">
+<li>To be eligible for <strong>any</strong> extra credit, your Python implementation must have received at least an 8/10</li>
+<li>Your JavaScript code must be in an installable <code class="docutils literal"><span class="pre">npm</span></code> package, complete with <code class="docutils literal"><span class="pre">package.json</span></code>. Make sure that the <code class="docutils literal"><span class="pre">node_modules</span></code> directory is appropriately placed in your <code class="docutils literal"><span class="pre">.gitignore</span></code></li>
+<li>Your implementations must not use constructor functions. Instead, look up the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> syntax and use that to build your objects.</li>
+<li>Your JavaScript code must be tested. I recommend using <a class="reference external" href="https://facebook.github.io/jest/">Jest</a> as your testing framework. <strong>Without tests, you will get no more than 1 of the available 5 points</strong>. You can feel free to implement the same tests you wrote for the Python implementation. I should be able to run your tests from the <code class="docutils literal"><span class="pre">js</span></code> directory by typing <code class="docutils literal"><span class="pre">npm</span> <span class="pre">test</span></code></li>
+<li>Your JavaScript code must be in a <code class="docutils literal"><span class="pre">js</span></code> directory inside of your <code class="docutils literal"><span class="pre">data_structures</span></code> repository. As an example:</li>
+</ol>
+<div class="highlight-bash"><div class="highlight"><pre>/data_structures
+    .gitignore
+    tox.ini
+    setup.py
+    linked_list.py
+    stack.py
+    double_linked_list.py
+    queue.py
+    tests/
+        test_linked_list.py
+        test_stack.py
+        test_double_linked_list.py
+        test_queue.py
+    js/
+        package.json
+        linkedList.js
+        stack.js
+        doubleLinkedList.js
+        queue.js
+        __test__/
+            linkedList.test.js
+            stack.test.js
+            doubleLinkedList.test.js
+            queue.test.js
+</pre></div>
 </div>
 </div>
 
@@ -197,6 +232,12 @@ div.nboutput  > :nth-child(2).stderr {
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="sample_readme.html"
+                        title="previous chapter">README Layout</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="python_developer_roadmap.html"
+                        title="next chapter">Python Post-Grad Road Map</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -220,6 +261,12 @@ div.nboutput  > :nth-child(2).stderr {
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="python_developer_roadmap.html" title="Python Post-Grad Road Map"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sample_readme.html" title="README Layout"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
