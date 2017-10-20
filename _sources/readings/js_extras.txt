@@ -9,7 +9,7 @@ We'll do some front-end work in this class, but we'll rarely if ever actually wr
 Until now.
 
 Every data structures/algorithms assignment will now have the option for **5 points extra credit** if you can implement the same data structure/algorithm in JavaScript.
-This is a solo submission, so you don't have to coordinate this extra effort with your partner if you don't want to.
+This is a solo submission, can be done with your data structures partner(s).
 There are, of course, some conditions.
 
 1. To be eligible for **any** extra credit, your Python implementation must have received at least an 8/10
