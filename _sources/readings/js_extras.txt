@@ -44,3 +44,14 @@ There are, of course, some conditions.
                 stack.test.js
                 doubleLinkedList.test.js
                 queue.test.js
+
+Submission
+==========
+
+For each assignment calling for a Python implementation of a data structure or algorithm, there is a corresponding a separate assignment for the JS submission in the "Extras".
+For ease of grading, after your Python implementation receives an 8/10 or above (or after you submit code that you suspect will meet this requirement), create a ``<data-structure>-js`` branch (e.g. ``linked-list-js``) and do your JavaScript implementation on that branch.
+
+When you have finished your work and all your tests pass, create a new pull request from your ``<data-structure>-js`` branch to ``master``.
+Copy the URL of your pull request and submit it using the URL input. When you're done submitting, you may merge your branch into ``master``.
+
+As usual, use the comment feature in Canvas to add questions, comments or reflections on the work you did for this assignment.

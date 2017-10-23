@@ -24,7 +24,7 @@ Readings
 
 * `The Internet: HTTP and HTML <https://www.youtube.com/watch?v=kBXQZMmiA4s>`_
 * `Raymond Hettinger: The Art of Subclassing <https://www.youtube.com/watch?v=miGolgp9xq8>`_
-* `Inheritance Versus Composition <https://learnpythonthehardway.org/book/ex44.html>`_
+* `Inheritance Versus Composition <http://blog.thedigitalcatonline.com/blog/2014/08/20/python-3-oop-part-3-delegation-composition-and-inheritance/#.We2HzxNSwWo>`_
 
 Review
 ======
