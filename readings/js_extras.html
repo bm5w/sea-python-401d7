@@ -233,8 +233,8 @@ This should be submitted with your data structures partner(s).</p>
 <h3>Special Methods<a class="headerlink" href="#special-methods" title="Permalink to this headline">¶</a></h3>
 <p>Because these implementations are not Python implementations, it doesn&#8217;t make sense to try and accommodate assignment task items that require you to implement special methods.</p>
 <ul class="simple">
-<li>Ignore anything asking you to be able to interact with the Python <code class="docutils literal"><span class="pre">len()</span></code> function</li>
-<li>Ignore anything asking you to be able to interact with the <code class="docutils literal"><span class="pre">print()</span></code> function</li>
+<li>Ignore anything asking you to be able to interact with Python&#8217;s <code class="docutils literal"><span class="pre">len()</span></code> function. JavaScript objects just allow direct access to the <code class="docutils literal"><span class="pre">length</span></code> attribute of any object</li>
+<li>Ignore anything asking you to be able to interact with Python&#8217;s <code class="docutils literal"><span class="pre">print()</span></code> function. NodeJS&#8217;s <code class="docutils literal"><span class="pre">console.log</span></code> achieves the same purpose. If you <em>really</em> want to dig into it, you can look into <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">overriding an object&#8217;s toString() method</a> to dictate how it should be displayed in the terminal.</li>
 </ul>
 </div>
 <div class="section" id="importing-exporting-and-running-from-terminal">
@@ -251,6 +251,13 @@ Note that <a class="reference external" href="https://facebook.github.io/jest/do
 Use wisely.</p>
 <p>Remember to always try out the code you write to make sure that it does what you think it does.
 Read the outputs. Understand the errors that get raised, where they happen, and why they happen.</p>
+</div>
+<div class="section" id="semicolons">
+<h3>Semicolons<a class="headerlink" href="#semicolons" title="Permalink to this headline">¶</a></h3>
+<p>Semicolons. No one wants to see that shit, full-stop.
+<a class="reference external" href="http://www.bradoncode.com/blog/2015/08/26/javascript-semi-colon-insertion/">Learn how automatic semicolon-insertion works</a> and where it&#8217;s appropriate to not use them vs where you have to.
+If you&#8217;re coming from 301 you&#8217;ll still be throwing semicolons into your code out of habit.
+When you submit this assignment, there should be no more semicolons than are necessary.</p>
 </div>
 <div class="section" id="default-parameters">
 <h3>Default Parameters<a class="headerlink" href="#default-parameters" title="Permalink to this headline">¶</a></h3>
@@ -269,7 +276,7 @@ Similarly, <code class="docutils literal"><span class="pre">**kwargs</span></cod
 For ease of grading, after your Python implementation receives an 8/10 or above (or after you submit code that you suspect will meet this requirement), create a <code class="docutils literal"><span class="pre">&lt;data-structure&gt;-js</span></code> branch (e.g. <code class="docutils literal"><span class="pre">linked-list-js</span></code>) and do your JavaScript implementation on that branch.</p>
 <p>When you have finished your work and all your tests pass, create a new pull request from your <code class="docutils literal"><span class="pre">&lt;data-structure&gt;-js</span></code> branch to <code class="docutils literal"><span class="pre">master</span></code>.
 Copy the URL of your pull request and submit it using the URL input. When you&#8217;re done submitting, you may merge your branch into <code class="docutils literal"><span class="pre">master</span></code>.</p>
-<p>As usual, use the comment feature in Canvas to add questions, comments or reflections on the work you did for this assignment.</p>
+<p>As usual, use the comment feature in Canvas to add questions, comments, or reflections on the work you did for this assignment.</p>
 </div>
 </div>
 
@@ -287,6 +294,7 @@ Copy the URL of your pull request and submit it using the URL input. When you&#8
 <li><a class="reference internal" href="#special-methods">Special Methods</a></li>
 <li><a class="reference internal" href="#importing-exporting-and-running-from-terminal">Importing, Exporting, and Running from Terminal</a></li>
 <li><a class="reference internal" href="#error-handling">Error Handling</a></li>
+<li><a class="reference internal" href="#semicolons">Semicolons</a></li>
 <li><a class="reference internal" href="#default-parameters">Default Parameters</a></li>
 <li><a class="reference internal" href="#advanced-operators">Advanced Operators</a></li>
 </ul>

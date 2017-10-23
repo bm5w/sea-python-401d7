@@ -57,8 +57,8 @@ Special Methods
 
 Because these implementations are not Python implementations, it doesn't make sense to try and accommodate assignment task items that require you to implement special methods.
 
-- Ignore anything asking you to be able to interact with the Python ``len()`` function
-- Ignore anything asking you to be able to interact with the ``print()`` function
+- Ignore anything asking you to be able to interact with Python's ``len()`` function. JavaScript objects just allow direct access to the ``length`` attribute of any object
+- Ignore anything asking you to be able to interact with Python's ``print()`` function. NodeJS's ``console.log`` achieves the same purpose. If you *really* want to dig into it, you can look into `overriding an object's toString() method <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString>`_ to dictate how it should be displayed in the terminal.
 
 Importing, Exporting, and Running from Terminal
 -----------------------------------------------
@@ -78,6 +78,14 @@ Use wisely.
 
 Remember to always try out the code you write to make sure that it does what you think it does.
 Read the outputs. Understand the errors that get raised, where they happen, and why they happen.
+
+Semicolons
+----------
+
+Semicolons. No one wants to see that shit, full-stop.
+`Learn how automatic semicolon-insertion works <http://www.bradoncode.com/blog/2015/08/26/javascript-semi-colon-insertion/>`_ and where it's appropriate to not use them vs where you have to.
+If you're coming from 301 you'll still be throwing semicolons into your code out of habit.
+When you submit this assignment, there should be no more semicolons than are necessary.
 
 Default Parameters
 ------------------
@@ -100,4 +108,4 @@ For ease of grading, after your Python implementation receives an 8/10 or above 
 When you have finished your work and all your tests pass, create a new pull request from your ``<data-structure>-js`` branch to ``master``.
 Copy the URL of your pull request and submit it using the URL input. When you're done submitting, you may merge your branch into ``master``.
 
-As usual, use the comment feature in Canvas to add questions, comments or reflections on the work you did for this assignment.
+As usual, use the comment feature in Canvas to add questions, comments, or reflections on the work you did for this assignment.
