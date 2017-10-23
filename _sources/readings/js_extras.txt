@@ -57,7 +57,7 @@ Special Methods
 
 Because these implementations are not Python implementations, it doesn't make sense to try and accommodate assignment task items that require you to implement special methods.
 
-- Ignore anything asking you to be able to interact with Python's ``len()`` function. JavaScript objects just allow direct access to the ``length`` attribute of any object
+- Ignore anything asking you to be able to interact with Python's ``len()`` function. JavaScript objects don't have a ``length`` property by default, and there's no corresponding JS version of ``len()`` to interact with. You can still implement your own ``length`` property if you'd find it useful.
 - Ignore anything asking you to be able to interact with Python's ``print()`` function. NodeJS's ``console.log`` achieves the same purpose. If you *really* want to dig into it, you can look into `overriding an object's toString() method <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString>`_ to dictate how it should be displayed in the terminal.
 
 Importing, Exporting, and Running from Terminal
