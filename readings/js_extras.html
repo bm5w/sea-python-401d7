@@ -189,8 +189,10 @@ A full-stack developer is one that can write code both for the back-end (with Py
 We&#8217;ll do some front-end work in this class, but we&#8217;ll rarely if ever actually write any JavaScript.</p>
 <p>Until now.</p>
 <p>Every data structures/algorithms assignment will now have the option for <strong>5 points extra credit</strong> if you can implement the same data structure/algorithm in JavaScript.
-This is a solo submission, can be done with your data structures partner(s).
-There are, of course, some conditions.</p>
+This should be submitted with your data structures partner(s).</p>
+<div class="section" id="conditions">
+<h2>Conditions<a class="headerlink" href="#conditions" title="Permalink to this headline">¶</a></h2>
+<p>There are, of course, some conditions.</p>
 <ol class="arabic simple">
 <li>To be eligible for <strong>any</strong> extra credit, your Python implementation must have received at least an 8/10</li>
 <li>Your JavaScript code must be in an installable <code class="docutils literal"><span class="pre">npm</span></code> package, complete with <code class="docutils literal"><span class="pre">package.json</span></code>. Make sure that the <code class="docutils literal"><span class="pre">node_modules</span></code> directory is appropriately placed in your <code class="docutils literal"><span class="pre">.gitignore</span></code></li>
@@ -224,6 +226,43 @@ There are, of course, some conditions.</p>
             queue.test.js
 </pre></div>
 </div>
+</div>
+<div class="section" id="side-notes">
+<h2>Side Notes<a class="headerlink" href="#side-notes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="special-methods">
+<h3>Special Methods<a class="headerlink" href="#special-methods" title="Permalink to this headline">¶</a></h3>
+<p>Because these implementations are not Python implementations, it doesn&#8217;t make sense to try and accommodate assignment task items that require you to implement special methods.</p>
+<ul class="simple">
+<li>Ignore anything asking you to be able to interact with the Python <code class="docutils literal"><span class="pre">len()</span></code> function</li>
+<li>Ignore anything asking you to be able to interact with the <code class="docutils literal"><span class="pre">print()</span></code> function</li>
+</ul>
+</div>
+<div class="section" id="importing-exporting-and-running-from-terminal">
+<h3>Importing, Exporting, and Running from Terminal<a class="headerlink" href="#importing-exporting-and-running-from-terminal" title="Permalink to this headline">¶</a></h3>
+<p>You will need to know how to export code from script files and do NodeJS&#8217;s version of Python&#8217;s package imports in order to run your tests.
+Check out the MDN documentation on <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">NodeJS imports</a> and <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export">NodeJS exports</a>.</p>
+<p>For equivalents to Python&#8217;s <code class="docutils literal"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></code>, check out <a class="reference external" href="https://stackoverflow.com/a/6090287">this StackOverflow answer</a>.</p>
+</div>
+<div class="section" id="error-handling">
+<h3>Error Handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h3>
+<p>You will want to replicate appropriate error-handling with your functions and methods so that your code only does what you intended for it to do.
+Check <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">the documentation on JavaScript errors</a> to understand what types of errors can be thrown, how to actually raise your own errors, and how to catch and handle errors that get thrown.
+Note that <a class="reference external" href="https://facebook.github.io/jest/docs/en/expect.html#tothrowerror">Jest can watch for errors</a> to be thrown just like Pytest can using <code class="docutils literal"><span class="pre">with</span> <span class="pre">pytest.raises(SomeException)</span></code>.
+Use wisely.</p>
+<p>Remember to always try out the code you write to make sure that it does what you think it does.
+Read the outputs. Understand the errors that get raised, where they happen, and why they happen.</p>
+</div>
+<div class="section" id="default-parameters">
+<h3>Default Parameters<a class="headerlink" href="#default-parameters" title="Permalink to this headline">¶</a></h3>
+<p>It may help to use default parameters for your functions/methods.
+Check the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters">MDN documentation on default parameters</a> for info on how to do that.</p>
+</div>
+<div class="section" id="advanced-operators">
+<h3>Advanced Operators<a class="headerlink" href="#advanced-operators" title="Permalink to this headline">¶</a></h3>
+<p>If you ever use <code class="docutils literal"><span class="pre">*args</span></code>, you may find JavaScript ES6&#8217;s <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">spread operator</a> useful.
+Similarly, <code class="docutils literal"><span class="pre">**kwargs</span></code>-like behavior can be mimicked using <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">ES6&#8217;s destructuring</a></p>
+</div>
+</div>
 <div class="section" id="submission">
 <h2>Submission<a class="headerlink" href="#submission" title="Permalink to this headline">¶</a></h2>
 <p>For each assignment calling for a Python implementation of a data structure or algorithm, there is a corresponding a separate assignment for the JS submission in the &#8220;Extras&#8221;.
@@ -243,6 +282,15 @@ Copy the URL of your pull request and submit it using the URL input. When you&#8
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Extra Credit with JavaScript</a><ul>
+<li><a class="reference internal" href="#conditions">Conditions</a></li>
+<li><a class="reference internal" href="#side-notes">Side Notes</a><ul>
+<li><a class="reference internal" href="#special-methods">Special Methods</a></li>
+<li><a class="reference internal" href="#importing-exporting-and-running-from-terminal">Importing, Exporting, and Running from Terminal</a></li>
+<li><a class="reference internal" href="#error-handling">Error Handling</a></li>
+<li><a class="reference internal" href="#default-parameters">Default Parameters</a></li>
+<li><a class="reference internal" href="#advanced-operators">Advanced Operators</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#submission">Submission</a></li>
 </ul>
 </li>

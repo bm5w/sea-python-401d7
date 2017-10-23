@@ -19,7 +19,7 @@ For instance:
 * KILTER --> [ ]
 
 Your implementation must include tests. 
-The tests, as usual for our data structures, must run both in Python 2.7 and Python 3.5.
+The tests, as usual for our data structures, must run both in Python 2.7 and Python 3.6.
 Add documentation of your new methods to your README file. 
 Include any sources or collaborations.
 

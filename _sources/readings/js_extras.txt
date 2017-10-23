@@ -9,7 +9,11 @@ We'll do some front-end work in this class, but we'll rarely if ever actually wr
 Until now.
 
 Every data structures/algorithms assignment will now have the option for **5 points extra credit** if you can implement the same data structure/algorithm in JavaScript.
-This is a solo submission, can be done with your data structures partner(s).
+This should be submitted with your data structures partner(s).
+
+Conditions
+==========
+
 There are, of course, some conditions.
 
 1. To be eligible for **any** extra credit, your Python implementation must have received at least an 8/10
@@ -44,6 +48,48 @@ There are, of course, some conditions.
                 stack.test.js
                 doubleLinkedList.test.js
                 queue.test.js
+
+Side Notes
+==========
+
+Special Methods
+---------------
+
+Because these implementations are not Python implementations, it doesn't make sense to try and accommodate assignment task items that require you to implement special methods.
+
+- Ignore anything asking you to be able to interact with the Python ``len()`` function
+- Ignore anything asking you to be able to interact with the ``print()`` function
+
+Importing, Exporting, and Running from Terminal
+-----------------------------------------------
+
+You will need to know how to export code from script files and do NodeJS's version of Python's package imports in order to run your tests.
+Check out the MDN documentation on `NodeJS imports <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import>`_ and `NodeJS exports <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export>`_.
+
+For equivalents to Python's ``if __name__ == "__main__"``, check out `this StackOverflow answer <https://stackoverflow.com/a/6090287>`_.
+
+Error Handling
+--------------
+
+You will want to replicate appropriate error-handling with your functions and methods so that your code only does what you intended for it to do.
+Check `the documentation on JavaScript errors <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error>`_ to understand what types of errors can be thrown, how to actually raise your own errors, and how to catch and handle errors that get thrown.
+Note that `Jest can watch for errors <https://facebook.github.io/jest/docs/en/expect.html#tothrowerror>`_ to be thrown just like Pytest can using ``with pytest.raises(SomeException)``.
+Use wisely.
+
+Remember to always try out the code you write to make sure that it does what you think it does.
+Read the outputs. Understand the errors that get raised, where they happen, and why they happen.
+
+Default Parameters
+------------------
+
+It may help to use default parameters for your functions/methods.
+Check the `MDN documentation on default parameters <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters>`_ for info on how to do that.
+
+Advanced Operators
+------------------
+
+If you ever use ``*args``, you may find JavaScript ES6's `spread operator <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator>`_ useful.
+Similarly, ``**kwargs``-like behavior can be mimicked using `ES6's destructuring <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment>`_
 
 Submission
 ==========
