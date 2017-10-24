@@ -44,6 +44,7 @@ Beyond unit testing for the methods you implement, include an ``if __name__ == '
 Expand your ``README`` to include notes about the BST you've constructed.
 Document the public API, making sure that someone deciding to use your code knows exactly how it works from a fresh clone.
 Include any sources or collaborations.
+**It is a requirement that for each method of this data structure, you include in the README a description of its time complexity in Big-O notation! Expect to lose credit if you don't have this.**
 
 Submitting Your Work
 ====================

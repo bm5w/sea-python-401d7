@@ -38,6 +38,8 @@ For each feature of your list, write the test that demonstrates it first, then i
 
 Update the ``README.md`` to include this new structure.
 In particular, add a paragraph explaining different use-cases where the singly or doubly-linked list might be more appropriate.
+**It is a requirement that for each method of this data structure, you include in the README a description of its time complexity in Big-O notation! Expect to lose credit if you don't have this.**
+
 
 Submitting Your Work
 ====================

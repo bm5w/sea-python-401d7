@@ -42,6 +42,7 @@ implementation.
 
 Update your README with information about your implementation of the Binary Heap data type.
 Include all references and collaborations.
+**It is a requirement that for each method of this data structure, you include in the README a description of its time complexity in Big-O notation! Expect to lose credit if you don't have this.**
 
 Submitting Your Work
 ====================

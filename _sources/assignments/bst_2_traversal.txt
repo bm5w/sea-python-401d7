@@ -32,6 +32,7 @@ However, like any code you write, if you write it you need to test it.
 
 Add documentation for the traversal API in your ``README.md``, making sure that someone deciding to use your code knows exactly how it works from a fresh clone.
 Include any sources or collaborations.
+**It is a requirement that for each method of this data structure, you include in the README a description of its time complexity in Big-O notation! Expect to lose credit if you don't have this.**
 
 Submission
 ==========

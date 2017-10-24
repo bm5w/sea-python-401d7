@@ -16,26 +16,30 @@ Objectives
 Readings
 ========
 
+* `Building an AJAX Hello World with Python Pyramid <https://www.codementor.io/sheena/build-ajax-helloworld-pyramid-du107vhtl>`_
+* `AJAX Development with JSON Renderers <http://docs.pylonsproject.org/projects/pyramid/en/latest/quick_tutorial/json.html>`_
+
 Review
 ======
 
 Concepts
 ========
 
-No New Concepts
+* AJAX
+* APIs and JSON in Python
+* Graph: Finding the Shortest Path
 
 Demo
 ====
 
-Whiteboard Challenge
+* Interacting with JSON using ``requests`` and ``WebTest``
 
 Assignments
 ===========
 
-* :doc:`/assignments/pyramid_lj_8`
+* :doc:`/assignments/pyramid_lj_7`
 * :doc:`/assignments/mashup_2_rest`
 * :doc:`/assignments/project_09_stories_end`
 * :doc:`/assignments/daily_lj_entry`
-
 * :doc:`/assignments/graph_4_shortest_path` (Due Friday)
 * :doc:`/assignments/git_workflow` (Due Friday)

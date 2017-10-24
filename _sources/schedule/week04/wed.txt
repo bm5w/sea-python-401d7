@@ -16,27 +16,35 @@ Objectives
 Readings
 ========
 
+* `What is CSRF? <https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)>`_
+
 Review
 ======
 
 Concepts
 ========
 
-* AJAX
-* APIs and JSON in Python
+.. toctree::
+   :maxdepth: 2
+
+   /lectures/pyramid_day6_csrf
+   /lectures/intro_to_python_8_decorators
+
+* Graph: Weighted Edges
+
 
 Demo
 ====
 
-Interacting with JSON using ``requests`` and ``WebTest``
+
 
 Assignments
 ===========
 
-* :doc:`/assignments/pyramid_lj_7`
+
+* :doc:`/assignments/graph_3_weighted`
+* :doc:`/assignments/pyramid_lj_6`
 * :doc:`/assignments/project_08_stories_continue`
 * :doc:`/assignments/daily_lj_entry`
-
-* :doc:`/assignments/mashup_2_rest` (Due Thursday)
 * :doc:`/assignments/graph_4_shortest_path` (Due Friday)
 * :doc:`/assignments/git_workflow` (Due Friday)

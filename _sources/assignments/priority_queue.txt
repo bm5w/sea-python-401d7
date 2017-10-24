@@ -30,6 +30,7 @@ Then implement the code to make the test pass.
 
 You may not use existing implementations of this data structure from the Python standard library or existing packages.
 However, you should feel free to look at their source code for inspiration.
+**It is a requirement that for each method of this data structure, you include in the README a description of its time complexity in Big-O notation! Expect to lose credit if you don't have this.**
 
 Submitting Your Work
 ====================

@@ -2,10 +2,10 @@
     :autoslides: False
 
 ********************
-Implement Radix Sort
+Implement Bubble Sort
 ********************
 
-.. slide:: Implement Radix Sort
+.. slide:: Implement Bubble Sort
     :level: 1
 
     This document contains no slides.
@@ -16,7 +16,7 @@ Your goal is to understand both the implementation of the algorithm, and the cir
 Tasks
 =====
 
-Read about the `Radix Sort Algorithm <http://en.wikipedia.org/wiki/Radix_sort>`_.
+Read about the `Bubble Sort Algorithm <http://en.wikipedia.org/wiki/bubble_sort>`_.
 
 Then create a new branch and implement the algorithm in a new file in your data-structures repository.
 

@@ -28,6 +28,7 @@ Submitting Your Work
 Create a ``sum-of-nth-terms`` branch in your ``code-katas`` repository.
 When your solution passes the tests at Code Wars, copy your code into a script on the ``sum-of-nth-terms`` branch. 
 Finally, copy the tests administered by Code Wars into a ``test_sum_terms.py`` file.
+Make sure those tests can be run by PyTest, and aren't just a copy-paste of what Code Wars had.
 
 After you've copied your code solution over into GitHub, send a pull request to your master branch.
 **Submit the URL of that pull request to Canvas.**

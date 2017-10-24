@@ -20,6 +20,8 @@ Concepts
 Assignments
 ===========
 
+* :doc:`/assignments/pyramid_lj_8`
+* :doc:`/assignments/mashup_2_rest`
 * :doc:`/assignments/kata_flight_paths`
 * :doc:`/assignments/git_workflow`
 * :doc:`/assignments/graph_4_shortest_path`

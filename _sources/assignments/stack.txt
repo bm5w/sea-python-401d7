@@ -35,8 +35,8 @@ Your class implementation should include a constructor that optionally accepts
 an iterable of values.
 When an iterable is passed, the result should be a stack which contains the values in the iterable.
 
-Your implementation is not allowed to use the built-in Python list, tuple or dictionary.
-Nor are you allowed to use any of the native implementations of stack/queue/dequeue from the queue python standard library module.
+**Your implementation is not allowed to use the built-in Python list, tuple or dictionary.
+Nor are you allowed to use any of the native implementations of stack/queue/dequeue from the queue python standard library module.**
 
 Your implementation must include pytest unit tests.
 For each method on your stack class, including the constructor, write your tests first, then implement the methods that will support them.
@@ -44,6 +44,7 @@ Be thorough in your tests, test failure modes as well as successes.
 Tests are as much a part of this assignment as the stack itself.
 
 Update the repository ``README.md`` with information about the Stack you implemented, including any resources or collaborations you used.
+**It is a requirement that for each method of this data structure, you include in the README a description of its time complexity in Big-O notation! Expect to lose credit if you don't have this.**
 
 Submitting Your Work
 ====================

@@ -41,7 +41,9 @@ Executing your module should print informative output about the performance of y
         number of runs: 500
         average time: 2345.6 seconds
 
-Add information about your implementation to your README.md file, including any sources and collaborations used in creating it.
+Add tests to demonstrate that the sorting algorithm works in both Python 2 and Python 3.
+
+Add information about your implementation to your ``README.md`` file, including any sources and collaborations used in creating it.
 
 Include the time complexity of your implementation of this sort algorithm in your README.
 

@@ -37,6 +37,8 @@ existing Python implementation to create your queue.
 You must also enable this structure to interact with the built-in ``len()``.
 
 You should update the repository ``README.md`` with information about the Queue you implemented, including any resources or collaborations you used.
+**It is a requirement that for each method of this data structure, you include in the README a description of its time complexity in Big-O notation! Expect to lose credit if you don't have this.**
+
 
 Submitting Your Work
 ====================

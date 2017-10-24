@@ -26,8 +26,6 @@ Readings
 Review
 ======
 
-
-
 Concepts
 ========
 
@@ -41,7 +39,6 @@ Demo
 ====
 
 * Insertion Sort
-* Creating a task queue with Celery
 
 Assignments
 ===========
@@ -49,7 +46,6 @@ Assignments
 * :doc:`/assignments/project_01_pitch`
 * :doc:`/assignments/web_app_security_assignment2`
 * :doc:`/assignments/sort_1_insertion`
-
 * :doc:`/assignments/django_8_drf_tutorial_a`
 * :doc:`/assignments/django_7_complete_frontend` (Due Friday)
 * :doc:`/assignments/aws_2_ansible_imager` (Due Friday)
