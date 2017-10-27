@@ -25,6 +25,11 @@ Review
 Concepts
 ========
 
+.. toctree::
+   :maxdepth: 2
+
+   /lectures/mock
+
 * AJAX
 * APIs and JSON in Python
 * Graph: Finding the Shortest Path

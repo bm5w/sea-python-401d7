@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Mocking, Monkey Patching, and Faking Functionality &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="mocking-monkey-patching-and-faking-functionality">
+<h1>Mocking, Monkey Patching, and Faking Functionality<a class="headerlink" href="#mocking-monkey-patching-and-faking-functionality" title="Permalink to this headline">¶</a></h1>
+<p>Sometimes you need some fake data.</p>
+<p>The <code class="docutils literal"><span class="pre">mock</span></code> library is a specific, <code class="docutils literal"><span class="pre">pip</span></code> installable library in Python 2 but is built into Python 3&#8217;s <code class="docutils literal"><span class="pre">unittest</span></code> library.
+Because we&#8217;re using pytest we don&#8217;t have to worry about that; we can just use <a class="reference external" href="https://pypi.python.org/pypi/pytest-mock">pytest-mock</a>.
+If this package is installed, then when we run <code class="docutils literal"><span class="pre">py.test</span></code> we&#8217;ll have access to the <code class="docutils literal"><span class="pre">mocker</span></code> fixture.</p>
+<div class="section" id="mock-magicmock-and-autospec">
+<h2>Mock, MagicMock, and autospec<a class="headerlink" href="#mock-magicmock-and-autospec" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="monkey-patching">
+<h2>Monkey Patching<a class="headerlink" href="#monkey-patching" title="Permalink to this headline">¶</a></h2>
+<p>You can do more than just create fake objects.
+You can also fake specific function or method calls.
+Take for example the following functions for getting and parsing data from GitHub</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># called users.py</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">def</span> <span class="nf">get_user_followers</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Grab the JSON object from a given user&#39;s followers.&quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://api.github.com/users/{}/followers&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">username</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+
+<span class="k">def</span> <span class="nf">get_follower_names</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a username of a GitHub user, return a list of follower usernames.&quot;&quot;&quot;</span>
+    <span class="n">json_out</span> <span class="o">=</span> <span class="n">get_user_followers</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+    <span class="n">as_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_out</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;login&quot;</span><span class="p">],</span> <span class="n">as_dict</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>GitHub sets a limit on the rate at which you can access its data.
+However, as we test <code class="docutils literal"><span class="pre">get_follower_names</span></code> and other code that may call <code class="docutils literal"><span class="pre">get_user_followers</span></code>, we&#8217;ll have to call this function over and over again.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in test_users.py</span>
+
+<span class="k">def</span> <span class="nf">test_get_follower_names_returns_name_list</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">users</span> <span class="kn">import</span> <span class="n">get_follower_names</span>
+    <span class="k">assert</span> <span class="s1">&#39;jradavenport&#39;</span> <span class="ow">in</span> <span class="n">get_follower_names</span><span class="p">(</span><span class="s1">&#39;nhuntwalker&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Before long, we&#8217;ll reach our rate limit (even with an API token).
+Any test we would run with this function after this point would automatically fail.</p>
+<p>So what to do?</p>
+<p>In our test file, we can &#8220;monkey patch&#8221; the call to GitHub&#8217;s API.
+we can do this using the <code class="docutils literal"><span class="pre">monkeypatch</span></code> fixture provided by <code class="docutils literal"><span class="pre">pytest-mock</span></code>.
+You don&#8217;t have to import it into the file.
+All you have to do is have <code class="docutils literal"><span class="pre">pip</span></code> installed <code class="docutils literal"><span class="pre">pytest-mock</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in test_users.py</span>
+
+<span class="k">def</span> <span class="nf">substitute_func</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;[{&quot;login&quot;: &quot;aishapectyo&quot;},{&quot;login&quot;: &quot;jradavenport&quot;},{&quot;login&quot;: &quot;kridicule&quot;}]&#39;</span>
+
+<span class="k">def</span> <span class="nf">test_get_follower_names_returns_name_list</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">users</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">users</span><span class="p">,</span> <span class="s1">&#39;get_user_followers&#39;</span><span class="p">,</span> <span class="n">substitute_func</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s1">&#39;jradavenport&#39;</span> <span class="ow">in</span> <span class="n">users</span><span class="o">.</span><span class="n">get_follower_names</span><span class="p">(</span><span class="s1">&#39;nhuntwalker&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice the change in imports.
+<a class="reference external" href="https://docs.pytest.org/en/latest/monkeypatch.html#method-reference-of-the-monkeypatch-fixture">monkeypatch</a> is an object unto itself with a variety of methods for faking attributes of other objects or whole namespaces.
+In the example above, we use the <code class="docutils literal"><span class="pre">.setattr</span></code> method to swap out our real <code class="docutils literal"><span class="pre">users.get_user_followers</span></code> function with some other substitute function, <code class="docutils literal"><span class="pre">substitute_func</span></code>.
+<code class="docutils literal"><span class="pre">monkeypatch</span></code> treats the <code class="docutils literal"><span class="pre">users</span></code> module as an object, changing the behavior of the <code class="docutils literal"><span class="pre">get_user_followers</span></code> function inside the module when called for this test.</p>
+<p>The substitute function in turn simply returns whatever we tell it to for the purposes of the test(s).
+In the example above we hardcode a string that is a proper JSON object, just like <code class="docutils literal"><span class="pre">users.get_follower_names</span></code> is expecting.</p>
+<p>The end result is that, <strong>FOR THIS TEST</strong>, whenever we would make the the full HTTP request to GitHub for its data we instead get back the return value of <code class="docutils literal"><span class="pre">substitute_func()</span></code>.</p>
+<p>Outside of this test, unless we use <code class="docutils literal"><span class="pre">monkeypatch</span></code> again, <code class="docutils literal"><span class="pre">users.get_user_followers</span></code> will work the way that it&#8217;s supposed to.</p>
+<p>Note that <strong>monkey patching a function call does not count as actually testing that function call!</strong>
+You ARE NOT actually using the function that you&#8217;ve monkey patched; you are rejecting its default behavior and subsituting it with new behavior.
+If you want to test that the function actually does talk to GitHub, you will need to do just that.</p>
+<p>As with most testing problems, if we want to have the same behavior occur across a variety of tests, we can always set up a fixture.
+Remember that whenever you include a fixture in your test function, the code inside of the fixture is run in its entirety before the test itself is run.
+We can use that to our advantage.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in test_users.py</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="k">def</span> <span class="nf">substitute_func</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;[{&quot;login&quot;: &quot;aishapectyo&quot;},{&quot;login&quot;: &quot;jradavenport&quot;},{&quot;login&quot;: &quot;kridicule&quot;}]&#39;</span>
+
+<span class="nd">@pytest.fixture</span>
+<span class="k">def</span> <span class="nf">gh_patched</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">users</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">users</span><span class="p">,</span> <span class="s1">&#39;get_user_followers&#39;</span><span class="p">,</span> <span class="n">substitute_func</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">test_get_follower_names_returns_name_list</span><span class="p">(</span><span class="n">gh_patched</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">users</span> <span class="kn">import</span> <span class="n">get_follower_names</span>
+    <span class="k">assert</span> <span class="s1">&#39;jradavenport&#39;</span> <span class="ow">in</span> <span class="n">get_follower_names</span><span class="p">(</span><span class="s1">&#39;nhuntwalker&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If we want it so that across <em>every</em> test this behavior is patched without us having to think about it, we can set the <code class="docutils literal"><span class="pre">autouse</span></code> keyword argument of <code class="docutils literal"><span class="pre">pytest.fixture</span></code> to <code class="docutils literal"><span class="pre">True</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in test_users.py</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="k">def</span> <span class="nf">substitute_func</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;[{&quot;login&quot;: &quot;aishapectyo&quot;},{&quot;login&quot;: &quot;jradavenport&quot;},{&quot;login&quot;: &quot;kridicule&quot;}]&#39;</span>
+
+<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">gh_patched</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">users</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">users</span><span class="p">,</span> <span class="s1">&#39;get_user_followers&#39;</span><span class="p">,</span> <span class="n">substitute_func</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">test_get_follower_names_returns_name_list</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">users</span> <span class="kn">import</span> <span class="n">get_follower_names</span>
+    <span class="k">assert</span> <span class="s1">&#39;jradavenport&#39;</span> <span class="ow">in</span> <span class="n">get_follower_names</span><span class="p">(</span><span class="s1">&#39;nhuntwalker&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, beware of changing behavior universally.
+If we monkey patch the behavior of <code class="docutils literal"><span class="pre">get_user_followers</span></code> automatically for every test, we risk not being able to actually test the function after all.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Mocking, Monkey Patching, and Faking Functionality</a><ul>
+<li><a class="reference internal" href="#mock-magicmock-and-autospec">Mock, MagicMock, and autospec</a></li>
+<li><a class="reference internal" href="#monkey-patching">Monkey Patching</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

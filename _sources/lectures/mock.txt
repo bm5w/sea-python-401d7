@@ -1,0 +1,131 @@
+*************************************************
+Mocking, Monkey Patching, and Faking Functionality
+*************************************************
+
+Sometimes you need some fake data.
+
+The ``mock`` library is a specific, ``pip`` installable library in Python 2 but is built into Python 3's ``unittest`` library.
+Because we're using pytest we don't have to worry about that; we can just use `pytest-mock <https://pypi.python.org/pypi/pytest-mock>`_.
+If this package is installed, then when we run ``py.test`` we'll have access to the ``mocker`` fixture.
+
+Mock, MagicMock, and autospec
+=============================
+
+
+
+Monkey Patching
+===============
+
+You can do more than just create fake objects.
+You can also fake specific function or method calls.
+Take for example the following functions for getting and parsing data from GitHub
+
+.. code-block:: python
+
+    # called users.py
+
+    import requests
+    import json
+
+    def get_user_followers(username):
+        """Grab the JSON object from a given user's followers."""
+        response = requests.get('https://api.github.com/users/{}/followers'.format(username))
+        return response.content
+
+    def get_follower_names(username):
+        """Given a username of a GitHub user, return a list of follower usernames."""
+        json_out = get_user_followers(username)
+        as_dict = json.loads(json_out)
+        return list(map(lambda x: x["login"], as_dict))
+
+GitHub sets a limit on the rate at which you can access its data.
+However, as we test ``get_follower_names`` and other code that may call ``get_user_followers``, we'll have to call this function over and over again.
+
+.. code-block:: python
+
+    # in test_users.py
+
+    def test_get_follower_names_returns_name_list():
+        from users import get_follower_names
+        assert 'jradavenport' in get_follower_names('nhuntwalker')
+
+Before long, we'll reach our rate limit (even with an API token). 
+Any test we would run with this function after this point would automatically fail.
+
+So what to do?
+
+In our test file, we can "monkey patch" the call to GitHub's API.
+we can do this using the ``monkeypatch`` fixture provided by ``pytest-mock``.
+You don't have to import it into the file.
+All you have to do is have ``pip`` installed ``pytest-mock``.
+
+.. code-block:: python
+
+    # in test_users.py
+
+    def substitute_func(username):
+        return '[{"login": "aishapectyo"},{"login": "jradavenport"},{"login": "kridicule"}]'
+
+    def test_get_follower_names_returns_name_list(monkeypatch):
+        import users
+        monkeypatch.setattr(users, 'get_user_followers', substitute_func)
+        assert 'jradavenport' in users.get_follower_names('nhuntwalker')
+
+Notice the change in imports.
+`monkeypatch <https://docs.pytest.org/en/latest/monkeypatch.html#method-reference-of-the-monkeypatch-fixture>`_ is an object unto itself with a variety of methods for faking attributes of other objects or whole namespaces.
+In the example above, we use the ``.setattr`` method to swap out our real ``users.get_user_followers`` function with some other substitute function, ``substitute_func``.
+``monkeypatch`` treats the ``users`` module as an object, changing the behavior of the ``get_user_followers`` function inside the module when called for this test.
+
+The substitute function in turn simply returns whatever we tell it to for the purposes of the test(s).
+In the example above we hardcode a string that is a proper JSON object, just like ``users.get_follower_names`` is expecting.
+
+The end result is that, **FOR THIS TEST**, whenever we would make the the full HTTP request to GitHub for its data we instead get back the return value of ``substitute_func()``.
+
+Outside of this test, unless we use ``monkeypatch`` again, ``users.get_user_followers`` will work the way that it's supposed to.
+
+Note that **monkey patching a function call does not count as actually testing that function call!**
+You ARE NOT actually using the function that you've monkey patched; you are rejecting its default behavior and subsituting it with new behavior.
+If you want to test that the function actually does talk to GitHub, you will need to do just that.
+
+As with most testing problems, if we want to have the same behavior occur across a variety of tests, we can always set up a fixture.
+Remember that whenever you include a fixture in your test function, the code inside of the fixture is run in its entirety before the test itself is run.
+We can use that to our advantage.
+
+.. code-block:: python
+
+    # in test_users.py
+    import pytest
+
+    def substitute_func(username):
+        return '[{"login": "aishapectyo"},{"login": "jradavenport"},{"login": "kridicule"}]'
+
+    @pytest.fixture
+    def gh_patched(monkeypatch):
+        import users
+        monkeypatch.setattr(users, 'get_user_followers', substitute_func)
+
+    def test_get_follower_names_returns_name_list(gh_patched):
+        from users import get_follower_names
+        assert 'jradavenport' in get_follower_names('nhuntwalker')
+
+If we want it so that across *every* test this behavior is patched without us having to think about it, we can set the ``autouse`` keyword argument of ``pytest.fixture`` to ``True``.
+
+.. code-block:: python
+
+    # in test_users.py
+    import pytest
+
+    def substitute_func(username):
+        return '[{"login": "aishapectyo"},{"login": "jradavenport"},{"login": "kridicule"}]'
+
+    @pytest.fixture(autouse=True)
+    def gh_patched(monkeypatch):
+        import users
+        monkeypatch.setattr(users, 'get_user_followers', substitute_func)
+
+    def test_get_follower_names_returns_name_list():
+        from users import get_follower_names
+        assert 'jradavenport' in get_follower_names('nhuntwalker')
+
+However, beware of changing behavior universally.
+If we monkey patch the behavior of ``get_user_followers`` automatically for every test, we risk not being able to actually test the function after all.
