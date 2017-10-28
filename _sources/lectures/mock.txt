@@ -2,23 +2,24 @@
 Mocking, Monkey Patching, and Faking Functionality
 *************************************************
 
-Sometimes you need some fake data.
+Sometimes while testing you need some fake data.
 
-The ``mock`` library is a specific, ``pip`` installable library in Python 2 but is built into Python 3's ``unittest`` library.
-Because we're using pytest we don't have to worry about that; we can just use `pytest-mock <https://pypi.python.org/pypi/pytest-mock>`_.
-If this package is installed, then when we run ``py.test`` we'll have access to the ``mocker`` fixture.
+Maybe you're doing a third-party API call that can be expensive in execution, or has some limit that you don't want to risk reaching.
+Or, maybe you need to create a whole object on the fly just for one or two pieces of functionality, but that object can be difficult to construct from scratch.
+Or maybe your needs are simpler.
+Maybe you just want to track some metrics about function/method calls in your codebase, and you have no simple way to do it outside of logging every function call with ``print()`` statements or the Python ``logger``.
 
-Mock, MagicMock, and autospec
-=============================
+For these reasons and more, there exists the ``mock`` library. Several languages have their own ways and means for mocking behavior, but ``mock`` is a specific, ``pip`` installable library in Python 2. It was so useful that it was built into Python 3.3+'s ``unittest`` library.
 
+We're currently using ``pytest``, so we don't have to worry about accessing ``mock`` from the ``unittest`` library; we can just use `pytest-mock <https://pypi.python.org/pypi/pytest-mock>`_.
+If this package is installed, then when we run ``py.test`` we'll have access to the ``mocker`` fixture, which has attached all of the functionality of the ``unittest.mock`` library.
 
+This won't be an exhaustive explanation of what can be done with the ``pytest-mock`` library, but it will cover a couple of the more common use cases.
 
 Monkey Patching
 ===============
 
-You can do more than just create fake objects.
-You can also fake specific function or method calls.
-Take for example the following functions for getting and parsing data from GitHub
+Let's take as an example the following functions for getting and parsing data from GitHub
 
 .. code-block:: python
 
@@ -78,6 +79,7 @@ In the example above, we use the ``.setattr`` method to swap out our real ``user
 
 The substitute function in turn simply returns whatever we tell it to for the purposes of the test(s).
 In the example above we hardcode a string that is a proper JSON object, just like ``users.get_follower_names`` is expecting.
+**The substitute function otherwise does no work that's not specified in the function definition.**
 
 The end result is that, **FOR THIS TEST**, whenever we would make the the full HTTP request to GitHub for its data we instead get back the return value of ``substitute_func()``.
 
@@ -127,5 +129,77 @@ If we want it so that across *every* test this behavior is patched without us ha
         from users import get_follower_names
         assert 'jradavenport' in get_follower_names('nhuntwalker')
 
-However, beware of changing behavior universally.
+Note how the test no longer includes our fixture in the parameter list.
+
+Beware of changing behavior universally.
 If we monkey patch the behavior of ``get_user_followers`` automatically for every test, we risk not being able to actually test the function after all.
+
+
+MagicMock and Faking Objects
+============================
+
+Sometimes it's not enough to patch over a single function; sometimes you need an instance of a whole object, but constructing that object is a non-trivial endeavor.
+Consider the following example:
+
+.. code-block:: python
+
+    def some_view(request):
+        if request.method == "GET":
+            return {}
+        if request.method == "POST":
+            new_entry = Entry(
+                title = request.POST['title'],
+                body = request.POST['body']
+            )
+            request.dbsession.add(new_entry)
+            return HTTPFound(request.route_url('entry_list'))
+
+Here we have a view function that handles both ``GET`` and ``POST`` requests.
+It's expecting as an argument some sort of ``request`` object, but typically we can only build request objects from a real HTTP request.
+So we must either have some sort of test client set up that can send requests, or receive real requests to test our view.
+
+(Ignore the fact that this is based on Pyramid's pattern for building requests and that Pyramid has its own built-in ``DummyRequest`` object)
+
+With the `MagicMock <https://docs.python.org/3/library/unittest.mock.html#unittest.mock.MagicMock>`_ object, we can build an object that can act like a ``request`` without having to actually be a REAL instance of any ``Request`` class.
+On that object we can define any methods or attributes that might be useful for the test.
+This way, we worry less about the configuration that goes into testing a function and focus instead only on giving the function what it needs to work.
+
+To get access to the ``MagicMock`` object from ``pytest-mock``, we have to first include the ``mocker`` fixture provided to us by ``pytest-mock``.
+The ``MagicMock`` object is an attribute of that fixture, and can be used as you please from there.
+
+In our test for ``some_view``, we might write
+
+.. code-block:: python
+
+    def test_some_view_get_req_returns_dict(mocker):
+        from views import some_view
+        req = mocker.MagicMock()
+        req.method = 'GET'
+        assert some_view(req) == {}
+
+In this way we test that the ``some_view`` function given an object with a ``method`` of ``GET`` returns the dictionary that we expect.
+Similarly, we can write more tests assuming that whatever mocked object we pass through is the real object.
+
+.. code-block:: python
+
+    def test_some_view_post_returns_redirect(mocker):
+        from views import some_view
+        req = mocker.MagicMock()
+        req.method = 'POST'
+        req.POST = {'title': 'some title', 'body': 'some body text'}
+        req.dbsession.add = lambda arg: None
+        assert isinstance(some_view(req), HTTPFound)
+
+Here we've made an object with a ``method`` attribute that has a value of ``'POST'``, a ``POST`` attribute that is a dictionary containing some values, and a ``dbsession`` attribute that has its own fake method, ``add()``.
+**None of these are required to actually work in order to make our test pass.**
+We bypass the overhead of having to set up that functionality just in order to run these tests.
+Instead, we make sure that our fake object has all the attributes we need to make the function work. Then we pass it to the function with the function being none the wiser.
+
+As we can see, the ``MagicMock`` object is pretty much sculpting clay, taking on whatever form and functionality that we need for the moment.
+It's good for unit tests of functions that don't require that we also check for side effects.
+Depending on the side effect we're expecting, we may even be able to mock that by providing the ``side_effect`` keyword argument on initialization of MagicMock, but if we're getting to the point of testing interconnected functionality we may want to choose a different testing method.
+
+``mocker.patch`` for Tracking Method Calls
+------------------------------------------
+
+TO DO: this

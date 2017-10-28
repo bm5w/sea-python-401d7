@@ -176,18 +176,18 @@ div.nboutput  > :nth-child(2).stderr {
 </style>
 <div class="section" id="mocking-monkey-patching-and-faking-functionality">
 <h1>Mocking, Monkey Patching, and Faking Functionality<a class="headerlink" href="#mocking-monkey-patching-and-faking-functionality" title="Permalink to this headline">¶</a></h1>
-<p>Sometimes you need some fake data.</p>
-<p>The <code class="docutils literal"><span class="pre">mock</span></code> library is a specific, <code class="docutils literal"><span class="pre">pip</span></code> installable library in Python 2 but is built into Python 3&#8217;s <code class="docutils literal"><span class="pre">unittest</span></code> library.
-Because we&#8217;re using pytest we don&#8217;t have to worry about that; we can just use <a class="reference external" href="https://pypi.python.org/pypi/pytest-mock">pytest-mock</a>.
-If this package is installed, then when we run <code class="docutils literal"><span class="pre">py.test</span></code> we&#8217;ll have access to the <code class="docutils literal"><span class="pre">mocker</span></code> fixture.</p>
-<div class="section" id="mock-magicmock-and-autospec">
-<h2>Mock, MagicMock, and autospec<a class="headerlink" href="#mock-magicmock-and-autospec" title="Permalink to this headline">¶</a></h2>
-</div>
+<p>Sometimes while testing you need some fake data.</p>
+<p>Maybe you&#8217;re doing a third-party API call that can be expensive in execution, or has some limit that you don&#8217;t want to risk reaching.
+Or, maybe you need to create a whole object on the fly just for one or two pieces of functionality, but that object can be difficult to construct from scratch.
+Or maybe your needs are simpler.
+Maybe you just want to track some metrics about function/method calls in your codebase, and you have no simple way to do it outside of logging every function call with <code class="docutils literal"><span class="pre">print()</span></code> statements or the Python <code class="docutils literal"><span class="pre">logger</span></code>.</p>
+<p>For these reasons and more, there exists the <code class="docutils literal"><span class="pre">mock</span></code> library. Several languages have their own ways and means for mocking behavior, but <code class="docutils literal"><span class="pre">mock</span></code> is a specific, <code class="docutils literal"><span class="pre">pip</span></code> installable library in Python 2. It was so useful that it was built into Python 3.3+&#8217;s <code class="docutils literal"><span class="pre">unittest</span></code> library.</p>
+<p>We&#8217;re currently using <code class="docutils literal"><span class="pre">pytest</span></code>, so we don&#8217;t have to worry about accessing <code class="docutils literal"><span class="pre">mock</span></code> from the <code class="docutils literal"><span class="pre">unittest</span></code> library; we can just use <a class="reference external" href="https://pypi.python.org/pypi/pytest-mock">pytest-mock</a>.
+If this package is installed, then when we run <code class="docutils literal"><span class="pre">py.test</span></code> we&#8217;ll have access to the <code class="docutils literal"><span class="pre">mocker</span></code> fixture, which has attached all of the functionality of the <code class="docutils literal"><span class="pre">unittest.mock</span></code> library.</p>
+<p>This won&#8217;t be an exhaustive explanation of what can be done with the <code class="docutils literal"><span class="pre">pytest-mock</span></code> library, but it will cover a couple of the more common use cases.</p>
 <div class="section" id="monkey-patching">
 <h2>Monkey Patching<a class="headerlink" href="#monkey-patching" title="Permalink to this headline">¶</a></h2>
-<p>You can do more than just create fake objects.
-You can also fake specific function or method calls.
-Take for example the following functions for getting and parsing data from GitHub</p>
+<p>Let&#8217;s take as an example the following functions for getting and parsing data from GitHub</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c1"># called users.py</span>
 
 <span class="kn">import</span> <span class="nn">requests</span>
@@ -237,7 +237,8 @@ All you have to do is have <code class="docutils literal"><span class="pre">pip<
 In the example above, we use the <code class="docutils literal"><span class="pre">.setattr</span></code> method to swap out our real <code class="docutils literal"><span class="pre">users.get_user_followers</span></code> function with some other substitute function, <code class="docutils literal"><span class="pre">substitute_func</span></code>.
 <code class="docutils literal"><span class="pre">monkeypatch</span></code> treats the <code class="docutils literal"><span class="pre">users</span></code> module as an object, changing the behavior of the <code class="docutils literal"><span class="pre">get_user_followers</span></code> function inside the module when called for this test.</p>
 <p>The substitute function in turn simply returns whatever we tell it to for the purposes of the test(s).
-In the example above we hardcode a string that is a proper JSON object, just like <code class="docutils literal"><span class="pre">users.get_follower_names</span></code> is expecting.</p>
+In the example above we hardcode a string that is a proper JSON object, just like <code class="docutils literal"><span class="pre">users.get_follower_names</span></code> is expecting.
+<strong>The substitute function otherwise does no work that&#8217;s not specified in the function definition.</strong></p>
 <p>The end result is that, <strong>FOR THIS TEST</strong>, whenever we would make the the full HTTP request to GitHub for its data we instead get back the return value of <code class="docutils literal"><span class="pre">substitute_func()</span></code>.</p>
 <p>Outside of this test, unless we use <code class="docutils literal"><span class="pre">monkeypatch</span></code> again, <code class="docutils literal"><span class="pre">users.get_user_followers</span></code> will work the way that it&#8217;s supposed to.</p>
 <p>Note that <strong>monkey patching a function call does not count as actually testing that function call!</strong>
@@ -279,8 +280,65 @@ We can use that to our advantage.</p>
     <span class="k">assert</span> <span class="s1">&#39;jradavenport&#39;</span> <span class="ow">in</span> <span class="n">get_follower_names</span><span class="p">(</span><span class="s1">&#39;nhuntwalker&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>However, beware of changing behavior universally.
+<p>Note how the test no longer includes our fixture in the parameter list.</p>
+<p>Beware of changing behavior universally.
 If we monkey patch the behavior of <code class="docutils literal"><span class="pre">get_user_followers</span></code> automatically for every test, we risk not being able to actually test the function after all.</p>
+</div>
+<div class="section" id="magicmock-and-faking-objects">
+<h2>MagicMock and Faking Objects<a class="headerlink" href="#magicmock-and-faking-objects" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes it&#8217;s not enough to patch over a single function; sometimes you need an instance of a whole object, but constructing that object is a non-trivial endeavor.
+Consider the following example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">some_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+        <span class="n">new_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">],</span>
+            <span class="n">body</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">dbsession</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_entry</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">HTTPFound</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">route_url</span><span class="p">(</span><span class="s1">&#39;entry_list&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Here we have a view function that handles both <code class="docutils literal"><span class="pre">GET</span></code> and <code class="docutils literal"><span class="pre">POST</span></code> requests.
+It&#8217;s expecting as an argument some sort of <code class="docutils literal"><span class="pre">request</span></code> object, but typically we can only build request objects from a real HTTP request.
+So we must either have some sort of test client set up that can send requests, or receive real requests to test our view.</p>
+<p>(Ignore the fact that this is based on Pyramid&#8217;s pattern for building requests and that Pyramid has its own built-in <code class="docutils literal"><span class="pre">DummyRequest</span></code> object)</p>
+<p>With the <a class="reference external" href="https://docs.python.org/3/library/unittest.mock.html#unittest.mock.MagicMock">MagicMock</a> object, we can build an object that can act like a <code class="docutils literal"><span class="pre">request</span></code> without having to actually be a REAL instance of any <code class="docutils literal"><span class="pre">Request</span></code> class.
+On that object we can define any methods or attributes that might be useful for the test.
+This way, we worry less about the configuration that goes into testing a function and focus instead only on giving the function what it needs to work.</p>
+<p>To get access to the <code class="docutils literal"><span class="pre">MagicMock</span></code> object from <code class="docutils literal"><span class="pre">pytest-mock</span></code>, we have to first include the <code class="docutils literal"><span class="pre">mocker</span></code> fixture provided to us by <code class="docutils literal"><span class="pre">pytest-mock</span></code>.
+The <code class="docutils literal"><span class="pre">MagicMock</span></code> object is an attribute of that fixture, and can be used as you please from there.</p>
+<p>In our test for <code class="docutils literal"><span class="pre">some_view</span></code>, we might write</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_some_view_get_req_returns_dict</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">views</span> <span class="kn">import</span> <span class="n">some_view</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span>
+    <span class="k">assert</span> <span class="n">some_view</span><span class="p">(</span><span class="n">req</span><span class="p">)</span> <span class="o">==</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>In this way we test that the <code class="docutils literal"><span class="pre">some_view</span></code> function given an object with a <code class="docutils literal"><span class="pre">method</span></code> of <code class="docutils literal"><span class="pre">GET</span></code> returns the dictionary that we expect.
+Similarly, we can write more tests assuming that whatever mocked object we pass through is the real object.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_some_view_post_returns_redirect</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">views</span> <span class="kn">import</span> <span class="n">some_view</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;POST&#39;</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">POST</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;some title&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">:</span> <span class="s1">&#39;some body text&#39;</span><span class="p">}</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">dbsession</span><span class="o">.</span><span class="n">add</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">arg</span><span class="p">:</span> <span class="bp">None</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">some_view</span><span class="p">(</span><span class="n">req</span><span class="p">),</span> <span class="n">HTTPFound</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here we&#8217;ve made an object with a <code class="docutils literal"><span class="pre">method</span></code> attribute that has a value of <code class="docutils literal"><span class="pre">'POST'</span></code>, a <code class="docutils literal"><span class="pre">POST</span></code> attribute that is a dictionary containing some values, and a <code class="docutils literal"><span class="pre">dbsession</span></code> attribute that has its own fake method, <code class="docutils literal"><span class="pre">add()</span></code>.
+<strong>None of these are required to actually work in order to make our test pass.</strong>
+We bypass the overhead of having to set up that functionality just in order to run these tests.
+Instead, we make sure that our fake object has all the attributes we need to make the function work. Then we pass it to the function with the function being none the wiser.</p>
+<p>As we can see, the <code class="docutils literal"><span class="pre">MagicMock</span></code> object is pretty much sculpting clay, taking on whatever form and functionality that we need for the moment.
+It&#8217;s good for unit tests of functions that don&#8217;t require that we also check for side effects.
+Depending on the side effect we&#8217;re expecting, we may even be able to mock that by providing the <code class="docutils literal"><span class="pre">side_effect</span></code> keyword argument on initialization of MagicMock, but if we&#8217;re getting to the point of testing interconnected functionality we may want to choose a different testing method.</p>
+<div class="section" id="mocker-patch-for-tracking-method-calls">
+<h3><code class="docutils literal"><span class="pre">mocker.patch</span></code> for Tracking Method Calls<a class="headerlink" href="#mocker-patch-for-tracking-method-calls" title="Permalink to this headline">¶</a></h3>
+<p>TO DO: this</p>
+</div>
 </div>
 </div>
 
@@ -293,8 +351,11 @@ If we monkey patch the behavior of <code class="docutils literal"><span class="p
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Mocking, Monkey Patching, and Faking Functionality</a><ul>
-<li><a class="reference internal" href="#mock-magicmock-and-autospec">Mock, MagicMock, and autospec</a></li>
 <li><a class="reference internal" href="#monkey-patching">Monkey Patching</a></li>
+<li><a class="reference internal" href="#magicmock-and-faking-objects">MagicMock and Faking Objects</a><ul>
+<li><a class="reference internal" href="#mocker-patch-for-tracking-method-calls"><code class="docutils literal"><span class="pre">mocker.patch</span></code> for Tracking Method Calls</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

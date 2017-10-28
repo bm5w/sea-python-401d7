@@ -16,6 +16,9 @@ Objectives
 Readings
 ========
 
+* `Python Mocking 101: Fake It Before You Make It <https://blog.fugue.co/2016-02-11-python-mocking-101.html>`_
+* `Python Unit Testing with Pytest and Mock <https://medium.com/@bfortuner/python-unit-testing-with-pytest-and-mock-197499c4623c>`_
+* `Python mock by example <http://www.alexandrejoseph.com/blog/2015-08-21-python-mock-example.html>`_
 * `Building an AJAX Hello World with Python Pyramid <https://www.codementor.io/sheena/build-ajax-helloworld-pyramid-du107vhtl>`_
 * `AJAX Development with JSON Renderers <http://docs.pylonsproject.org/projects/pyramid/en/latest/quick_tutorial/json.html>`_
 
