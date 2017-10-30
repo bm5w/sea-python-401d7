@@ -187,6 +187,9 @@ If this package is installed, then when we run <code class="docutils literal"><s
 <p>This won&#8217;t be an exhaustive explanation of what can be done with the <code class="docutils literal"><span class="pre">pytest-mock</span></code> library, but it will cover a couple of the more common use cases.</p>
 <div class="section" id="monkey-patching">
 <h2>Monkey Patching<a class="headerlink" href="#monkey-patching" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">monkeypatch</span></code> is a part of the <code class="docutils literal"><span class="pre">pytest-mock</span></code> library that allows you to intercept what a function would normally do, substituting its full execution with a return value of your own specification.
+Note that <strong>monkey patching a function call does not count as actually testing that function call!</strong>
+<strong>You ARE NOT actually using the function that you&#8217;ve monkey patched; you are rejecting its default behavior and subsituting it with new behavior.</strong></p>
 <p>Let&#8217;s take as an example the following functions for getting and parsing data from GitHub</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c1"># called users.py</span>
 
@@ -235,15 +238,12 @@ All you have to do is have <code class="docutils literal"><span class="pre">pip<
 <p>Notice the change in imports.
 <a class="reference external" href="https://docs.pytest.org/en/latest/monkeypatch.html#method-reference-of-the-monkeypatch-fixture">monkeypatch</a> is an object unto itself with a variety of methods for faking attributes of other objects or whole namespaces.
 In the example above, we use the <code class="docutils literal"><span class="pre">.setattr</span></code> method to swap out our real <code class="docutils literal"><span class="pre">users.get_user_followers</span></code> function with some other substitute function, <code class="docutils literal"><span class="pre">substitute_func</span></code>.
-<code class="docutils literal"><span class="pre">monkeypatch</span></code> treats the <code class="docutils literal"><span class="pre">users</span></code> module as an object, changing the behavior of the <code class="docutils literal"><span class="pre">get_user_followers</span></code> function inside the module when called for this test.</p>
+Treating the <code class="docutils literal"><span class="pre">users</span></code> module as an object, <code class="docutils literal"><span class="pre">monkeypatch</span></code> changes the behavior of the <code class="docutils literal"><span class="pre">get_user_followers</span></code> function inside the module when called for this test.</p>
 <p>The substitute function in turn simply returns whatever we tell it to for the purposes of the test(s).
 In the example above we hardcode a string that is a proper JSON object, just like <code class="docutils literal"><span class="pre">users.get_follower_names</span></code> is expecting.
 <strong>The substitute function otherwise does no work that&#8217;s not specified in the function definition.</strong></p>
 <p>The end result is that, <strong>FOR THIS TEST</strong>, whenever we would make the the full HTTP request to GitHub for its data we instead get back the return value of <code class="docutils literal"><span class="pre">substitute_func()</span></code>.</p>
 <p>Outside of this test, unless we use <code class="docutils literal"><span class="pre">monkeypatch</span></code> again, <code class="docutils literal"><span class="pre">users.get_user_followers</span></code> will work the way that it&#8217;s supposed to.</p>
-<p>Note that <strong>monkey patching a function call does not count as actually testing that function call!</strong>
-You ARE NOT actually using the function that you&#8217;ve monkey patched; you are rejecting its default behavior and subsituting it with new behavior.
-If you want to test that the function actually does talk to GitHub, you will need to do just that.</p>
 <p>As with most testing problems, if we want to have the same behavior occur across a variety of tests, we can always set up a fixture.
 Remember that whenever you include a fixture in your test function, the code inside of the fixture is run in its entirety before the test itself is run.
 We can use that to our advantage.</p>
@@ -335,9 +335,55 @@ Instead, we make sure that our fake object has all the attributes we need to mak
 <p>As we can see, the <code class="docutils literal"><span class="pre">MagicMock</span></code> object is pretty much sculpting clay, taking on whatever form and functionality that we need for the moment.
 It&#8217;s good for unit tests of functions that don&#8217;t require that we also check for side effects.
 Depending on the side effect we&#8217;re expecting, we may even be able to mock that by providing the <code class="docutils literal"><span class="pre">side_effect</span></code> keyword argument on initialization of MagicMock, but if we&#8217;re getting to the point of testing interconnected functionality we may want to choose a different testing method.</p>
-<div class="section" id="mocker-patch-for-tracking-method-calls">
-<h3><code class="docutils literal"><span class="pre">mocker.patch</span></code> for Tracking Method Calls<a class="headerlink" href="#mocker-patch-for-tracking-method-calls" title="Permalink to this headline">¶</a></h3>
-<p>TO DO: this</p>
+<div class="section" id="mocker-spy-for-tracking-your-methods">
+<h3><code class="docutils literal"><span class="pre">mocker.spy</span></code> for Tracking Your Methods<a class="headerlink" href="#mocker-spy-for-tracking-your-methods" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes you don&#8217;t want to completely hijack a function.
+Sometimes you just want to keep track of a function&#8217;s usage in your application or codebase.
+For that, there&#8217;s <code class="docutils literal"><span class="pre">mocker.spy</span></code>.</p>
+<p><code class="docutils literal"><span class="pre">mocker.spy</span></code> will allow your object or function to act exactly as it normally would in <em>all cases</em>.
+The benefit is that you can use some of the features of a <code class="docutils literal"><span class="pre">MagicMock</span></code> object alongside your function or object&#8217;s regular operations.</p>
+<p>For example, consider the following massively-inefficient object</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Numbers</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="n">iterable</span>
+
+    <span class="k">def</span> <span class="nf">make_unique</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">visited</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_drop_val</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">continue</span>
+            <span class="n">visited</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">_drop_val</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The method <code class="docutils literal"><span class="pre">_drop_val</span></code> should be called whenever there is a value to be removed from the container list.
+Perhaps for a given list of values (i.e. <code class="docutils literal"><span class="pre">[1,2,1,2,1,2]</span></code>) I want to make sure that <code class="docutils literal"><span class="pre">_drop_val</span></code> is called a specific number of times (i.e. 4).
+I can bake that into my tests by spying on <code class="docutils literal"><span class="pre">_drop_val</span></code> and checking the number of times this method was called.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># test code</span>
+<span class="k">def</span> <span class="nf">test_values_are_dropped_if_already_seen</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+    <span class="n">nums</span> <span class="o">=</span> <span class="n">Numbers</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">mocker</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="s1">&#39;_drop_val&#39;</span><span class="p">)</span>
+    <span class="n">nums</span><span class="o">.</span><span class="n">make_unique</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">nums</span><span class="o">.</span><span class="n">_make_unique</span><span class="o">.</span><span class="n">call_count</span> <span class="o">==</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<p>And now, every time that <code class="docutils literal"><span class="pre">_drop_val</span></code> was called, that tally was kept and can be verified later on.</p>
+<p>In addition to spying on the call count, spied-on methods have a handful of other useful functionality:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">assert_called_with(*args,</span> <span class="pre">**kwargs)</span></code></li>
+<li><code class="docutils literal"><span class="pre">assert_any_call(*args,</span> <span class="pre">**kwargs)</span></code></li>
+<li><code class="docutils literal"><span class="pre">called</span></code></li>
+<li><code class="docutils literal"><span class="pre">mock_calls</span></code></li>
+</ul>
+<p>The above is not an exhaustive list.
+Check <a class="reference external" href="http://www.voidspace.org.uk/python/mock/mock.html">the Mock Class documentation</a> for the full details.</p>
+<p>You can use this in a number of ways, like finding bottlenecks in your code execution by searching for methods that get called a bunch of times, troubleshooting function execution by verifying what it&#8217;s being called with, finding out what functions/methods are calling the one you&#8217;re interested in, etc.</p>
 </div>
 </div>
 </div>
@@ -353,7 +399,7 @@ Depending on the side effect we&#8217;re expecting, we may even be able to mock 
 <li><a class="reference internal" href="#">Mocking, Monkey Patching, and Faking Functionality</a><ul>
 <li><a class="reference internal" href="#monkey-patching">Monkey Patching</a></li>
 <li><a class="reference internal" href="#magicmock-and-faking-objects">MagicMock and Faking Objects</a><ul>
-<li><a class="reference internal" href="#mocker-patch-for-tracking-method-calls"><code class="docutils literal"><span class="pre">mocker.patch</span></code> for Tracking Method Calls</a></li>
+<li><a class="reference internal" href="#mocker-spy-for-tracking-your-methods"><code class="docutils literal"><span class="pre">mocker.spy</span></code> for Tracking Your Methods</a></li>
 </ul>
 </li>
 </ul>

@@ -19,6 +19,10 @@ This won't be an exhaustive explanation of what can be done with the ``pytest-mo
 Monkey Patching
 ===============
 
+``monkeypatch`` is a part of the ``pytest-mock`` library that allows you to intercept what a function would normally do, substituting its full execution with a return value of your own specification.
+Note that **monkey patching a function call does not count as actually testing that function call!**
+**You ARE NOT actually using the function that you've monkey patched; you are rejecting its default behavior and subsituting it with new behavior.**
+
 Let's take as an example the following functions for getting and parsing data from GitHub
 
 .. code-block:: python
@@ -75,7 +79,7 @@ All you have to do is have ``pip`` installed ``pytest-mock``.
 Notice the change in imports.
 `monkeypatch <https://docs.pytest.org/en/latest/monkeypatch.html#method-reference-of-the-monkeypatch-fixture>`_ is an object unto itself with a variety of methods for faking attributes of other objects or whole namespaces.
 In the example above, we use the ``.setattr`` method to swap out our real ``users.get_user_followers`` function with some other substitute function, ``substitute_func``.
-``monkeypatch`` treats the ``users`` module as an object, changing the behavior of the ``get_user_followers`` function inside the module when called for this test.
+Treating the ``users`` module as an object, ``monkeypatch`` changes the behavior of the ``get_user_followers`` function inside the module when called for this test.
 
 The substitute function in turn simply returns whatever we tell it to for the purposes of the test(s).
 In the example above we hardcode a string that is a proper JSON object, just like ``users.get_follower_names`` is expecting.
@@ -84,10 +88,6 @@ In the example above we hardcode a string that is a proper JSON object, just lik
 The end result is that, **FOR THIS TEST**, whenever we would make the the full HTTP request to GitHub for its data we instead get back the return value of ``substitute_func()``.
 
 Outside of this test, unless we use ``monkeypatch`` again, ``users.get_user_followers`` will work the way that it's supposed to.
-
-Note that **monkey patching a function call does not count as actually testing that function call!**
-You ARE NOT actually using the function that you've monkey patched; you are rejecting its default behavior and subsituting it with new behavior.
-If you want to test that the function actually does talk to GitHub, you will need to do just that.
 
 As with most testing problems, if we want to have the same behavior occur across a variety of tests, we can always set up a fixture.
 Remember that whenever you include a fixture in your test function, the code inside of the fixture is run in its entirety before the test itself is run.
@@ -199,7 +199,61 @@ As we can see, the ``MagicMock`` object is pretty much sculpting clay, taking on
 It's good for unit tests of functions that don't require that we also check for side effects.
 Depending on the side effect we're expecting, we may even be able to mock that by providing the ``side_effect`` keyword argument on initialization of MagicMock, but if we're getting to the point of testing interconnected functionality we may want to choose a different testing method.
 
-``mocker.patch`` for Tracking Method Calls
-------------------------------------------
+``mocker.spy`` for Tracking Your Methods
+----------------------------------------
 
-TO DO: this
+Sometimes you don't want to completely hijack a function.
+Sometimes you just want to keep track of a function's usage in your application or codebase.
+For that, there's ``mocker.spy``.
+
+``mocker.spy`` will allow your object or function to act exactly as it normally would in *all cases*.
+The benefit is that you can use some of the features of a ``MagicMock`` object alongside your function or object's regular operations.
+
+For example, consider the following massively-inefficient object
+
+.. code-block:: python
+
+    class Numbers(object):
+        def __init__(self, iterable):
+            self._container = iterable
+
+        def make_unique(self):
+            i = 0
+            visited = []
+            while i < len(self._container):
+                if self._container[i] in visited:
+                    self._drop_val(i)
+                    i = 0
+                    continue
+                visited.append(self._container[i])
+                i += 1
+
+        def _drop_val(self, idx):
+            self._container.pop(idx)
+
+The method ``_drop_val`` should be called whenever there is a value to be removed from the container list.
+Perhaps for a given list of values (i.e. ``[1,2,1,2,1,2]``) I want to make sure that ``_drop_val`` is called a specific number of times (i.e. 4).
+I can bake that into my tests by spying on ``_drop_val`` and checking the number of times this method was called.
+
+.. code-block:: python
+
+    # test code
+    def test_values_are_dropped_if_already_seen(mocker):
+        nums = Numbers([1,2,1,2,1,2])
+        mocker.spy(nums, '_drop_val')
+        nums.make_unique()
+        assert nums._make_unique.call_count == 4
+
+And now, every time that ``_drop_val`` was called, that tally was kept and can be verified later on.
+
+In addition to spying on the call count, spied-on methods have a handful of other useful functionality:
+
+- ``assert_called_with(*args, **kwargs)``
+- ``assert_any_call(*args, **kwargs)``
+- ``called``
+- ``mock_calls``
+
+The above is not an exhaustive list.
+Check `the Mock Class documentation <http://www.voidspace.org.uk/python/mock/mock.html>`_ for the full details.
+
+You can use this in a number of ways, like finding bottlenecks in your code execution by searching for methods that get called a bunch of times, troubleshooting function execution by verifying what it's being called with, finding out what functions/methods are calling the one you're interested in, etc.
