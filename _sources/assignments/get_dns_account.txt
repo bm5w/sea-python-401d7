@@ -18,7 +18,13 @@ I you do not already have one, get an account with a DNS provider.  Choose one
 that can provide email services for you so that you can associate email
 addresses with the domains you create.
 
+I use, and heartily recommend `EasyDNS`_.  There are, however, less expensive
+alternatives available.
+
+.. _EasyDNS: https://www.easydns.com/
+
 Unless you already have an account with them **DO NOT USE GoDaddy**.
+Also note (and this is **important**), **WHEN YOU REGISTER WITH A DNS PROVIDER, MAKE SURE THAT YOU SELECT WHATEVER OPTION IS AVAILABLE FOR PRIVATIZING YOUR "WHOIS" INFORMATION. IF YOU DO NOT DO THIS, YOU WILL BE INUNDATED WITH SPAM EMAIL AND PHONE CALLS!**
 
 To submit this assignment, please enter the domain name you have chosen.
 
