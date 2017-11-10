@@ -13,19 +13,22 @@ Tuesday
 Objectives
 ==========
 
-* Learn about when and why to re-scale data
-* Use K-Nearest Neighbors to predict categories by distance
+* Learn about supervised classification and how to use data you have to predict new data.
+* Get introduced to unsupervised classification algorithms and how they're used
+* Build and understand the Decision Tree Classifier
 
 Readings
 ========
 
-* `Feature Scaling and Normalization <http://www.datasciencecentral.com/profiles/blogs/feature-scaling-and-normalization>`_
-* `A Detailed Introduction to K-Nearest Neighbors <https://saravananthirumuruganathan.wordpress.com/2010/05/17/a-detailed-introduction-to-k-nearest-neighbor-knn-algorithm/>`_
-* K-Nearest Neighbors Algorithm (`Wikipedia <https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm>`_)
-* How KNN Works (`video <https://www.youtube.com/watch?v=UqYde-LULfs>`_)
+* The first 3 sections of `this chapter <http://www.ise.bgu.ac.il/faculty/liorr/hbchap8.pdf>`_
+* `Decision Tree Learning <https://en.wikipedia.org/wiki/Decision_tree_learning>`_
+* Sections 3.1 through 3.3 of `this chapter <https://www.cs.princeton.edu/courses/archive/spring07/cos424/papers/mitchell-dectrees.pdf>`_
+* `How to Implement the Decision Tree Algorithm from Scratch in Python <http://machinelearningmastery.com/implement-decision-tree-algorithm-scratch-python/>`_
 
 Review
 ======
+
+Getting up and running with AWS ElasticSearch and Django Haystack
 
 Concepts
 ========
@@ -33,20 +36,17 @@ Concepts
 .. toctree::
     :maxdepth: 2
 
-    /lectures/rescaling_data
-    /lectures/k_nearest_neighbors
+    /lectures/supervised_classification
+    /lectures/unsupervised_classification
+    /lectures/decision_tree
 
 * Final Whiteboarding
-
-Demo
-====
-
 
 Assignments
 ===========
 
-* :doc:`/assignments/ml_3_k_nearest_neighbors`
-* :doc:`/assignments/project_07_stories_begin`
+* :doc:`/assignments/ml_2_decision_tree`
 * :doc:`/assignments/django_13_social_auth`
+* :doc:`/assignments/project_07_stories_begin`
 * :doc:`/assignments/blog_post_publish` (Due Friday)
 * :doc:`/assignments/daily_lj_entry`

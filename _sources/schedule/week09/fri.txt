@@ -16,7 +16,6 @@ Concepts
 * Prepare for Project Week
 * Final Whiteboarding
 
-
 Assignments
 ===========
 

@@ -13,19 +13,34 @@ Thursday
 Objectives
 ==========
 
-* Learn about how authentication and authorization work in a Django app
-* Learn more about how to walk through a Trie Tree
+* Learn how text can be handled as a tree with the Trie Tree
+* Begin to think about our final projects
+* Learn about the services offered by Amazon Web Services (AWS)
+* Learn to provision a web server in AWS
+* Learn how to deploy a simple WSGI app to AWS.
+
 
 Readings
 ========
 
+AWS and Deployment
+------------------
+
+* (Read *ONLY!* Don't *do* this yet) `Deploying a Django App to Amazon AWS <https://ashokfernandez.wordpress.com/2014/03/11/deploying-a-django-app-to-amazon-aws-with-nginx-gunicorn-git/>`_
+* (Read *ONLY!* Do not *do* yet!) `Creating a Database Server <http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html>`_
+* Be aware of the `security controls for Amazon RDS <http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.html>`_
+* In particular, learn about `RDS Security Groups <http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.RDSSecurityGroups.html>`_ and controlling access between RDS and EC2
+
+Trie Trees
+----------
+
+* Trie Tree (`Wikipedia <https://en.wikipedia.org/wiki/Trie>`_)
 * `Trie Trees <https://www.youtube.com/watch?v=RIUY7ieyH40>`_
-* `Django Security <https://docs.djangoproject.com/en/dev/topics/security/>`_
-* `Is Django's Built-In Security Enough? <http://security.stackexchange.com/questions/27805/is-djangos-built-in-security-enough>`_
-* Read about using `Django's Authentication Systems <https://docs.djangoproject.com/es/dev/topics/auth/default/>`_
 
 Review
 ======
+
+* Collisions in Hash Tables
 
 Concepts
 ========
@@ -33,21 +48,21 @@ Concepts
 .. toctree::
     :maxdepth: 2
 
-    /lectures/django_security
-
-* Trie Tree Traversals
-
+    /lectures/simple_wsgi_deployment
+    /lectures/django_cbv2
+    /lectures/trie
 
 Demo
 ====
 
+Interacting with AWS through the web, an introduction to Amazon Web Services.
 
 Assignments
 ===========
 
-* :doc:`/assignments/trie_traversal`
+* :doc:`/assignments/trie_implementation`
+* :doc:`/assignments/aws_0_deploy_wsgi_app`
+* :doc:`/assignments/django_6_editing`
 * :doc:`/assignments/django_7_complete_frontend` (Due Friday Week 8)
 * :doc:`/assignments/blog_post_draft`
 * :doc:`/assignments/daily_lj_entry`
-
-

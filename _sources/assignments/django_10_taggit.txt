@@ -10,10 +10,17 @@ Django: Implement Django Taggit for Imager
 
     This document contains no slides.
 
-We've seen how tags can be used to categorize models on the back-end and the front.
+Read about how tags can be used to categorize models on the back-end and the front.
+
+* `Tagging with Django Taggit <https://godjango.com/33-tagging-with-django-taggit/>`_
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/django_taggit
+
 It's time for you to implement them yourself.
 
-For your next assignment for the Imager app, you'll be adding tags to your images. 
+For your this assignment for the Imager app, you'll be adding tags to your images. 
 
 Tasks
 =====

@@ -181,60 +181,52 @@ div.nboutput  > :nth-child(2).stderr {
 <ul class="simple">
 <li>Investigate Django&#8217;s Class-Based Views (CBV) and how they work</li>
 <li>Begin implementing your own forms into your Django Imager app</li>
-<li>Learn how text can be handled as a tree with the Trie Tree</li>
-<li>Begin to think about our final projects</li>
+<li>Be comfortable working with Django forms and form handling</li>
+<li>Learn about what a Hash Table is and how it can be implemented.</li>
 </ul>
 </div>
 <div class="section" id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first">Trie Tree (<a class="reference external" href="https://en.wikipedia.org/wiki/Trie">Wikipedia</a>)</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://www.youtube.com/watch?v=RIUY7ieyH40">Trie Trees</a></p>
-</li>
-<li><p class="first"><a class="reference external" href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/TUT_WebAppWithRDS.html">Create a Web Server and an Amazon RDS Database</a></p>
-</li>
-<li><p class="first"><a class="reference external" href="https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-14-04">Setting up Django with Postgres, Nginx, and Gunicorn on Ubuntu 14.04</a></p>
-</li>
-<li><dl class="first docutils">
-<dt>Screencasts about Django Class-Based Views:</dt>
-<dd><ul class="first last simple">
-<li><a class="reference external" href="https://godjango.com/15-class-based-views-part-1-templateview-and-redirectview/">Part 1</a></li>
-<li><a class="reference external" href="https://godjango.com/16-class-based-views-part-2-listview-and-formview/">Part 2</a></li>
-<li><a class="reference external" href="https://godjango.com/17-class-based-views-part-3-detailview-and-template_name-shortcut/">Part 3</a></li>
+<div class="section" id="hashing">
+<h3>Hashing<a class="headerlink" href="#hashing" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Read all about various <a class="reference external" href="http://www.eternallyconfuzzled.com/tuts/algorithms/jsw_tut_hashing.aspx">hashing functions</a> and how they work.</li>
 </ul>
-</dd>
-</dl>
-</li>
+</div>
+<div class="section" id="django-forms">
+<h3>Django Forms<a class="headerlink" href="#django-forms" title="Permalink to this headline">¶</a></h3>
+<p>To support creating and editing objects in Django, you&#8217;ll need to learn about Django Forms.  Here are some readings to keep in mind as you progress:</p>
+<ul class="simple">
+<li>Start by learning how to <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/forms/">work with forms</a> in general</li>
+<li>Follow that up with reading about <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/forms/modelforms/">ModelForms</a> and what they provide</li>
+<li>Make sure you understand <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/forms/validation/">form and field validation</a> so you can ensure proper data is submitted</li>
+<li>Particularly complex forms, or forms which require javascript or special css, will need to utilize <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/forms/media/">form assets</a></li>
+<li>You&#8217;ll want to keep a reference open for the <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/forms/api/">Forms API</a></li>
+<li>Keep in mind that the custom form field you imagine may already have been created and check <a class="reference external" href="https://www.djangopackages.com/grids/g/forms/">the Forms category</a> on <a class="reference external" href="http://www.djangopackages.com">http://www.djangopackages.com</a></li>
+<li>Screencasts about Django Class-Based Views: <a class="reference external" href="https://godjango.com/15-class-based-views-part-1-templateview-and-redirectview/">Part 1</a>, <a class="reference external" href="https://godjango.com/16-class-based-views-part-2-listview-and-formview/">Part 2</a>, and <a class="reference external" href="https://godjango.com/17-class-based-views-part-3-detailview-and-template_name-shortcut/">Part 3</a></li>
 </ul>
+</div>
 </div>
 <div class="section" id="review">
 <h2>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Self-balancing BST</li>
+</ul>
 </div>
 <div class="section" id="concepts">
 <h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Hash Table Basics</li>
+</ul>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/django_cbv2.html">Deep Dive into Class-Based Views</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_cbv2.html#the-detailview">The <code class="docutils literal"><span class="pre">DetailView</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_cbv2.html#cbv-dispatch"><code class="docutils literal"><span class="pre">CBV</span> <span class="pre">dispatch()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_cbv2.html#the-get-object-method">The <code class="docutils literal"><span class="pre">get_object</span></code> method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_cbv2.html#a-little-more-about-get-context-data">A Little More About <code class="docutils literal"><span class="pre">get_context_data()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_cbv2.html#the-next-step-in-the-process">The Next Step in the Process</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_cbv2.html#render-to-response"><code class="docutils literal"><span class="pre">render_to_response</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_cbv2.html#a-few-final-notes">A Few Final Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/django_cbv.html">First Steps into Class-Based Views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_cbv.html#the-templateview">The <code class="docutils literal"><span class="pre">TemplateView</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/trie.html">Trie</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/trie.html#definition">Definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/trie.html#motivation">Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/trie.html#operations">Operations</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/rds_deployment_prep.html">Amazon RDS and Deployment Prep</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/rds_deployment_prep.html#provision-an-aws-rds-instance-with-postgresql">Provision an AWS RDS Instance with PostgreSQL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/rds_deployment_prep.html#prepare-settings-py-for-deployment">Prepare <code class="docutils literal"><span class="pre">settings.py</span></code> for Deployment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/rds_deployment_prep.html#prepare-ec2-instance-to-pull-and-start-app">Prepare EC2 Instance to pull and start app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/django_forms.html">Django Forms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_forms.html#form-handling-in-django-and-the-form-handling-cbvs">Form Handling in Django, and the Form-handling CBVs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_forms.html#forms-and-the-wrrc">Forms and the WRRC</a></li>
 </ul>
 </li>
 </ul>
@@ -242,18 +234,13 @@ div.nboutput  > :nth-child(2).stderr {
 </div>
 <div class="section" id="demo">
 <h2>Demo<a class="headerlink" href="#demo" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Setting up EC2 and RDS to communicate with each-other</li>
-</ul>
 </div>
 <div class="section" id="assignments">
 <h2>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="../../assignments/trie_implementation.html"><em>Implement a Trie in Python</em></a></li>
-<li><a class="reference internal" href="../../assignments/aws_1_deploy_imager.html"><em>Deploy the Imager app to AWS</em></a></li>
-<li><a class="reference internal" href="../../assignments/django_6_editing.html"><em>Django Imager: Create Views to Edit Models</em></a></li>
-<li><a class="reference internal" href="../../assignments/django_7_complete_frontend.html"><em>Django Imager: Complete Front-End</em></a> (Due Friday Week 8)</li>
-<li><a class="reference internal" href="../../assignments/blog_post_draft.html"><em>Technical Blog Post: Draft Your Post</em></a> (Due Friday)</li>
+<li><a class="reference internal" href="../../assignments/django_5_adding.html"><em>Django Imager: Create Views to Add Models</em></a></li>
+<li><a class="reference internal" href="../../assignments/hash_table.html"><em>Implement a Hash Table in Python</em></a></li>
+<li><a class="reference internal" href="../../assignments/blog_post_draft.html"><em>Technical Blog Post: Draft Your Post</em></a></li>
 <li><a class="reference internal" href="../../assignments/daily_lj_entry.html"><em>Today I learned...</em></a></li>
 </ul>
 </div>
@@ -269,7 +256,11 @@ div.nboutput  > :nth-child(2).stderr {
   <ul>
 <li><a class="reference internal" href="#">Wednesday</a><ul>
 <li><a class="reference internal" href="#objectives">Objectives</a></li>
-<li><a class="reference internal" href="#readings">Readings</a></li>
+<li><a class="reference internal" href="#readings">Readings</a><ul>
+<li><a class="reference internal" href="#hashing">Hashing</a></li>
+<li><a class="reference internal" href="#django-forms">Django Forms</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#review">Review</a></li>
 <li><a class="reference internal" href="#concepts">Concepts</a></li>
 <li><a class="reference internal" href="#demo">Demo</a></li>

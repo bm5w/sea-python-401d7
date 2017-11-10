@@ -14,18 +14,11 @@ Objectives
 ==========
 
 * Understand how relationships between data models are handled in Django
-* Learn how node deletion affects a Binary Search Tree
 
 Readings
 ========
 
 * `Examples of Django Model Relationship Usage <https://docs.djangoproject.com/en/dev/topics/db/examples/>`_
-
-Review
-======
-
-* Traversing the Binary Search Tree
-* Testing in Django
 
 Concepts
 ========
@@ -35,18 +28,14 @@ Concepts
 
     /lectures/django_relationships
 
-* Binary Search Tree: Node Deletion
+.. note::
 
-Demo
-====
+    Thanksgiving break. Do some reading and code-writing on your own. When we return on Monday, the assumption will be that you did this work on Django Model Relationships.
 
-* Managing relationships in the Django ORM
-* Connecting a GitHub Project to TravisCI
 
 Assignments
 ===========
 
-* :doc:`/assignments/bst_3_delete`
 * :doc:`/assignments/django_3_photo_models`
-* :doc:`/assignments/blog_post_draft` (Due Friday of Week 7)
+* :doc:`/assignments/blog_post_draft`
 * :doc:`/assignments/daily_lj_entry`

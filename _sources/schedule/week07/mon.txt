@@ -13,32 +13,38 @@ Monday
 Objectives
 ==========
 
-* Get solid on back-end and front-end testing in Django
-* Generally build the mindset of a tester when it comes to any codebase
-* Learn about what a Hash Table is and how it can be implemented.
+* Learn about how Django accesses files
+* Learn how node deletion affects a Binary Search Tree
 
 Readings
 ========
 
-Hashing
--------
 
-* Read all about various `hashing functions <http://www.eternallyconfuzzled.com/tuts/algorithms/jsw_tut_hashing.aspx>`_ and how they work.
+* Managing Static Files (`Django Docs <https://docs.djangoproject.com/en/dev/howto/static-files/>`_)
+* Managing Files - More Generally (`Django Docs <https://docs.djangoproject.com/en/dev/topics/files/>`_)
+* Accessing Media Files in Django (`Stack Overflow <http://stackoverflow.com/questions/6418072/accessing-media-files-in-django>`_)
+* `Understanding, setting up, accessing and serving media files and static files in Django <https://timmyomahony.com/blog/static-vs-media-and-root-vs-path-in-django/>`_
+* `Templates and Static Media <http://www.tangowithdjango.com/book/chapters/templates_static.html>`_
 
 Review
 ======
 
+* Django Model Relationships
+
 Concepts
 ========
 
-* Hash Table Basics
-* Deep Dive into Django Testing
+.. toctree::
+    :maxdepth: 2
 
+    /lectures/django_files
+
+* Binary Search Tree: Node Deletion
 
 Assignments
 ===========
 
-* :doc:`/assignments/hash_table`
-* :doc:`/assignments/bst_4_balancing` (Due Tuesday)
-* :doc:`/assignments/blog_post_draft` (Due Friday)
+* :doc:`/assignments/django_4_data_views`
+* :doc:`/assignments/bst_3_delete`
+* :doc:`/assignments/blog_post_draft`
 * :doc:`/assignments/daily_lj_entry`

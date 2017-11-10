@@ -13,15 +13,36 @@ Monday
 Objectives
 ==========
 
-* Solidify our understanding of web app security and securing an existing code base
-* Learn about the Insertion Sort algorithm
+* Learn about how authentication and authorization work in a Django app
+* Learn more about how to walk through a Trie Tree
+* Solidify what we've covered over the past week
 * Pitch our projects for project week
 
 Readings
 ========
 
-* `Web App Security Best Practices <https://www.alienvault.com/blogs/security-essentials/web-application-security-methods-and-best-practices>`_
-* `Insertion Sort <http://www.tutorialspoint.com/data_structures_algorithms/insertion_sort_algorithm.htm>`_
+Django Security
+---------------
+
+* `Django Security <https://docs.djangoproject.com/en/dev/topics/security/>`_
+* `Is Django's Built-In Security Enough? <http://security.stackexchange.com/questions/27805/is-djangos-built-in-security-enough>`_
+* Read about using `Django's Authentication Systems <https://docs.djangoproject.com/es/dev/topics/auth/default/>`_
+
+Amazon RDS
+----------
+
+* `Create a Web Server and an Amazon RDS Database <http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/TUT_WebAppWithRDS.html>`_
+* `Setting up Django with Postgres, Nginx, and Gunicorn on Ubuntu 14.04 <https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-14-04>`_
+* Screencasts about Django Class-Based Views: 
+    - `Part 1 <https://godjango.com/15-class-based-views-part-1-templateview-and-redirectview/>`_
+    - `Part 2 <https://godjango.com/16-class-based-views-part-2-listview-and-formview/>`_
+    - `Part 3 <https://godjango.com/17-class-based-views-part-3-detailview-and-template_name-shortcut/>`_
+
+Trie Trees
+----------
+
+* Trie Tree (`Wikipedia <https://en.wikipedia.org/wiki/Trie>`_)
+* `Trie Trees <https://www.youtube.com/watch?v=RIUY7ieyH40>`_
 
 Review
 ======
@@ -32,23 +53,23 @@ Concepts
 .. toctree::
     :maxdepth: 2
 
-    /lectures/web_app_security_2
+    /lectures/django_security
+    /lectures/rds_deployment_prep
 
+* Trie Tree Traversals
 
 Demo
 ====
 
-* Insertion Sort
+* Setting up EC2 and RDS to communicate with each-other
 
 Assignments
 ===========
 
 * :doc:`/assignments/project_01_pitch`
-* :doc:`/assignments/web_app_security_assignment2`
-* :doc:`/assignments/sort_1_insertion`
-* :doc:`/assignments/django_8_drf_tutorial_a`
+* :doc:`/assignments/aws_1_deploy_imager`
+* :doc:`/assignments/trie_traversal`
 * :doc:`/assignments/django_7_complete_frontend` (Due Friday)
-* :doc:`/assignments/aws_2_ansible_imager` (Due Friday)
 * :doc:`/assignments/blog_post_publish` (Due Friday Week 9)
 * :doc:`/assignments/daily_lj_entry`
 

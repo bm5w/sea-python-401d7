@@ -13,23 +13,12 @@ Thursday
 Objectives
 ==========
 
-* Learn about how Django accesses files
-* Learn about AVL rotations and how to build a self-balancing Binary Search Tree
+* Understand how relationships between data models are handled in Django
 
 Readings
 ========
 
-* Managing Static Files (`Django Docs <https://docs.djangoproject.com/en/dev/howto/static-files/>`_)
-* Managing Files - More Generally (`Django Docs <https://docs.djangoproject.com/en/dev/topics/files/>`_)
-* Accessing Media Files in Django (`Stack Overflow <http://stackoverflow.com/questions/6418072/accessing-media-files-in-django>`_)
-* `Understanding, setting up, accessing and serving media files and static files in Django <https://timmyomahony.com/blog/static-vs-media-and-root-vs-path-in-django/>`_
-* `Templates and Static Media <http://www.tangowithdjango.com/book/chapters/templates_static.html>`_
-* `Balancing a Binary Search Tree <https://appliedgo.net/balancedtree/>`_
-
-Review
-======
-
-* Django Models (the Photo and Album)
+* `Examples of Django Model Relationship Usage <https://docs.djangoproject.com/en/dev/topics/db/examples/>`_
 
 Concepts
 ========
@@ -37,21 +26,16 @@ Concepts
 .. toctree::
     :maxdepth: 2
 
-    /lectures/django_files
+    /lectures/django_relationships
 
+.. note::
 
-* Tree Rotations and self-balancing Binary Search Trees
-
-
-Demo
-====
-
+    Thanksgiving break. Do some reading and code-writing on your own. When we return on Monday, the assumption will be that you did this work on Django Model Relationships.
 
 
 Assignments
 ===========
 
-* :doc:`/assignments/django_4_data_views`
-* :doc:`/assignments/bst_4_balancing` (Due Tuesday)
-* :doc:`/assignments/blog_post_draft` (Due Friday of Week 7)
+* :doc:`/assignments/django_3_photo_models`
+* :doc:`/assignments/blog_post_draft`
 * :doc:`/assignments/daily_lj_entry`

@@ -15,49 +15,54 @@ Objectives
 
 * Investigate Django's Class-Based Views (CBV) and how they work
 * Begin implementing your own forms into your Django Imager app
-* Learn how text can be handled as a tree with the Trie Tree
-* Begin to think about our final projects
 
+
+* Be comfortable working with Django forms and form handling
+* Learn about what a Hash Table is and how it can be implemented.
 
 Readings
 ========
 
-* Trie Tree (`Wikipedia <https://en.wikipedia.org/wiki/Trie>`_)
-* `Trie Trees <https://www.youtube.com/watch?v=RIUY7ieyH40>`_
-* `Create a Web Server and an Amazon RDS Database <http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/TUT_WebAppWithRDS.html>`_
-* `Setting up Django with Postgres, Nginx, and Gunicorn on Ubuntu 14.04 <https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-14-04>`_
-* Screencasts about Django Class-Based Views: 
-    - `Part 1 <https://godjango.com/15-class-based-views-part-1-templateview-and-redirectview/>`_
-    - `Part 2 <https://godjango.com/16-class-based-views-part-2-listview-and-formview/>`_
-    - `Part 3 <https://godjango.com/17-class-based-views-part-3-detailview-and-template_name-shortcut/>`_
+Hashing
+-------
 
+* Read all about various `hashing functions <http://www.eternallyconfuzzled.com/tuts/algorithms/jsw_tut_hashing.aspx>`_ and how they work.
+
+Django Forms
+------------
+
+.. include:: /readings/django_readings.rst
+    :start-line: 59
+    :end-line: 72
+
+* Screencasts about Django Class-Based Views: `Part 1 <https://godjango.com/15-class-based-views-part-1-templateview-and-redirectview/>`_, `Part 2 <https://godjango.com/16-class-based-views-part-2-listview-and-formview/>`_, and `Part 3 <https://godjango.com/17-class-based-views-part-3-detailview-and-template_name-shortcut/>`_
 
 Review
 ======
 
+* Self-balancing BST
 
 Concepts
 ========
 
-.. toctree::
-    :maxdepth: 2
+* Hash Table Basics
 
-    /lectures/django_cbv2
-    /lectures/trie
-    /lectures/rds_deployment_prep
+.. toctree::
+   :maxdepth: 2
+
+   /lectures/django_cbv
+   /lectures/django_forms
 
 Demo
 ====
 
-* Setting up EC2 and RDS to communicate with each-other
 
 
 Assignments
 ===========
 
-* :doc:`/assignments/trie_implementation`
-* :doc:`/assignments/aws_1_deploy_imager`
-* :doc:`/assignments/django_6_editing`
-* :doc:`/assignments/django_7_complete_frontend` (Due Friday Week 8)
-* :doc:`/assignments/blog_post_draft` (Due Friday)
+* :doc:`/assignments/django_5_adding`
+* :doc:`/assignments/hash_table`
+* :doc:`/assignments/blog_post_draft`
 * :doc:`/assignments/daily_lj_entry`
+

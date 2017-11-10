@@ -13,14 +13,27 @@ Tuesday
 Objectives
 ==========
 
-* Understand how Merge Sort works
-* Implement Photo and Album tagging into our Django imager
+* Learn how to automate the deployment of a Django app with Ansible
+* Learn how to secure web apps in an existing code base
+* Understand how Bubble Sort works
 
 Readings
 ========
 
-* `Merge Sort <http://www.tutorialspoint.com/data_structures_algorithms/merge_sort_algorithm.htm>`_
-* `Tagging with Django Taggit <https://godjango.com/33-tagging-with-django-taggit/>`_
+Web App Security
+----------------
+
+* `OWASP Top Ten App Vulnerabilities <https://www.owasp.org/index.php/Top_10_2013-Top_10>`_
+* Learn about the most common attack vectors at `Hacksplaining <https://www.hacksplaining.com/exercises>`_
+* `Web App Security Best Practices <https://.. www.alienvault.com/blogs/security-essentials/web-application-security-methods-and-best-practices>`_
+
+DevOps and Ansible
+------------------
+
+* `Lessons from Using Ansible <https://blog.serverdensity.com/what-ive-learnt-from-using-ansible-exclusively-for-2-years/>`_
+* `Deploying Django with Ansible <http://www.slideshare.net/andrewmirskynet/deploying-django-with-ansible>`_
+* Read this `Ansible Tutorial <https://serversforhackers.com/an-ansible-tutorial>`_ to learn a bit about how Ansible works.
+* What is DevOps? (`AWS <https://aws.amazon.com/devops/what-is-devops/>`_)
 
 Review
 ======
@@ -32,23 +45,24 @@ Concepts
 .. toctree::
     :maxdepth: 2
 
-    /lectures/django_taggit
-
-* The Merge Sort algorithm
+    /lectures/web_app_security1
+    /lectures/ansible
 
 Demo
 ====
 
-* Merge Sort!!!
+* Bubble Sort!
+
+.. 
 
 Assignments
 ===========
 
-* :doc:`/assignments/sort_2_mergesort`
-* :doc:`/assignments/project_02_idea`
-* :doc:`/assignments/django_7_complete_frontend` (Due Friday)
-* :doc:`/assignments/django_9_drf_tutorial_b`
-* :doc:`/assignments/django_10_taggit`
+* :doc:`/assignments/web_app_security_assignment1`
+* :doc:`/assignments/bubble_sort`
 * :doc:`/assignments/aws_2_ansible_imager` (Due Friday)
+* :doc:`/assignments/django_7_complete_frontend` (Due Friday)
+* :doc:`/assignments/django_8_drf_tutorial_a`
 * :doc:`/assignments/blog_post_publish` (Due Friday Week 9)
+* :doc:`/assignments/project_02_idea`
 * :doc:`/assignments/daily_lj_entry`

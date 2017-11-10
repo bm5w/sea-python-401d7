@@ -10,10 +10,27 @@ Friday
 
     This document contains no slides.
 
+Objectives
+==========
+
+* Understand how relationships between data models are handled in Django
+
+Readings
+========
+
+* `Examples of Django Model Relationship Usage <https://docs.djangoproject.com/en/dev/topics/db/examples/>`_
+
 Concepts
 ========
 
-Career Development Day
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/django_relationships
+
+.. note::
+
+    Thanksgiving break. Do some reading and code-writing on your own. When we return on Monday, the assumption will be that you did this work on Django Model Relationships.
 
 .. warning::
 
@@ -23,9 +40,7 @@ Career Development Day
 Assignments
 ===========
 
-* :doc:`/assignments/django_4_data_views`
-* :doc:`/assignments/bst_4_balancing` (Due Tuesday)
 * :doc:`/assignments/kata_forbes_billionaires`
 * :doc:`/assignments/aws_account`
-* :doc:`/assignments/blog_post_draft` (Due Friday of Week 7)
+* :doc:`/assignments/blog_post_draft`
 * :doc:`/assignments/daily_lj_entry`
