@@ -18,6 +18,21 @@ Objectives
 Readings
 ========
 
+ElasticSearch
+-------------
+
+* `Installing ElasticSearch on Mac OSX <https://chartio.com/resources/tutorials/how-to-install-elasticsearch-on-mac-os-x/>`_
+* Installing ElasticSearch on Linux:
+    - `Ubuntu 14.04 <https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-14-04>`_
+    - `Ubuntu 16.04 <https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-16-04>`_
+* `ElasticSearch 101 <http://joelabrahamsson.com/elasticsearch-101/>`_
+* `Getting Started with ElasticSearch <https://www.elastic.co/guide/en/elasticsearch/guide/current/getting-started.html>`_
+
+Django Haystack
+---------------
+
+* `Getting Started with Django Haystack <https://django-haystack.readthedocs.io/en/v2.6.0/tutorial.html>`_
+
 Sorting
 -------
 

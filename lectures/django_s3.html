@@ -1,0 +1,613 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django and AWS Simple Storage System (S3) &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="django-and-aws-simple-storage-system-s3">
+<h1>Django and AWS Simple Storage System (S3)<a class="headerlink" href="#django-and-aws-simple-storage-system-s3" title="Permalink to this headline">¶</a></h1>
+<p>Sources:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.caktusgroup.com/blog/2014/11/10/Using-Amazon-S3-to-store-your-Django-sites-static-and-media-files/">Using Amazon S3 to Store Your Django Site’s Static and Media Files</a></li>
+<li><a class="reference external" href="http://www.jorgechang.com/blog/howto-deploy-a-fault-tolerant-django-app-on-aws-part-2-moving-static-media-files-to-s3/">Deploy a fault tolerant Django app on AWS – Part 2: Moving static and media files to S3</a></li>
+</ul>
+<p>Amazon’s Simple Storage System (S3) is a great way to store static or media files for an application.
+The permissions are fairly easy to set, so you don’t have to fuss with things like user permissions on an EC2 instance.
+The data itself is stored in the cloud, so there’s little concern about storage issues on the server that you’ve provisioned.</p>
+<p>Also a benefit of cloud storage, these resources can be easily accessed by any application that you desire as many times as you like.
+So, you can share resources between load-balanced servers instead of keeping multiple copies of the same data across your network.</p>
+<p>Let’s dive in!</p>
+<div class="section" id="aws-iam-and-s3-management-and-configuration">
+<h2>AWS IAM and S3 Management and Configuration<a class="headerlink" href="#aws-iam-and-s3-management-and-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-an-iam-user">
+<h3>Create an IAM User<a class="headerlink" href="#create-an-iam-user" title="Permalink to this headline">¶</a></h3>
+<p>When using AWS it’s very easy to fall into the habit of using the root user (i.e. your normal account) to run all your operations.
+You can provision new EC2 instances, set up new RDS databases, even configure static file storage all with the root user.</p>
+<p>However, in practice, you won’t be the only person working on a given project.
+Whether you work with a team on the same project, or are simply one maintainer of a long-running project, it helps to have some credentials for AWS linked to the project, and not so much to one individual user.</p>
+<p>For this, we have the AWS IAM (Identity Access and Management) user system.
+<a class="reference external" href="https://aws.amazon.com/iam/">AWS’s IAM</a> users are accounts that are managed by a root user’s account, but are not the root user directly.
+You control the IAM user’s access to various functionality, including but not limited to whether they even need to log in to use AWS’s various services.
+You can create as many users as you like, and they’re no extra charge for your account. Only their usage is charegd to your account.</p>
+<p>More specifically for our own interests, you’ll need an IAM user’s credentials for Django to access AWS’s Simple Storage System (S3).</p>
+<p>To get started with creating and managing IAM users, sign in as the root user to your AWS console and find the IAM service. Find the “Users” menu item on the left sidebar, then click on the <code class="docutils literal"><span class="pre">Add</span> <span class="pre">User</span></code> button to add a new user.</p>
+<div class="section" id="selecting-a-username-and-access-abilities">
+<h4>Selecting a Username and Access Abilities<a class="headerlink" href="#selecting-a-username-and-access-abilities" title="Permalink to this headline">¶</a></h4>
+<p>While you can create multiple users at once, we only want to add one user for now.
+Type a <code class="docutils literal"><span class="pre">username</span></code> into the provided input field.</p>
+<p>Now’s one of the more important points.
+We need to decide what type of access this IAM user is going to have.
+<strong>Programmatic access</strong> lets you access all of the various AWS services this IAM user can use via the command line or from (surprise surprise) a program.
+Enabling programmatic access will provide you with an access key ID and secret access key for AWS’s development tools. The AWS Management Console access allows this user to be able to interact with AWS’s services through the browser.</p>
+<p>You don’t need both, but you do need one. For our specific purposes of allowing Django to modify an S3 bucket, we’ll need programmatic access.</p>
+</div>
+<div class="section" id="setting-user-permissions">
+<h4>Setting User Permissions<a class="headerlink" href="#setting-user-permissions" title="Permalink to this headline">¶</a></h4>
+<p>Your user will need to have specific permissions set for their access to AWS’s services.
+If you have a group of users that you’re trying to set up with a shared set of permissions, you might want to either add the user to an existing group, or create a new group for this user to be a part of.</p>
+<p>However, <strong>groups are not necessary</strong>.
+You can attach existing permissions to an individual user instead of including them as part of a group.</p>
+<p>You can give this user whatever permissions you want for access to your AWS services.
+The <code class="docutils literal"><span class="pre">AdministratorAccess</span></code> policy gives the IAM user full access to everything.
+You can choose that if you want to.
+You can also restrict access to only the service that you expect to be used, like the S3 service.
+For that, there’s <code class="docutils literal"><span class="pre">AmazonS3FullAccess</span></code>.
+There’s no one “right” way to do things here, so choose as you please. Just make sure that whatever permissions you select allow full access to the AWS S3 service.</p>
+</div>
+<div class="section" id="acquiring-the-access-keys">
+<h4>Acquiring the Access Keys<a class="headerlink" href="#acquiring-the-access-keys" title="Permalink to this headline">¶</a></h4>
+<p>After successfully creating the user, you’ll be lead to the success page where you can download the credentials for every user that you created.
+<strong>You must download these credentials here! You will not be given another chance!</strong>
+Save them someplace that won’t be in version control.
+These are access keys that have some degree of privilege for adding or deleting data from your S3 data store, so it’s important that they be kept in a private place.</p>
+</div>
+</div>
+<div class="section" id="creating-an-s3-bucket">
+<h3>Creating an S3 Bucket<a class="headerlink" href="#creating-an-s3-bucket" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://aws.amazon.com/s3/">AWS’s S3 service</a> is a system for simple object storage.
+You can think of it like a bucket for your stuff, accessible for anywhere (depending on permissions you allow).
+At base, developers use S3 for storing static and media files.
+However, you could use S3 as the basis for a serverless website, hosting your HTML files as well!
+We won’t do that, but you’ll typically find S3 on the front lines of any sort of serverless architecture.</p>
+<p>Navigate to the S3 service on AWS’s browser console.
+The URL should look something like <code class="docutils literal"><span class="pre">https://console.aws.amazon.com/s3</span></code>.
+The first page that pops up should list whatever S3 buckets your account currently has access to.
+It may be empty.
+Such is life.</p>
+<p>Create a new S3 bucket by clicking the <code class="docutils literal"><span class="pre">Create</span> <span class="pre">bucket</span></code> button.
+Set the <strong>Bucket name</strong> to be whatever you like, as long as it resolves to a valid domain name.
+It must also be a unique name across all of the AWS S3 buckets that have ever existed.</p>
+<p>The region that’s set should match the region within which your account exists.
+If that region isn’t set, something like US West (Oregon) should work just fine.</p>
+<p>When you’re done setting the name and region, click <strong>Create</strong>.
+Yay, you’ve created an S3 bucket!</p>
+<div class="section" id="the-s3-access-control-list">
+<h4>The S3 Access Control List<a class="headerlink" href="#the-s3-access-control-list" title="Permalink to this headline">¶</a></h4>
+<p>Now that the bucket has been created, there’s a little configuration work to be done.
+First, consider how we’ve been writing our Django apps thus far.
+We’ve housed all of our static files in a <code class="docutils literal"><span class="pre">/static</span></code> directory, and our media files in a <code class="docutils literal"><span class="pre">/media</span></code> directory.
+Django is going to expect these directories to exist no matter where we host our files, and will be upset if they’re not available.
+In your bucket then, create these folders with the <strong>Create folder</strong> button so that Django will later be able to find them.</p>
+<p>You’ll have to manage access to this bucket with the <strong>Permissions</strong> tab’s <strong>Access Control List</strong>.
+Your root user will already be set up with full read and write permissions to your bucket.
+That makes sense, your root user is the one that created it.</p>
+<p>If you want to, you can also add other users.
+In order to do that, you need to know their user ID.
+Because our IAM user has full <code class="docutils literal"><span class="pre">AdministratorAccess</span></code>, we don’t need to add it as a user to be managed on our S3 bucket.</p>
+<p>We do, however, want anyone and everyone to be able to <code class="docutils literal"><span class="pre">read</span></code> our S3 bucket objects.
+As such, in the <strong>Manage public permissions</strong> section we set the access levels for Everyone to “read”.</p>
+</div>
+<div class="section" id="the-bucket-policy">
+<h4>The Bucket Policy<a class="headerlink" href="#the-bucket-policy" title="Permalink to this headline">¶</a></h4>
+<p>Although we’ve configured access to the bucket and its objects, we need to still set a bucket policy that dictates what types of resources are accessible and how.
+Bucket policies can be quite opaque as far as what to specify and how to specify it.
+Fortunately, AWS has created a <a class="reference external" href="http://awspolicygen.s3.amazonaws.com/policygen.html">policy generator</a> to make it slightly easier.</p>
+<p>Let’s generate for ourselves a policy that allows any user at all to read the objects in our bucket.</p>
+<ul class="simple">
+<li>Select the <code class="docutils literal"><span class="pre">S3</span> <span class="pre">Bucket</span> <span class="pre">Policy</span></code> from the <strong>Select Type of Policy</strong> dropdown menu.</li>
+<li>Add the <strong>Effect</strong> of <code class="docutils literal"><span class="pre">Allow</span></code>.</li>
+<li>Add the <strong>Principal</strong> of <code class="docutils literal"><span class="pre">*</span></code> so that anyone can get objects from our S3.</li>
+<li>Ensure the selected <strong>Actions</strong> are just the <code class="docutils literal"><span class="pre">GetObject</span></code> action.</li>
+<li>Input the <strong>Amazon Resource Name</strong> for your bucket.</li>
+<li>It’ll simply be something like <code class="docutils literal"><span class="pre">arn:aws:s3:::&lt;whatever_your_bucket_name_is&gt;/*</span></code></li>
+<li>Click <strong>Add Statement</strong> to add this policy to the full policy that we’ll be generating.</li>
+</ul>
+<p>The <strong>Amazon Resource Name</strong> (ARN) is kind of like AWS’s own internal uniform resource locator.
+It gives you the address to a given resource, whether it be an EC2 instance, an IAM user, or even an S3 bucket, which is what we used above.</p>
+<p>When you click <strong>Add Statement</strong>, the policy generator will clear itself.
+That’s fine for us, because it leaves us prime for writing another policy statement.</p>
+<p>Let’s also allow our IAM user to execute any CRUD action on our S3 bucket.
+For this, we’ll need to know the <strong>ARN</strong> for the user that we created.
+It’ll look something like <code class="docutils literal"><span class="pre">arn:aws:iam:::&lt;some_id_that_is_you&gt;:user/&lt;the_specific_iam_user&gt;</span></code>.
+You can find it in the detail page for the individual IAM user that you created.
+If you wanted to allow an entire group to share the same bucket policy, your ARN would instead look something like <code class="docutils literal"><span class="pre">arn:aws:iam:::&lt;some_id_that_is_you&gt;:group/&lt;the_specific_iam_group_name&gt;</span></code></p>
+<ul class="simple">
+<li>Fill the <strong>Principal</strong> field with your IAM user’s <strong>ARN</strong>. For example: <code class="docutils literal"><span class="pre">arn:aws:iam::123456789876:user/test_user</span></code></li>
+<li>Check the <strong>All Actions</strong> checkbox so that your IAM user has full CRUD access to your bucket.</li>
+<li>Specify in the <strong>Amazon Resource Name</strong> field the resources you want this to apply to. You want this to apply to the bucket itself and any folders within. You’ll want two values for this, separated by a comma: <code class="docutils literal"><span class="pre">arn:aws:s3:::&lt;whatever_your_bucket_name_is&gt;</span></code>, <code class="docutils literal"><span class="pre">arn:aws:s3:::&lt;whatever_your_bucket_name_is&gt;/*</span></code></li>
+</ul>
+<p>Add that second statement, then click <strong>Generate Policy</strong> to generate the full bucket policy that you need.
+The result will be a large-ish JSON blob.
+Copy the contents, and paste it into your <strong>Bucket Policy Editor</strong>.
+Finally, save the bucket policy and it’ll be applied to your bucket.
+Here’s an example of what it should look like:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;Id&quot;</span><span class="p">:</span> <span class="s2">&quot;Policy0000000000000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;Sid&quot;</span><span class="p">:</span> <span class="s2">&quot;Stmt0000000000000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:s3:::cf401-python-test/*&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Principal&quot;</span><span class="p">:</span> <span class="s2">&quot;*&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;Sid&quot;</span><span class="p">:</span> <span class="s2">&quot;Stmt0000000000000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="s2">&quot;s3:*&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;arn:aws:s3:::cf401-python-test&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;arn:aws:s3:::cf401-python-test/*&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;Principal&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AWS&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&quot;arn:aws:iam::123456789876:user/test_user&quot;</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-cors-configuration">
+<h4>The CORS Configuration<a class="headerlink" href="#the-cors-configuration" title="Permalink to this headline">¶</a></h4>
+<p>CORS stands for <strong>Cross-Origin Resource Sharing</strong>, and is what determines whether your application (sitting at one domain, maybe an EC2 instance, maybe somewhere else) and your S3 bucket (sitting at a different domain no matter what) can talk to each other and share resources.</p>
+<p>A CORS configuration should have been populated for you when you initially set up your bucket to allow for any origin to access your bucket’s resources.
+It’ll look like some XML with fields for allowed origins, allowed methods, and the amount of time in seconds the browser will cache an S3 response.
+As an example:</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="p">&lt;</span><span class="nt">CORSConfiguration</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">CORSRule</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">AllowedOrigin</span><span class="p">&gt;</span>*<span class="p">&lt;/</span><span class="nt">AllowedOrigin</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">AllowedMethod</span><span class="p">&gt;</span>GET<span class="p">&lt;/</span><span class="nt">AllowedMethod</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">MaxAgeSeconds</span><span class="p">&gt;</span>60<span class="p">&lt;/</span><span class="nt">MaxAgeSeconds</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">AllowedHeader</span><span class="p">&gt;</span>Authorization<span class="p">&lt;/</span><span class="nt">AllowedHeader</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">CORSRule</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">CORSConfiguration</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>If you wanted to restrict resource access for whatever reason or change the cacheing time limit (above it’s 60 seconds, by default it’s 50 minutes), you could manage that here.</p>
+<p>If you’ve made it to this point, you should have all of the S3 configuration that you might need for your Django application.
+Let’s walk into Django’s side of things and get it wired up to talk to your AWS S3 bucket.</p>
+</div>
+</div>
+</div>
+<div class="section" id="connecting-django-to-aws-s3">
+<h2>Connecting Django to AWS S3<a class="headerlink" href="#connecting-django-to-aws-s3" title="Permalink to this headline">¶</a></h2>
+<p>An important thing to note is that since we’ll be setting up the static url dynamically, <strong>your application should never have hard-coded urls to static files!</strong>
+Those staticfile urls should always be populated with the <code class="docutils literal"><span class="pre">{%</span> <span class="pre">static</span> <span class="pre">'path/to/resource.css'</span> <span class="pre">%}</span></code> template tag.</p>
+<p>To start, we’re going to need two new Python packages, as setting up new means for storing files can otherwise can be a headache.
+Go to your terminal and run the following line of <code class="docutils literal"><span class="pre">pip</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> $ pip install django-storages boto
+</pre></div>
+</div>
+<p><a class="reference external" href="http://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html">django-storages</a> is a package whose only purpose is to be the go-between for Django and cloud storage systems like AWS or Microsoft Azure.
+It sets up some configuration rules and objects that are very useful to include in your <code class="docutils literal"><span class="pre">settings.py</span></code>.</p>
+<p><a class="reference external" href="http://boto.cloudhackers.com/en/latest/">boto</a> is a direct interface between Python and Amazon Web Services. With the proper credentials, you could use <code class="docutils literal"><span class="pre">boto</span></code> to provision new web servers, set up new S3 buckets, and generally manage any of your AWS configuration.
+For our purposes, <code class="docutils literal"><span class="pre">django-storages</span></code> will leverage <code class="docutils literal"><span class="pre">boto</span></code> to interact with AWS S3.</p>
+<p>In order to have Django interact with the <code class="docutils literal"><span class="pre">django-storages</span></code> API, we need to include it in the list of <code class="docutils literal"><span class="pre">INSTALLED_APPS</span></code> in our <code class="docutils literal"><span class="pre">settings.py</span></code> file.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in settings.py</span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="o">...</span><span class="p">,</span>
+    <span class="s1">&#39;storages&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>We’ll need to tell Django the name of our bucket so that when it stitches together the static urls, the urls point to the right location.
+Create an easily-recognizable section in your <code class="docutils literal"><span class="pre">settings.py</span></code> file that will handle all of your AWS configuration.
+To that section, add in your bucket’s name, the access key id for your IAM user, and that user’s secret access key.
+These are all a part of the credentials that you downloaded earlier when you initially made your IAM user.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># Amazon Web Services Configuration</span>
+<span class="n">AWS_STORAGE_BUCKET_NAME</span> <span class="o">=</span> <span class="s1">&#39;cf401-python-test&#39;</span>
+<span class="n">AWS_ACCESS_KEY_ID</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">AWS_SECRET_ACCESS_KEY</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</pre></div>
+</div>
+<p>As with any other secret information <strong>WE NEVER EVER EVER HARD-CODE SECRETS AND PUT THEM IN SOURCE CONTROL!!!!</strong>
+Instead, use environment variables to populate those values.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># Amazon Web Services Configuration</span>
+<span class="n">AWS_STORAGE_BUCKET_NAME</span> <span class="o">=</span> <span class="s1">&#39;cf401-python-test&#39;</span>
+<span class="n">AWS_ACCESS_KEY_ID</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IAM_USER_ACCESS_KEY_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">AWS_SECRET_ACCESS_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IAM_USER_SECRET_ACCESS_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can then build the S3 domain name based on the bucket name</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">AWS_S3_CUSTOM_DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.s3.amazonaws.com&#39;</span> <span class="o">%</span> <span class="n">AWS_STORAGE_BUCKET_NAME</span>
+</pre></div>
+</div>
+<div class="section" id="setting-up-static-and-media-storages">
+<h3>Setting Up Static and Media Storages<a class="headerlink" href="#setting-up-static-and-media-storages" title="Permalink to this headline">¶</a></h3>
+<p>Once we’ve gotten everything that we need from the AWS side, we need to be concerned about our application and where it will locate/place files.
+Up until this point, we’ve kept static css/js/image files in a local <code class="docutils literal"><span class="pre">static/</span></code> directory and any user-uploaded files in a <code class="docutils literal"><span class="pre">media/</span></code> directory.
+However, we now have AWS and need to change modes accordingly.</p>
+<p>When Django is looking for static and media files to access from AWS, it uses the <code class="docutils literal"><span class="pre">S3BotoStorage</span></code> object from <code class="docutils literal"><span class="pre">django-storages</span></code>.
+The source code for this object can be found in <code class="docutils literal"><span class="pre">$VIRTUAL_ENV/lib/python3.6/site-packages/storages/backends/s3boto.py</span></code>.
+Amongst the litany of other class attributes, there’s a <code class="docutils literal"><span class="pre">location</span></code> attribute that is set using whatever was defined at <code class="docutils literal"><span class="pre">AWS_LOCATION</span></code> in your <code class="docutils literal"><span class="pre">settings.py</span></code>.
+If you didn’t define that variable, it defaults to an empty string, which would point to the root of your bucket.
+What this means is that if we were to use this storage object for both our static and media files, they’d both be using the same location, which would just be the root of our S3 bucket.</p>
+<p><strong>We do not want to mix our static and media files together.</strong>
+That was the whole point of making separate directories in the S3 bucket in the first place! So, we’ll have to override that parameter by making our own storage objects.</p>
+<p>In the same directory as <code class="docutils literal"><span class="pre">settings.py</span></code> create a new file.
+You could call it anything you want, but <code class="docutils literal"><span class="pre">custom_storages.py</span></code> is fairly descriptive for what we’re about to do.
+Within this file we’ll create two storage objects: <code class="docutils literal"><span class="pre">StaticStorage</span></code> and <code class="docutils literal"><span class="pre">MediaStorage</span></code>.
+Their only purpose is to override the <code class="docutils literal"><span class="pre">location</span></code> class attribute, and nothing more.
+If there were drastically-different settings required for the locations of our static and media files, we might change other attributes.</p>
+<p>In <code class="docutils literal"><span class="pre">custom_storages.py</span></code> write the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in custom_storages.py...</span>
+
+<span class="sd">&quot;&quot;&quot;Custom storage classes for static and media files.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">storages.backends.s3boto</span> <span class="kn">import</span> <span class="n">S3BotoStorage</span>
+
+<span class="k">class</span> <span class="nc">StaticStorage</span><span class="p">(</span><span class="n">S3BotoStorage</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Custom storage class for static files.&quot;&quot;&quot;</span>
+
+    <span class="n">location</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">STATICFILES_LOCATION</span>
+
+<span class="k">class</span> <span class="nc">MediaStorage</span><span class="p">(</span><span class="n">S3BotoStorage</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Custom storage class for media files.&quot;&quot;&quot;</span>
+
+    <span class="n">location</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">MEDIAFILES_LOCATION</span>
+</pre></div>
+</div>
+<p>Each of these custom storage classes will use the <code class="docutils literal"><span class="pre">STATICFILES_LOCATION</span></code> and <code class="docutils literal"><span class="pre">MEDIAFILES_LOCATION</span></code> that we will now define in our <code class="docutils literal"><span class="pre">settings.py</span></code>.
+Our <code class="docutils literal"><span class="pre">STATICFILES_LOCATION</span></code> will be the path from the root of our S3 bucket to the directory where our static files are located.
+We placed our <code class="docutils literal"><span class="pre">static</span></code> directory in our S3 bucket’s root, so we only need to point to that.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in settings.py below the current AWS configuration</span>
+
+<span class="n">STATICFILES_LOCATION</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span>
+</pre></div>
+</div>
+<p>The storage object we want to use will be the one that we just made.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">STATICFILES_LOCATION</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span>
+<span class="n">STATICFILES_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;django_lender.custom_storages.StaticStorage&#39;</span>
+</pre></div>
+</div>
+<p>Finally, the URL for all of our static files will start with the actual location of the <code class="docutils literal"><span class="pre">static</span></code> directory in our S3 bucket.
+This will be a combination of our <code class="docutils literal"><span class="pre">AWS_S3_CUSTOM_DOMAIN</span></code> and our <code class="docutils literal"><span class="pre">STATICFILES_LOCATION</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">STATICFILES_LOCATION</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span>
+<span class="n">STATICFILES_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;django_lender.custom_storages.StaticStorage&#39;</span>
+<span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;https://{}/{}/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">AWS_S3_CUSTOM_DOMAIN</span><span class="p">,</span> <span class="n">STATICFILES_LOCATION</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We’ll do pretty much the same stuff for our media files with one exception</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">MEDIAFILES_LOCATION</span> <span class="o">=</span> <span class="s1">&#39;media&#39;</span>
+<span class="n">DEFAULT_FILE_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;django_lender.custom_storages.MediaStorage&#39;</span>
+<span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;htts://{}/{}/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">AWS_S3_CUSTOM_DOMAIN</span><span class="p">,</span> <span class="n">MEDIAFILES_LOCATION</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For file uploads, <code class="docutils literal"><span class="pre">django-storages</span></code> will look for the <code class="docutils literal"><span class="pre">DEFAULT_FILE_STORAGE</span></code> setting.</p>
+<p>At the end of the day, all of your AWS S3 configuration should look like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># AWS Configuration</span>
+
+<span class="n">AWS_STORAGE_BUCKET_NAME</span> <span class="o">=</span> <span class="s1">&#39;cf401-python-test&#39;</span>
+<span class="n">AWS_ACCESS_KEY_ID</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IAM_USER_ACCESS_KEY_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">AWS_SECRET_ACCESS_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IAM_USER_SECRET_ACCESS_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">AWS_S3_CUSTOM_DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.s3.amazonaws.com&#39;</span> <span class="o">%</span> <span class="n">AWS_STORAGE_BUCKET_NAME</span>
+
+<span class="n">STATICFILES_LOCATION</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span>
+<span class="n">STATICFILES_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;django_lender.custom_storages.StaticStorage&#39;</span>
+<span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;https://{}/{}/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">AWS_S3_CUSTOM_DOMAIN</span><span class="p">,</span> <span class="n">STATICFILES_LOCATION</span><span class="p">)</span>
+
+<span class="n">MEDIAFILES_LOCATION</span> <span class="o">=</span> <span class="s1">&#39;media&#39;</span>
+<span class="n">DEFAULT_FILE_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;django_lender.custom_storages.MediaStorage&#39;</span>
+<span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;htts://{}/{}/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">AWS_S3_CUSTOM_DOMAIN</span><span class="p">,</span> <span class="n">MEDIAFILES_LOCATION</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="last-bits">
+<h2>Last Bits<a class="headerlink" href="#last-bits" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="keeping-development-local">
+<h3>Keeping Development Local<a class="headerlink" href="#keeping-development-local" title="Permalink to this headline">¶</a></h3>
+<p>AWS S3 storage is spectacular and a great way to move past issues of serving files locally.
+However, you may still want to develop stuff locally using resources that are somewhat different from what’s available in production or anywhere in the cloud.
+You may not want to send requests to your S3 bucket for development or testing.
+For this, you can have environment-dependent settings.</p>
+<p>When in development, we keep <code class="docutils literal"><span class="pre">DEBUG</span> <span class="pre">=</span> <span class="pre">True</span></code> so that when things inevitably break we can see exactly what it was that broke and where it happened.
+We remove this from production because it’s a gigantic security hole, so we can always be guaranteed that in production our <code class="docutils literal"><span class="pre">DEBUG</span></code> setting will be <code class="docutils literal"><span class="pre">False</span></code>.
+We can use this to add logic that effectively says: <strong>when in development, use whatever my static files are locally with the same old setup that I used to have.</strong>
+Once we’re in a production environment, access S3.</p>
+<p>This is more straightforward than it sounds. <code class="docutils literal"><span class="pre">if...else</span></code> logic can concisely save the day! If <code class="docutils literal"><span class="pre">DEBUG</span> <span class="pre">==</span> <span class="pre">True</span></code> use the old-style settings. Otherwise, use the S3 settings.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># AWS Configuration</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">DEBUG</span><span class="p">:</span>
+    <span class="n">AWS_STORAGE_BUCKET_NAME</span> <span class="o">=</span> <span class="s1">&#39;cf401-python-test&#39;</span>
+    <span class="n">AWS_ACCESS_KEY_ID</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IAM_USER_ACCESS_KEY_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">AWS_SECRET_ACCESS_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IAM_USER_SECRET_ACCESS_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">AWS_S3_CUSTOM_DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.s3.amazonaws.com&#39;</span> <span class="o">%</span> <span class="n">AWS_STORAGE_BUCKET_NAME</span>
+
+    <span class="n">STATICFILES_LOCATION</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span>
+    <span class="n">STATICFILES_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;django_lender.custom_storages.StaticStorage&#39;</span>
+    <span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;https://{}/{}/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">AWS_S3_CUSTOM_DOMAIN</span><span class="p">,</span> <span class="n">STATICFILES_LOCATION</span><span class="p">)</span>
+
+    <span class="n">MEDIAFILES_LOCATION</span> <span class="o">=</span> <span class="s1">&#39;media&#39;</span>
+    <span class="n">DEFAULT_FILE_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;django_lender.custom_storages.MediaStorage&#39;</span>
+    <span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;htts://{}/{}/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">AWS_S3_CUSTOM_DOMAIN</span><span class="p">,</span> <span class="n">MEDIAFILES_LOCATION</span><span class="p">)</span>
+
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;/static/&#39;</span>
+    <span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;static&quot;</span><span class="p">)</span>
+
+    <span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;/imgs/&#39;</span>
+    <span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;media&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getting-existing-files-into-s3">
+<h3>Getting Existing Files into S3<a class="headerlink" href="#getting-existing-files-into-s3" title="Permalink to this headline">¶</a></h3>
+<p>As we know, remote data stores don’t simply populate themselves.
+Django takes care of that fairly easily with <code class="docutils literal"><span class="pre">collectstatic</span></code>, where we just make sure to run <code class="docutils literal"><span class="pre">./manage.py</span> <span class="pre">collectstatic</span></code> whenever we deploy.
+That’ll take care of the static files.</p>
+<p>What about media files?
+If you start your application off using S3 for file storage it won’t be an issue, you’ll simply be uploading data to your S3 bucket from the first moment your site goes live.
+However, you won’t always be so lucky to have started off on the right foot.</p>
+<p>There exists a bash command called <code class="docutils literal"><span class="pre">rsync</span></code> which is great for syncing directories between two different computers.
+There’s an extension of this for syncing files between your local filesystem and AWS called <code class="docutils literal"><span class="pre">boto-rsync</span></code>.
+It’s a <code class="docutils literal"><span class="pre">pip</span></code> installable Python package.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> $ pip install boto_rsync
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">YOU SHOULD ONLY NEED TO DO WHAT FOLLOWS ONCE.</p>
+</div>
+<p>On the EC2 instance(s) where your media files are currently stored, you’ll need to run this command in the shell:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>ENV<span class="o">)</span> $ boto-rsync /path/to/media s3://&lt;your bucket name&gt;/media -a &lt;your AWS ACCESS KEY ID&gt; -s &lt;your AWS SECRET ACCESS KEY&gt;
+</pre></div>
+</div>
+<p>Your <code class="docutils literal"><span class="pre">media</span></code> directory will then be copied in its entirety up into your S3 bucket.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django and AWS Simple Storage System (S3)</a><ul>
+<li><a class="reference internal" href="#aws-iam-and-s3-management-and-configuration">AWS IAM and S3 Management and Configuration</a><ul>
+<li><a class="reference internal" href="#create-an-iam-user">Create an IAM User</a><ul>
+<li><a class="reference internal" href="#selecting-a-username-and-access-abilities">Selecting a Username and Access Abilities</a></li>
+<li><a class="reference internal" href="#setting-user-permissions">Setting User Permissions</a></li>
+<li><a class="reference internal" href="#acquiring-the-access-keys">Acquiring the Access Keys</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-an-s3-bucket">Creating an S3 Bucket</a><ul>
+<li><a class="reference internal" href="#the-s3-access-control-list">The S3 Access Control List</a></li>
+<li><a class="reference internal" href="#the-bucket-policy">The Bucket Policy</a></li>
+<li><a class="reference internal" href="#the-cors-configuration">The CORS Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#connecting-django-to-aws-s3">Connecting Django to AWS S3</a><ul>
+<li><a class="reference internal" href="#setting-up-static-and-media-storages">Setting Up Static and Media Storages</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#last-bits">Last Bits</a><ul>
+<li><a class="reference internal" href="#keeping-development-local">Keeping Development Local</a></li>
+<li><a class="reference internal" href="#getting-existing-files-into-s3">Getting Existing Files into S3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

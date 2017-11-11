@@ -59,7 +59,7 @@ Assignments
 ===========
 
 * :doc:`/assignments/web_app_security_assignment1`
-* :doc:`/assignments/bubble_sort`
+* :doc:`/assignments/sort_0_bubblesort`
 * :doc:`/assignments/aws_2_ansible_imager` (Due Friday)
 * :doc:`/assignments/django_7_complete_frontend` (Due Friday)
 * :doc:`/assignments/django_8_drf_tutorial_a`

@@ -14,14 +14,15 @@ Objectives
 ==========
 
 * Learn about the Insertion Sort algorithm
-* Incorporate Pagination into your Django Imager
+* Learn about storage of static and media files in the cloud with AWS S3
 * Get even more practice handling code challenges
 
 Readings
 ========
 
-* `How to Paginate with Django <https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html>`_
 * `Insertion Sort <http://www.tutorialspoint.com/data_structures_algorithms/insertion_sort_algorithm.htm>`_
+* `Using Amazon S3 to Store Your Django Site's Static and Media Files <https://www.caktusgroup.com/blog/2014/11/10/Using-Amazon-S3-to-store-your-Django-sites-static-and-media-files/>`_
+* `Deploy a fault-tolerant Django app on AWS - Part 2: Moving static and media files to S3 <http://www.jorgechang.com/blog/howto-deploy-a-fault-tolerant-django-app-on-aws-part-2-moving-static-media-files-to-s3/>`_
 
 Review
 ======
@@ -34,7 +35,7 @@ Concepts
 .. toctree::
     :maxdepth: 2
 
-    /lectures/django_pagination
+    /lectures/django_s3
 
 * Insertion Sort
 * Whiteboard Challenge
@@ -51,7 +52,7 @@ Assignments
 * :doc:`/assignments/django_9_drf_tutorial_b`
 * :doc:`/assignments/aws_2_ansible_imager` (Due Friday)
 * :doc:`/assignments/django_7_complete_frontend` (Due Friday)
-* :doc:`/assignments/django_12_pagination`
+* :doc:`/assignments/django_14_s3`
 * :doc:`/assignments/django_10_taggit` (EXTRA)
 * :doc:`/assignments/project_03_repo`
 * :doc:`/assignments/daily_lj_entry`

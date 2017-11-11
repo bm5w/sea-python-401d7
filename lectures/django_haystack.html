@@ -1,0 +1,469 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Adding Search to Django &mdash; Python 401 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" media="screen" charset="utf-8" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+<div class="header">
+  <div class="logo">
+    <a href="../index.html">
+      <img class="logo" src="../_static/cf_logo.png" alt="Logo"/>
+      <p>Code Fellows</p>
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: navy;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: darkred;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansiblack { color: black; }
+.ansired { color: darkred; }
+.ansigreen { color: darkgreen; }
+.ansiyellow { color: #c4a000; }
+.ansiblue { color: darkblue; }
+.ansipurple { color: darkviolet; }
+.ansicyan { color: steelblue; }
+/* See https://github.com/jupyter/nbconvert/issues/174 */
+.ansigray { color: gray; }  /* nbconvert CSS */
+.ansigrey { color: gray; }  /* nbconvert HTML output */
+
+.ansibgblack { background-color: black; }
+.ansibgred { background-color: red; }
+.ansibggreen { background-color: green; }
+.ansibgyellow { background-color: yellow; }
+.ansibgblue { background-color: blue; }
+.ansibgpurple { background-color: magenta; }
+.ansibgcyan { background-color: cyan; }
+.ansibggray { background-color: gray; }
+
+.ansibold { font-weight: bold; }
+</style>
+<div class="section" id="adding-search-to-django">
+<h1>Adding Search to Django<a class="headerlink" href="#adding-search-to-django" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="search-engines-and-indexing">
+<h2>Search Engines and Indexing<a class="headerlink" href="#search-engines-and-indexing" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="elasticsearch">
+<h2>ElasticSearch<a class="headerlink" href="#elasticsearch" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">ElasticSearch is an example of a document store, where all the information about one item at a time is stored and is searchable by the information within</p>
+</li>
+<li><dl class="first docutils">
+<dt>Start it up and set it to run as a background process.</dt>
+<dd><ul class="first last simple">
+<li>On Mac, if installed with Homebrew, <code class="docutils literal"><span class="pre">brew</span> <span class="pre">services</span> <span class="pre">start</span> <span class="pre">elasticsearch</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Send first <code class="docutils literal"><span class="pre">GET</span></code> request to <code class="docutils literal"><span class="pre">localhost:9200</span></code> to show it&#8217;s working</p>
+</li>
+<li><dl class="first docutils">
+<dt>Make a <code class="docutils literal"><span class="pre">POST</span></code> request to <code class="docutils literal"><span class="pre">localhost:9200/&lt;index&gt;/&lt;type&gt;</span></code> to insert a JSON object.</dt>
+<dd><ul class="first last">
+<li><p class="first"><code class="docutils literal"><span class="pre">&lt;index&gt;</span></code> is arbitrary</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">&lt;type&gt;</span></code> is arbitrary</p>
+</li>
+<li><p class="first">Each <code class="docutils literal"><span class="pre">&lt;type&gt;</span></code> has its own ID space</p>
+</li>
+<li><p class="first">Different types can have different mappings</p>
+</li>
+<li><dl class="first docutils">
+<dt>Add movie data with <code class="docutils literal"><span class="pre">requests</span></code> library</dt>
+<dd><ul class="first last">
+<li><p class="first">Must include <code class="docutils literal"><span class="pre">Content-Type</span></code> header saying the request body will be <code class="docutils literal"><span class="pre">application/json</span></code></p>
+</li>
+<li><p class="first">Data must actually be stringified JSON, <em>NOT</em> a dictionary which while serializable to JSON is in fact not JSON</p>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">POST</span></code> requests auto-add IDs for items in ES, but IDs are hashed strings</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">r</span> <span class="pre">=</span> <span class="pre">requests.post('http://localhost:9200/movies/movie',</span> <span class="pre">data=json.dumps(data),</span> <span class="pre">headers=headers)</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">PUT</span></code> requests to specific IDs can add items to ES</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">r</span> <span class="pre">=</span> <span class="pre">requests.put('http://localhost:9200/movies/movie/2',</span> <span class="pre">data=json.dumps(data),</span> <span class="pre">headers=headers)</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">If it worked, the status code on return is 201 - Created</p>
+</li>
+<li><p class="first">Data&#8217;s key-value pairs are arbitrary.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Add several items to ElasticSearch store</p>
+</li>
+<li><dl class="first docutils">
+<dt>Can search through the entire ElasticSearch store, or by index, or by type within index with a <code class="docutils literal"><span class="pre">GET</span></code> request to a url ending in <code class="docutils literal"><span class="pre">_search</span></code>.</dt>
+<dd><ul class="first last simple">
+<li>sample query: <code class="docutils literal"><span class="pre">query</span> <span class="pre">=</span> <span class="pre">{'query':</span> <span class="pre">{'query_string':</span> <span class="pre">{'query':</span> <span class="pre">'to'}}}</span></code></li>
+<li><code class="docutils literal"><span class="pre">r</span> <span class="pre">=</span> <span class="pre">requests.get('http://localhost:9200/movies/_search',</span> <span class="pre">data=json.dumps(query),</span> <span class="pre">headers=headers)</span></code></li>
+<li>response:</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-json"><div class="highlight"><pre>{
+    &#39;_shards&#39;: &#39;failed&#39;: 0,
+    &#39;skipped&#39;: 0,
+    &#39;successful&#39;: 5,
+    &#39;total&#39;: 5
+},
+&#39;hits&#39;: {
+    &#39;hits&#39;: [{
+        &#39;_id&#39;: &#39;2&#39;,
+        &#39;_index&#39;: &#39;movies&#39;,
+        &#39;_score&#39;: 0.66747504,
+        &#39;_source&#39;: {
+            &#39;director&#39;: &#39;Robert Mulligan&#39;,
+            &#39;title&#39;: &#39;To Kill a Mockingbird&#39;,
+            &#39;year&#39;: 1962
+        },
+        &#39;_type&#39;: &#39;movie&#39;
+    }],
+    &#39;max_score&#39;: 0.66747504,
+    &#39;total&#39;: 1
+},
+&#39;timed_out&#39;: False,
+&#39;took&#39;: 70
+}
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>Response meanings:</dt>
+<dd><ul class="first last">
+<li><p class="first">&#8220;shards&#8221;: the number of nodes that ElasticSearch has spread your data across</p>
+</li>
+<li><dl class="first docutils">
+<dt>&#8220;hits&#8221;: information about items in ElasticSearch that match your query</dt>
+<dd><ul class="first last simple">
+<li>&#8220;hits.hits&#8221;: the list of actual hits for your search</li>
+<li>&#8220;hits.max_score&#8221;: the score of the best match for your search. The highest score possible is 1.0, lowest is 0.0</li>
+<li>&#8220;hits.total&#8221;: the total number of items that matched your search</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">&#8220;timed_out&#8221;: False</p>
+</li>
+<li><p class="first">&#8220;took&#8221;: time it took to complete the search</p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">As long as there are items in your ElasticSearch store, there will be some data sent back to you.</p>
+</li>
+<li><p class="first">If you try to query an index or type that doesn&#8217;t exist, you&#8217;ll get a 404</p>
+</li>
+<li><p class="first">PUT requests to the proper IDs will still udpate the item at that ID</p>
+</li>
+<li><p class="first">Queries can get more specific if fields are specified</p>
+</li>
+</ul>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;query_string&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;ford&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>You can filter your queries by field to locate items that meet certain criteria</li>
+</ul>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;filtered&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;query_string&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;drama&quot;</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;filter&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;term&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1962</span> <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>There are more things you can do with ElasticSearch that get really granular with searches, but this is a decent start.
+Let Django Haystack handle the rest.</p>
+</div>
+<div class="section" id="django-haystack">
+<h2>Django Haystack<a class="headerlink" href="#django-haystack" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">django-haystack</span></code></li>
+<li>Add Haystack to <code class="docutils literal"><span class="pre">INSTALLED_APPS</span></code> after all the Django built-ins but before any of your own apps</li>
+<li>Add the <code class="docutils literal"><span class="pre">HAYSTACK_CONNECTIONS</span></code> keyword to your <code class="docutils literal"><span class="pre">settings.py</span></code>. It&#8217;ll look a lot like the settings for your database.</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">HAYSTACK_CONNECTIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;URL&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ELASTICSEARCH_URL&#39;</span><span class="p">,</span> <span class="s1">&#39;http://localhost:9200/&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;INDEX_NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;haystack&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">Set an environment variable that&#8217;ll be useful for your deployed site like <code class="docutils literal"><span class="pre">ELASTICSEARCH_URL</span></code>, though you can set the default value to just be whatever you&#8217;ve got running on <code class="docutils literal"><span class="pre">localhost</span></code>. By default, ElasticSearch will be running on port 9200. That really shouldn&#8217;t change across machines.</p>
+</li>
+<li><dl class="first docutils">
+<dt>To add indexes to your ElasticSearch instance through Haystack, with the <cite>SearchIndex</cite> and <cite>Indexable</cite> objects.</dt>
+<dd><ul class="first last simple">
+<li>Create a unique <cite>SearchIndex</cite> per type of model you wish indexed; generally housed in a <cite>search_indexes.py</cite> file</li>
+<li>Sublcass both <cite>haystack.indexes.SearchIndex</cite> and <cite>haystack.indexes.Indexable</cite></li>
+<li>Set fields on the index like you would a Django model, e.g. <cite>indexes.CharField</cite> and <cite>indexes.DateTimeField</cite></li>
+<li>Define a <cite>get_model</cite> method to direct your index toward which model it&#8217;s mimicking</li>
+<li>Whichever field you want to be primarily searchable should be declared with kwarg of <code class="docutils literal"><span class="pre">document=True</span></code>. Your index may only have ONE of these.</li>
+<li>If you set <code class="docutils literal"><span class="pre">template=True</span></code> on your primary searchable field, you will need to provide a template just like your e-mail template or HTML templates for that index. For our Book Lender application our model&#8217;s index might look like this:</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">haystack</span> <span class="kn">import</span> <span class="n">indexes</span>
+<span class="kn">from</span> <span class="nn">books.models</span> <span class="kn">import</span> <span class="n">Book</span>
+
+<span class="k">class</span> <span class="nc">BookIndex</span><span class="p">(</span><span class="n">indexes</span><span class="o">.</span><span class="n">SearchIndex</span><span class="p">,</span> <span class="n">indexes</span><span class="o">.</span><span class="n">Indexable</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">document</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_template</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">()</span>
+    <span class="n">isbn</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Book</span>
+</pre></div>
+</div>
+<p>And our template may look like this (assuming we only want to dispay the title and author of our Book objects):</p>
+<div class="highlight-html"><div class="highlight"><pre># in templates/search/indexes/books/book_title.txt
+
+{{ object.title }}
+{{ object.author }}
+</pre></div>
+</div>
+<ul class="simple">
+<li>Need to add views for handling searches that use ElasticSearch, as well as URLs for those views to communicate with.</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># in urls.py add to your url patterns...</span>
+
+<span class="p">(</span><span class="s1">r&#39;^search/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;haystack.urls&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Need a form to search with. In <code class="docutils literal"><span class="pre">templates/search/search.html</span></code> we might have something like</li>
+</ul>
+<div class="highlight-html"><div class="highlight"><pre>{% extends &quot;base.html&quot; %}
+
+{% block content %}
+</pre></div>
+</div>
+</div>
+<div class="section" id="connecting-to-aws-elasticsearch">
+<h2>Connecting to AWS ElasticSearch<a class="headerlink" href="#connecting-to-aws-elasticsearch" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Adding Search to Django</a><ul>
+<li><a class="reference internal" href="#search-engines-and-indexing">Search Engines and Indexing</a></li>
+<li><a class="reference internal" href="#elasticsearch">ElasticSearch</a></li>
+<li><a class="reference internal" href="#django-haystack">Django Haystack</a></li>
+<li><a class="reference internal" href="#connecting-to-aws-elasticsearch">Connecting to AWS ElasticSearch</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014-2016, Cris Ewing, Nicholas Hunt-Walker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>
