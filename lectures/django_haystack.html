@@ -410,11 +410,105 @@ Let Django Haystack handle the rest.</p>
 <div class="highlight-html"><div class="highlight"><pre>{% extends &quot;base.html&quot; %}
 
 {% block content %}
+<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Search<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;get&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+        {{ form.as_table }}
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Search&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+
+{% if query %}
+    <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Results<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+
+    {% for result in page.object_list %}
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ result.object.get_absolute_url }}&quot;</span><span class="p">&gt;</span>{{ result.object.title }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    {% empty %}
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>No results found.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    {% endfor %}
+
+    {% if page.has_previous or page.has_next %}
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            {% if page.has_previous %}<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;?q={{ query }}&amp;amp;page={{ page.previous_page_number }}&quot;</span><span class="p">&gt;</span>{% endif %}<span class="ni">&amp;laquo;</span> Previous{% if page.has_previous %}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>{% endif %}
+            |
+            {% if page.has_next %}<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;?q={{ query }}&amp;amp;page={{ page.next_page_number }}&quot;</span><span class="p">&gt;</span>{% endif %}Next <span class="ni">&amp;raquo;</span>{% if page.has_next %}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>{% endif %}
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    {% endif %}
+{% endif %}
+{% endblock %}
+</pre></div>
+</div>
+<p>The form comes from the SearchView directly.
+The <code class="docutils literal"><span class="pre">page.object_list</span></code> is the list of search results, pulled in through your actual model.
+The search results are automatically paginated, though can probably be altered through the <code class="docutils literal"><span class="pre">SearchView</span></code>.</p>
+<ul>
+<li><p class="first">Once your local ElasticSearch cluster is hooked up, you can put your data into the ElasticSearch instance with <code class="docutils literal"><span class="pre">./manage.py</span> <span class="pre">rebuild_index</span></code></p>
+</li>
+<li><dl class="first docutils">
+<dt>You may need to update your search index after you&#8217;ve started it up as you continue to add more content. There&#8217;s a couple of options here.</dt>
+<dd><ul class="first last simple">
+<li>Generally, whenever you need to update your index, you can use <code class="docutils literal"><span class="pre">./manage.py</span> <span class="pre">update_index</span></code> to manually kick off an update</li>
+<li>If your model has gone through significant changes, you may need to fully rebuild the index with <code class="docutils literal"><span class="pre">./manage.py</span> <span class="pre">rebuild_index</span></code></li>
+<li>You can tie updates to the search index with signals sent whenever your models are saved/updated. Much like we have a signal receiver for making new Profile instances whenever a new User is saved, we can use one of Haystack&#8217;s built-in signal receivers to update the index whenever any model is saved/updated. We would have to just add something to the <code class="docutils literal"><span class="pre">settings.py</span></code> establishing the proper signal processor. Note that this would tie the update of your search index to the web request-response cycle, which could potentially slow down responses from your webserver. Use wisely.</li>
+<li>This is outside the scope of this course, but it&#8217;s recommended to set a <cite>cron</cite> job to run in the background that updates your search index during projected periods of low traffic. Again, use wisely.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">HAYSTACK_SIGNAL_PROCESSOR</span> <span class="o">=</span> <span class="s1">&#39;haystack.signals.RealtimeSignalProcessor&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="connecting-to-aws-elasticsearch">
 <h2>Connecting to AWS ElasticSearch<a class="headerlink" href="#connecting-to-aws-elasticsearch" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>Create a New Domain</strong> button</p>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Step 1:</strong> Define domain</dt>
+<dd><ul class="first last simple">
+<li>Set a domain name that is between 3 and 28 alphanumeric (and hyphen) characters</li>
+<li>Go with the latest version of elasticsearch</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Step 2:</strong> Configure Cluster</dt>
+<dd><ul class="first last simple">
+<li>Instance count can stay at 1; scale up as your needs require</li>
+<li>Instance type should be <code class="docutils literal"><span class="pre">t2.small.elasticsearch</span></code></li>
+<li>Leave two &#8220;Enable&#8221; boxes unchecked. We&#8217;re dealing with a small amount of data so we don&#8217;t need to worry about multiple dedicated &#8220;master&#8221; nodes or zone awareness</li>
+<li>Leave the <strong>Storage configuration</strong> alone</li>
+<li>Leave the <strong>Snapshot configuration</strong> alone</li>
+<li>Leave the <strong>Advanced options</strong> alone</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Step 3:</strong> Set up access</dt>
+<dd><ul class="first last simple">
+<li>Network configuration to <code class="docutils literal"><span class="pre">Public</span> <span class="pre">access</span></code> since we&#8217;re not using VPCs for anything</li>
+<li>Use the template to allow access to an IAM user, and use the same IAM user you set up for S3 access</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Confirm</p>
+</li>
+<li><p class="first">Run script to set up index.</p>
+</li>
+</ul>
 </div>
 </div>
 

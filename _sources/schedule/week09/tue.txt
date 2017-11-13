@@ -46,7 +46,6 @@ Assignments
 ===========
 
 * :doc:`/assignments/ml_2_decision_tree`
-* :doc:`/assignments/django_13_social_auth`
 * :doc:`/assignments/project_07_stories_begin`
 * :doc:`/assignments/blog_post_publish` (Due Friday)
 * :doc:`/assignments/daily_lj_entry`

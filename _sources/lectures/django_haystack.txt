@@ -169,8 +169,73 @@ And our template may look like this (assuming we only want to dispay the title a
     {% extends "base.html" %}
 
     {% block content %}
+    <h2>Search</h2>
 
+    <form method="get" action="">
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Search">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    {% if query %}
+        <h3>Results</h3>
+
+        {% for result in page.object_list %}
+            <p>
+                <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
+            </p>
+        {% empty %}
+            <p>No results found.</p>
+        {% endfor %}
+
+        {% if page.has_previous or page.has_next %}
+            <div>
+                {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                |
+                {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+            </div>
+        {% endif %}
+    {% endif %}
+    {% endblock %}
+
+The form comes from the SearchView directly.
+The ``page.object_list`` is the list of search results, pulled in through your actual model.
+The search results are automatically paginated, though can probably be altered through the ``SearchView``.
+
+- Once your local ElasticSearch cluster is hooked up, you can put your data into the ElasticSearch instance with ``./manage.py rebuild_index``
+- You may need to update your search index after you've started it up as you continue to add more content. There's a couple of options here.
+    - Generally, whenever you need to update your index, you can use ``./manage.py update_index`` to manually kick off an update
+    - If your model has gone through significant changes, you may need to fully rebuild the index with ``./manage.py rebuild_index``
+    - You can tie updates to the search index with signals sent whenever your models are saved/updated. Much like we have a signal receiver for making new Profile instances whenever a new User is saved, we can use one of Haystack's built-in signal receivers to update the index whenever any model is saved/updated. We would have to just add something to the ``settings.py`` establishing the proper signal processor. Note that this would tie the update of your search index to the web request-response cycle, which could potentially slow down responses from your webserver. Use wisely.
+    - This is outside the scope of this course, but it's recommended to set a `cron` job to run in the background that updates your search index during projected periods of low traffic. Again, use wisely.
+
+.. code-block:: python
+
+    HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 
 Connecting to AWS ElasticSearch
 ===============================
+
+- **Create a New Domain** button
+- **Step 1:** Define domain
+    * Set a domain name that is between 3 and 28 alphanumeric (and hyphen) characters
+    * Go with the latest version of elasticsearch
+- **Step 2:** Configure Cluster
+    * Instance count can stay at 1; scale up as your needs require
+    * Instance type should be ``t2.small.elasticsearch``
+    * Leave two "Enable" boxes unchecked. We're dealing with a small amount of data so we don't need to worry about multiple dedicated "master" nodes or zone awareness
+    * Leave the **Storage configuration** alone
+    * Leave the **Snapshot configuration** alone
+    * Leave the **Advanced options** alone
+- **Step 3:** Set up access
+    * Network configuration to ``Public access`` since we're not using VPCs for anything
+    * Use the template to allow access to an IAM user, and use the same IAM user you set up for S3 access
+- Confirm
+- Run script to set up index.

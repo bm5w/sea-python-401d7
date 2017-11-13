@@ -64,7 +64,7 @@ Assignments
 * :doc:`/assignments/aws_2_ansible_imager`
 * :doc:`/assignments/django_7_complete_frontend`
 * :doc:`/assignments/django_12_pagination`
-* :doc:`/assignments/`
+* :doc:`/assignments/whiteboard`
 * :doc:`/assignments/sort_3_quicksort`
 * :doc:`/assignments/project_05_wireframe_begin`
 * :doc:`/assignments/blog_post_publish` (Due Friday Week 9)
