@@ -12,11 +12,11 @@ Week Eight
 
 The themes for the week are Data Science, Django REST, and Django Extras
 
-.. .. toctree::
-..    :maxdepth: 1
+.. toctree::
+   :maxdepth: 1
 
-..    /schedule/week08/mon
-..    /schedule/week08/tue
-..    /schedule/week08/wed
-..    /schedule/week08/thu
-..    /schedule/week08/fri
+   /schedule/week08/mon
+   /schedule/week08/tue
+   /schedule/week08/wed
+   /schedule/week08/thu
+   /schedule/week08/fri

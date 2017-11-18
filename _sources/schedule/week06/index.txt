@@ -12,11 +12,11 @@ Week Six
 
 The themes for the week are Django Models, Views, and Templates.
 
-.. .. toctree::
-..    :maxdepth: 1
+.. toctree::
+   :maxdepth: 1
 
-..    /schedule/week06/mon
-..    /schedule/week06/tue
-..    /schedule/week06/wed
-..    /schedule/week06/thu
-..    /schedule/week06/fri
+   /schedule/week06/mon
+   /schedule/week06/tue
+   /schedule/week06/wed
+   /schedule/week06/thu
+   /schedule/week06/fri

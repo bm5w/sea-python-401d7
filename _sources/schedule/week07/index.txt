@@ -12,11 +12,11 @@ Week Seven
 
 The themes for the week are Deployment, Sorting, and Django Security
 
-.. .. toctree::
-..    :maxdepth: 1
+.. toctree::
+   :maxdepth: 1
 
-..    /schedule/week07/mon
-..    /schedule/week07/tue
-..    /schedule/week07/wed
-..    /schedule/week07/thu
-..    /schedule/week07/fri
+   /schedule/week07/mon
+   /schedule/week07/tue
+   /schedule/week07/wed
+   /schedule/week07/thu
+   /schedule/week07/fri

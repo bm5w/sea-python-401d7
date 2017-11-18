@@ -12,11 +12,11 @@ Week Nine
 
 The themes for the week are Machine Learning, Whiteboarding, and Project Prep.
 
-.. .. toctree::
-..    :maxdepth: 1
+.. toctree::
+   :maxdepth: 1
 
-..    /schedule/week09/mon
-..    /schedule/week09/tue
-..    /schedule/week09/wed
-..    /schedule/week09/thu
-..    /schedule/week09/fri
+   /schedule/week09/mon
+   /schedule/week09/tue
+   /schedule/week09/wed
+   /schedule/week09/thu
+   /schedule/week09/fri
