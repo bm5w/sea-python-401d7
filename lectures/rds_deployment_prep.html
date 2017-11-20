@@ -25,6 +25,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="up" title="Monday" href="../schedule/week08/mon.html" />
+    <link rel="next" title="Tuesday" href="../schedule/week08/tue.html" />
+    <link rel="prev" title="Django Auth-Auth &amp; Security" href="django_security.html" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 
@@ -51,7 +54,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="../schedule/week08/tue.html" title="Tuesday"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="django_security.html" title="Django Auth-Auth &amp; Security"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week08/mon.html" accesskey="U">Monday</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -225,12 +235,12 @@ This URL (minus the port number) will serve as our <code class="docutils literal
 However, we&#8217;ve got an app that needs to USE that database.</p>
 <p>In our Django Lender&#8217;s <code class="docutils literal"><span class="pre">settings.py</span></code> file, there&#8217;s a few keywords there that need to be modified (and a few that need to be declared) for the sake of deployment.</p>
 <ul class="simple">
-<li><a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/settings/#secret-key">SECRET_KEY</a></li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/settings/#secret-key">SECRET_KEY</a></li>
 <li>DEBUG (should be set to <code class="docutils literal"><span class="pre">False</span></code> in production, <code class="docutils literal"><span class="pre">True</span></code> in development)</li>
-<li><a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts">ALLOWED_HOSTS</a></li>
-<li><a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/settings/#databases">DATABASES</a> and related information</li>
-<li><a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/settings/#static-root">STATIC_ROOT</a></li>
-<li><a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/email/#smtp-backend">EMAIL_BACKEND</a> and related information. If our app is to be in production, it must send actual registration emails, and not just print them to the console anymore.</li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/settings/#allowed-hosts">ALLOWED_HOSTS</a></li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/settings/#databases">DATABASES</a> and related information</li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/settings/#static-root">STATIC_ROOT</a></li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/email/#smtp-backend">EMAIL_BACKEND</a> and related information. If our app is to be in production, it must send actual registration emails, and not just print them to the console anymore.</li>
 </ul>
 <p>You could hard-code all of these values if you wanted, however there are massive security issues that would result.
 You&#8217;d also have trouble running your code locally, because all your settings would be attuned to what&#8217;s in production.</p>
@@ -282,6 +292,12 @@ Be aware!</p>
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="django_security.html"
+                        title="previous chapter">Django Auth-Auth &amp; Security</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../schedule/week08/tue.html"
+                        title="next chapter">Tuesday</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -305,7 +321,14 @@ Be aware!</p>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="../schedule/week08/tue.html" title="Tuesday"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="django_security.html" title="Django Auth-Auth &amp; Security"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week08/mon.html" >Monday</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

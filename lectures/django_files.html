@@ -25,6 +25,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="up" title="Monday" href="../schedule/week07/mon.html" />
+    <link rel="next" title="Tuesday" href="../schedule/week07/tue.html" />
+    <link rel="prev" title="Monday" href="../schedule/week07/mon.html" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 
@@ -51,7 +54,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="../schedule/week07/tue.html" title="Tuesday"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week07/mon.html" title="Monday"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week07/mon.html" accesskey="U">Monday</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -233,11 +243,11 @@ Django has 2 types of fields when dealing with binary files, the <code class="do
 Images are just files that have special properties like <code class="docutils literal"><span class="pre">height</span></code> and <code class="docutils literal"><span class="pre">width</span></code>.
 Django comes with this functionality built in with <code class="docutils literal"><span class="pre">ImageField</span></code>.</p>
 <p>When we construct these models, there are a few options we really want to think about.
-The first of these is <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.FileField.upload_to"><code class="docutils literal"><span class="pre">upload_to</span></code></a>.</p>
+The first of these is <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/models/fields/#django.db.models.FileField.upload_to"><code class="docutils literal"><span class="pre">upload_to</span></code></a>.</p>
 </div>
 <div class="section" id="files-and-media">
 <span id="files-and-media"></span><h2>Files and Media<a class="headerlink" href="#files-and-media" title="Permalink to this headline">¶</a></h2>
-<p>Here is our <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/models/fields/#filefield"><code class="docutils literal"><span class="pre">FileField</span></code></a> constructor (source code in <code class="docutils literal"><span class="pre">.../lib/python3.6/site-packages/django/db/models/fields/files.py</span></code>):</p>
+<p>Here is our <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/models/fields/#filefield"><code class="docutils literal"><span class="pre">FileField</span></code></a> constructor (source code in <code class="docutils literal"><span class="pre">.../lib/python3.6/site-packages/django/db/models/fields/files.py</span></code>):</p>
 <p><code class="docutils literal"><span class="pre">class</span> <span class="pre">FileField(upload_to=None,</span> <span class="pre">max_length=100,</span> <span class="pre">**options)</span></code></p>
 <ul class="simple">
 <li>It takes <code class="docutils literal"><span class="pre">upload_to=None</span></code> as a default.</li>
@@ -344,7 +354,7 @@ It will assume that someone is trying to pass bad user data to break out of syst
 </div>
 <div class="section" id="options-for-upload-to">
 <span id="options-for-upload-to"></span><h3>Options for <code class="docutils literal"><span class="pre">upload_to</span></code><a class="headerlink" href="#options-for-upload-to" title="Permalink to this headline">¶</a></h3>
-<p>You can also pass strings into the <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.FileField.upload_to"><code class="docutils literal"><span class="pre">upload_to</span></code></a> field that are for formatting in date-time style.</p>
+<p>You can also pass strings into the <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/models/fields/#django.db.models.FileField.upload_to"><code class="docutils literal"><span class="pre">upload_to</span></code></a> field that are for formatting in date-time style.</p>
 <p><code class="docutils literal"><span class="pre">cover_image</span> <span class="pre">=</span> <span class="pre">models.ImageField(upload_to='book_covers/%Y-%m-%d')</span></code></p>
 <p>If you are planning on working with a large number of files, this is actually a great idea.
 File systems have a limited number of nodes they can open, so this is one way to limit the number of files in one directory.</p>
@@ -501,7 +511,7 @@ Django&#8217;s intention is that you will use your web server or some other exte
 <p>Let&#8217;s first change our <code class="docutils literal"><span class="pre">DEBUG=True</span></code> back.
 Can we navigate to our media file?</p>
 <p><img alt="alt text" src="../_images/img_404.png" /></p>
-<p>We need to look under Django&#8217;s docs to see how to deal with <a class="reference external" href="https://docs.djangoproject.com/en/dev/howto/static-files/#serving-files-uploaded-by-a-user-during-development">serving files uploaded by a user during development</a>.
+<p>We need to look under Django&#8217;s docs to see how to deal with <a class="reference external" href="https://docs.djangoproject.com/en/1.11/howto/static-files/#serving-files-uploaded-by-a-user-during-development">serving files uploaded by a user during development</a>.
 Those docs suggest to add this to <code class="docutils literal"><span class="pre">urls.py</span></code>:</p>
 <p><em>/.../lending_library/lending_library/urls.py</em></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
@@ -538,7 +548,7 @@ Be aware that values like <code class="docutils literal"><span class="pre">uploa
 <p>But remember that the settings you have are writable.
 You can alter them at test time.
 You may want to mess around with settings so that your test files go to <code class="docutils literal"><span class="pre">/tmp</span></code> or something like that.
-See the documentation on <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/testing/tools/#overriding-settings">overriding settings</a> for ideas on how to do this.</p>
+See the documentation on <a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/testing/tools/#overriding-settings">overriding settings</a> for ideas on how to do this.</p>
 <p>When testing models that contain uploaded files as class attributes, you&#8217;ll need to be able to simulate that uploaded file.
 This is especially true if your models
 For this, Django gives you the <code class="docutils literal"><span class="pre">SimpleUploadedFile</span></code> object from <code class="docutils literal"><span class="pre">django.core.files.uploadedfile</span></code>.</p>
@@ -589,6 +599,12 @@ You can also take this <code class="docutils literal"><span class="pre">SimpleUp
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../schedule/week07/mon.html"
+                        title="previous chapter">Monday</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../schedule/week07/tue.html"
+                        title="next chapter">Tuesday</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -612,7 +628,14 @@ You can also take this <code class="docutils literal"><span class="pre">SimpleUp
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="../schedule/week07/tue.html" title="Tuesday"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week07/mon.html" title="Monday"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week07/mon.html" >Monday</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

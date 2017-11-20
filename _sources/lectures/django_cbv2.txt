@@ -17,7 +17,7 @@ You can see in there some of the installed packages required to make Django work
 Now use your editor to open the `django` directory in the `site-packages` directory.
 
 We're going to pick one of our generic views and inspect it.
-We'll start with the [`DetailView`](https://docs.djangoproject.com/en/dev/ref/class-based-views/generic-display/#detailview)
+We'll start with the [`DetailView`](https://docs.djangoproject.com/en/1.11/ref/class-based-views/generic-display/#detailview)
 
 It's worth our time to learn how this class is put together and to understand the Method Flowchart so that we can spelunk down through these methods and see what we may want to use, as well as what we may want to override.
 
@@ -179,7 +179,7 @@ What this means is that the first method that every single class-based view that
 
 Let's look at `dispatch()` now, and see what it does.
 
-## [`CBV dispatch()`](https://docs.djangoproject.com/en/dev/ref/class-based-views/base/#django.views.generic.base.View.dispatch)
+## [`CBV dispatch()`](https://docs.djangoproject.com/en/1.11/ref/class-based-views/base/#django.views.generic.base.View.dispatch)
 
 _...$VIRTUAL_ENV/lib/python3.6/site-packages/django/views/generic/base.py_
 
@@ -314,7 +314,7 @@ Remember our `as_view()` method?
 Anything that is an attribute of the `View` class can be passed in as a keyword argument to the `as_view()` call.
 All of these attributes are customization points to our `DetailView`.
 
-## The [`get_object`](https://docs.djangoproject.com/en/dev/ref/class-based-views/mixins-single-object/#django.views.generic.detail.SingleObjectMixin.get_object) method
+## The [`get_object`](https://docs.djangoproject.com/en/1.11/ref/class-based-views/mixins-single-object/#django.views.generic.detail.SingleObjectMixin.get_object) method
 
 What does `get_object()` do? (Student reads through code):
 

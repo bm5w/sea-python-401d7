@@ -25,6 +25,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="up" title="Monday" href="../schedule/week08/mon.html" />
+    <link rel="next" title="Amazon RDS and Deployment Prep" href="rds_deployment_prep.html" />
+    <link rel="prev" title="Monday" href="../schedule/week08/mon.html" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 
@@ -51,7 +54,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="rds_deployment_prep.html" title="Amazon RDS and Deployment Prep"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week08/mon.html" title="Monday"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week08/mon.html" accesskey="U">Monday</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -201,7 +211,7 @@ We can control views based on that flag.</p>
 </pre></div>
 </div>
 <p><strong>Every logged-in user is authenticated,</strong> and every <code class="docutils literal"><span class="pre">request</span></code> object has a <code class="docutils literal"><span class="pre">user</span></code> attached whether or not that user has logged in.
-When the user hasn&#8217;t logged in yet, the <code class="docutils literal"><span class="pre">user</span></code> object attached to <code class="docutils literal"><span class="pre">request</span></code> is an instance of the <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/contrib/auth/#django.contrib.auth.models.AnonymousUser">AnonymousUser</a>.
+When the user hasn&#8217;t logged in yet, the <code class="docutils literal"><span class="pre">user</span></code> object attached to <code class="docutils literal"><span class="pre">request</span></code> is an instance of the <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/contrib/auth/#django.contrib.auth.models.AnonymousUser">AnonymousUser</a>.
 Amongst other things, <code class="docutils literal"><span class="pre">AnonymousUser.is_authenticated</span></code> is always set to <code class="docutils literal"><span class="pre">False</span></code>.</p>
 </div>
 <div class="section" id="authn-with-decorators">
@@ -376,7 +386,7 @@ This can mean a redirect, stealing cookies, or some other malicious activity.</p
 <li>by <strong>escaping</strong> whatever text is submitted through your site&#8217;s forms.</li>
 <li>by escaping whatever text is read from your database.</li>
 </ul>
-<p>To escape text coming in from a form, use Django&#8217;s <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/#escape">escape</a> filter</p>
+<p>To escape text coming in from a form, use Django&#8217;s <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#escape">escape</a> filter</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.utils.html</span> <span class="kn">import</span> <span class="n">escape</span>
 <span class="n">cleaned_body</span> <span class="o">=</span> <span class="n">escape</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s2">&quot;text_field&quot;</span><span class="p">])</span>
 </pre></div>
@@ -513,6 +523,12 @@ Your web app expects to see this hidden field, with a unique value specifically 
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../schedule/week08/mon.html"
+                        title="previous chapter">Monday</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="rds_deployment_prep.html"
+                        title="next chapter">Amazon RDS and Deployment Prep</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -536,7 +552,14 @@ Your web app expects to see this hidden field, with a unique value specifically 
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="rds_deployment_prep.html" title="Amazon RDS and Deployment Prep"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week08/mon.html" title="Monday"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week08/mon.html" >Monday</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

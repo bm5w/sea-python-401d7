@@ -6,7 +6,7 @@
 
 We will need to work with the form system in Django if we want to add or update books in our app.
 
-[Django's form system](https://docs.djangoproject.com/en/dev/ref/forms/) has a couple of layers to it.
+[Django's form system](https://docs.djangoproject.com/en/1.11/ref/forms/) has a couple of layers to it.
 
 We'll make an analogy. 
 "Models are to the Database as Forms are to request/response cycle."
@@ -28,7 +28,7 @@ The form does the same thing except it does it with data from the request and re
 It turns one item of information into a pythonic value.
 
 Forms serialize and deserialize, meaning that they standardize and arrange your data for output to some other medium. 
-They do it with a structure called a [widget](https://docs.djangoproject.com/en/dev/ref/forms/widgets/).
+They do it with a structure called a [widget](https://docs.djangoproject.com/en/1.11/ref/forms/widgets/).
 The widget renders out HTML elements, visible or hidden, that then is rendered into an HTML page.
 
 Let's say we have something that's a `forms.CharField` field.
@@ -236,7 +236,7 @@ Django makes some nice default error messages for us with HTML markup too.
 There is ample API documentation for forms, like how to substitute css classes and things like that.
 Dig in when you get the chance!
 
-### [`ModelForm`](https://docs.djangoproject.com/en/dev/topics/forms/modelforms/#django.forms.ModelForm)
+### [`ModelForm`](https://docs.djangoproject.com/en/1.11/topics/forms/modelforms/#django.forms.ModelForm)
 
 There's something else you should know about forms: **the way we built forms above is not the only way.**
 
@@ -403,7 +403,7 @@ They come in a completely different place called `request.files`.
 There's one more trick to this.
 In order to get image data, you have to do something to your HTML `<form>` tag.
 There's an attribute to forms called the [`enctype`](https://www.w3.org/TR/html401/interact/forms.html#adef-enctype).
-**In order to upload images, you need to set the [`enctype="multipart/form-data"`](https://docs.djangoproject.com/en/dev/topics/http/file-uploads/#basic-file-uploads) attribute**
+**In order to upload images, you need to set the [`enctype="multipart/form-data"`](https://docs.djangoproject.com/en/1.11/topics/http/file-uploads/#basic-file-uploads) attribute**
 
 On the other end, you need to make sure you bind your form with not only the first dictionary, but also a second containing the file information:
 

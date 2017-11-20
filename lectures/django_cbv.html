@@ -25,6 +25,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="up" title="Wednesday" href="../schedule/week07/wed.html" />
+    <link rel="next" title="Django Forms" href="django_forms.html" />
+    <link rel="prev" title="Wednesday" href="../schedule/week07/wed.html" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 
@@ -51,7 +54,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="django_forms.html" title="Django Forms"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week07/wed.html" title="Wednesday"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week07/wed.html" accesskey="U">Wednesday</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -177,7 +187,7 @@ div.nboutput  > :nth-child(2).stderr {
 <div class="section" id="first-steps-into-class-based-views">
 <span id="first-steps-into-class-based-views"></span><h1>First Steps into Class-Based Views<a class="headerlink" href="#first-steps-into-class-based-views" title="Permalink to this headline">¶</a></h1>
 <p>Thus far we&#8217;ve been using functional views to handle all of our requests and return our responses.
-However, Django is largely moving toward <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/class-based-views/">Class-Based Views</a>, so it&#8217;s worth understanding how they work.</p>
+However, Django is largely moving toward <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/class-based-views/">Class-Based Views</a>, so it&#8217;s worth understanding how they work.</p>
 <div class="section" id="the-templateview">
 <span id="the-templateview"></span><h2>The <code class="docutils literal"><span class="pre">TemplateView</span></code><a class="headerlink" href="#the-templateview" title="Permalink to this headline">¶</a></h2>
 <p>We can update the views in our <code class="docutils literal"><span class="pre">lending_library</span></code> app to use a class view.</p>
@@ -191,14 +201,14 @@ However, Django is largely moving toward <a class="reference external" href="htt
 <p>The purpose of every class-based view inheriting from <code class="docutils literal"><span class="pre">django.views.generic.TemplateView</span></code> is to render a template.</p>
 <p>All of the class-based views are going to provide us with simple ways of performing common tasks.
 They also provide us with API methods to take care of some of the things that go around those common tasks.</p>
-<p>There is <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/class-based-views/">good documentation</a> regarding the class-based views API.
+<p>There is <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/class-based-views/">good documentation</a> regarding the class-based views API.
 It has a list of all of the different kinds of views that there are.
-Let&#8217;s click on <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/class-based-views/base/#templateview">TemplateView</a> and see what it contains.</p>
+Let&#8217;s click on <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/class-based-views/base/#templateview">TemplateView</a> and see what it contains.</p>
 <p>A flowchart of methods:</p>
 <ul class="simple">
 <li>a <code class="docutils literal"><span class="pre">dispatch()</span></code> method</li>
 <li><code class="docutils literal"><span class="pre">http_method_not_allowed()</span></code></li>
-<li><a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/class-based-views/mixins-simple/#django.views.generic.base.ContextMixin.get_context_data"><code class="docutils literal"><span class="pre">get_context_data()</span></code></a>: this method returns a dictionary that includes all of the items we want to pass in as part of the view&#8217;s context.</li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/class-based-views/mixins-simple/#django.views.generic.base.ContextMixin.get_context_data"><code class="docutils literal"><span class="pre">get_context_data()</span></code></a>: this method returns a dictionary that includes all of the items we want to pass in as part of the view&#8217;s context.</li>
 </ul>
 <p>So let&#8217;s go back to our <code class="docutils literal"><span class="pre">views.py</span></code> and create for ourselves a class-based view that uses the <code class="docutils literal"><span class="pre">get_context_data()</span></code> method to return a dictionary.
 We&#8217;ll also insert a breakpoint so we can inspect the state of things when this method is called:</p>
@@ -390,6 +400,12 @@ Similarly, you can get any data onto to the page with a <em>TemplateView</em>, b
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../schedule/week07/wed.html"
+                        title="previous chapter">Wednesday</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="django_forms.html"
+                        title="next chapter">Django Forms</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -413,7 +429,14 @@ Similarly, you can get any data onto to the page with a <em>TemplateView</em>, b
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="django_forms.html" title="Django Forms"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week07/wed.html" title="Wednesday"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week07/wed.html" >Wednesday</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

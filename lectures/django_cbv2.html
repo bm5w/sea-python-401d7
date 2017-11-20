@@ -25,6 +25,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="up" title="Thursday" href="../schedule/week07/thu.html" />
+    <link rel="next" title="Trie" href="trie.html" />
+    <link rel="prev" title="Deploying a Simple WSGI Application on AWS" href="simple_wsgi_deployment.html" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 
@@ -51,7 +54,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="trie.html" title="Trie"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="simple_wsgi_deployment.html" title="Deploying a Simple WSGI Application on AWS"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week07/thu.html" accesskey="U">Thursday</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -189,7 +199,7 @@ They also use the &#8220;mixin&#8221; pattern.</p>
 <p>You can see in there some of the installed packages required to make Django work.</p>
 <p>Now use your editor to open the <code class="docutils literal"><span class="pre">django</span></code> directory in the <code class="docutils literal"><span class="pre">site-packages</span></code> directory.</p>
 <p>We&#8217;re going to pick one of our generic views and inspect it.
-We&#8217;ll start with the <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/class-based-views/generic-display/#detailview"><code class="docutils literal"><span class="pre">DetailView</span></code></a></p>
+We&#8217;ll start with the <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/class-based-views/generic-display/#detailview"><code class="docutils literal"><span class="pre">DetailView</span></code></a></p>
 <p>It&#8217;s worth our time to learn how this class is put together and to understand the Method Flowchart so that we can spelunk down through these methods and see what we may want to use, as well as what we may want to override.</p>
 <p>Open up in your editor <code class="docutils literal"><span class="pre">django/views/generic/</span></code>.
 When we open a view such as the <code class="docutils literal"><span class="pre">DetailView</span></code>, we use <code class="docutils literal"><span class="pre">from</span> <span class="pre">django.views.generic</span> <span class="pre">import</span> <span class="pre">DetailView</span></code>.
@@ -322,7 +332,7 @@ This means we are creating, as a result of calling <code class="docutils literal
 <p>Let&#8217;s look at <code class="docutils literal"><span class="pre">dispatch()</span></code> now, and see what it does.</p>
 </div>
 <div class="section" id="cbv-dispatch">
-<span id="cbv-dispatch"></span><h2><a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/class-based-views/base/#django.views.generic.base.View.dispatch"><code class="docutils literal"><span class="pre">CBV</span> <span class="pre">dispatch()</span></code></a><a class="headerlink" href="#cbv-dispatch" title="Permalink to this headline">¶</a></h2>
+<span id="cbv-dispatch"></span><h2><a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/class-based-views/base/#django.views.generic.base.View.dispatch"><code class="docutils literal"><span class="pre">CBV</span> <span class="pre">dispatch()</span></code></a><a class="headerlink" href="#cbv-dispatch" title="Permalink to this headline">¶</a></h2>
 <p><em>...$VIRTUAL_ENV/lib/python3.6/site-packages/django/views/generic/base.py</em></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="o">...</span>
@@ -444,7 +454,7 @@ Anything that is an attribute of the <code class="docutils literal"><span class=
 All of these attributes are customization points to our <code class="docutils literal"><span class="pre">DetailView</span></code>.</p>
 </div>
 <div class="section" id="the-get-object-method">
-<span id="the-get-object-method"></span><h2>The <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/class-based-views/mixins-single-object/#django.views.generic.detail.SingleObjectMixin.get_object"><code class="docutils literal"><span class="pre">get_object</span></code></a> method<a class="headerlink" href="#the-get-object-method" title="Permalink to this headline">¶</a></h2>
+<span id="the-get-object-method"></span><h2>The <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/class-based-views/mixins-single-object/#django.views.generic.detail.SingleObjectMixin.get_object"><code class="docutils literal"><span class="pre">get_object</span></code></a> method<a class="headerlink" href="#the-get-object-method" title="Permalink to this headline">¶</a></h2>
 <p>What does <code class="docutils literal"><span class="pre">get_object()</span></code> do? (Student reads through code):</p>
 <ul class="simple">
 <li>If we don&#8217;t have a <code class="docutils literal"><span class="pre">queryset</span></code>, then we set <code class="docutils literal"><span class="pre">queryset</span></code> to the value of <code class="docutils literal"><span class="pre">self.get_queryset()</span></code><ul>
@@ -773,6 +783,12 @@ Having gone through this exercise now, you&#8217;ll at least have some experienc
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="simple_wsgi_deployment.html"
+                        title="previous chapter">Deploying a Simple WSGI Application on AWS</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="trie.html"
+                        title="next chapter">Trie</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -796,7 +812,14 @@ Having gone through this exercise now, you&#8217;ll at least have some experienc
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="trie.html" title="Trie"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="simple_wsgi_deployment.html" title="Deploying a Simple WSGI Application on AWS"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week07/thu.html" >Thursday</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

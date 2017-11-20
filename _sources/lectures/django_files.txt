@@ -69,11 +69,11 @@ Images are just files that have special properties like `height` and `width`.
 Django comes with this functionality built in with `ImageField`.
 
 When we construct these models, there are a few options we really want to think about.
-The first of these is [`upload_to`](https://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.FileField.upload_to).
+The first of these is [`upload_to`](https://docs.djangoproject.com/en/1.11/ref/models/fields/#django.db.models.FileField.upload_to).
 
 ## Files and Media
 
-Here is our [`FileField`](https://docs.djangoproject.com/en/dev/ref/models/fields/#filefield) constructor (source code in `.../lib/python3.6/site-packages/django/db/models/fields/files.py`):
+Here is our [`FileField`](https://docs.djangoproject.com/en/1.11/ref/models/fields/#filefield) constructor (source code in `.../lib/python3.6/site-packages/django/db/models/fields/files.py`):
 
 `class FileField(upload_to=None, max_length=100, **options)`
 
@@ -204,7 +204,7 @@ Now we're set up to upload files, and Django will take care of the file manageme
 
 ### Options for `upload_to`
 
-You can also pass strings into the [`upload_to`](https://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.FileField.upload_to) field that are for formatting in date-time style.
+You can also pass strings into the [`upload_to`](https://docs.djangoproject.com/en/1.11/ref/models/fields/#django.db.models.FileField.upload_to) field that are for formatting in date-time style.
 
 `cover_image = models.ImageField(upload_to='book_covers/%Y-%m-%d')`
 
@@ -404,7 +404,7 @@ Can we navigate to our media file?
 
 ![alt text](../_static/img_404.png "404 not found")
 
-We need to look under Django's docs to see how to deal with [serving files uploaded by a user during development](https://docs.djangoproject.com/en/dev/howto/static-files/#serving-files-uploaded-by-a-user-during-development).
+We need to look under Django's docs to see how to deal with [serving files uploaded by a user during development](https://docs.djangoproject.com/en/1.11/howto/static-files/#serving-files-uploaded-by-a-user-during-development).
 Those docs suggest to add this to `urls.py`:
 
 _/.../lending_library/lending_library/urls.py_
@@ -446,7 +446,7 @@ Be aware that values like `upload_to` and `MEDIA_ROOT` values don't automaticall
 But remember that the settings you have are writable.
 You can alter them at test time.
 You may want to mess around with settings so that your test files go to `/tmp` or something like that.
-See the documentation on [overriding settings](https://docs.djangoproject.com/en/dev/topics/testing/tools/#overriding-settings) for ideas on how to do this.
+See the documentation on [overriding settings](https://docs.djangoproject.com/en/1.11/topics/testing/tools/#overriding-settings) for ideas on how to do this.
 
 When testing models that contain uploaded files as class attributes, you'll need to be able to simulate that uploaded file.
 This is especially true if your models 

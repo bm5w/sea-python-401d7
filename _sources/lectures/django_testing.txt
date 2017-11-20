@@ -709,5 +709,5 @@ $ coverage run manage.py test
 $ coverage report
 ```
 
-For slightly more information on incorporating `coverage.py` into your Django tests, check [the Django docs](https://docs.djangoproject.com/en/dev/topics/testing/advanced/).
+For slightly more information on incorporating `coverage.py` into your Django tests, check [the Django docs](https://docs.djangoproject.com/en/1.11/topics/testing/advanced/).
 For more information on the `coverage` library, here are [the coverage docs](http://coverage.readthedocs.io/en/coverage-4.3.4/)

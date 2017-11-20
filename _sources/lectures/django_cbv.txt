@@ -1,7 +1,7 @@
 # First Steps into Class-Based Views
 
 Thus far we've been using functional views to handle all of our requests and return our responses.
-However, Django is largely moving toward [Class-Based Views](https://docs.djangoproject.com/en/dev/ref/class-based-views/), so it's worth understanding how they work.
+However, Django is largely moving toward [Class-Based Views](https://docs.djangoproject.com/en/1.11/ref/class-based-views/), so it's worth understanding how they work.
 
 ## The `TemplateView`
 
@@ -20,15 +20,15 @@ The purpose of every class-based view inheriting from `django.views.generic.Temp
 All of the class-based views are going to provide us with simple ways of performing common tasks.
 They also provide us with API methods to take care of some of the things that go around those common tasks.
 
-There is [good documentation](https://docs.djangoproject.com/en/dev/ref/class-based-views/) regarding the class-based views API.
+There is [good documentation](https://docs.djangoproject.com/en/1.11/ref/class-based-views/) regarding the class-based views API.
 It has a list of all of the different kinds of views that there are.
-Let's click on [TemplateView](https://docs.djangoproject.com/en/dev/ref/class-based-views/base/#templateview) and see what it contains.
+Let's click on [TemplateView](https://docs.djangoproject.com/en/1.11/ref/class-based-views/base/#templateview) and see what it contains.
 
 A flowchart of methods:
 
 - a `dispatch()` method
 - `http_method_not_allowed()`
-- [`get_context_data()`](https://docs.djangoproject.com/en/dev/ref/class-based-views/mixins-simple/#django.views.generic.base.ContextMixin.get_context_data): this method returns a dictionary that includes all of the items we want to pass in as part of the view's context.
+- [`get_context_data()`](https://docs.djangoproject.com/en/1.11/ref/class-based-views/mixins-simple/#django.views.generic.base.ContextMixin.get_context_data): this method returns a dictionary that includes all of the items we want to pass in as part of the view's context.
 
 So let's go back to our `views.py` and create for ourselves a class-based view that uses the `get_context_data()` method to return a dictionary.
 We'll also insert a breakpoint so we can inspect the state of things when this method is called:

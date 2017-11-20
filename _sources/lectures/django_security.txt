@@ -32,7 +32,7 @@ We can control views based on that flag.
             # do something else
 
 **Every logged-in user is authenticated,** and every ``request`` object has a ``user`` attached whether or not that user has logged in.
-When the user hasn't logged in yet, the ``user`` object attached to ``request`` is an instance of the `AnonymousUser <https://docs.djangoproject.com/en/dev/ref/contrib/auth/#django.contrib.auth.models.AnonymousUser>`_.
+When the user hasn't logged in yet, the ``user`` object attached to ``request`` is an instance of the `AnonymousUser <https://docs.djangoproject.com/en/1.11/ref/contrib/auth/#django.contrib.auth.models.AnonymousUser>`_.
 Amongst other things, ``AnonymousUser.is_authenticated`` is always set to ``False``.
 
 AuthN with Decorators
@@ -251,7 +251,7 @@ You can prevent malicious code harming your users at large in two ways:
 * by **escaping** whatever text is submitted through your site's forms.
 * by escaping whatever text is read from your database.
 
-To escape text coming in from a form, use Django's `escape <https://docs.djangoproject.com/en/dev/ref/templates/builtins/#escape>`_ filter
+To escape text coming in from a form, use Django's `escape <https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#escape>`_ filter
 
 .. code-block:: python
 

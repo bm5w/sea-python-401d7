@@ -69,12 +69,12 @@ However, we've got an app that needs to USE that database.
 
 In our Django Lender's ``settings.py`` file, there's a few keywords there that need to be modified (and a few that need to be declared) for the sake of deployment.
 
-- `SECRET_KEY <https://docs.djangoproject.com/en/dev/ref/settings/#secret-key>`_
+- `SECRET_KEY <https://docs.djangoproject.com/en/1.11/ref/settings/#secret-key>`_
 - DEBUG (should be set to ``False`` in production, ``True`` in development)
-- `ALLOWED_HOSTS <https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts>`_
-- `DATABASES <https://docs.djangoproject.com/en/dev/ref/settings/#databases>`_ and related information
-- `STATIC_ROOT <https://docs.djangoproject.com/en/dev/ref/settings/#static-root>`_
-- `EMAIL_BACKEND <https://docs.djangoproject.com/en/dev/topics/email/#smtp-backend>`_ and related information. If our app is to be in production, it must send actual registration emails, and not just print them to the console anymore.
+- `ALLOWED_HOSTS <https://docs.djangoproject.com/en/1.11/ref/settings/#allowed-hosts>`_
+- `DATABASES <https://docs.djangoproject.com/en/1.11/ref/settings/#databases>`_ and related information
+- `STATIC_ROOT <https://docs.djangoproject.com/en/1.11/ref/settings/#static-root>`_
+- `EMAIL_BACKEND <https://docs.djangoproject.com/en/1.11/topics/email/#smtp-backend>`_ and related information. If our app is to be in production, it must send actual registration emails, and not just print them to the console anymore.
 
 You could hard-code all of these values if you wanted, however there are massive security issues that would result.
 You'd also have trouble running your code locally, because all your settings would be attuned to what's in production.

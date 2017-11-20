@@ -23,9 +23,9 @@ Readings
 
 * Walk through how to add and insert nodes to a binary search tree at `VisuAlgo <http://visualgo.net/bst>`_
 * Code School's `Try Django Tutorial <http://campus.codeschool.com/courses/try-django/contents>`_
-* `Writing and Running Tests in Django <https://docs.djangoproject.com/en/dev/topics/testing/overview/>`_
-* `Testing in Django <https://docs.djangoproject.com/en/dev/topics/testing/>`_
-* `Django Testing Tools <https://docs.djangoproject.com/en/dev/topics/testing/tools/>`_
+* `Writing and Running Tests in Django <https://docs.djangoproject.com/en/1.11/topics/testing/overview/>`_
+* `Testing in Django <https://docs.djangoproject.com/en/1.11/topics/testing/>`_
+* `Django Testing Tools <https://docs.djangoproject.com/en/1.11/topics/testing/tools/>`_
 * `Testing Scenarios for Django <http://agiliq.com/blog/2013/04/common-testing-scenarios-for-django-app/>`_
 * `Django Girls Tutorial <https://www.gitbook.com/book/djangogirls/djangogirls-tutorial/details>`_
 

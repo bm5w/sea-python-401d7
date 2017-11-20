@@ -11,7 +11,7 @@ Walk Through the Django Tutorial
     This document contains no slides.
 
 
-The Django project website has a `fantastic tutorial <https://docs.djangoproject.com/en/dev/intro/tutorial01/>`_.
+The Django project website has a `fantastic tutorial <https://docs.djangoproject.com/en/1.11/intro/tutorial01/>`_.
 It walks you through the process of creating your first basic Django app.
 You've all worked through the tutorial at one point or another, but after the first half of this class you will likely gain a bit more from it than you did before.
 

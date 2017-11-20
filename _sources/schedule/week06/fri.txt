@@ -18,7 +18,7 @@ Objectives
 Readings
 ========
 
-* `Examples of Django Model Relationship Usage <https://docs.djangoproject.com/en/dev/topics/db/examples/>`_
+* `Examples of Django Model Relationship Usage <https://docs.djangoproject.com/en/1.11/topics/db/examples/>`_
 
 Concepts
 ========

@@ -25,6 +25,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="up" title="Tuesday" href="../schedule/week06/tue.html" />
+    <link rel="next" title="A Python Miscellany: Iterators &amp; Generators" href="intro_to_python_9_generators.html" />
+    <link rel="prev" title="Tuesday" href="../schedule/week06/tue.html" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 
@@ -51,7 +54,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="intro_to_python_9_generators.html" title="A Python Miscellany: Iterators &amp; Generators"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week06/tue.html" title="Tuesday"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week06/tue.html" accesskey="U">Tuesday</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -279,7 +289,7 @@ Our <code class="docutils literal"><span class="pre">urls.py</span></code> will 
 That&#8217;s not what Django is looking for.
 Remember, Django views must return something that can be used as a response.
 It needs headers and all the other things that make a proper HTTP response.
-So what Django provides us with is the <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/request-response/#httpresponse-objects"><code class="docutils literal"><span class="pre">HttpResponse</span></code></a> object.
+So what Django provides us with is the <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/request-response/#httpresponse-objects"><code class="docutils literal"><span class="pre">HttpResponse</span></code></a> object.
 Let&#8217;s add that to our view so that our function can use it:</p>
 <p><em>lending_library/lending_library/views.py</em></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
@@ -302,7 +312,7 @@ We should be able to go and see our app return that in our browser.</p>
 </ul>
 <p>You can build the response manually like our current <code class="docutils literal"><span class="pre">home_view()</span></code> function. You can also render out templates.</p>
 <div class="section" id="django-templating-engine">
-<span id="django-templating-engine"></span><h3><a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/templates/">Django Templating Engine</a><a class="headerlink" href="#django-templating-engine" title="Permalink to this headline">¶</a></h3>
+<span id="django-templating-engine"></span><h3><a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/templates/">Django Templating Engine</a><a class="headerlink" href="#django-templating-engine" title="Permalink to this headline">¶</a></h3>
 <p>Loading a template is something we want to do.
 We can create a template, or we can load one up from somewhere else.
 Let&#8217;s find where we can do that by inspecting Django in the shell:</p>
@@ -548,9 +558,9 @@ We can make a 2nd pattern here that only contains the <code class="docutils lite
 However, unless you make a special complex matching pattern or a second url that doesn&#8217;t use a keyword and points to the same view, it will not use the default parameter.</p>
 </div>
 <div class="section" id="django-shortcuts">
-<span id="django-shortcuts"></span><h3><a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/http/shortcuts/">Django Shortcuts</a><a class="headerlink" href="#django-shortcuts" title="Permalink to this headline">¶</a></h3>
+<span id="django-shortcuts"></span><h3><a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/">Django Shortcuts</a><a class="headerlink" href="#django-shortcuts" title="Permalink to this headline">¶</a></h3>
 <p>This idea of loading a template, rendering a template, and handing back a response is so completely common, that Django has created a few shortcuts that mean exactly the same thing.
-The shortcuts are called <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/http/shortcuts/#render"><code class="docutils literal"><span class="pre">render</span></code></a> and <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/http/shortcuts/#render-to-response"><code class="docutils literal"><span class="pre">render_to_response</span></code></a>.</p>
+The shortcuts are called <a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#render"><code class="docutils literal"><span class="pre">render</span></code></a> and <a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#render-to-response"><code class="docutils literal"><span class="pre">render_to_response</span></code></a>.</p>
 <p><code class="docutils literal"><span class="pre">render</span></code> takes a <code class="docutils literal"><span class="pre">request</span></code> and <code class="docutils literal"><span class="pre">template_name</span></code> as required arguments.
 There are a few optional arguments as well.</p>
 <p>Let&#8217;s explore this for a moment. We need to re-write our <code class="docutils literal"><span class="pre">views.py</span></code>:</p>
@@ -606,7 +616,7 @@ There are a few optional arguments as well.</p>
 <p><img alt="alt text" src="../_images/hello_pancakes_123.png" /></p>
 </div>
 <div class="section" id="render-to-response">
-<span id="render-to-response"></span><h3><a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/http/shortcuts/#render-to-response"><code class="docutils literal"><span class="pre">render_to_response</span></code></a><a class="headerlink" href="#render-to-response" title="Permalink to this headline">¶</a></h3>
+<span id="render-to-response"></span><h3><a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#render-to-response"><code class="docutils literal"><span class="pre">render_to_response</span></code></a><a class="headerlink" href="#render-to-response" title="Permalink to this headline">¶</a></h3>
 <p>Another thing we can do is <code class="docutils literal"><span class="pre">render_to_response</span></code>.
 There is a difference between these two.
 From the docs: &#8220;This function preceded the introduction of <code class="docutils literal"><span class="pre">render()</span></code> and works similarly except that it doesn’t make the request available in the response.
@@ -637,6 +647,12 @@ We will be using <code class="docutils literal"><span class="pre">render()</span
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../schedule/week06/tue.html"
+                        title="previous chapter">Tuesday</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="intro_to_python_9_generators.html"
+                        title="next chapter">A Python Miscellany: Iterators &amp; Generators</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -660,7 +676,14 @@ We will be using <code class="docutils literal"><span class="pre">render()</span
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="intro_to_python_9_generators.html" title="A Python Miscellany: Iterators &amp; Generators"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week06/tue.html" title="Tuesday"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week06/tue.html" >Tuesday</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

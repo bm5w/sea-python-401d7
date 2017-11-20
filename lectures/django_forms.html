@@ -25,6 +25,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="up" title="Wednesday" href="../schedule/week07/wed.html" />
+    <link rel="next" title="Thursday" href="../schedule/week07/thu.html" />
+    <link rel="prev" title="First Steps into Class-Based Views" href="django_cbv.html" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 
@@ -51,7 +54,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="../schedule/week07/thu.html" title="Thursday"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="django_cbv.html" title="First Steps into Class-Based Views"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week07/wed.html" accesskey="U">Wednesday</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -180,7 +190,7 @@ div.nboutput  > :nth-child(2).stderr {
 <span id="form-handling-in-django-and-the-form-handling-cbvs"></span><h2>Form Handling in Django, and the Form-handling CBVs<a class="headerlink" href="#form-handling-in-django-and-the-form-handling-cbvs" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
 <p>We will need to work with the form system in Django if we want to add or update books in our app.</p>
-<p><a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/forms/">Django&#8217;s form system</a> has a couple of layers to it.</p>
+<p><a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/forms/">Django&#8217;s form system</a> has a couple of layers to it.</p>
 <p>We&#8217;ll make an analogy.
 &#8220;Models are to the Database as Forms are to request/response cycle.&#8221;</p>
 <p>The job of a model in Django is to translate data between python and the database.
@@ -197,7 +207,7 @@ Also it takes the return value and turns it back into a python value.
 The form does the same thing except it does it with data from the request and response.
 It turns one item of information into a pythonic value.</p>
 <p>Forms serialize and deserialize, meaning that they standardize and arrange your data for output to some other medium.
-They do it with a structure called a <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/forms/widgets/">widget</a>.
+They do it with a structure called a <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/forms/widgets/">widget</a>.
 The widget renders out HTML elements, visible or hidden, that then is rendered into an HTML page.</p>
 <p>Let&#8217;s say we have something that&#8217;s a <code class="docutils literal"><span class="pre">forms.CharField</span></code> field.
 It will have by default use the <code class="docutils literal"><span class="pre">forms.TextInput</span></code> widget, that has a text input.
@@ -368,7 +378,7 @@ There is ample API documentation for forms, like how to substitute css classes a
 Dig in when you get the chance!</p>
 </div>
 <div class="section" id="modelform">
-<span id="modelform"></span><h3><a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/forms/modelforms/#django.forms.ModelForm"><code class="docutils literal"><span class="pre">ModelForm</span></code></a><a class="headerlink" href="#modelform" title="Permalink to this headline">¶</a></h3>
+<span id="modelform"></span><h3><a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/forms/modelforms/#django.forms.ModelForm"><code class="docutils literal"><span class="pre">ModelForm</span></code></a><a class="headerlink" href="#modelform" title="Permalink to this headline">¶</a></h3>
 <p>There&#8217;s something else you should know about forms: <strong>the way we built forms above is not the only way.</strong></p>
 <p>Your app is filled up model objects.
 One thing you would like to do is present forms that allow you to create and edit those models directly.
@@ -506,7 +516,7 @@ They come in a completely different place called <code class="docutils literal">
 <p>There&#8217;s one more trick to this.
 In order to get image data, you have to do something to your HTML <code class="docutils literal"><span class="pre">&lt;form&gt;</span></code> tag.
 There&#8217;s an attribute to forms called the <a class="reference external" href="https://www.w3.org/TR/html401/interact/forms.html#adef-enctype"><code class="docutils literal"><span class="pre">enctype</span></code></a>.
-<strong>In order to upload images, you need to set the <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/http/file-uploads/#basic-file-uploads"><code class="docutils literal"><span class="pre">enctype=&quot;multipart/form-data&quot;</span></code></a> attribute</strong></p>
+<strong>In order to upload images, you need to set the <a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/http/file-uploads/#basic-file-uploads"><code class="docutils literal"><span class="pre">enctype=&quot;multipart/form-data&quot;</span></code></a> attribute</strong></p>
 <p>On the other end, you need to make sure you bind your form with not only the first dictionary, but also a second containing the file information:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">50</span><span class="p">]:</span> <span class="n">changed_form</span> <span class="o">=</span> <span class="n">BookForm</span><span class="p">({</span><span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Alex Haley&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;available&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Malcolm X&quot;</span><span class="p">}},</span> <span class="p">{</span><span class="s1">&#39;cover_image&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="nb">file</span> <span class="n">upload</span> <span class="nb">object</span><span class="o">&gt;</span><span class="p">},</span> <span class="n">instance</span><span class="o">=</span><span class="n">bk1</span><span class="p">)</span>
 </pre></div>
@@ -541,6 +551,12 @@ If you&#8217;re creating a new instance, just don&#8217;t pass in an instance an
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="django_cbv.html"
+                        title="previous chapter">First Steps into Class-Based Views</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../schedule/week07/thu.html"
+                        title="next chapter">Thursday</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -564,7 +580,14 @@ If you&#8217;re creating a new instance, just don&#8217;t pass in an instance an
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="../schedule/week07/thu.html" title="Thursday"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="django_cbv.html" title="First Steps into Class-Based Views"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week07/wed.html" >Wednesday</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

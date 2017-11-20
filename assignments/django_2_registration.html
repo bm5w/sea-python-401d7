@@ -195,7 +195,7 @@ Use <code class="docutils literal"><span class="pre">base.html</span></code> as 
 It will contain marketing text that invites users to join the site.
 It will include a prominent display of an image chosen at random from all the public photos uploaded by your users.
 For the moment there are no public photos, so it should show an image you pre-select (served as a static resource) instead.
-Check <a class="reference external" href="https://docs.djangoproject.com/en/dev/howto/static-files/">these docs</a> for information on how to serve up static resources.</p>
+Check <a class="reference external" href="https://docs.djangoproject.com/en/1.11/howto/static-files/">these docs</a> for information on how to serve up static resources.</p>
 <p>In addition to the above elements the page will provide clear calls to action for logging in or joining the site.
 The login call to action, when clicked, will lead to a login form.
 The registration call to action will lead to the registration page.</p>
@@ -228,15 +228,15 @@ You will use the HMAC registration backend which uses the following registration
 <li>User can then log in to the site with the username and password they provided when they registered.</li>
 <li>Once a user logs in, they should be redirected to the home page, but they should now see their username in the top left corner of the page.</li>
 </ul>
-<p>Because the registration service involves sending emails, you will have to configure <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/email/">email services for Django</a>.
-However, you don&#8217;t want to send real emails when developing, so make sure that you <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/email/#configuring-email-for-development">configure the Django console email backend</a>.
+<p>Because the registration service involves sending emails, you will have to configure <a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/email/">email services for Django</a>.
+However, you don&#8217;t want to send real emails when developing, so make sure that you <a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/email/#configuring-email-for-development">configure the Django console email backend</a>.
 Then any emails you send while working will simply print to the console where Django is running.</p>
 </div>
 <div class="section" id="tests">
 <h3>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h3>
 <p>You must write tests for each view you implement, verifying that it works as expected.
-Since these tests will involve rendered html you will want to read about the <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/testing/tools/#the-test-client">Django test client</a>.</p>
-<p>To test registration you will want to be aware of how Django&#8217;s <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/testing/tools/#email-services">email services work in a test environment</a>.</p>
+Since these tests will involve rendered html you will want to read about the <a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/testing/tools/#the-test-client">Django test client</a>.</p>
+<p>To test registration you will want to be aware of how Django&#8217;s <a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/testing/tools/#email-services">email services work in a test environment</a>.</p>
 </div>
 <div class="section" id="submitting-your-work">
 <h3>Submitting Your Work<a class="headerlink" href="#submitting-your-work" title="Permalink to this headline">¶</a></h3>

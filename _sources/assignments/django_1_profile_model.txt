@@ -51,7 +51,7 @@ You must also ensure that if a user is deleted from the database, the ImagerProf
 
 Create migrations to support installing your new app.
 We may or may not have discussed Django migrations in class.
-Regardless, if you need a reference, check `the Django documentation <https://docs.djangoproject.com/en/dev/topics/migrations/>`_ or read `this lecture on migrations <../lectures/django_migrations.html>`_.
+Regardless, if you need a reference, check `the Django documentation <https://docs.djangoproject.com/en/1.11/topics/migrations/>`_ or read `this lecture on migrations <../lectures/django_migrations.html>`_.
 **You will not be able to save Model instances to your database without migrations!**
 
 Create a default app configuration to handle configuring a few global settings for the app.

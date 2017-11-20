@@ -113,7 +113,7 @@ A simple string.
 That's not what Django is looking for.
 Remember, Django views must return something that can be used as a response.
 It needs headers and all the other things that make a proper HTTP response.
-So what Django provides us with is the [`HttpResponse`](https://docs.djangoproject.com/en/dev/ref/request-response/#httpresponse-objects) object.
+So what Django provides us with is the [`HttpResponse`](https://docs.djangoproject.com/en/1.11/ref/request-response/#httpresponse-objects) object.
 Let's add that to our view so that our function can use it:
 
 _lending_library/lending_library/views.py_
@@ -142,7 +142,7 @@ This is the basic shape that a Django view takes:
 
 You can build the response manually like our current `home_view()` function. You can also render out templates.
 
-### [Django Templating Engine](https://docs.djangoproject.com/en/dev/topics/templates/)
+### [Django Templating Engine](https://docs.djangoproject.com/en/1.11/topics/templates/)
 
 Loading a template is something we want to do.
 We can create a template, or we can load one up from somewhere else.
@@ -455,10 +455,10 @@ We can make a 2nd pattern here that only contains the `<num>` matching part, and
 You must put a default value there in order for it to be a keyword parameter.
 However, unless you make a special complex matching pattern or a second url that doesn't use a keyword and points to the same view, it will not use the default parameter.
 
-### [Django Shortcuts](https://docs.djangoproject.com/en/dev/topics/http/shortcuts/)
+### [Django Shortcuts](https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/)
 
 This idea of loading a template, rendering a template, and handing back a response is so completely common, that Django has created a few shortcuts that mean exactly the same thing.
-The shortcuts are called [`render`](https://docs.djangoproject.com/en/dev/topics/http/shortcuts/#render) and [`render_to_response`](https://docs.djangoproject.com/en/dev/topics/http/shortcuts/#render-to-response).
+The shortcuts are called [`render`](https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#render) and [`render_to_response`](https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#render-to-response).
 
 `render` takes a `request` and `template_name` as required arguments.
 There are a few optional arguments as well.
@@ -532,7 +532,7 @@ And we're back to our "Hello Pancakes"
 
 ![alt text](../_static/hello_pancakes_123.png "Hello Pancakes!")
 
-### [`render_to_response`](https://docs.djangoproject.com/en/dev/topics/http/shortcuts/#render-to-response)
+### [`render_to_response`](https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#render-to-response)
 
 Another thing we can do is `render_to_response`.
 There is a difference between these two.

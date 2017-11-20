@@ -523,7 +523,7 @@ And any given profile will belong only to one user.
 The SQL relationship that represents this is called ``One to One``.
 It's represented in SQL by a foreign key combined with a unique constraint.
 
-In Django, there is a `ForeignKey <https://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.ForeignKey>`_ field.
+In Django, there is a `ForeignKey <https://docs.djangoproject.com/en/1.11/ref/models/fields/#django.db.models.ForeignKey>`_ field.
 It takes as its first argument the class to which you want to build a relationship.
 
 .. code-block:: python

@@ -24,7 +24,7 @@ Readings
 Django Security
 ---------------
 
-* `Django Security <https://docs.djangoproject.com/en/dev/topics/security/>`_
+* `Django Security <https://docs.djangoproject.com/en/1.11/topics/security/>`_
 * `Is Django's Built-In Security Enough? <http://security.stackexchange.com/questions/27805/is-djangos-built-in-security-enough>`_
 * Read about using `Django's Authentication Systems <https://docs.djangoproject.com/es/dev/topics/auth/default/>`_
 

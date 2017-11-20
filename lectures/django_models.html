@@ -605,7 +605,7 @@ Any given user will only need to have one profile.
 And any given profile will belong only to one user.
 The SQL relationship that represents this is called <code class="docutils literal"><span class="pre">One</span> <span class="pre">to</span> <span class="pre">One</span></code>.
 It&#8217;s represented in SQL by a foreign key combined with a unique constraint.</p>
-<p>In Django, there is a <a class="reference external" href="https://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.ForeignKey">ForeignKey</a> field.
+<p>In Django, there is a <a class="reference external" href="https://docs.djangoproject.com/en/1.11/ref/models/fields/#django.db.models.ForeignKey">ForeignKey</a> field.
 It takes as its first argument the class to which you want to build a relationship.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
