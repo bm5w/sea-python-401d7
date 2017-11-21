@@ -1,0 +1,23 @@
+*******************
+Job Market Research
+*******************
+
+The job hunt is approaching quickly and it helps to have a heading on what to look for, wherever you're looking for it.
+Spend some time this weekend doing research.
+
+Tasks
+=====
+
+- **Find five (5) companies** in a city where you want to work (whether it's Seattle or elsewhere) that interest you for some reason and either are hiring or have hired developers that can write Python.
+- For each company answer the following:
+    - What is it that they do?
+    - Why does this company interest you?
+    - How large is the company (if that info is available)
+    - Why are they hiring developers that can write Python?
+
+Submission
+==========
+
+Compile your answers to these questions and submit them as a text submission to Canvas.
+Each question should need no more than 5 sentences to answer, but if you really must be verbose don't go over 10.
+I'm not trying to read an essay.
