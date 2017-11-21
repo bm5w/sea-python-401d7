@@ -45,9 +45,7 @@ In addition to what we discuss in class, your model must support the following A
 Ensure that each of your models has a string representation that appropriately displays it when using the Django shell.
 Use Django's provided systems to ensure that this representation is compatible both with Python 2 and Python 3.
 
-You must ensure that every standard Django user object created automatically gets an ImagerProfile.
-
-You must also ensure that if a user is deleted from the database, the ImagerProfile associated with that user is also deleted.
+You must ensure that if a user is deleted from the database, the ImagerProfile associated with that user is also deleted.
 
 Create migrations to support installing your new app.
 We may or may not have discussed Django migrations in class.
