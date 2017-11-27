@@ -19,7 +19,7 @@ There are, of course, some conditions.
 1. To be eligible for **any** extra credit, your Python implementation must have received at least an 8/10
 2. Your JavaScript code must be in an installable ``npm`` package, complete with ``package.json``. Make sure that the ``node_modules`` directory is appropriately placed in your ``.gitignore``
 3. Your implementations must not use constructor functions. Instead, look up the `class <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes>`_ syntax and use that to build your objects.
-4. Your JavaScript code must be tested. I recommend using `Jest <https://facebook.github.io/jest/>`_ as your testing framework. **Without tests, you will get no more than 1 of the available 5 points**. You can feel free to implement the same tests you wrote for the Python implementation. I should be able to run your tests from the ``js`` directory by typing ``npm test``
+4. Your JavaScript code must be tested. I recommend using `Jest <https://facebook.github.io/jest/>`_ as your testing framework. **Without tests, you will get no more than 2 of the available 10 points**. You can feel free to implement the same tests you wrote for the Python implementation. I should be able to run your tests from the ``js`` directory by typing ``npm test``
 5. Your JavaScript code must be in a ``js`` directory inside of your ``data_structures`` repository. As an example:
 
 .. code-block:: bash
