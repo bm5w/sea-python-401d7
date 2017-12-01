@@ -25,6 +25,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Python 401 2.1 documentation" href="../index.html" />
+    <link rel="up" title="Thursday" href="../schedule/week07/thu.html" />
+    <link rel="next" title="Deep Dive into Class-Based Views" href="django_cbv2.html" />
+    <link rel="prev" title="Thursday" href="../schedule/week07/thu.html" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 
@@ -51,7 +54,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="django_cbv2.html" title="Deep Dive into Class-Based Views"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week07/thu.html" title="Thursday"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week07/thu.html" accesskey="U">Thursday</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -196,22 +206,22 @@ In the file, type the following Python code:</p>
 
 
 <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
-    <span class="s2">&quot;&quot;&quot;A simple WSGI app.&quot;&quot;</span>
-<span class="s2">    data = &quot;Hello, World!</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="sd">&quot;&quot;&quot;A simple WSGI app.&quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;Hello, World!</span><span class="se">\n</span><span class="s2">&quot;</span>
 
-<span class="s2">    if version_info.major &gt; 3:</span>
-<span class="s2">        data = data.encode(&quot;utf-8&quot;)</span>
+    <span class="k">if</span> <span class="n">version_info</span><span class="o">.</span><span class="n">major</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
 
-<span class="s2">    start_response(&quot;200 OK&quot;, [</span>
-<span class="s2">        (&quot;Content-Type&quot;, &quot;text/plain&quot;),</span>
-<span class="s2">        (&quot;Content-Length&quot;, str(len(data)))</span>
-<span class="s2">    ])</span>
-<span class="s2">    return [data]</span>
+    <span class="n">start_response</span><span class="p">(</span><span class="s2">&quot;200 OK&quot;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="s2">&quot;text/plain&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;Content-Length&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+    <span class="p">])</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">data</span><span class="p">]</span>
 
-<span class="s2">if __name__ == &#39;__main__&#39;:</span>
-<span class="s2">    from wsgiref.simple_server import make_server</span>
-<span class="s2">    srv = make_server(&#39;localhost&#39;, 8080, app)</span>
-<span class="s2">    srv.serve_forever()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">wsgiref.simple_server</span> <span class="kn">import</span> <span class="n">make_server</span>
+    <span class="n">srv</span> <span class="o">=</span> <span class="n">make_server</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">8080</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span>
+    <span class="n">srv</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Test your application to be sure it works by running it from the command line:</p>
@@ -374,6 +384,12 @@ Later, we&#8217;ll learn how to automate this task using configuration managemen
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../schedule/week07/thu.html"
+                        title="previous chapter">Thursday</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="django_cbv2.html"
+                        title="next chapter">Deep Dive into Class-Based Views</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -397,7 +413,14 @@ Later, we&#8217;ll learn how to automate this task using configuration managemen
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="django_cbv2.html" title="Deep Dive into Class-Based Views"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../schedule/week07/thu.html" title="Thursday"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Python 401 2.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../schedule/week07/thu.html" >Thursday</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

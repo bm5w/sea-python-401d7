@@ -21,7 +21,6 @@ When do you find time to stay on top of the job application process?
 This Road Map will begin to answer those questions, but is not a hard-and-fast plan for everyone.
 Read it through and do what works best for you, modifying the contents with what fits your schedule, your finances, and your interests.
 
-
 Tips on Structuring Time and Accountability
 ===========================================
 
@@ -264,6 +263,10 @@ Collaborate with a JavaScript grad so that you can build a back-end and they can
 Work with an iOS developer and build yourself a solid mobile app.
 Bolster the diversity of your experiences with what time you have before you get locked into a career as *one* thing.
 
+Podcasts and New Developer Resources
+====================================
+
+- BaseCS: https://www.codenewbie.org/basecs
 
 Python Continuing Education
 ===========================

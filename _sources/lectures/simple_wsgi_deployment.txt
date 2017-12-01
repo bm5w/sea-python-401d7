@@ -29,10 +29,10 @@ In the file, type the following Python code:
 
 
     def app(environ, start_response):
-        """A simple WSGI app.""
+        """A simple WSGI app."""
         data = "Hello, World!\n"
 
-        if version_info.major > 3:
+        if version_info.major > 2:
             data = data.encode("utf-8")
         
         start_response("200 OK", [
