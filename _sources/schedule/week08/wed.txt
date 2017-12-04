@@ -1,33 +1,38 @@
-.. slideconf::
-    :autoslides: False
-
 *********
 Wednesday
 *********
 
-.. slide:: Course Presentations
-    :level: 1
-
-    This document contains no slides.
-
 Objectives
 ==========
 
-* Learn about the Insertion Sort algorithm
-* Learn about storage of static and media files in the cloud with AWS S3
-* Get even more practice handling code challenges
+* Learn how to automate the deployment of a Django app with Ansible
+* Learn how to secure web apps in an existing code base
+* Understand how Bubble Sort works
 
 Readings
 ========
 
-* `Insertion Sort <http://www.tutorialspoint.com/data_structures_algorithms/insertion_sort_algorithm.htm>`_
-* `Using Amazon S3 to Store Your Django Site's Static and Media Files <https://www.caktusgroup.com/blog/2014/11/10/Using-Amazon-S3-to-store-your-Django-sites-static-and-media-files/>`_
-* `Deploy a fault-tolerant Django app on AWS - Part 2: Moving static and media files to S3 <http://www.jorgechang.com/blog/howto-deploy-a-fault-tolerant-django-app-on-aws-part-2-moving-static-media-files-to-s3/>`_
+Web App Security
+----------------
+
+* `OWASP Top Ten App Vulnerabilities <https://www.owasp.org/index.php/Top_10_2013-Top_10>`_
+* Learn about the most common attack vectors at `Hacksplaining <https://www.hacksplaining.com/exercises>`_
+* `Web App Security Best Practices <https://.. www.alienvault.com/blogs/security-essentials/web-application-security-methods-and-best-practices>`_
+
+DevOps and Ansible
+------------------
+
+* `Lessons from Using Ansible <https://blog.serverdensity.com/what-ive-learnt-from-using-ansible-exclusively-for-2-years/>`_
+* `Deploying Django with Ansible <http://www.slideshare.net/andrewmirskynet/deploying-django-with-ansible>`_
+* Read this `Ansible Tutorial <https://serversforhackers.com/an-ansible-tutorial>`_ to learn a bit about how Ansible works.
+* What is DevOps? (`AWS <https://aws.amazon.com/devops/what-is-devops/>`_)
 
 Review
 ======
 
-* Ansible and Web Application Security
+* Django Forms and Auth-Auth
+* Bubble Sort
+
 
 Concepts
 ========
@@ -35,25 +40,23 @@ Concepts
 .. toctree::
     :maxdepth: 2
 
-    /lectures/django_s3
-
-* Insertion Sort
-* Whiteboard Challenge
+    /lectures/web_app_security1
+    /lectures/ansible
 
 Demo
 ====
 
-* Insertion Sort!!
+* Bubble Sort!
+
 
 Assignments
 ===========
 
-* :doc:`/assignments/sort_1_insertion`
-* :doc:`/assignments/django_9_drf_tutorial_b`
+* :doc:`/assignments/web_app_security_assignment1`
+* :doc:`/assignments/sort_0_bubblesort`
 * :doc:`/assignments/aws_2_ansible_imager` (Due Friday)
 * :doc:`/assignments/django_7_complete_frontend` (Due Friday)
-* :doc:`/assignments/django_14_s3`
-* :doc:`/assignments/django_10_taggit` (EXTRA)
+* :doc:`/assignments/django_8_drf_tutorial_a`
+* :doc:`/assignments/blog_post_publish` (Due Friday Week 9)
 * :doc:`/assignments/project_03_repo`
 * :doc:`/assignments/daily_lj_entry`
-* :doc:`/assignments/blog_post_publish` (Due Friday Week 9)

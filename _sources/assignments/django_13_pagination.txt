@@ -1,0 +1,36 @@
+*********************************
+Django: Add Pagination for Imager
+*********************************
+
+We've seen how to add pagination to a Django app using our User Profiles.
+Those, however, aren't typically things that we want to see pages of.
+Let's put the spotlight on things we care most about!
+
+Here is `the documentation <https://docs.djangoproject.com/en/1.10/topics/pagination/>`_ for Django's built-in pagination.
+Do your work on a branch called ``pagination``.
+
+Tasks
+=====
+
+Add pagination to your Imager app that fulfills these user stories:
+
+* As a user, I should see no more than 4 Photos or 4 Albums at a time on my Library page.
+* As a user, I should be able to interact with the Library page to see more Photos or more Albums if they exist.
+* As a user, I should also be able to see previous pages of Photos or Albums if they exist.
+* As a user, I should see no more than 4 Photos on any Album page.
+* As a user, I should be able to interact with any Album to see more Photos if they exist.
+* As a user, I should be able to see previous Photos in an Album if they exist.
+* As a user, I don't want to be prompted to see more Photos or Albums if none are left to be seen.
+
+**Stretch**:
+
+As a user, I want to choose the number of Photos or Albums I see.
+It should default to 4, but be variable from the client side.
+
+Submitting Your Work
+====================
+
+Do your work for this assignment on a branch, called ``pagination``.
+When you've completed the work push your branch and make a Pull Request to ``master``.
+Submit the URL for that pull request.
+When you've submitted the URL you may merge the PR.

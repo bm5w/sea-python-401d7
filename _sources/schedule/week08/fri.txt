@@ -1,45 +1,43 @@
-.. slideconf::
-    :autoslides: False
-
 ******
 Friday
 ******
 
-.. slide:: Course Presentations
-    :level: 1
-
-    This document contains no slides.
-
 Objectives
 ==========
 
-* Learn about and implement the quicksort algorithm
-* Understand how to clean data
-* Incorporate Pagination into your Django Imager
+* Understand how Merge Sort works
+* Begin to understand REST and how it changes an app
+* Encounter the world of data science and machine learning with Python
 
 Readings
 ========
 
-Pagination
-----------
+REST
+----
 
-* `How to Paginate with Django <https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html>`_
+* `What Is REST? <http://www.restapitutorial.com/lessons/whatisrest.html>`_
+* `REST vs SOAP <http://www.restapitutorial.com/lessons/whatisrest.html>`_
+* `SOAP and REST Basics and Differences <http://blog.smartbear.com/apis/understanding-soap-and-rest-basics/>`_
+* `Online REST Web Service Demo <https://www.predic8.com/rest-demo.htm>`_
 
 Data Science
 ------------
 
-* `Data Munging in Python using Pandas <https://www.analyticsvidhya.com/blog/2014/09/data-munging-python-using-pandas-baby-steps-python/>`_
-* `Let Data Scientists be Data Mungers <https://www.thoughtworks.com/insights/blog/let-data-scientists-be-data-mungers>`_
+* `Machine Learning: What it is and Why it matters <http://www.sas.com/en_us/insights/analytics/machine-learning.html>`_
+* `What is Data Science? <https://datascience.berkeley.edu/about/what-is-data-science/>`_
+* `Data Scientist: The Sexiest Job of the 21st Century <https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century>`_
+* `A Complete Tutorial to Learn Data Science with Python from Scratch <https://www.analyticsvidhya.com/blog/2016/01/complete-tutorial-learn-data-science-python-scratch-2/>`_
+* `The Importance of Data Visualization <https://www.techchange.org/2015/05/19/data-visualization-analysis-international-development/>`_
 
 Sorting
 -------
 
-* `Overview of QuickSort <https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/overview-of-quicksort>`_
+* `Merge Sort <http://www.tutorialspoint.com/data_structures_algorithms/merge_sort_algorithm.htm>`_
 
 Review
 ======
 
-Whatever Django stuff is pressing
+Pagination in a Django application
 
 Concepts
 ========
@@ -47,25 +45,25 @@ Concepts
 .. toctree::
     :maxdepth: 2
 
-    /lectures/django_pagination
-    /lectures/data_munging
+    /lectures/rest_apis
+    /lectures/intro_to_machine_learning
 
-* The Quick Sort algorithm
+* The Merge Sort algorithm
 
 Demo
 ====
 
-* Quick Sort!!!
+* Merge Sort!!!
 
 Assignments
 ===========
 
-* :doc:`/assignments/imperfect_data`
-* :doc:`/assignments/aws_2_ansible_imager`
-* :doc:`/assignments/django_7_complete_frontend`
-* :doc:`/assignments/django_12_pagination`
-* :doc:`/assignments/whiteboard`
-* :doc:`/assignments/sort_3_quicksort`
+* :doc:`/assignments/sort_2_mergesort`
+* :doc:`/assignments/ml_1_visualizing_data`
 * :doc:`/assignments/project_05_wireframe_begin`
+* :doc:`/assignments/django_11_api`
+* :doc:`/assignments/django_7_complete_frontend`
+* :doc:`/assignments/aws_2_ansible_imager`
 * :doc:`/assignments/blog_post_publish` (Due Friday Week 9)
 * :doc:`/assignments/daily_lj_entry`
+* :doc:`/assignments/whiteboard`

@@ -199,7 +199,7 @@ Common from-the-ground-up projects are things like:
 - To-Do Lists
 - Facebook/Twitter/Tumblr/Instagram clones
 - Person-to-person sales sites
-- Chat bots
+- Chat/Facebook Messenger/Twitter bots
 - Recipe sites
 - Weather apps
 - Friend finders
@@ -276,6 +276,7 @@ In order for you to grow as a developer, you need to be willing to dive deeper i
 Here's a listing of some commonly-cited tools and concepts from the wider world of Python:
 
 - `Django React <https://github.com/Seedstars/django-react-redux-base>`_: A project using Django as the back-end and ReactJS as the front-end
+- `Django Channels <https://channels.readthedocs.io/en/stable/>`_: A project nudging Django in the direction of being "event-oriented" rather than relying solely on the web request-response cycle; Here's a good `tutorial <https://realpython.com/blog/python/getting-started-with-django-channels/?utm_source=fsp&utm_medium=social&utm_campaign=june>`_
 - `Flask <http://flask.pocoo.org/>`_: A micro webframework for Python. Quick to set up and used often.
 - `Tornado <http://www.tornadoweb.org/en/stable/>`_: A Python web framework that doesn't rely on WSGI like Flask and Django. It supports WebSockets, which allow for a different mode of communication than strict HTTP.
 - Pandas/NumPy/SciPy/Scikit-Learn/Matplotlib: The Python science and analysis stack

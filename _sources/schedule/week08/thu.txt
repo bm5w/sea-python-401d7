@@ -1,51 +1,25 @@
-.. slideconf::
-    :autoslides: False
-
 ********
 Thursday
 ********
 
-.. slide:: Course Presentations
-    :level: 1
-
-    This document contains no slides.
-
 Objectives
 ==========
 
-* Understand how Merge Sort works
-* Begin to understand REST and how it changes an app
-* Encounter the world of data science and machine learning with Python
+* Learn about the Insertion Sort algorithm
+* Learn about storage of static and media files in the cloud with AWS S3
+* Get even more practice handling code challenges
 
 Readings
 ========
 
-REST
-----
-
-* `What Is REST? <http://www.restapitutorial.com/lessons/whatisrest.html>`_
-* `REST vs SOAP <http://www.restapitutorial.com/lessons/whatisrest.html>`_
-* `SOAP and REST Basics and Differences <http://blog.smartbear.com/apis/understanding-soap-and-rest-basics/>`_
-* `Online REST Web Service Demo <https://www.predic8.com/rest-demo.htm>`_
-
-Data Science
-------------
-
-* `Machine Learning: What it is and Why it matters <http://www.sas.com/en_us/insights/analytics/machine-learning.html>`_
-* `What is Data Science? <https://datascience.berkeley.edu/about/what-is-data-science/>`_
-* `Data Scientist: The Sexiest Job of the 21st Century <https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century>`_
-* `A Complete Tutorial to Learn Data Science with Python from Scratch <https://www.analyticsvidhya.com/blog/2016/01/complete-tutorial-learn-data-science-python-scratch-2/>`_
-* `The Importance of Data Visualization <https://www.techchange.org/2015/05/19/data-visualization-analysis-international-development/>`_
-
-Sorting
--------
-
-* `Merge Sort <http://www.tutorialspoint.com/data_structures_algorithms/merge_sort_algorithm.htm>`_
+* `Insertion Sort <http://www.tutorialspoint.com/data_structures_algorithms/insertion_sort_algorithm.htm>`_
+* `Using Amazon S3 to Store Your Django Site's Static and Media Files <https://www.caktusgroup.com/blog/2014/11/10/Using-Amazon-S3-to-store-your-Django-sites-static-and-media-files/>`_
+* `Deploy a fault-tolerant Django app on AWS - Part 2: Moving static and media files to S3 <http://www.jorgechang.com/blog/howto-deploy-a-fault-tolerant-django-app-on-aws-part-2-moving-static-media-files-to-s3/>`_
 
 Review
 ======
 
-Pagination in a Django application
+* Ansible and Web Application Security
 
 Concepts
 ========
@@ -53,24 +27,25 @@ Concepts
 .. toctree::
     :maxdepth: 2
 
-    /lectures/rest_apis
-    /lectures/intro_to_machine_learning
+    /lectures/django_s3
 
-* The Merge Sort algorithm
+* Insertion Sort
+* Whiteboard Challenge
 
 Demo
 ====
 
-* Merge Sort!!!
+* Insertion Sort!!
 
 Assignments
 ===========
 
-* :doc:`/assignments/sort_2_mergesort`
-* :doc:`/assignments/ml_1_visualizing_data`
+* :doc:`/assignments/sort_1_insertion`
+* :doc:`/assignments/django_9_drf_tutorial_b`
+* :doc:`/assignments/aws_2_ansible_imager` (Due Friday)
+* :doc:`/assignments/django_7_complete_frontend` (Due Friday)
+* :doc:`/assignments/django_14_s3`
+* :doc:`/assignments/django_10_taggit` (EXTRA)
 * :doc:`/assignments/project_04_readme`
-* :doc:`/assignments/django_11_api`
-* :doc:`/assignments/django_7_complete_frontend`
-* :doc:`/assignments/aws_2_ansible_imager`
-* :doc:`/assignments/blog_post_publish` (Due Friday Week 9)
 * :doc:`/assignments/daily_lj_entry`
+* :doc:`/assignments/blog_post_publish` (Due Friday Week 9)

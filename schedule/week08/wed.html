@@ -25,6 +25,8 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Python 401 2.1 documentation" href="../../index.html" />
+    <link rel="next" title="Web Application Security" href="../../lectures/web_app_security1.html" />
+    <link rel="prev" title="Amazon RDS and Deployment Prep" href="../../lectures/rds_deployment_prep.html" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 
@@ -51,6 +53,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../lectures/web_app_security1.html" title="Web Application Security"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../../lectures/rds_deployment_prep.html" title="Amazon RDS and Deployment Prep"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -176,63 +184,79 @@ div.nboutput  > :nth-child(2).stderr {
 </style>
 <div class="section" id="wednesday">
 <h1>Wednesday<a class="headerlink" href="#wednesday" title="Permalink to this headline">¶</a></h1>
-<span class="admonition-course-presentations"></span><div class="section" id="objectives">
+<div class="section" id="objectives">
 <h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Learn about the Insertion Sort algorithm</li>
-<li>Learn about storage of static and media files in the cloud with AWS S3</li>
-<li>Get even more practice handling code challenges</li>
+<li>Learn how to automate the deployment of a Django app with Ansible</li>
+<li>Learn how to secure web apps in an existing code base</li>
+<li>Understand how Bubble Sort works</li>
 </ul>
 </div>
 <div class="section" id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="web-app-security">
+<h3>Web App Security<a class="headerlink" href="#web-app-security" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="http://www.tutorialspoint.com/data_structures_algorithms/insertion_sort_algorithm.htm">Insertion Sort</a></li>
-<li><a class="reference external" href="https://www.caktusgroup.com/blog/2014/11/10/Using-Amazon-S3-to-store-your-Django-sites-static-and-media-files/">Using Amazon S3 to Store Your Django Site&#8217;s Static and Media Files</a></li>
-<li><a class="reference external" href="http://www.jorgechang.com/blog/howto-deploy-a-fault-tolerant-django-app-on-aws-part-2-moving-static-media-files-to-s3/">Deploy a fault-tolerant Django app on AWS - Part 2: Moving static and media files to S3</a></li>
+<li><a class="reference external" href="https://www.owasp.org/index.php/Top_10_2013-Top_10">OWASP Top Ten App Vulnerabilities</a></li>
+<li>Learn about the most common attack vectors at <a class="reference external" href="https://www.hacksplaining.com/exercises">Hacksplaining</a></li>
+<li><a class="reference external" href="https://..www.alienvault.com/blogs/security-essentials/web-application-security-methods-and-best-practices">Web App Security Best Practices</a></li>
 </ul>
+</div>
+<div class="section" id="devops-and-ansible">
+<h3>DevOps and Ansible<a class="headerlink" href="#devops-and-ansible" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://blog.serverdensity.com/what-ive-learnt-from-using-ansible-exclusively-for-2-years/">Lessons from Using Ansible</a></li>
+<li><a class="reference external" href="http://www.slideshare.net/andrewmirskynet/deploying-django-with-ansible">Deploying Django with Ansible</a></li>
+<li>Read this <a class="reference external" href="https://serversforhackers.com/an-ansible-tutorial">Ansible Tutorial</a> to learn a bit about how Ansible works.</li>
+<li>What is DevOps? (<a class="reference external" href="https://aws.amazon.com/devops/what-is-devops/">AWS</a>)</li>
+</ul>
+</div>
 </div>
 <div class="section" id="review">
 <h2>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Ansible and Web Application Security</li>
+<li>Django Forms and Auth-Auth</li>
+<li>Bubble Sort</li>
 </ul>
 </div>
 <div class="section" id="concepts">
 <h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/django_s3.html">Django and AWS Simple Storage System (S3)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_s3.html#aws-iam-and-s3-management-and-configuration">AWS IAM and S3 Management and Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_s3.html#connecting-django-to-aws-s3">Connecting Django to AWS S3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_s3.html#last-bits">Last Bits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/web_app_security1.html">Web Application Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/web_app_security1.html#top-web-app-vulnerabilities">Top Web App Vulnerabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/web_app_security1.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/ansible.html">Automated Deployment with Ansible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/ansible.html#a-note-about-continuous-delivery-and-dev-ops">A Note about Continuous Delivery and Dev Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/ansible.html#introduction-to-ansible">Introduction to Ansible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/ansible.html#ansible-playbooks">Ansible Playbooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/ansible.html#templates-and-configuring-nginx">Templates and Configuring Nginx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/ansible.html#getting-moving-with-upstart-and-gunicorn">Getting Moving with Upstart and Gunicorn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/ansible.html#wrapping-up">Wrapping Up</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<ul class="simple">
-<li>Insertion Sort</li>
-<li>Whiteboard Challenge</li>
-</ul>
 </div>
 <div class="section" id="demo">
 <h2>Demo<a class="headerlink" href="#demo" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Insertion Sort!!</li>
+<li>Bubble Sort!</li>
 </ul>
 </div>
 <div class="section" id="assignments">
 <h2>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="../../assignments/sort_1_insertion.html"><em>Implement Insertion Sort</em></a></li>
-<li><a class="reference internal" href="../../assignments/django_9_drf_tutorial_b.html"><em>Django: Django REST Framework Tutorial, Parts 4-6</em></a></li>
+<li><a class="reference internal" href="../../assignments/web_app_security_assignment1.html"><em>Break the Site/Fix the Site</em></a></li>
+<li><a class="reference internal" href="../../assignments/sort_0_bubblesort.html"><em>Implement Bubble Sort</em></a></li>
 <li><a class="reference internal" href="../../assignments/aws_2_ansible_imager.html"><em>Automate Deploying Imager with Ansible</em></a> (Due Friday)</li>
 <li><a class="reference internal" href="../../assignments/django_7_complete_frontend.html"><em>Django Imager: Complete Front-End</em></a> (Due Friday)</li>
-<li><a class="reference internal" href="../../assignments/django_14_s3.html"><em>Django Imager: S3 Storage for Static and Media Files</em></a></li>
-<li><a class="reference internal" href="../../assignments/django_10_taggit.html"><em>Django: Implement Django Taggit for Imager</em></a> (EXTRA)</li>
+<li><code class="xref doc docutils literal"><span class="pre">/assignments/django_8_drf_tutorial_a</span></code></li>
+<li><a class="reference internal" href="../../assignments/blog_post_publish.html"><em>Technical Blog Post: Publish Your Post</em></a> (Due Friday Week 9)</li>
 <li><a class="reference internal" href="../../assignments/project_03_repo.html"><em>Group Project: Create a Repository</em></a></li>
 <li><a class="reference internal" href="../../assignments/daily_lj_entry.html"><em>Today I learned...</em></a></li>
-<li><a class="reference internal" href="../../assignments/blog_post_publish.html"><em>Technical Blog Post: Publish Your Post</em></a> (Due Friday Week 9)</li>
 </ul>
 </div>
 </div>
@@ -247,7 +271,11 @@ div.nboutput  > :nth-child(2).stderr {
   <ul>
 <li><a class="reference internal" href="#">Wednesday</a><ul>
 <li><a class="reference internal" href="#objectives">Objectives</a></li>
-<li><a class="reference internal" href="#readings">Readings</a></li>
+<li><a class="reference internal" href="#readings">Readings</a><ul>
+<li><a class="reference internal" href="#web-app-security">Web App Security</a></li>
+<li><a class="reference internal" href="#devops-and-ansible">DevOps and Ansible</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#review">Review</a></li>
 <li><a class="reference internal" href="#concepts">Concepts</a></li>
 <li><a class="reference internal" href="#demo">Demo</a></li>
@@ -256,6 +284,12 @@ div.nboutput  > :nth-child(2).stderr {
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../../lectures/rds_deployment_prep.html"
+                        title="previous chapter">Amazon RDS and Deployment Prep</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../lectures/web_app_security1.html"
+                        title="next chapter">Web Application Security</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
@@ -279,6 +313,12 @@ div.nboutput  > :nth-child(2).stderr {
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="../../lectures/web_app_security1.html" title="Web Application Security"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../../lectures/rds_deployment_prep.html" title="Amazon RDS and Deployment Prep"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
       </ul>
     </div>

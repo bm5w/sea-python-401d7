@@ -28,7 +28,7 @@ choice to be made at initialization time.
 
 Your heap should support the following public operations:
 
-* **push()**: puts a new value into the heap, maintaining the heap property.
+* **push(val)**: puts a new value into the heap, maintaining the heap property.
 * **pop()**: removes the "top" value in the heap, maintaining the heap property.
 
 You will need to implement some private api in order to support those operations.

@@ -25,6 +25,8 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Python 401 2.1 documentation" href="../../index.html" />
+    <link rel="next" title="Django Pagination" href="../../lectures/django_pagination.html" />
+    <link rel="prev" title="Introduction to Machine Learning" href="../../lectures/intro_to_machine_learning.html" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 
@@ -51,6 +53,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../lectures/django_pagination.html" title="Django Pagination"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../../lectures/intro_to_machine_learning.html" title="Introduction to Machine Learning"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -176,43 +184,80 @@ div.nboutput  > :nth-child(2).stderr {
 </style>
 <div class="section" id="monday">
 <h1>Monday<a class="headerlink" href="#monday" title="Permalink to this headline">¶</a></h1>
-<span class="admonition-course-presentations"></span><div class="section" id="objectives">
+<div class="section" id="objectives">
 <h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Dive into the Radix Sort algorithm</li>
+<li>Learn about and implement the quicksort algorithm</li>
+<li>Understand how to clean data</li>
+<li>Incorporate Pagination into your Django Imager</li>
 </ul>
 </div>
 <div class="section" id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pagination">
+<h3>Pagination<a class="headerlink" href="#pagination" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html">How to Paginate with Django</a></li>
+</ul>
+</div>
+<div class="section" id="data-science">
+<h3>Data Science<a class="headerlink" href="#data-science" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://www.analyticsvidhya.com/blog/2014/09/data-munging-python-using-pandas-baby-steps-python/">Data Munging in Python using Pandas</a></li>
+<li><a class="reference external" href="https://www.thoughtworks.com/insights/blog/let-data-scientists-be-data-mungers">Let Data Scientists be Data Mungers</a></li>
+</ul>
+</div>
 <div class="section" id="sorting">
 <h3>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="https://www.cs.usfca.edu/~galles/visualization/RadixSort.html">Radix Sort Visualization</a></li>
+<li><a class="reference external" href="https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/overview-of-quicksort">Overview of QuickSort</a></li>
 </ul>
 </div>
 </div>
 <div class="section" id="review">
 <h2>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
-<p>None unless asked for.</p>
+<p>Whatever Django stuff is pressing</p>
 </div>
 <div class="section" id="concepts">
 <h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/django_pagination.html">Django Pagination</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_pagination.html#what-is-pagination">What is Pagination?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_pagination.html#the-django-paginator">The Django Paginator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_pagination.html#pagination-in-function-based-views">Pagination in Function-based Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_pagination.html#pagination-with-controls">Pagination with Controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_pagination.html#pagination-with-class-based-views">Pagination with Class-based Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/django_pagination.html#wrap-up">Wrap Up</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/data_munging.html">Data Munging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/data_munging.html#pandas">Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/data_munging.html#what-is-valid">What is Valid?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/data_munging.html#recap">Recap</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <ul class="simple">
-<li>Radix Sort</li>
-<li>Final Whiteboarding</li>
+<li>The Quick Sort algorithm</li>
 </ul>
 </div>
 <div class="section" id="demo">
 <h2>Demo<a class="headerlink" href="#demo" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Radix Sort!</li>
+<li>Quick Sort!!!</li>
 </ul>
 </div>
 <div class="section" id="assignments">
 <h2>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="../../assignments/django_13_social_auth.html"><em>Django: Add Social Authentication</em></a></li>
-<li><a class="reference internal" href="../../assignments/sort_4_radix.html"><em>Implement Radix Sort</em></a></li>
+<li><a class="reference internal" href="../../assignments/imperfect_data.html"><em>Working with Imperfect Data</em></a></li>
+<li><code class="xref doc docutils literal"><span class="pre">/assignments/django_12_pagination</span></code></li>
+<li><a class="reference internal" href="../../assignments/django_7_complete_frontend.html"><em>Django Imager: Complete Front-End</em></a> (Due Monday Week 9)</li>
+<li><a class="reference internal" href="../../assignments/aws_2_ansible_imager.html"><em>Automate Deploying Imager with Ansible</em></a> (Due Friday Week 9)</li>
+<li><a class="reference internal" href="../../assignments/sort_3_quicksort.html"><em>Implement Quick Sort</em></a></li>
+<li><code class="xref doc docutils literal"><span class="pre">/assignments/django_13_social_auth</span></code></li>
 <li><a class="reference internal" href="../../assignments/project_06_wireframe_end.html"><em>Group Project: Complete Wireframes</em></a></li>
 <li><a class="reference internal" href="../../assignments/blog_post_publish.html"><em>Technical Blog Post: Publish Your Post</em></a> (Due Friday)</li>
 <li><a class="reference internal" href="../../assignments/daily_lj_entry.html"><em>Today I learned...</em></a></li>
@@ -231,6 +276,8 @@ div.nboutput  > :nth-child(2).stderr {
 <li><a class="reference internal" href="#">Monday</a><ul>
 <li><a class="reference internal" href="#objectives">Objectives</a></li>
 <li><a class="reference internal" href="#readings">Readings</a><ul>
+<li><a class="reference internal" href="#pagination">Pagination</a></li>
+<li><a class="reference internal" href="#data-science">Data Science</a></li>
 <li><a class="reference internal" href="#sorting">Sorting</a></li>
 </ul>
 </li>
@@ -242,6 +289,12 @@ div.nboutput  > :nth-child(2).stderr {
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../../lectures/intro_to_machine_learning.html"
+                        title="previous chapter">Introduction to Machine Learning</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../lectures/django_pagination.html"
+                        title="next chapter">Django Pagination</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
@@ -265,6 +318,12 @@ div.nboutput  > :nth-child(2).stderr {
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="../../lectures/django_pagination.html" title="Django Pagination"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../../lectures/intro_to_machine_learning.html" title="Introduction to Machine Learning"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
       </ul>
     </div>

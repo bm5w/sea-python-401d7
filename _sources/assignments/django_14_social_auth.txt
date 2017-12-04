@@ -1,0 +1,40 @@
+*********************************
+Django: Add Social Authentication
+*********************************
+
+Registering and logging-in with a username and password is great for most use cases.
+However, it'd be even better if we could bypass that registration process altogether and use a service that already authenticates users.
+Let's implement some social authentication.
+
+**NOTE: THERE ARE NOT NOR WILL THERE BE LECTURE NOTES FOR THIS. YOU ARE DEVELOPERS NOW. EXECUTE USING DOCUMENTATION**.
+Good places to start: `here <https://github.com/python-social-auth/social-app-django>`_ and `also here <http://python-social-auth.readthedocs.io/en/latest/>`_.
+
+Tasks
+=====
+
+Your Learning Journals had you authenticate using your GitHub username.
+Let's have the imager app do the same.
+Fulfill these user stories:
+
+* As a user, I want to be able to log into the imager app with my GitHub account.
+* As a user, I want to be able to register and log in with a username/password combination if I don't have a GitHub account.
+* As a user, I want the way to log in with my GitHub account to be obvious
+
+Stretch Stories (2 pts each)
+----------------------------
+
+* As a user, I want to be able to use my Google account for authentication.
+* ... Twitter account ...
+* ... Facebook account ...
+* ... LinkedIn account ...
+* ... Instagram account ...
+* ... Pinterest account ...
+
+
+Submitting Your Work
+====================
+
+Do your work for this assignment on a branch, called ``social-auth``.
+When you've completed the work push your branch and make a Pull Request to ``master``.
+Submit the URL for that pull request.
+When you've submitted the URL you may merge the PR.

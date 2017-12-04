@@ -5,45 +5,62 @@
 Monday
 ******
 
-.. slide:: Course Presentations
-    :level: 1
-
-    This document contains no slides.
-
 Objectives
 ==========
 
-* Dive into the Radix Sort algorithm
+* Learn about and implement the quicksort algorithm
+* Understand how to clean data
+* Incorporate Pagination into your Django Imager
 
 Readings
 ========
 
+Pagination
+----------
+
+* `How to Paginate with Django <https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html>`_
+
+Data Science
+------------
+
+* `Data Munging in Python using Pandas <https://www.analyticsvidhya.com/blog/2014/09/data-munging-python-using-pandas-baby-steps-python/>`_
+* `Let Data Scientists be Data Mungers <https://www.thoughtworks.com/insights/blog/let-data-scientists-be-data-mungers>`_
+
 Sorting
 -------
 
-* `Radix Sort Visualization <https://www.cs.usfca.edu/~galles/visualization/RadixSort.html>`_
+* `Overview of QuickSort <https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/overview-of-quicksort>`_
 
 Review
 ======
 
-None unless asked for.
+Whatever Django stuff is pressing
 
 Concepts
 ========
 
-* Radix Sort
-* Final Whiteboarding
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/django_pagination
+    /lectures/data_munging
+
+* The Quick Sort algorithm
 
 Demo
 ====
 
-* Radix Sort!
+* Quick Sort!!!
 
 Assignments
 ===========
 
+* :doc:`/assignments/imperfect_data`
+* :doc:`/assignments/django_12_pagination`
+* :doc:`/assignments/django_7_complete_frontend` (Due Monday Week 9)
+* :doc:`/assignments/aws_2_ansible_imager` (Due Friday Week 9)
+* :doc:`/assignments/sort_3_quicksort`
 * :doc:`/assignments/django_13_social_auth`
-* :doc:`/assignments/sort_4_radix`
 * :doc:`/assignments/project_06_wireframe_end`
 * :doc:`/assignments/blog_post_publish` (Due Friday)
 * :doc:`/assignments/daily_lj_entry`

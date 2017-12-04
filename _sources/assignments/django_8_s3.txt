@@ -1,0 +1,23 @@
+****************************************************
+Django Imager: S3 Storage for Static and Media Files
+****************************************************
+
+In this series of assignments you will build a simple image management website using Django.
+In this eighth step, you will modify your file storage to use the AWS S3 service instead of the file system of your EC2 instance.
+
+Tasks
+=====
+
+Do your work for this assignment on a branch called ``aws_s3``.
+Be sure that the branch contains your work for all previous parts of this work.
+
+- Create an AWS S3 bucket for your Django Imager
+- Modify your ``settings.py`` file to use the `django-storages <http://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html>`_ package.
+- Redeploy your site using S3 for storage, ensuring that content old and new all end up in the S3 bucket.
+
+Submitting Your Work
+--------------------
+
+When you are done working and all your tests are passing, create a Pull Request from the ``aws_s3`` branch to ``master``.
+Submit the URL for that pull request.
+When you are done, you can merge the pull request in preparation for the next stage of your work.

@@ -13,39 +13,32 @@ Tuesday
 Objectives
 ==========
 
-* Learn about supervised classification and how to use data you have to predict new data.
-* Get introduced to unsupervised classification algorithms and how they're used
-* Build and understand the Decision Tree Classifier
+* Dive into the Radix Sort algorithm
 
 Readings
 ========
 
-* The first 3 sections of `this chapter <http://www.ise.bgu.ac.il/faculty/liorr/hbchap8.pdf>`_
-* `Decision Tree Learning <https://en.wikipedia.org/wiki/Decision_tree_learning>`_
-* Sections 3.1 through 3.3 of `this chapter <https://www.cs.princeton.edu/courses/archive/spring07/cos424/papers/mitchell-dectrees.pdf>`_
-* `How to Implement the Decision Tree Algorithm from Scratch in Python <http://machinelearningmastery.com/implement-decision-tree-algorithm-scratch-python/>`_
+Sorting
+-------
+
+* `Radix Sort Visualization <https://www.cs.usfca.edu/~galles/visualization/RadixSort.html>`_
 
 Review
 ======
 
-Getting up and running with AWS ElasticSearch and Django Haystack
+None unless asked for.
 
 Concepts
 ========
 
-.. toctree::
-    :maxdepth: 2
-
-    /lectures/supervised_classification
-    /lectures/unsupervised_classification
-    /lectures/decision_tree
-
+* Radix Sort
 * Final Whiteboarding
 
 Assignments
 ===========
 
-* :doc:`/assignments/ml_2_decision_tree`
+* :doc:`/assignments/django_13_social_auth`
+* :doc:`/assignments/sort_4_radix`
 * :doc:`/assignments/project_07_stories_begin`
 * :doc:`/assignments/blog_post_publish` (Due Friday)
 * :doc:`/assignments/daily_lj_entry`

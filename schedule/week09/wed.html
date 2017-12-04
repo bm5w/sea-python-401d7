@@ -25,6 +25,8 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Python 401 2.1 documentation" href="../../index.html" />
+    <link rel="next" title="Supervised Classification" href="../../lectures/supervised_classification.html" />
+    <link rel="prev" title="Tuesday" href="tue.html" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 
@@ -51,6 +53,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../lectures/supervised_classification.html" title="Supervised Classification"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tue.html" title="Tuesday"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -179,53 +187,44 @@ div.nboutput  > :nth-child(2).stderr {
 <span class="admonition-course-presentations"></span><div class="section" id="objectives">
 <h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Learn about when and why to re-scale data</li>
-<li>Use K-Nearest Neighbors to predict categories by distance</li>
-<li>Become familiar with K-Means Clustering</li>
-<li>Walk through a brief introduction to the scikit-learn Python package</li>
+<li>Learn about supervised classification and how to use data you have to predict new data.</li>
+<li>Get introduced to unsupervised classification algorithms and how they&#8217;re used</li>
+<li>Build and understand the Decision Tree Classifier</li>
 </ul>
 </div>
 <div class="section" id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="http://machinelearningmastery.com/supervised-and-unsupervised-machine-learning-algorithms/">Supervised and Unsupervised Machine Learning Algorithms</a></li>
-<li><a class="reference external" href="http://www.astro.caltech.edu/~george/aybi199/Donalek_Classif.pdf">Supervised and Unsupervised Learning</a></li>
-<li><a class="reference external" href="http://stanford.edu/~cpiech/cs221/handouts/kmeans.html">K-Means Clustering</a></li>
-<li><a class="reference external" href="http://www.datasciencecentral.com/profiles/blogs/feature-scaling-and-normalization">Feature Scaling and Normalization</a></li>
-<li><a class="reference external" href="https://saravananthirumuruganathan.wordpress.com/2010/05/17/a-detailed-introduction-to-k-nearest-neighbor-knn-algorithm/">A Detailed Introduction to K-Nearest Neighbors</a></li>
-<li>K-Nearest Neighbors Algorithm (<a class="reference external" href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">Wikipedia</a>)</li>
-<li>How KNN Works (<a class="reference external" href="https://www.youtube.com/watch?v=UqYde-LULfs">video</a>)</li>
+<li>The first 3 sections of <a class="reference external" href="http://www.ise.bgu.ac.il/faculty/liorr/hbchap8.pdf">this chapter</a></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Decision_tree_learning">Decision Tree Learning</a></li>
+<li>Sections 3.1 through 3.3 of <a class="reference external" href="https://www.cs.princeton.edu/courses/archive/spring07/cos424/papers/mitchell-dectrees.pdf">this chapter</a></li>
+<li><a class="reference external" href="http://machinelearningmastery.com/implement-decision-tree-algorithm-scratch-python/">How to Implement the Decision Tree Algorithm from Scratch in Python</a></li>
 </ul>
+</div>
+<div class="section" id="review">
+<h2>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
+<p>Getting up and running with AWS ElasticSearch and Django Haystack</p>
 </div>
 <div class="section" id="concepts">
 <h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/rescaling_data.html">Rescaling Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/rescaling_data.html#simple-rescaling">Simple Rescaling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/rescaling_data.html#orders-of-magnitude">Orders of Magnitude</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/supervised_classification.html">Supervised Classification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/supervised_classification.html#the-look-of-labeled-data">The Look of Labeled Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/k_nearest_neighbors.html">K-Nearest Neighbors Classifier</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_nearest_neighbors.html#the-algorithm">The Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_nearest_neighbors.html#advantages">Advantages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_nearest_neighbors.html#disadvantages">Disadvantages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_nearest_neighbors.html#attributes">Attributes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_nearest_neighbors.html#operations">Operations</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/k_means.html">K-Means Classifier</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_means.html#the-algorithm">The Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_means.html#advantages">Advantages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_means.html#disadvantages">Disadvantages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_means.html#attributes">Attributes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_means.html#operations">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/unsupervised_classification.html">Unsupervised Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/decision_tree.html">The Decision Tree Classifier</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/decision_tree.html#the-algorithm">The Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/decision_tree.html#advantages">Advantages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/decision_tree.html#disadvantages">Disadvantages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/decision_tree.html#attributes">Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/decision_tree.html#operations">Operations</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <ul class="simple">
-<li>Introduction to Scikit-Learn</li>
 <li>Final Whiteboarding</li>
 </ul>
 </div>
@@ -235,9 +234,8 @@ div.nboutput  > :nth-child(2).stderr {
 <div class="section" id="assignments">
 <h2>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li><a class="reference internal" href="../../assignments/ml_2_decision_tree.html"><em>Implement the Decision Tree Classifier</em></a></li>
 <li><a class="reference internal" href="../../assignments/project_08_stories_continue.html"><em>Group Project: Estimate User Stories</em></a></li>
-<li><a class="reference internal" href="../../assignments/ml_3_k_nearest_neighbors.html"><em>Implement the K-Nearest Neighbors Classifier</em></a></li>
-<li><a class="reference internal" href="../../assignments/ml_4_k_means.html"><em>Implement the K-Means Classifier</em></a></li>
 <li><a class="reference internal" href="../../assignments/blog_post_publish.html"><em>Technical Blog Post: Publish Your Post</em></a> (Due Friday)</li>
 <li><a class="reference internal" href="../../assignments/daily_lj_entry.html"><em>Today I learned...</em></a></li>
 </ul>
@@ -255,6 +253,7 @@ div.nboutput  > :nth-child(2).stderr {
 <li><a class="reference internal" href="#">Wednesday</a><ul>
 <li><a class="reference internal" href="#objectives">Objectives</a></li>
 <li><a class="reference internal" href="#readings">Readings</a></li>
+<li><a class="reference internal" href="#review">Review</a></li>
 <li><a class="reference internal" href="#concepts">Concepts</a></li>
 <li><a class="reference internal" href="#demo">Demo</a></li>
 <li><a class="reference internal" href="#assignments">Assignments</a></li>
@@ -262,6 +261,12 @@ div.nboutput  > :nth-child(2).stderr {
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tue.html"
+                        title="previous chapter">Tuesday</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../lectures/supervised_classification.html"
+                        title="next chapter">Supervised Classification</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
@@ -285,6 +290,12 @@ div.nboutput  > :nth-child(2).stderr {
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="../../lectures/supervised_classification.html" title="Supervised Classification"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tue.html" title="Tuesday"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Python 401 2.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
