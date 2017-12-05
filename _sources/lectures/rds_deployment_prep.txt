@@ -26,7 +26,7 @@ In your dashboard, navigate to the RDS Dashboard.
 Here, you can look at which database instances you have up and running.
 You can also force your database(s) to back up, or be removed entirely.
 
-Just like with the EC2 instances, you can **launch an RDS DB instance** by clicking the big blue ``Launch a DB Instance`` button.
+Just like with the EC2 instances, you can **launch an RDS DB instance** by clicking the big orange ``Launch a DB Instance`` button.
 
 Since we've been using ``PostgreSQL``, **choose the Postgres database engine.** 
 
@@ -49,8 +49,12 @@ These will serve as the username and password that you use to access the databas
 The default settings on the next screen are mostly fine.
 There are a few that are important to modify:
 
-- ``VPC Security Group(s)``: this database may be accessible by one or more applications. Therefore, you get the choice of using one (or more) of your existing security groups or of making a new one. Whatever security group(s) is attached to this RDS instance will need a new Custom TCP rule for allowing Inbound access on Postgres's post 5432.
+- ``VPC Security Group(s)``: this database may be accessible by one or more applications. Therefore, you get the choice of using one (or more) of your existing security groups or of making a new one. **Whatever security group(s) is attached to this RDS instance will need a new Custom TCP rule for allowing Inbound access on Postgres's post 5432.**
 - ``Database Name``: the actual name of the database going into your settings file. **Know what this is**.
+
+Make sure that no matter what you choose for your ``VPC Security Group``, the **Public Accessibility** is set to "Yes". 
+**IF YOU DO NOT DO THIS, YOU WILL NOT BE ABLE TO ACCESS YOUR DATABASE.**
+If you forget, you can always go back later and change it.
 
 Finally, click on the button for launching your instance.
 This will take significantly longer than launching an EC2 instance (though stiill just short enough for a class demo!).

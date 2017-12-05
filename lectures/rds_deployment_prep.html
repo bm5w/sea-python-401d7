@@ -204,7 +204,7 @@ Provided that you have the proper credentials, it can then be used <strong>just 
 <p>In your dashboard, navigate to the RDS Dashboard.
 Here, you can look at which database instances you have up and running.
 You can also force your database(s) to back up, or be removed entirely.</p>
-<p>Just like with the EC2 instances, you can <strong>launch an RDS DB instance</strong> by clicking the big blue <code class="docutils literal"><span class="pre">Launch</span> <span class="pre">a</span> <span class="pre">DB</span> <span class="pre">Instance</span></code> button.</p>
+<p>Just like with the EC2 instances, you can <strong>launch an RDS DB instance</strong> by clicking the big orange <code class="docutils literal"><span class="pre">Launch</span> <span class="pre">a</span> <span class="pre">DB</span> <span class="pre">Instance</span></code> button.</p>
 <p>Since we&#8217;ve been using <code class="docutils literal"><span class="pre">PostgreSQL</span></code>, <strong>choose the Postgres database engine.</strong></p>
 <p>Although this database should be for production, let&#8217;s stick to what&#8217;s eligible for the &#8220;Free Tier&#8221; and <strong>go with the Dev/Test DB instance</strong>.
 The differences between the two are mainly in the realm of scalability and performance.</p>
@@ -220,9 +220,12 @@ These will serve as the username and password that you use to access the databas
 <p>The default settings on the next screen are mostly fine.
 There are a few that are important to modify:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">VPC</span> <span class="pre">Security</span> <span class="pre">Group(s)</span></code>: this database may be accessible by one or more applications. Therefore, you get the choice of using one (or more) of your existing security groups or of making a new one. Whatever security group(s) is attached to this RDS instance will need a new Custom TCP rule for allowing Inbound access on Postgres&#8217;s post 5432.</li>
+<li><code class="docutils literal"><span class="pre">VPC</span> <span class="pre">Security</span> <span class="pre">Group(s)</span></code>: this database may be accessible by one or more applications. Therefore, you get the choice of using one (or more) of your existing security groups or of making a new one. <strong>Whatever security group(s) is attached to this RDS instance will need a new Custom TCP rule for allowing Inbound access on Postgres&#8217;s post 5432.</strong></li>
 <li><code class="docutils literal"><span class="pre">Database</span> <span class="pre">Name</span></code>: the actual name of the database going into your settings file. <strong>Know what this is</strong>.</li>
 </ul>
+<p>Make sure that no matter what you choose for your <code class="docutils literal"><span class="pre">VPC</span> <span class="pre">Security</span> <span class="pre">Group</span></code>, the <strong>Public Accessibility</strong> is set to &#8220;Yes&#8221;.
+<strong>IF YOU DO NOT DO THIS, YOU WILL NOT BE ABLE TO ACCESS YOUR DATABASE.</strong>
+If you forget, you can always go back later and change it.</p>
 <p>Finally, click on the button for launching your instance.
 This will take significantly longer than launching an EC2 instance (though stiill just short enough for a class demo!).</p>
 <p>Once your RDS instance is up and running, more more key piece of information will become available to you: the <code class="docutils literal"><span class="pre">Endpoint</span></code>.
