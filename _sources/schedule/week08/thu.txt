@@ -41,11 +41,11 @@ Assignments
 ===========
 
 * :doc:`/assignments/sort_1_insertion`
-* :doc:`/assignments/django_9_drf_tutorial_b`
+* :doc:`/assignments/django_10_drf_tutorial_b`
 * :doc:`/assignments/aws_2_ansible_imager` (Due Friday)
 * :doc:`/assignments/django_7_complete_frontend` (Due Friday)
 * :doc:`/assignments/django_14_s3`
-* :doc:`/assignments/django_10_taggit` (EXTRA)
+* :doc:`/assignments/django_11_taggit` (EXTRA)
 * :doc:`/assignments/project_04_readme`
 * :doc:`/assignments/daily_lj_entry`
 * :doc:`/assignments/blog_post_publish` (Due Friday Week 9)

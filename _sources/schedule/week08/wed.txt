@@ -56,7 +56,7 @@ Assignments
 * :doc:`/assignments/sort_0_bubblesort`
 * :doc:`/assignments/aws_2_ansible_imager` (Due Friday)
 * :doc:`/assignments/django_7_complete_frontend` (Due Friday)
-* :doc:`/assignments/django_8_drf_tutorial_a`
+* :doc:`/assignments/django_9_drf_tutorial_a`
 * :doc:`/assignments/blog_post_publish` (Due Friday Week 9)
 * :doc:`/assignments/project_03_repo`
 * :doc:`/assignments/daily_lj_entry`
