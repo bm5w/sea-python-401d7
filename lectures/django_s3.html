@@ -394,7 +394,7 @@ These are all a part of the credentials that you downloaded earlier when you ini
 <span class="n">AWS_SECRET_ACCESS_KEY</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 </pre></div>
 </div>
-<p>As with any other secret information <strong>WE NEVER EVER EVER HARD-CODE SECRETS AND PUT THEM IN SOURCE CONTROL!!!!</strong>
+<p>As with any other secret information <strong>WE NEVER EVER EVER HARD-CODE SECRETS OR PUT THEM IN SOURCE CONTROL!!!!</strong>
 Instead, use environment variables to populate those values.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c1"># Amazon Web Services Configuration</span>
 <span class="n">AWS_STORAGE_BUCKET_NAME</span> <span class="o">=</span> <span class="s1">&#39;cf401-python-test&#39;</span>
@@ -416,7 +416,7 @@ The source code for this object can be found in <code class="docutils literal"><
 Amongst the litany of other class attributes, there’s a <code class="docutils literal"><span class="pre">location</span></code> attribute that is set using whatever was defined at <code class="docutils literal"><span class="pre">AWS_LOCATION</span></code> in your <code class="docutils literal"><span class="pre">settings.py</span></code>.
 If you didn’t define that variable, it defaults to an empty string, which would point to the root of your bucket.
 What this means is that if we were to use this storage object for both our static and media files, they’d both be using the same location, which would just be the root of our S3 bucket.</p>
-<p><strong>We do not want to mix our static and media files together.</strong>
+<p><strong>We do not want to mix our static and media files into the same buckets.</strong>
 That was the whole point of making separate directories in the S3 bucket in the first place! So, we’ll have to override that parameter by making our own storage objects.</p>
 <p>In the same directory as <code class="docutils literal"><span class="pre">settings.py</span></code> create a new file.
 You could call it anything you want, but <code class="docutils literal"><span class="pre">custom_storages.py</span></code> is fairly descriptive for what we’re about to do.

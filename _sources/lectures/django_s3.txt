@@ -255,7 +255,7 @@ These are all a part of the credentials that you downloaded earlier when you ini
     AWS_ACCESS_KEY_ID = ''
     AWS_SECRET_ACCESS_KEY = ''
 
-As with any other secret information **WE NEVER EVER EVER HARD-CODE SECRETS AND PUT THEM IN SOURCE CONTROL!!!!** 
+As with any other secret information **WE NEVER EVER EVER HARD-CODE SECRETS OR PUT THEM IN SOURCE CONTROL!!!!** 
 Instead, use environment variables to populate those values.
 
 .. code-block:: python
@@ -285,7 +285,7 @@ Amongst the litany of other class attributes, there’s a ``location`` attribute
 If you didn’t define that variable, it defaults to an empty string, which would point to the root of your bucket.
 What this means is that if we were to use this storage object for both our static and media files, they’d both be using the same location, which would just be the root of our S3 bucket.
 
-**We do not want to mix our static and media files together.**
+**We do not want to mix our static and media files into the same buckets.**
 That was the whole point of making separate directories in the S3 bucket in the first place! So, we’ll have to override that parameter by making our own storage objects.
 
 In the same directory as ``settings.py`` create a new file.
