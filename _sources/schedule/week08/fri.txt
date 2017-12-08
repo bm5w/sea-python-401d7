@@ -61,7 +61,7 @@ Assignments
 * :doc:`/assignments/sort_2_mergesort`
 * :doc:`/assignments/ml_1_visualizing_data`
 * :doc:`/assignments/project_05_wireframe_begin`
-* :doc:`/assignments/django_11_api`
+* :doc:`/assignments/django_12_api`
 * :doc:`/assignments/django_7_complete_frontend`
 * :doc:`/assignments/aws_2_ansible_imager`
 * :doc:`/assignments/blog_post_publish` (Due Friday Week 9)
