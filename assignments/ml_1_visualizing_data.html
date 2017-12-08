@@ -177,9 +177,19 @@ div.nboutput  > :nth-child(2).stderr {
 <div class="section" id="analyze-a-data-set">
 <h1>Analyze a Data Set<a class="headerlink" href="#analyze-a-data-set" title="Permalink to this headline">¶</a></h1>
 <p>Today we&#8217;ve learned about how to use <code class="docutils literal"><span class="pre">Numpy</span></code>, <code class="docutils literal"><span class="pre">Matplotlib</span></code>, and <code class="docutils literal"><span class="pre">Jupyter</span> <span class="pre">Notebook</span></code> to read and present data.
-Now let&#8217;s use it with an actual data set.
-<a class="reference download internal" href="../_downloads/boston_housing_data.csv"><code class="xref download docutils literal"><span class="pre">Here</span></code></a> is a link to a data set compiling data on home values in suburbs in Boston from 1993.
-You can read more about it <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Housing">here</a>, where there is a description of the columns.</p>
+Now let&#8217;s use it with an actual data set.</p>
+<p>We&#8217;re going to be using the Boston Housing data, compiling data on home values in suburbs in Boston from 1993.</p>
+<p>Access the data in this way:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="gp">In [2]: </span><span class="n">boston</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_boston</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>The column names can be found in <code class="docutils literal"><span class="pre">boston.feature_names</span></code>.</li>
+<li>The column descriptions can be found in <code class="docutils literal"><span class="pre">boston.DESCR</span></code>.</li>
+<li>The actual data itself can be found in <code class="docutils literal"><span class="pre">boston.data</span></code></li>
+</ul>
+<p>More information about the data can be found <a class="reference external" href="https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html">here</a>, <a class="reference external" href="http://www.kellogg.northwestern.edu/faculty/weber/emp/_session_3/boston.htm">here</a>, and <a class="reference external" href="https://rstudio-pubs-static.s3.amazonaws.com/251613_9ed3457cc9dd4f18984a89bc8a97ff6c.html">here</a> amongst other places.</p>
 <div class="section" id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
 <p>If you haven&#8217;t already, start a new virtual environment and create a repository named <code class="docutils literal"><span class="pre">machine-learning</span></code>.

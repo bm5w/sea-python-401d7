@@ -4,8 +4,21 @@ Analyze a Data Set
 
 Today we've learned about how to use ``Numpy``, ``Matplotlib``, and ``Jupyter Notebook`` to read and present data.
 Now let's use it with an actual data set.
-:download:`Here </downloads/boston_housing_data.csv>` is a link to a data set compiling data on home values in suburbs in Boston from 1993.
-You can read more about it `here <https://archive.ics.uci.edu/ml/datasets/Housing>`_, where there is a description of the columns.
+
+We're going to be using the Boston Housing data, compiling data on home values in suburbs in Boston from 1993.
+
+Access the data in this way:
+
+.. code-block:: ipython
+
+    In [1]: from sklearn import datasets
+    In [2]: boston = datasets.load_boston()
+
+- The column names can be found in ``boston.feature_names``.
+- The column descriptions can be found in ``boston.DESCR``.
+- The actual data itself can be found in ``boston.data``
+
+More information about the data can be found `here <https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html>`_, `here <http://www.kellogg.northwestern.edu/faculty/weber/emp/_session_3/boston.htm>`_, and `here <https://rstudio-pubs-static.s3.amazonaws.com/251613_9ed3457cc9dd4f18984a89bc8a97ff6c.html>`_ amongst other places.
 
 Tasks
 =====
