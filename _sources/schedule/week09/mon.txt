@@ -56,11 +56,11 @@ Assignments
 ===========
 
 * :doc:`/assignments/imperfect_data`
-* :doc:`/assignments/django_12_pagination`
+* :doc:`/assignments/django_13_pagination`
 * :doc:`/assignments/django_7_complete_frontend` (Due Monday Week 9)
 * :doc:`/assignments/aws_2_ansible_imager` (Due Friday Week 9)
 * :doc:`/assignments/sort_3_quicksort`
-* :doc:`/assignments/django_13_social_auth`
+* :doc:`/assignments/django_14_social_auth`
 * :doc:`/assignments/project_06_wireframe_end`
 * :doc:`/assignments/blog_post_publish` (Due Friday)
 * :doc:`/assignments/daily_lj_entry`
