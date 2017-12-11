@@ -60,7 +60,7 @@ Concepts
 Assignments
 ===========
 
-* :doc:`/assignments/django_13_social_auth`
+* :doc:`/assignments/django_14_social_auth`
 * :doc:`/assignments/ml_3_k_nearest_neighbors`
 * :doc:`/assignments/ml_4_k_means`
 * :doc:`/assignments/sort_4_radix`
