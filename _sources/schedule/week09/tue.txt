@@ -14,6 +14,10 @@ Objectives
 ==========
 
 * Dive into the Radix Sort algorithm
+* Learn about when and why to re-scale data
+* Use K-Nearest Neighbors to predict categories by distance
+* Become familiar with K-Means Clustering
+* Walk through a brief introduction to the scikit-learn Python package
 
 Readings
 ========
@@ -23,6 +27,17 @@ Sorting
 
 * `Radix Sort Visualization <https://www.cs.usfca.edu/~galles/visualization/RadixSort.html>`_
 
+Machine Learning
+----------------
+
+* `Supervised and Unsupervised Machine Learning Algorithms <http://machinelearningmastery.com/supervised-and-unsupervised-machine-learning-algorithms/>`_
+* `Supervised and Unsupervised Learning <http://www.astro.caltech.edu/~george/aybi199/Donalek_Classif.pdf>`_
+* `K-Means Clustering <http://stanford.edu/~cpiech/cs221/handouts/kmeans.html>`_
+* `Feature Scaling and Normalization <http://www.datasciencecentral.com/profiles/blogs/feature-scaling-and-normalization>`_
+* `A Detailed Introduction to K-Nearest Neighbors <https://saravananthirumuruganathan.wordpress.com/2010/05/17/a-detailed-introduction-to-k-nearest-neighbor-knn-algorithm/>`_
+* K-Nearest Neighbors Algorithm (`Wikipedia <https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm>`_)
+* How KNN Works (`video <https://www.youtube.com/watch?v=UqYde-LULfs>`_)
+
 Review
 ======
 
@@ -31,6 +46,14 @@ None unless asked for.
 Concepts
 ========
 
+.. toctree::
+    :maxdepth: 2
+
+    /lectures/rescaling_data
+    /lectures/k_nearest_neighbors
+    /lectures/k_means
+
+* Introduction to Scikit-Learn
 * Radix Sort
 * Final Whiteboarding
 
@@ -38,6 +61,8 @@ Assignments
 ===========
 
 * :doc:`/assignments/django_13_social_auth`
+* :doc:`/assignments/ml_3_k_nearest_neighbors`
+* :doc:`/assignments/ml_4_k_means`
 * :doc:`/assignments/sort_4_radix`
 * :doc:`/assignments/project_07_stories_begin`
 * :doc:`/assignments/blog_post_publish` (Due Friday)

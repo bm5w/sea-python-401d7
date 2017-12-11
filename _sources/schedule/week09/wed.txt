@@ -28,7 +28,6 @@ Readings
 Review
 ======
 
-Getting up and running with AWS ElasticSearch and Django Haystack
 
 Concepts
 ========

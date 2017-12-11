@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Python 401 2.1 documentation" href="../../index.html" />
-    <link rel="next" title="Rescaling Data" href="../../lectures/rescaling_data.html" />
+    <link rel="next" title="Friday" href="fri.html" />
     <link rel="prev" title="The Decision Tree Classifier" href="../../lectures/decision_tree.html" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
@@ -54,7 +54,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../../lectures/rescaling_data.html" title="Rescaling Data"
+          <a href="fri.html" title="Friday"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="../../lectures/decision_tree.html" title="The Decision Tree Classifier"
@@ -184,56 +184,9 @@ div.nboutput  > :nth-child(2).stderr {
 </style>
 <div class="section" id="thursday">
 <h1>Thursday<a class="headerlink" href="#thursday" title="Permalink to this headline">¶</a></h1>
-<span class="admonition-course-presentations"></span><div class="section" id="objectives">
-<h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Learn about when and why to re-scale data</li>
-<li>Use K-Nearest Neighbors to predict categories by distance</li>
-<li>Become familiar with K-Means Clustering</li>
-<li>Walk through a brief introduction to the scikit-learn Python package</li>
-</ul>
-</div>
-<div class="section" id="readings">
-<h2>Readings<a class="headerlink" href="#readings" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="http://machinelearningmastery.com/supervised-and-unsupervised-machine-learning-algorithms/">Supervised and Unsupervised Machine Learning Algorithms</a></li>
-<li><a class="reference external" href="http://www.astro.caltech.edu/~george/aybi199/Donalek_Classif.pdf">Supervised and Unsupervised Learning</a></li>
-<li><a class="reference external" href="http://stanford.edu/~cpiech/cs221/handouts/kmeans.html">K-Means Clustering</a></li>
-<li><a class="reference external" href="http://www.datasciencecentral.com/profiles/blogs/feature-scaling-and-normalization">Feature Scaling and Normalization</a></li>
-<li><a class="reference external" href="https://saravananthirumuruganathan.wordpress.com/2010/05/17/a-detailed-introduction-to-k-nearest-neighbor-knn-algorithm/">A Detailed Introduction to K-Nearest Neighbors</a></li>
-<li>K-Nearest Neighbors Algorithm (<a class="reference external" href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">Wikipedia</a>)</li>
-<li>How KNN Works (<a class="reference external" href="https://www.youtube.com/watch?v=UqYde-LULfs">video</a>)</li>
-</ul>
-</div>
-<div class="section" id="concepts">
+<span class="admonition-course-presentations"></span><div class="section" id="concepts">
 <h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/rescaling_data.html">Rescaling Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/rescaling_data.html#simple-rescaling">Simple Rescaling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/rescaling_data.html#orders-of-magnitude">Orders of Magnitude</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/k_nearest_neighbors.html">K-Nearest Neighbors Classifier</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_nearest_neighbors.html#the-algorithm">The Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_nearest_neighbors.html#advantages">Advantages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_nearest_neighbors.html#disadvantages">Disadvantages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_nearest_neighbors.html#attributes">Attributes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_nearest_neighbors.html#operations">Operations</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/k_means.html">K-Means Classifier</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_means.html#the-algorithm">The Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_means.html#advantages">Advantages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_means.html#disadvantages">Disadvantages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_means.html#attributes">Attributes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/k_means.html#operations">Operations</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <ul class="simple">
-<li>Introduction to Scikit-Learn</li>
 <li>Final Whiteboarding</li>
 </ul>
 </div>
@@ -241,8 +194,6 @@ div.nboutput  > :nth-child(2).stderr {
 <h2>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="../../assignments/project_09_stories_end.html"><em>Group Project: Prioritize User Stories</em></a></li>
-<li><a class="reference internal" href="../../assignments/ml_3_k_nearest_neighbors.html"><em>Implement the K-Nearest Neighbors Classifier</em></a></li>
-<li><a class="reference internal" href="../../assignments/ml_4_k_means.html"><em>Implement the K-Means Classifier</em></a></li>
 <li><a class="reference internal" href="../../assignments/blog_post_publish.html"><em>Technical Blog Post: Publish Your Post</em></a></li>
 <li><a class="reference internal" href="../../assignments/daily_lj_entry.html"><em>Today I learned...</em></a></li>
 </ul>
@@ -258,8 +209,6 @@ div.nboutput  > :nth-child(2).stderr {
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Thursday</a><ul>
-<li><a class="reference internal" href="#objectives">Objectives</a></li>
-<li><a class="reference internal" href="#readings">Readings</a></li>
 <li><a class="reference internal" href="#concepts">Concepts</a></li>
 <li><a class="reference internal" href="#assignments">Assignments</a></li>
 </ul>
@@ -270,8 +219,8 @@ div.nboutput  > :nth-child(2).stderr {
   <p class="topless"><a href="../../lectures/decision_tree.html"
                         title="previous chapter">The Decision Tree Classifier</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../../lectures/rescaling_data.html"
-                        title="next chapter">Rescaling Data</a></p>
+  <p class="topless"><a href="fri.html"
+                        title="next chapter">Friday</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
@@ -296,7 +245,7 @@ div.nboutput  > :nth-child(2).stderr {
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../../lectures/rescaling_data.html" title="Rescaling Data"
+          <a href="fri.html" title="Friday"
              >next</a> |</li>
         <li class="right" >
           <a href="../../lectures/decision_tree.html" title="The Decision Tree Classifier"
