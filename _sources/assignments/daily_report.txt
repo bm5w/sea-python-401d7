@@ -1,0 +1,27 @@
+**************************
+Final Project Daily Report
+**************************
+
+Tasks
+=====
+
+Each day, you will report on:
+
+- What you worked on
+- Who you worked with
+- What tests you wrote
+
+**For what you worked on**, talk about what feature or aspect of the application you spent the majority of your time on.
+If you worked on a variety of things, leave a brief description of each.
+
+**For who you worked with**, talk about which of the other group members you worked with that day, and on what features of the application you worked on them with.
+
+**For what tests you wrote**, talk about...the tests that you wrote.
+Even if they don't make it into the final product, **give a brief description of 5 tests that you personally wrote.**
+You must write at least 5 tests each day to get full credit for this assignment.
+If you wrote more than 5, just talk about 5 that you wrote. They will be 0.5 points each.
+
+Submission
+==========
+
+Submit each day to the corresponding assignment on Canvas.
